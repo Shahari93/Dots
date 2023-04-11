@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -7911589361687839775}
   - component: {fileID: 1263523021566039327}
   - component: {fileID: 6240001190704151462}
-  - component: {fileID: 2153185652495012066}
-  - component: {fileID: 7892103344836395567}
+  - component: {fileID: 754311088983901507}
+  - component: {fileID: 5313707749662933127}
   m_Layer: 0
   m_Name: BadDot
   m_TagString: Interactable
@@ -140,8 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0}
-  particlesSystem: {fileID: 7892103344836395567}
---- !u!199 &2153185652495012066
+  particlesSystem: {fileID: 5313707749662933127}
+--- !u!199 &754311088983901507
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!198 &7892103344836395567
+--- !u!198 &5313707749662933127
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

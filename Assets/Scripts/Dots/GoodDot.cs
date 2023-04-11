@@ -11,8 +11,7 @@ public class GoodDot : DotsBehaviour
     public override void BehaveWhenIteractWithPlayer()
     {
         //Show "good" particles
-        ShowDestroyParticles(true);
-        Debug.Log("Show good particles");
+        ShowDestroyParticles(IsGoodDot);
         base.BehaveWhenIteractWithPlayer();
         // Add point
     }
