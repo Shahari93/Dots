@@ -1,11 +1,18 @@
+using UnityEngine;
 using Dots.GamePlay.Dot;
 
 public class BadDot : DotsBehaviour
 {
-    public override void BehaveWhenIteract()
+    private void Awake()
+    {
+        IsGoodDot = false;
+    }
+
+    public override void BehaveWhenIteractWithPlayer()
     {
         //Show "bad" particles
-        base.BehaveWhenIteract();
+        ShowDestroyParticles(false);
+        base.BehaveWhenIteractWithPlayer();
         // Trigger lose game
     }
 }

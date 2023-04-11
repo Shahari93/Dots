@@ -7,7 +7,7 @@ public class PlayerDotsInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Interactable"))
         {
-            collision.GetComponent<DotsBehaviour>().BehaveWhenIteract();
+            collision.GetComponent<DotsBehaviour>().BehaveWhenIteractWithPlayer();
         }
     }
 }
