@@ -6,7 +6,7 @@ namespace Dots.Utils.ObjectPool
     {
         private void Start()
         {
-            InvokeRepeating(nameof(Spawn), 2f, 3f);
+            InvokeRepeating(nameof(Spawn), 2f, 1.5f);
         }
 
         private void Spawn()

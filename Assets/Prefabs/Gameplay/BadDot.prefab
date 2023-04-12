@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1029d0662bbc44a9e5e8044b5b53d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: {x: 0, y: 0}
   direction: {x: 0, y: 0}
   particlesSystem: {fileID: 5313707749662933127}
+  rb2D: {fileID: 1263523021566039327}
 --- !u!212 &5376683166059210709
 SpriteRenderer:
   m_ObjectHideFlags: 0
