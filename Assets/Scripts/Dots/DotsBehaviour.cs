@@ -7,12 +7,19 @@ namespace Dots.GamePlay.Dot
     public class DotsBehaviour : MonoBehaviour, IInteractableObjects
     {
         float speed;
+        Vector2 direction;
         [SerializeField] ParticleSystem particlesSystem;
         [SerializeField] Rigidbody2D rb2D;
 
         public bool IsGoodDot { get; set; }
 
         private void OnEnable()
+        {
+            speed = UnityEngine.Random.Range(0.5f, 0.7f);
+            direction = new Vector2(UnityEngine.Random.Range(-180, 181), UnityEngine.Random.Range(-180, 181));
+        }
+
+        private void FixedUpdate()
         {
             SetSpeedAndDirection();
         }
@@ -27,8 +34,8 @@ namespace Dots.GamePlay.Dot
 
         private void SetSpeedAndDirection()
         {
-            speed = UnityEngine.Random.Range(3.5f, 3.7f);
-            rb2D.velocity = new Vector2(UnityEngine.Random.Range(-180, 181), UnityEngine.Random.Range(-180, 181)) * Time.deltaTime * speed;
+            
+            rb2D.velocity = direction * Time.deltaTime * speed;
         }
 
         // What happens if a dot hits the bounds collider
