@@ -3,7 +3,7 @@ using Dots.Utils.Interaction;
 
 namespace Dots.GamePlay.Dot
 {
-    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects
+    public class DotsBehaviour : MonoBehaviour, IInteractableObjects
     {
         [SerializeField] float speed;
         [SerializeField] Vector2 direction;
@@ -23,17 +23,35 @@ namespace Dots.GamePlay.Dot
         private void BehaveWhenIteractWithBounds()
         {
             // Don't add points / Set fail state
-            // Return dot to pool
+
+            // Disable game object componnents 
+            DisableComponnetsWhenDestroied();
+
             // Show Particels based on color 
             ShowDestroyParticles(IsGoodDot);
+
+            // Return dot to pool
+            // Make it async and wait until the particles are shown
             //Destroy(gameObject);
         }
 
         // What happens when a player collects the dot
         public virtual void BehaveWhenIteractWithPlayer()
         {
+            // Disable game object componnents 
+            DisableComponnetsWhenDestroied();
+            // Show particles
+            ShowDestroyParticles(IsGoodDot);
+
             //Return dot to pool
-            Destroy(gameObject);
+            // Make it async and wait until the particles are shown
+            //Destroy(gameObject);
+        }
+
+        private void DisableComponnetsWhenDestroied()
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;  
+            gameObject.GetComponent<Collider2D>().enabled = false;
         }
 
         public void ShowDestroyParticles(bool isGoodDot)
