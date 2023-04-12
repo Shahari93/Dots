@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Interactable
   - Bounds
+  - GoodDot
+  - BadDot
   layers:
   - Default
   - TransparentFX

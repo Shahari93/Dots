@@ -5,7 +5,7 @@ public class PlayerDotsInteraction : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Interactable"))
+        if (collision.CompareTag("GoodDot") || collision.CompareTag("BadDot"))
         {
             collision.GetComponent<DotsBehaviour>().BehaveWhenIteractWithPlayer();
         }

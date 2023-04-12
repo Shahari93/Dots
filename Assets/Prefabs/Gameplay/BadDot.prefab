@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5376683166059210710}
+  - component: {fileID: 6240001190704151462}
   - component: {fileID: 5376683166059210709}
   - component: {fileID: -7911589361687839775}
   - component: {fileID: 1263523021566039327}
-  - component: {fileID: 6240001190704151462}
   - component: {fileID: 754311088983901507}
   - component: {fileID: 5313707749662933127}
   m_Layer: 0
   m_Name: BadDot
-  m_TagString: Interactable
+  m_TagString: BadDot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,12 +31,27 @@ Transform:
   m_GameObject: {fileID: 5376683166059210708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6240001190704151462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5376683166059210708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1029d0662bbc44a9e5e8044b5b53d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0}
+  particlesSystem: {fileID: 5313707749662933127}
 --- !u!212 &5376683166059210709
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126,21 +141,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6240001190704151462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376683166059210708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1029d0662bbc44a9e5e8044b5b53d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  direction: {x: 0, y: 0}
-  particlesSystem: {fileID: 5313707749662933127}
 --- !u!199 &754311088983901507
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -32,7 +32,7 @@ namespace Dots.GamePlay.Dot
 
             // Return dot to pool
             // Make it async and wait until the particles are shown
-            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         // What happens when a player collects the dot
@@ -45,12 +45,12 @@ namespace Dots.GamePlay.Dot
 
             //Return dot to pool
             // Make it async and wait until the particles are shown
-            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         private void DisableComponnetsWhenDestroied()
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;  
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<Collider2D>().enabled = false;
         }
 
