@@ -1,5 +1,6 @@
 using UnityEngine;
 using Dots.Utils.Interaction;
+using System;
 
 namespace Dots.GamePlay.Dot
 {
@@ -11,12 +12,22 @@ namespace Dots.GamePlay.Dot
 
         public bool IsGoodDot { get; set; }
 
+        private void OnEnable()
+        {
+            SetSpeedAndDirection();
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Bounds"))
             {
                 BehaveWhenIteractWithBounds();
             }
+        }
+
+        private void SetSpeedAndDirection()
+        {
+            throw new NotImplementedException();
         }
 
         // What happens if a dot hits the bounds collider
