@@ -39,8 +39,6 @@ namespace Dots.GamePlay.Dot
         // What happens if a dot hits the bounds collider
         private void BehaveWhenIteractWithBounds()
         {
-            // Don't add points / Set fail state
-
             // Disable game object componnents 
             DisableComponnetsWhenDestroied();
 
