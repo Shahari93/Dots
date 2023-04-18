@@ -1,5 +1,5 @@
-using Dots.GamePlay.Dot;
 using System;
+using Dots.GamePlay.Dot;
 
 public class GoodDot : DotsBehaviour
 {

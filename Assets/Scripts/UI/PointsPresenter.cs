@@ -22,7 +22,7 @@ namespace Dots.ScorePoints.Presenter
 
         private void Start()
         {
-            Reset();
+            //Reset();
             UpdateView();
         }
 
@@ -43,7 +43,7 @@ namespace Dots.ScorePoints.Presenter
 
             if (scoreText != null)
             {
-                scoreText.text = "Score: " + pointsModel.CurrentPointsScore.ToString();
+                scoreText.text = "Score: " + PointsModel.CurrentPointsScore.ToString();
             }
         }
 

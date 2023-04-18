@@ -7,11 +7,11 @@ namespace Dots.ScorePoints.Model
     {
         public event Action OnScoreChanged;
 
-        private int currentPointsScore;
-        private int highScore;
+        private static int currentPointsScore;
+        private static int highScore;
 
-        public int CurrentPointsScore { get => currentPointsScore; set => currentPointsScore = value; }
-        public int HighScore => highScore;
+        public static int CurrentPointsScore { get => currentPointsScore; set => currentPointsScore = value; }
+        public static int HighScore => highScore;
 
         // Updating the model data with the new score
         public void IncrementScore(int amount)
