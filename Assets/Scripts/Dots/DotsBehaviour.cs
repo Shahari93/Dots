@@ -15,8 +15,8 @@ namespace Dots.GamePlay.Dot
 
         private void OnEnable()
         {
-            speed = UnityEngine.Random.Range(0.5f, 0.7f);
-            direction = new Vector2(UnityEngine.Random.Range(-180, 181), UnityEngine.Random.Range(-180, 181));
+            speed = 80f;
+            direction = new Vector2(UnityEngine.Random.Range(-180, 181), UnityEngine.Random.Range(-180, 181)).normalized;
         }
 
         private void FixedUpdate()
@@ -34,8 +34,7 @@ namespace Dots.GamePlay.Dot
 
         private void SetSpeedAndDirection()
         {
-            
-            rb2D.velocity = direction * Time.deltaTime * speed;
+            rb2D.velocity = speed * direction * Time.fixedDeltaTime;
         }
 
         // What happens if a dot hits the bounds collider
