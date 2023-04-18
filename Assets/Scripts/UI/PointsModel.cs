@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ScorePoints.Model
+namespace Dots.ScorePoints.Model
 {
     public class PointsModel : MonoBehaviour
     {

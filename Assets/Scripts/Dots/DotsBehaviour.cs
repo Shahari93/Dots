@@ -35,7 +35,8 @@ namespace Dots.GamePlay.Dot
         {
             rb2D.velocity = speed * direction * Time.fixedDeltaTime;
         }
-
+         
+        // TODO: Find a way to refactor those 2 methods because they do the same thing 
         // What happens if a dot hits the bounds collider
         private void BehaveWhenIteractWithBounds()
         {
@@ -45,7 +46,7 @@ namespace Dots.GamePlay.Dot
         }
 
         // What happens when a player collects the dot
-        public virtual void BehaveWhenIteract()
+        public virtual void BehaveWhenIteractWithPlayer()
         {
             DisableComponnetsWhenDestroied();
             ShowDestroyParticles(IsGoodDot);

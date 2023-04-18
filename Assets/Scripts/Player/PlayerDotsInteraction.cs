@@ -7,7 +7,7 @@ public class PlayerDotsInteraction : MonoBehaviour
     {
         if (collision.CompareTag("GoodDot") || collision.CompareTag("BadDot"))
         {
-            collision.GetComponent<DotsBehaviour>().BehaveWhenIteract();
+            collision.GetComponent<DotsBehaviour>().BehaveWhenIteractWithPlayer();
         }
     }
 }

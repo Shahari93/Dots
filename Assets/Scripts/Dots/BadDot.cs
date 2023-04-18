@@ -9,9 +9,9 @@ public class BadDot : DotsBehaviour
         IsGoodDot = false;
     }
 
-    public override void BehaveWhenIteract()
+    public override void BehaveWhenIteractWithPlayer()
     {
-        base.BehaveWhenIteract();
+        base.BehaveWhenIteractWithPlayer();
         // Trigger lose game
         OnLoseGame?.Invoke();
     }

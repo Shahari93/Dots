@@ -1,8 +1,8 @@
 using TMPro;
 using UnityEngine;
-using ScorePoints.Model;
+using Dots.ScorePoints.Model;
 
-namespace ScorePoints.Presenter
+namespace Dots.ScorePoints.Presenter
 {
     /// <summary>
     /// This class responsible of controling the change of data of the points system
