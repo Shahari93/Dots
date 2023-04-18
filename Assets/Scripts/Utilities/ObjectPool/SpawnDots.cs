@@ -4,6 +4,11 @@ namespace Dots.Utils.ObjectPool
 {
     public class SpawnDots : MonoBehaviour
     {
+        private void OnEnable()
+        {
+            BadDot.OnLoseGame += StopSpawnInvokation;
+        }
+
         private void Start()
         {
             InvokeRepeating(nameof(Spawn), 2f, 1.5f);
@@ -25,6 +30,16 @@ namespace Dots.Utils.ObjectPool
                 dot.GetComponent<SpriteRenderer>().enabled = true;
                 dot.SetActive(true);
             }
+        }
+
+        private void StopSpawnInvokation()
+        {
+            CancelInvoke(nameof(Spawn));
+        }
+
+        private void OnDisable()
+        {
+            BadDot.OnLoseGame -= StopSpawnInvokation;
         }
     }
 }

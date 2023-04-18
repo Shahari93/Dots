@@ -39,27 +39,16 @@ namespace Dots.GamePlay.Dot
         // What happens if a dot hits the bounds collider
         private void BehaveWhenIteractWithBounds()
         {
-            // Disable game object componnents 
             DisableComponnetsWhenDestroied();
-
-            // Show Particels based on color 
             ShowDestroyParticles(IsGoodDot);
-
-            // Return dot to pool
-            // Make it async and wait until the particles are shown
             gameObject.SetActive(false);
         }
 
         // What happens when a player collects the dot
-        public virtual void BehaveWhenIteractWithPlayer()
+        public virtual void BehaveWhenIteract()
         {
-            // Disable game object componnents 
             DisableComponnetsWhenDestroied();
-            // Show particles
             ShowDestroyParticles(IsGoodDot);
-
-            //Return dot to pool
-            // Make it async and wait until the particles are shown
             gameObject.SetActive(false);
         }
 

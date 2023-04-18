@@ -9,9 +9,9 @@ public class GoodDot : DotsBehaviour
         IsGoodDot = true;
     }
 
-    public override void BehaveWhenIteractWithPlayer()
+    public override void BehaveWhenIteract()
     {
-        base.BehaveWhenIteractWithPlayer();
+        base.BehaveWhenIteract();
         OnPlayerCollectedDot?.Invoke(1);
     }
 }

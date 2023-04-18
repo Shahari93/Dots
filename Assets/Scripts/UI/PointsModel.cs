@@ -13,6 +13,7 @@ namespace ScorePoints.Model
         public int CurrentPointsScore { get => currentPointsScore; set => currentPointsScore = value; }
         public int HighScore => highScore;
 
+        // Updating the model data with the new score
         public void IncrementScore(int amount)
         {
             currentPointsScore += amount;
@@ -29,7 +30,7 @@ namespace ScorePoints.Model
             UpdateScore();
         }
 
-        public void UpdateScore()
+        private void UpdateScore()
         {
             OnScoreChanged?.Invoke();
         }

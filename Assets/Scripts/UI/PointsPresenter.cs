@@ -17,7 +17,7 @@ namespace ScorePoints.Presenter
         private void OnEnable()
         {
             pointsModel.OnScoreChanged += OnScoreChanged;
-            GoodDot.OnPlayerCollectedDot += AddPointsScore;
+            GoodDot.OnPlayerCollectedDot += IncrementPointsScore;
         }
 
         private void Start()
@@ -26,7 +26,7 @@ namespace ScorePoints.Presenter
             UpdateView();
         }
 
-        public void AddPointsScore(int amount)
+        public void IncrementPointsScore(int amount)
         {
             pointsModel?.IncrementScore(amount);
         }
@@ -55,7 +55,7 @@ namespace ScorePoints.Presenter
         private void OnDisable()
         {
             pointsModel.OnScoreChanged -= OnScoreChanged;
-            GoodDot.OnPlayerCollectedDot -= AddPointsScore;
+            GoodDot.OnPlayerCollectedDot -= IncrementPointsScore;
         }
     }
 }
