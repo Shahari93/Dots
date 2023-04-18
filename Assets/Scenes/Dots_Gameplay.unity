@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ec0adeb1d90ad42b634256092b1a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: {fileID: 1500554264}
+  pointsModel: {fileID: 1500554264}
   scoreText: {fileID: 1827371941}
 --- !u!224 &2057730938 stripped
 RectTransform:
