@@ -1,6 +1,5 @@
 using UnityEngine;
 using Dots.Utils.Interaction;
-using System;
 
 namespace Dots.GamePlay.Dot
 {

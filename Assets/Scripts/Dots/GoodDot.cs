@@ -1,10 +1,7 @@
-using UnityEngine;
 using Dots.GamePlay.Dot;
 
 public class GoodDot : DotsBehaviour
 {
-    private int pointsValue;
-
     private void Awake()
     {
         IsGoodDot = true;
@@ -15,6 +12,5 @@ public class GoodDot : DotsBehaviour
         //Show "good" particles
         ShowDestroyParticles(IsGoodDot);
         base.BehaveWhenIteractWithPlayer();
-        // Add point
     }
 }

@@ -1,4 +1,3 @@
-using UnityEngine;
 using Dots.GamePlay.Dot;
 
 public class BadDot : DotsBehaviour
