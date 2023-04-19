@@ -22,7 +22,7 @@ namespace Dots.ScorePoints.Presenter
 
         private void Start()
         {
-            //Reset();
+            Reset();
             UpdateView();
         }
 

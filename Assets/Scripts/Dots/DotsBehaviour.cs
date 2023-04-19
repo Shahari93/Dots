@@ -7,7 +7,7 @@ namespace Dots.GamePlay.Dot
     {
         float speed;
         Vector2 direction;
-        [SerializeField] ParticleSystem particlesSystem;
+        [SerializeField] ParticleSystem particles;
         [SerializeField] Rigidbody2D rb2D;
 
         public bool IsGoodDot { get; set; }
@@ -61,10 +61,17 @@ namespace Dots.GamePlay.Dot
 
         public void ShowDestroyParticles(bool isGoodDot)
         {
+            GameObject particle = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
+            ParticleSystem particleSystem = particle.GetComponent<ParticleSystem>();
             Color particlesColor = isGoodDot ? Color.green : Color.red;
-            ParticleSystem.MainModule main = particlesSystem.main;
+            ParticleSystem.MainModule main = particleSystem.main;
             main.startColor = particlesColor;
-            particlesSystem.Play();
+            particleSystem.Play();
+
+            if (particleSystem.isStopped)
+            {
+                Destroy(particles.gameObject);
+            }
         }
     }
 }
