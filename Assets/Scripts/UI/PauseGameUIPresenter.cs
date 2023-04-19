@@ -16,10 +16,15 @@ namespace Dots.PauseGame.Presenter
 
         private void OnEnable()
         {
-            pauseGameModel.OnGameLosed += UpdateGameFinalScore;
             BadDot.OnLoseGame += EnableLoseGamePanel;
+            pauseGameModel.OnGameLosed += ShowPauseScreen;
 
             loseGameRestartButton.onClick.AddListener(RestartGame);
+        }
+
+        public void ShowPauseScreen()
+        {
+            pauseGameModel?.GamePaused();
         }
 
         private void RestartGame()
@@ -28,22 +33,19 @@ namespace Dots.PauseGame.Presenter
             Time.timeScale = 1f;
         }
 
-        private void UpdateGameFinalScore()
-        {
-            if (loseGameScoreText != null)
-            {
-                loseGameScoreText.text = "Score: " + PointsModel.CurrentPointsScore.ToString();
-            }
-        }
-
         private void EnableLoseGamePanel()
         {
             loseGamePanel.gameObject.SetActive(true);
+            int finalScore = PointsModel.CurrentPointsScore;
+            if (loseGameScoreText != null)
+            {
+                loseGameScoreText.text = "Your score is: " + finalScore.ToString();
+            }
         }
 
         private void OnDisable()
         {
-            pauseGameModel.OnGameLosed -= UpdateGameFinalScore;
+            pauseGameModel.OnGameLosed -= ShowPauseScreen;
             BadDot.OnLoseGame -= EnableLoseGamePanel;
         }
     }
