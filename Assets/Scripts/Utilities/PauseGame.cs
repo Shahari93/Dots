@@ -6,17 +6,18 @@ namespace Dots.Utils.Pause
 	{
         private void OnEnable()
         {
-            BadDot.OnLoseGame += PauseGameOnLose;
+            BadDot.OnLoseGame += SetTimeScale;
         }
 
-        private void PauseGameOnLose()
+        // Made static for other classes that want to call the PauseGame Method
+        public static void SetTimeScale()
         {
             Time.timeScale = 0f;
         }
 
         private void OnDisable()
         {
-            BadDot.OnLoseGame -= PauseGameOnLose;
+            BadDot.OnLoseGame -= SetTimeScale;
         }
     } 
 }

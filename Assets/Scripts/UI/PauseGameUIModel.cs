@@ -3,9 +3,12 @@ using UnityEngine;
 
 namespace Dots.PauseGame.Model
 {
+    /// <summary>
+    /// Class that invokes that the game is paused 
+    /// </summary>
 	public class PauseGameUIModel : MonoBehaviour
 	{
-		public event Action OnGameLosed;
+		public event Action OnGamePaused;
 
         public void GamePaused()
         {    
@@ -14,7 +17,7 @@ namespace Dots.PauseGame.Model
 
         private void UpdateGamePaused()
         {
-            OnGameLosed?.Invoke();
+            OnGamePaused?.Invoke();
         }
     } 
 }

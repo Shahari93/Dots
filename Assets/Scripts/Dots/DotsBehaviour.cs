@@ -15,7 +15,9 @@ namespace Dots.GamePlay.Dot
         private void OnEnable()
         {
             speed = 80f;
-            direction = new Vector2(Random.Range(-180, 181), Random.Range(-180, 181)).normalized;
+            int randX = Random.Range(-180, 181);
+            int randY = Random.Range(-180, 181);
+            direction = new Vector2(randX, randY).normalized;
         }
 
         private void FixedUpdate()

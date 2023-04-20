@@ -18,14 +18,8 @@ namespace Dots.PauseGame.Presenter
         private void OnEnable()
         {
             BadDot.OnLoseGame += EnableLoseGamePanel;
-            pauseGameModel.OnGameLosed += ShowPauseScreen;
 
             loseGameRestartButton.onClick.AddListener(RestartGame);
-        }
-
-        public void ShowPauseScreen()
-        {
-            pauseGameModel?.GamePaused();
         }
 
         private void RestartGame()
@@ -47,7 +41,6 @@ namespace Dots.PauseGame.Presenter
 
         private void OnDisable()
         {
-            pauseGameModel.OnGameLosed -= ShowPauseScreen;
             BadDot.OnLoseGame -= EnableLoseGamePanel;
         }
     }
