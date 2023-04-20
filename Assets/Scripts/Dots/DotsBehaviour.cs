@@ -15,7 +15,7 @@ namespace Dots.GamePlay.Dot
         private void OnEnable()
         {
             speed = 80f;
-            direction = new Vector2(UnityEngine.Random.Range(-180, 181), UnityEngine.Random.Range(-180, 181)).normalized;
+            direction = new Vector2(Random.Range(-180, 181), Random.Range(-180, 181)).normalized;
         }
 
         private void FixedUpdate()
@@ -61,17 +61,12 @@ namespace Dots.GamePlay.Dot
 
         public void ShowDestroyParticles(bool isGoodDot)
         {
-            GameObject particle = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
-            ParticleSystem particleSystem = particle.GetComponent<ParticleSystem>();
+            GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
+            ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
             Color particlesColor = isGoodDot ? Color.green : Color.red;
             ParticleSystem.MainModule main = particleSystem.main;
             main.startColor = particlesColor;
             particleSystem.Play();
-
-            if (particleSystem.isStopped)
-            {
-                Destroy(particles.gameObject);
-            }
         }
     }
 }

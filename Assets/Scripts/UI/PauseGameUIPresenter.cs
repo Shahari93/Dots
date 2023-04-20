@@ -10,6 +10,7 @@ namespace Dots.PauseGame.Presenter
     public class PauseGameUIPresenter : MonoBehaviour
     {
         [SerializeField] PauseGameUIModel pauseGameModel;
+        [SerializeField] GameObject loseGameGO;
         [SerializeField] Image loseGamePanel;
         [SerializeField] TMP_Text loseGameScoreText;
         [SerializeField] Button loseGameRestartButton;
@@ -36,6 +37,7 @@ namespace Dots.PauseGame.Presenter
         private void EnableLoseGamePanel()
         {
             loseGamePanel.gameObject.SetActive(true);
+            loseGameGO.gameObject.SetActive(true);
             int finalScore = PointsModel.CurrentPointsScore;
             if (loseGameScoreText != null)
             {

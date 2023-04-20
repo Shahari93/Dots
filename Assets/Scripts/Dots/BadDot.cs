@@ -12,7 +12,6 @@ public class BadDot : DotsBehaviour
     public override void BehaveWhenIteractWithPlayer()
     {
         base.BehaveWhenIteractWithPlayer();
-        // Trigger lose game
         OnLoseGame?.Invoke();
     }
 }
