@@ -943,7 +943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5699107870424742746, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_Name
-      value: SafeArea
+      value: SafeAreaGameplayScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
