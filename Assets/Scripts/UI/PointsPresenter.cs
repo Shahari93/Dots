@@ -14,13 +14,13 @@ namespace Dots.ScorePoints.Presenter
         [SerializeField] PointsModel pointsModel;
         [SerializeField] TMP_Text scoreText;
 
-        private void OnEnable()
+        void OnEnable()
         {
             pointsModel.OnScoreChanged += OnScoreChanged;
             GoodDot.OnPlayerCollectedDot += IncrementPointsScore;
         }
 
-        private void Start()
+        void Start()
         {
             Reset();
             UpdateView();
@@ -52,7 +52,7 @@ namespace Dots.ScorePoints.Presenter
             UpdateView();
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             pointsModel.OnScoreChanged -= OnScoreChanged;
             GoodDot.OnPlayerCollectedDot -= IncrementPointsScore;

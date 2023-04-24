@@ -15,7 +15,7 @@ namespace Dots.PauseGame.Model
             UpdateGamePaused();
         }
 
-        private void UpdateGamePaused()
+        void UpdateGamePaused()
         {
             OnGamePaused?.Invoke();
         }

@@ -15,20 +15,20 @@ namespace Dots.PauseGame.Presenter
         [SerializeField] TMP_Text loseGameScoreText;
         [SerializeField] Button loseGameRestartButton;
 
-        private void OnEnable()
+        void OnEnable()
         {
             BadDot.OnLoseGame += EnableLoseGamePanel;
 
             loseGameRestartButton.onClick.AddListener(RestartGame);
         }
 
-        private void RestartGame()
+        void RestartGame()
         {
             SceneManager.LoadScene(0);
             Time.timeScale = 1f;
         }
 
-        private void EnableLoseGamePanel()
+        void EnableLoseGamePanel()
         {
             loseGamePanel.gameObject.SetActive(true);
             loseGameGO.gameObject.SetActive(true);
@@ -39,7 +39,7 @@ namespace Dots.PauseGame.Presenter
             }
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             BadDot.OnLoseGame -= EnableLoseGamePanel;
         }

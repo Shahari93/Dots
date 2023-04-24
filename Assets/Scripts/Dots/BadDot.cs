@@ -4,7 +4,8 @@ using Dots.GamePlay.Dot;
 public class BadDot : DotsBehaviour
 {
     public static event Action OnLoseGame;
-    private void Awake()
+
+    void Awake()
     {
         IsGoodDot = false;
     }

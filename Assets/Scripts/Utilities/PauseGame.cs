@@ -4,7 +4,7 @@ namespace Dots.Utils.Pause
 {
 	public class PauseGame : MonoBehaviour
 	{
-        private void OnEnable()
+        void OnEnable()
         {
             BadDot.OnLoseGame += SetTimeScale;
         }
@@ -15,7 +15,7 @@ namespace Dots.Utils.Pause
             Time.timeScale = 0f;
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             BadDot.OnLoseGame -= SetTimeScale;
         }

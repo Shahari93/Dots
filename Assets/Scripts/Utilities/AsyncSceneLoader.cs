@@ -15,7 +15,7 @@ namespace Dots.Utils.SceneLoader
 			loadSceneButton.onClick.AddListener(OnPlayButtonPressed);
         }
 
-		private void OnPlayButtonPressed()
+		void OnPlayButtonPressed()
 		{
 			StartCoroutine(LoadAsyncScene());
 		}
