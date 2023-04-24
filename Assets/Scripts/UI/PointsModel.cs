@@ -16,7 +16,7 @@ namespace Dots.ScorePoints.Model
 
         private void OnEnable()
         {
-            highScore = PlayerPrefs.GetInt("HighScore");
+            highScore = PlayerPrefs.GetInt("HighScore", 0);
         }
 
         // Updating the model data with the new score
