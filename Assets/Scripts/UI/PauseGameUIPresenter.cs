@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Dots.PauseGame.Presenter
 {
@@ -14,17 +15,25 @@ namespace Dots.PauseGame.Presenter
         [SerializeField] Image loseGamePanel;
         [SerializeField] TMP_Text loseGameScoreText;
         [SerializeField] Button loseGameRestartButton;
+        [SerializeField] Button returnToMenuButton;
 
         void OnEnable()
         {
             BadDot.OnLoseGame += EnableLoseGamePanel;
 
             loseGameRestartButton.onClick.AddListener(RestartGame);
+            returnToMenuButton.onClick.AddListener(ReturnToMenu);
+        }
+
+        void ReturnToMenu()
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1f;
         }
 
         void RestartGame()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             Time.timeScale = 1f;
         }
 

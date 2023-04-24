@@ -275,6 +275,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &562604282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2900782508385564119, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+  m_PrefabInstance: {fileID: 5699107870602870819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &765158470
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +551,7 @@ MonoBehaviour:
   loseGamePanel: {fileID: 1196759084}
   loseGameScoreText: {fileID: 1454671062}
   loseGameRestartButton: {fileID: 1300391931}
+  returnToMenuButton: {fileID: 562604282}
 --- !u!114 &1454671062 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1454671062, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
@@ -857,6 +869,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500554263}
     m_Modifications:
+    - target: {fileID: 816515174, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5699107870424742745, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
