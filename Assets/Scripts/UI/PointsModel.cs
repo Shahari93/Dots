@@ -14,7 +14,7 @@ namespace Dots.ScorePoints.Model
 
         public event Action OnScoreChanged;
 
-        private void OnEnable()
+        void OnEnable()
         {
             highScore = PlayerPrefs.GetInt("HighScore", 0);
         }

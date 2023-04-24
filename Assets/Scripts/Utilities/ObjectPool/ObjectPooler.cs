@@ -20,17 +20,17 @@ namespace Dots.Utils.ObjectPool
         public List<DotsBehaviour> pooledObject;
         public List<ObjectPoolItem> itemsToPool;
 
-        private void Awake()
+        void Awake()
         {
             SharedInstance = this;
         }
 
-        private void Start()
+        void Start()
         {
             InitObjectPool();
         }
 
-        private void InitObjectPool()
+        void InitObjectPool()
         {
             pooledObject = new List<DotsBehaviour>();
             foreach (ObjectPoolItem item in itemsToPool)

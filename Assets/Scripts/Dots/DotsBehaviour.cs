@@ -5,14 +5,15 @@ namespace Dots.GamePlay.Dot
 {
     public class DotsBehaviour : MonoBehaviour, IInteractableObjects
     {
-        float speed;
-        Vector2 direction;
         [SerializeField] ParticleSystem particles;
         [SerializeField] Rigidbody2D rb2D;
 
+        float speed;
+        Vector2 direction;
+
         public bool IsGoodDot { get; set; }
 
-        private void OnEnable()
+        void OnEnable()
         {
             speed = 80f;
             int randX = Random.Range(-180, 181);
@@ -20,12 +21,12 @@ namespace Dots.GamePlay.Dot
             direction = new Vector2(randX, randY).normalized;
         }
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             SetSpeedAndDirection();
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Bounds"))
             {
@@ -33,18 +34,24 @@ namespace Dots.GamePlay.Dot
             }
         }
 
-        private void SetSpeedAndDirection()
+        void SetSpeedAndDirection()
         {
             rb2D.velocity = speed * direction * Time.fixedDeltaTime;
         }
          
         // TODO: Find a way to refactor those 2 methods because they do the same thing 
         // What happens if a dot hits the bounds collider
-        private void BehaveWhenIteractWithBounds()
+        void BehaveWhenIteractWithBounds()
         {
             DisableComponnetsWhenDestroied();
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
+        }
+
+        void DisableComponnetsWhenDestroied()
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
         }
 
         // What happens when a player collects the dot
@@ -53,12 +60,6 @@ namespace Dots.GamePlay.Dot
             DisableComponnetsWhenDestroied();
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
-        }
-
-        private void DisableComponnetsWhenDestroied()
-        {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Collider2D>().enabled = false;
         }
 
         public void ShowDestroyParticles(bool isGoodDot)

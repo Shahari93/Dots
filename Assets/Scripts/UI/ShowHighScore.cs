@@ -1,20 +1,20 @@
-using Dots.ScorePoints.Model;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ShowHighScore : MonoBehaviour
+namespace Dots.ScorePoints.UI
 {
-    [SerializeField] TMP_Text highScoreText;
-
-    private void OnEnable()
+    public class ShowHighScore : MonoBehaviour
     {
-        SetHighScoreText();
-    }
+        [SerializeField] TMP_Text highScoreText;
 
-    void SetHighScoreText()
-    {
-        highScoreText.text = "High score: " + PlayerPrefs.GetInt("HighScore");
-    }
+        void OnEnable()
+        {
+            SetHighScoreText();
+        }
+
+        void SetHighScoreText()
+        {
+            highScoreText.text = "High score: " + PlayerPrefs.GetInt("HighScore");
+        }
+    } 
 }

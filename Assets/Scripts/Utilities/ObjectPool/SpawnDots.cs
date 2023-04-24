@@ -4,17 +4,17 @@ namespace Dots.Utils.ObjectPool
 {
     public class SpawnDots : MonoBehaviour
     {
-        private void OnEnable()
+        void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
         }
 
-        private void Start()
+        void Start()
         {
             InvokeRepeating(nameof(Spawn), 2f, 1.5f);
         }
 
-        private void Spawn()
+        void Spawn()
         {
             int rand = Random.Range(1, 3);
             string dotTag = "";
@@ -32,12 +32,12 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        private void StopSpawnInvokation()
+        void StopSpawnInvokation()
         {
             CancelInvoke(nameof(Spawn));
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
         }

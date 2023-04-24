@@ -4,7 +4,8 @@ using Dots.GamePlay.Dot;
 public class GoodDot : DotsBehaviour
 {
     public static event Action<int> OnPlayerCollectedDot;
-    private void Awake()
+
+    void Awake()
     {
         IsGoodDot = true;
     }

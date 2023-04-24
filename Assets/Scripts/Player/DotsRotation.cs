@@ -20,7 +20,7 @@ namespace Dots.GamePlay.Player
             }
         }
 
-        private void RotateDotsAround(float degree)
+        void RotateDotsAround(float degree)
         {
             transform.RotateAround(transform.position, transform.forward, degree * Time.deltaTime * rotationSpeed);
         }

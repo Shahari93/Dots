@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
-using System;
 
 namespace Dots.PauseGame.Presenter
 {
