@@ -207,6 +207,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &631541558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 984548523, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_PrefabInstance: {fileID: 8465019308244502190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383311409
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +317,7 @@ GameObject:
   - component: {fileID: 2102036741}
   - component: {fileID: 2102036740}
   - component: {fileID: 2102036746}
+  - component: {fileID: 2102036747}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -432,6 +444,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadSceneButton: {fileID: 1462728175}
+--- !u!114 &2102036747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102036739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea2b122eeff26d47b8b9664f2e34170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreText: {fileID: 631541558}
 --- !u!1001 &8465019308244502190
 PrefabInstance:
   m_ObjectHideFlags: 0
