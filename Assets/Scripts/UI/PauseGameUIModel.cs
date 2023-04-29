@@ -7,17 +7,12 @@ namespace Dots.PauseGame.Model
     /// Class that invokes that the game is paused 
     /// </summary>
 	public class PauseGameUIModel : MonoBehaviour
-	{
-		public event Action OnGamePaused;
+    {
+        public static event Action OnGamePaused;
 
-        public void GamePaused()
-        {    
-            UpdateGamePaused();
-        }
-
-        void UpdateGamePaused()
+        private void OnApplicationPause(bool pause)
         {
             OnGamePaused?.Invoke();
         }
-    } 
+    }
 }

@@ -546,7 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c716c9776166947b36b509cbefada4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseGameModel: {fileID: 1500554265}
   loseGameGO: {fileID: 816515174}
   loseGamePanel: {fileID: 1196759084}
   loseGameScoreText: {fileID: 1454671062}
@@ -576,7 +575,6 @@ GameObject:
   - component: {fileID: 1500554261}
   - component: {fileID: 1500554260}
   - component: {fileID: 1500554264}
-  - component: {fileID: 1500554265}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -677,18 +675,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8fa380ea938afb43b91e1a5700fe43a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1500554265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500554259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb825fdbefb9bb4da13c60f796f62c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1827371941 stripped

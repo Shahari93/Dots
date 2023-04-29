@@ -9,7 +9,6 @@ namespace Dots.PauseGame.Presenter
 {
     public class PauseGameUIPresenter : MonoBehaviour
     {
-        [SerializeField] PauseGameUIModel pauseGameModel;
         [SerializeField] GameObject loseGameGO;
         [SerializeField] Image loseGamePanel;
         [SerializeField] TMP_Text loseGameScoreText;

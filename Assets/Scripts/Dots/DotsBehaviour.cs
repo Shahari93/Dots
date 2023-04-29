@@ -1,5 +1,6 @@
 using UnityEngine;
 using Dots.Utils.Interaction;
+using UnityEditor;
 
 namespace Dots.GamePlay.Dot
 {
@@ -43,21 +44,13 @@ namespace Dots.GamePlay.Dot
         // What happens if a dot hits the bounds collider
         void BehaveWhenIteractWithBounds()
         {
-            DisableComponnetsWhenDestroied();
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
-        }
-
-        void DisableComponnetsWhenDestroied()
-        {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Collider2D>().enabled = false;
         }
 
         // What happens when a player collects the dot
         public virtual void BehaveWhenIteractWithPlayer()
         {
-            DisableComponnetsWhenDestroied();
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
         }
@@ -70,6 +63,7 @@ namespace Dots.GamePlay.Dot
             ParticleSystem.MainModule main = particleSystem.main;
             main.startColor = particlesColor;
             particleSystem.Play();
+            Destroy(particleSystem.gameObject, main.duration + 0.1f);
         }
     }
 }
