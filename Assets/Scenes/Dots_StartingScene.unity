@@ -471,9 +471,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2102036739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea2b122eeff26d47b8b9664f2e34170, type: 3}
+  m_Script: {fileID: 11500000, guid: 97ec0adeb1d90ad42b634256092b1a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
   highScoreText: {fileID: 631541558}
 --- !u!1001 &8465019308244502190
 PrefabInstance:

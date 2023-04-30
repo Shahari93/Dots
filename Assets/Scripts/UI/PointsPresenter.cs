@@ -12,10 +12,12 @@ namespace Dots.ScorePoints.Presenter
     public class PointsPresenter : MonoBehaviour
     {
         [SerializeField] TMP_Text scoreText;
+        [SerializeField] TMP_Text highScoreText;
 
         void OnEnable()
         {
-            PointsModel.Instance.OnScoreChanged += OnScoreChanged;
+            PointsModel.Instance.OnScoreChanged += ScoreChanged;
+            PointsModel.Instance.OnHighScorePassed += SetHighScoreText;
             GoodDot.OnPlayerCollectedDot += IncrementPointsScore;
         }
 
@@ -25,17 +27,17 @@ namespace Dots.ScorePoints.Presenter
             UpdateView();
         }
 
-        public void IncrementPointsScore(int amount)
+        void IncrementPointsScore(int amount)
         {
             PointsModel.Instance?.IncrementScore(amount);
         }
 
-        public void Reset()
+        void Reset()
         {
             PointsModel.Instance?.ResetScore();
         }
 
-        public void UpdateView()
+        void UpdateView()
         {
             if (PointsModel.Instance == null)
                 return;
@@ -44,16 +46,27 @@ namespace Dots.ScorePoints.Presenter
             {
                 scoreText.text = "Score: " + PointsModel.CurrentPointsScore.ToString();
             }
+
+            if (highScoreText != null)
+            {
+                highScoreText.text = "High score: " + PlayerPrefs.GetInt("HighScore");
+            }
         }
 
-        public void OnScoreChanged()
+        void ScoreChanged()
+        {
+            UpdateView();
+        }
+
+        void SetHighScoreText()
         {
             UpdateView();
         }
 
         void OnDisable()
         {
-            PointsModel.Instance.OnScoreChanged -= OnScoreChanged;
+            PointsModel.Instance.OnScoreChanged -= ScoreChanged;
+            PointsModel.Instance.OnHighScorePassed -= SetHighScoreText;
             GoodDot.OnPlayerCollectedDot -= IncrementPointsScore;
         }
     }
