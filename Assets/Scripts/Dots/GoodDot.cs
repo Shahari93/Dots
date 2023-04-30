@@ -12,7 +12,8 @@ public class GoodDot : DotsBehaviour
 
     public override void BehaveWhenIteractWithPlayer()
     {
-        base.BehaveWhenIteractWithPlayer();
+        ShowDestroyParticles(IsGoodDot);
+        gameObject.SetActive(false);
         OnPlayerCollectedDot?.Invoke(1);
     }
 }

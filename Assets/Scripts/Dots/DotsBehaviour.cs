@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace Dots.GamePlay.Dot
 {
-    public class DotsBehaviour : MonoBehaviour, IInteractableObjects
+    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects
     {
         [SerializeField] ParticleSystem particles;
         [SerializeField] Rigidbody2D rb2D;
@@ -40,7 +40,6 @@ namespace Dots.GamePlay.Dot
             rb2D.velocity = speed * direction * Time.fixedDeltaTime;
         }
          
-        // TODO: Find a way to refactor those 2 methods because they do the same thing 
         // What happens if a dot hits the bounds collider
         void BehaveWhenIteractWithBounds()
         {
@@ -48,12 +47,10 @@ namespace Dots.GamePlay.Dot
             gameObject.SetActive(false);
         }
 
-        // What happens when a player collects the dot
-        public virtual void BehaveWhenIteractWithPlayer()
-        {
-            ShowDestroyParticles(IsGoodDot);
-            gameObject.SetActive(false);
-        }
+        /// <summary>
+        /// Abstract method to control what happens when a dot is hit by the player
+        /// </summary>
+        public abstract void BehaveWhenIteractWithPlayer();
 
         public void ShowDestroyParticles(bool isGoodDot)
         {
