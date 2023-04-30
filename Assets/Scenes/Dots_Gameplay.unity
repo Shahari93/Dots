@@ -815,14 +815,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3957857318344678853, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
-      propertyPath: rotationSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957857318344678855, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 3957857318344678855, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_Name
       value: PlayerDots
@@ -937,18 +929,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
-      propertyPath: objectToPool
-      value: 
-      objectReference: {fileID: 4296681642482125849, guid: e24352c0ee69c064b94cdaa870ba54e0, type: 3}
-    - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
-      propertyPath: numberOfObjectToPool
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202648986772409387, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8202648986772409387, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: m_Name
       value: SpawnPoint
