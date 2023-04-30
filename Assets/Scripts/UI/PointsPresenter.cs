@@ -11,12 +11,11 @@ namespace Dots.ScorePoints.Presenter
     /// </summary>
     public class PointsPresenter : MonoBehaviour
     {
-        [SerializeField] PointsModel pointsModel;
         [SerializeField] TMP_Text scoreText;
 
         void OnEnable()
         {
-            pointsModel.OnScoreChanged += OnScoreChanged;
+            PointsModel.Instance.OnScoreChanged += OnScoreChanged;
             GoodDot.OnPlayerCollectedDot += IncrementPointsScore;
         }
 
@@ -28,17 +27,17 @@ namespace Dots.ScorePoints.Presenter
 
         public void IncrementPointsScore(int amount)
         {
-            pointsModel?.IncrementScore(amount);
+            PointsModel.Instance?.IncrementScore(amount);
         }
 
         public void Reset()
         {
-            pointsModel?.ResetScore();
+            PointsModel.Instance?.ResetScore();
         }
 
         public void UpdateView()
         {
-            if (pointsModel == null)
+            if (PointsModel.Instance == null)
                 return;
 
             if (scoreText != null)
@@ -54,7 +53,7 @@ namespace Dots.ScorePoints.Presenter
 
         void OnDisable()
         {
-            pointsModel.OnScoreChanged -= OnScoreChanged;
+            PointsModel.Instance.OnScoreChanged -= OnScoreChanged;
             GoodDot.OnPlayerCollectedDot -= IncrementPointsScore;
         }
     }

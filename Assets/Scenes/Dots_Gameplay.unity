@@ -585,7 +585,6 @@ GameObject:
   - component: {fileID: 1500554262}
   - component: {fileID: 1500554261}
   - component: {fileID: 1500554260}
-  - component: {fileID: 1500554264}
   - component: {fileID: 1500554265}
   m_Layer: 5
   m_Name: UI_Canvas
@@ -677,18 +676,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1500554264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500554259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8fa380ea938afb43b91e1a5700fe43a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1500554265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ec0adeb1d90ad42b634256092b1a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsModel: {fileID: 1500554264}
   scoreText: {fileID: 1827371941}
 --- !u!224 &2057730938 stripped
 RectTransform:

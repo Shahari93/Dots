@@ -5,6 +5,7 @@ namespace Dots.ScorePoints.Model
 {
     public class PointsModel : MonoBehaviour
     {
+        public static PointsModel Instance;
 
         static int currentPointsScore;
         static int highScore;
@@ -17,6 +18,17 @@ namespace Dots.ScorePoints.Model
         void OnEnable()
         {
             highScore = PlayerPrefs.GetInt("HighScore", 0);
+        }
+
+        void Awake()
+        {
+            if(Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);  
         }
 
         // Updating the model data with the new score
