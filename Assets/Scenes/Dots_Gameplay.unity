@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &136475860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1314690122492605215, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+  m_PrefabInstance: {fileID: 5699107870602870819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &254789526
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +586,7 @@ GameObject:
   - component: {fileID: 1500554261}
   - component: {fileID: 1500554260}
   - component: {fileID: 1500554264}
+  - component: {fileID: 1500554265}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -677,6 +689,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fa380ea938afb43b91e1a5700fe43a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1500554265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500554259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbba3044f9a409c4bb13ddbe368b9fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsText: {fileID: 136475860}
 --- !u!114 &1827371941 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1827371941, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
