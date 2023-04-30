@@ -1,7 +1,7 @@
 using UnityEngine;
 using Dots.GamePlay.Dot;
 
-public class PlayerDotsInteraction : MonoBehaviour
+public class PlayerInteractionWithDots : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {

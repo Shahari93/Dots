@@ -1,6 +1,5 @@
 using UnityEngine;
 using Dots.Utils.Interaction;
-using UnityEditor;
 
 namespace Dots.GamePlay.Dot
 {
@@ -56,9 +55,11 @@ namespace Dots.GamePlay.Dot
         {
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
             ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
-            Color particlesColor = isGoodDot ? Color.green : Color.red;
             ParticleSystem.MainModule main = particleSystem.main;
+            
+            Color particlesColor = isGoodDot ? Color.green : Color.red;
             main.startColor = particlesColor;
+
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
         }
