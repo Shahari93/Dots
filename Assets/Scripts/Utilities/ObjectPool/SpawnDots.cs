@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Dots.Utils.ObjectPool
 {
@@ -32,8 +33,9 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        void StopSpawnInvokation()
+        async void StopSpawnInvokation()
         {
+            await Task.Delay(50);
             CancelInvoke(nameof(Spawn));
         }
 

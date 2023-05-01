@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Dots.Utils.Pause
 {
@@ -10,8 +11,9 @@ namespace Dots.Utils.Pause
         }
 
         // Made static for other classes that want to call the PauseGame Method
-        public static void SetTimeScale()
+        public async static void SetTimeScale()
         {
+            await Task.Delay(50);
             Time.timeScale = 0f;
         }
 

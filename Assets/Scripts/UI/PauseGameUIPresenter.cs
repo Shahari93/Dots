@@ -1,8 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Dots.PauseGame.Presenter
@@ -35,8 +35,9 @@ namespace Dots.PauseGame.Presenter
             Time.timeScale = 1f;
         }
 
-        void EnableLoseGamePanel()
+        async void EnableLoseGamePanel()
         {
+            await Task.Delay(100);
             loseGamePanel.gameObject.SetActive(true);
             loseGameGO.gameObject.SetActive(true);
             int finalScore = PointsModel.CurrentPointsScore;
