@@ -8,14 +8,14 @@ namespace Dots.GamePlay.Dot
         [SerializeField] ParticleSystem particles;
         [SerializeField] Rigidbody2D rb2D;
 
-        float speed;
+        float dotSpeed;
         Vector2 direction;
 
         public bool IsGoodDot { get; set; }
 
         void OnEnable()
         {
-            speed = 80f;
+            dotSpeed = 80f;
             int randX = Random.Range(-180, 181);
             int randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
@@ -36,9 +36,9 @@ namespace Dots.GamePlay.Dot
 
         void SetSpeedAndDirection()
         {
-            rb2D.velocity = speed * direction * Time.fixedDeltaTime;
+            rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
         }
-         
+
         // What happens if a dot hits the bounds collider
         void BehaveWhenIteractWithBounds()
         {

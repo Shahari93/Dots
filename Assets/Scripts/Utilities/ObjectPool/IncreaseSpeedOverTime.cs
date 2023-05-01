@@ -5,13 +5,13 @@ namespace Dots.GamePlay.Dot.Timer
 {
     public class IncreaseSpeedOverTime : MonoBehaviour
     {
-        const float TICK_TIMER_MAX = 15f;
         int tick;
         float tickTimer;
+        const float TICK_TIMER_MAX = 20f;
 
         public static event Action<int> OnTenSecondsPassed;
 
-        private void Awake()
+        void Awake()
         {
             tick = 0;
         }
@@ -21,7 +21,7 @@ namespace Dots.GamePlay.Dot.Timer
             IncreaseTicks();
         }
 
-        private void IncreaseTicks()
+        void IncreaseTicks()
         {
             tickTimer += Time.deltaTime;
             if (tickTimer >= TICK_TIMER_MAX)

@@ -12,10 +12,10 @@ namespace Dots.Utils.ObjectPool
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
-            IncreaseSpeedOverTime.OnTenSecondsPassed += ChangeSpeed;
+            IncreaseSpeedOverTime.OnTenSecondsPassed += ChangeSpawnSpeed;
         }
 
-        private void Awake()
+        void Awake()
         {
             spawnTime = 1.5f;
         }
@@ -23,11 +23,6 @@ namespace Dots.Utils.ObjectPool
         void Start()
         {
             StartCoroutine(Spawn());
-        }
-
-        private void Update()
-        {
-            Debug.Log(spawnTime);
         }
 
         IEnumerator Spawn()
@@ -52,12 +47,11 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        private void ChangeSpeed(int ticks)
+        void ChangeSpawnSpeed(int ticks)
         {
             if (ticks > 0)
             {
                 spawnTime -= 0.1f;
-                return;
             }
 
             if (spawnTime <= 0.5f)
@@ -75,6 +69,7 @@ namespace Dots.Utils.ObjectPool
         void OnDisable()
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
+            IncreaseSpeedOverTime.OnTenSecondsPassed -= ChangeSpawnSpeed;
         }
     }
 }
