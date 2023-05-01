@@ -44,12 +44,12 @@ namespace Dots.ScorePoints.Presenter
 
             if (scoreText != null)
             {
-                scoreText.text = "Score: " + PointsModel.CurrentPointsScore.ToString();
+                scoreText.text = string.Format("Score: {0:0}", PointsModel.CurrentPointsScore.ToString());
             }
 
             if (highScoreText != null)
             {
-                highScoreText.text = "High score: " + PlayerPrefs.GetInt("HighScore");
+                highScoreText.text = string.Format("High score: {0:0}", PlayerPrefs.GetInt("HighScore"));
             }
         }
 

@@ -43,7 +43,7 @@ namespace Dots.PauseGame.Presenter
             int finalScore = PointsModel.CurrentPointsScore;
             if (loseGameScoreText != null)
             {
-                loseGameScoreText.text = "Your score is: " + finalScore.ToString();
+                loseGameScoreText.text = string.Format("Your score is: {0:0}", finalScore.ToString());
             }
         }
 
