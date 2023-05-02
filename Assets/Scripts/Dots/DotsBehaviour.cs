@@ -3,7 +3,7 @@ using Dots.Utils.Interaction;
 
 namespace Dots.GamePlay.Dot
 {
-    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects
+    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects
     {
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
@@ -12,6 +12,10 @@ namespace Dots.GamePlay.Dot
         Vector2 direction;
 
         public bool IsGoodDot { get; set; }
+        public float Speed { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public Vector2 Direction { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int RandX { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int RandY { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         void OnEnable()
         {
@@ -34,13 +38,13 @@ namespace Dots.GamePlay.Dot
             }
         }
 
-        void SetSpeedAndDirection()
+        public void SetSpeedAndDirection()
         {
             rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
         }
 
         // What happens if a dot hits the bounds collider
-        void BehaveWhenIteractWithBounds()
+        public void BehaveWhenIteractWithBounds()
         {
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
@@ -51,13 +55,13 @@ namespace Dots.GamePlay.Dot
         /// </summary>
         public abstract void BehaveWhenIteractWithPlayer();
 
-        public void ShowDestroyParticles(bool isGoodDot)
+        public void ShowDestroyParticles(bool? isGoodDot)
         {
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
             ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
             ParticleSystem.MainModule main = particleSystem.main;
-            
-            Color particlesColor = isGoodDot ? Color.green : Color.red;
+
+            Color particlesColor = (bool)isGoodDot ? Color.green : Color.red;
             main.startColor = particlesColor;
 
             particleSystem.Play();
