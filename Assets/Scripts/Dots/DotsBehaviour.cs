@@ -5,8 +5,8 @@ namespace Dots.GamePlay.Dot
 {
     public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects
     {
-        [SerializeField] ParticleSystem particles;
-        [SerializeField] Rigidbody2D rb2D;
+        [SerializeField] protected Rigidbody2D rb2D;
+        [SerializeField] protected ParticleSystem particles;
 
         float dotSpeed;
         Vector2 direction;

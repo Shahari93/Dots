@@ -5,10 +5,10 @@ using Dots.GamePlay.Dot.Timer;
 
 namespace Dots.Utils.ObjectPool
 {
-    public class SpawnDots : MonoBehaviour
+    public class ObjectSpawner : MonoBehaviour
     {
         float spawnTime;
-
+        
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
@@ -30,19 +30,17 @@ namespace Dots.Utils.ObjectPool
             while (true)
             {
                 yield return new WaitForSecondsRealtime(spawnTime);
-                int rand = Random.Range(1, 3);
-                string dotTag = "";
+                int randomNumber = Random.Range(1, 3);
+                string spawnableTag = randomNumber == 1 ? "GoodDot" : "BadDot";
 
-                dotTag = rand == 1 ? "GoodDot" : "BadDot";
-
-                GameObject dot = ObjectPooler.SharedInstance.GetPooledObject(dotTag);
-                if (dot != null)
+                GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
+                if (spawnable != null)
                 {
-                    dot.transform.position = this.transform.position;
-                    dot.transform.rotation = this.transform.rotation;
-                    dot.GetComponent<Collider2D>().enabled = true;
-                    dot.GetComponent<SpriteRenderer>().enabled = true;
-                    dot.SetActive(true);
+                    spawnable.transform.position = this.transform.position;
+                    spawnable.transform.rotation = this.transform.rotation;
+                    spawnable.GetComponent<Collider2D>().enabled = true;
+                    spawnable.GetComponent<SpriteRenderer>().enabled = true;
+                    spawnable.SetActive(true);
                 }
             }
         }
