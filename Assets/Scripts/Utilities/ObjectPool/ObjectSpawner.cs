@@ -8,7 +8,7 @@ namespace Dots.Utils.ObjectPool
     public class ObjectSpawner : MonoBehaviour
     {
         float spawnTime;
-        
+
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
@@ -30,8 +30,28 @@ namespace Dots.Utils.ObjectPool
             while (true)
             {
                 yield return new WaitForSecondsRealtime(spawnTime);
-                int randomNumber = Random.Range(1, 3);
-                string spawnableTag = randomNumber == 1 ? "GoodDot" : "BadDot";
+                float randomNumber = Random.Range(0f, 1f);
+                string spawnableTag = "";
+
+                if (randomNumber >= 0.0f && randomNumber <= 0.3f)
+                {
+                    spawnableTag = "GoodDot";
+                }
+                else if (randomNumber > 0.3f && randomNumber <= 1f)
+                {
+                    spawnableTag = "BadDot";
+                }
+
+                //else if (randomNumber > 0.85f && randomNumber <= 0.9f)
+                //{
+                //    spawnableTag = "SlowTime";
+                //}
+                //else if (randomNumber > 0.9f && randomNumber <= 1f)
+                //{
+                //    spawnableTag = "AllGreen";
+                //}
+
+                ////string spawnableTag = randomNumber == 1 ? "GoodDot" : "BadDot";
 
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
                 if (spawnable != null)

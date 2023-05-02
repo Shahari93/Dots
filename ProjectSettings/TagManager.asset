@@ -8,6 +8,8 @@ TagManager:
   - Bounds
   - GoodDot
   - BadDot
+  - AllGreen
+  - SlowTime
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,7 @@ namespace Dots.Utils.ObjectPool
     {
         public static ObjectPooler SharedInstance;
 
-        public List<DotsBehaviour> pooledObject;
+        public List<GameObject> pooledObject;
         public List<ObjectPoolItem> itemsToPool;
 
         void Awake()
@@ -32,14 +32,14 @@ namespace Dots.Utils.ObjectPool
 
         void InitObjectPool()
         {
-            pooledObject = new List<DotsBehaviour>();
+            pooledObject = new List<GameObject>();
             foreach (ObjectPoolItem item in itemsToPool)
             {
                 for (int i = 0; i < item.amountToPool; i++)
                 {
-                    GameObject obj = (GameObject)Instantiate(item.objectToPool, this.transform);
+                    GameObject obj = Instantiate(item.objectToPool, this.transform);
                     obj.SetActive(false);
-                    pooledObject.Add(obj.GetComponent<DotsBehaviour>());
+                    pooledObject.Add(obj);
                 }
             }
         }
@@ -58,9 +58,9 @@ namespace Dots.Utils.ObjectPool
                     {
                         if (item.shouldExpend)
                         {
-                            GameObject obj = (GameObject)Instantiate(item.objectToPool, this.transform);
+                            GameObject obj = Instantiate(item.objectToPool, this.transform);
                             obj.SetActive(false);
-                            pooledObject.Add(obj.GetComponent<DotsBehaviour>());
+                            pooledObject.Add(obj);
                             return obj;
                         }
                     }
