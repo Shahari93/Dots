@@ -42,17 +42,6 @@ namespace Dots.Utils.ObjectPool
                     spawnableTag = "BadDot";
                 }
 
-                //else if (randomNumber > 0.85f && randomNumber <= 0.9f)
-                //{
-                //    spawnableTag = "SlowTime";
-                //}
-                //else if (randomNumber > 0.9f && randomNumber <= 1f)
-                //{
-                //    spawnableTag = "AllGreen";
-                //}
-
-                ////string spawnableTag = randomNumber == 1 ? "GoodDot" : "BadDot";
-
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
                 if (spawnable != null)
                 {
