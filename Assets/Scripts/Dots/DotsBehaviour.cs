@@ -1,17 +1,20 @@
 using UnityEngine;
+using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 
 namespace Dots.GamePlay.Dot
 {
     public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects
     {
+        protected bool IsGoodDot { get; set; }
+
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
         float dotSpeed;
         Vector2 direction;
 
-        public bool IsGoodDot { get; set; }
+        
         public float Speed { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public Vector2 Direction { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public int RandX { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }

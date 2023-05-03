@@ -1,14 +1,16 @@
 using UnityEngine;
-using Dots.GamePlay.Dot;
 using Dots.Utils.Interaction;
 
-public class PlayerInteractionWithDots : MonoBehaviour
+namespace Dots.GamePlay.Player.Interaction
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    public class PlayerInteractionWithDots : MonoBehaviour
     {
-        if (collision.TryGetComponent(out IInteractableObjects interactable))
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            interactable.BehaveWhenIteractWithPlayer();
+            if (collision.TryGetComponent(out IInteractableObjects interactable))
+            {
+                interactable.BehaveWhenIteractWithPlayer();
+            }
         }
-    }
+    } 
 }
