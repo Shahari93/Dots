@@ -58,13 +58,13 @@ namespace Dots.GamePlay.Dot
         /// </summary>
         public abstract void BehaveWhenInteractWithPlayer();
 
-        public void ShowDestroyParticles(bool? isGoodDot)
+        public void ShowDestroyParticles(bool? IsGoodDot)
         {
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
             ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
             ParticleSystem.MainModule main = particleSystem.main;
 
-            Color particlesColor = (bool)isGoodDot ? Color.green : Color.red;
+            Color particlesColor = (bool)IsGoodDot ? Color.green : Color.red;
             main.startColor = particlesColor;
 
             particleSystem.Play();
