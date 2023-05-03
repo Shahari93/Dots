@@ -6,10 +6,10 @@ namespace Dots.Utils.FPS
     /// <summary>
     /// Keeping track of multiple frames and calculate the avarage between them to show FPS
     /// </summary>
-	public class FPSDisplay : MonoBehaviour
-	{
+    public class FPSDisplay : MonoBehaviour
+    {
         private int lastFrameIndex;
-		float[] frameDeltaTimeArray;
+        float[] frameDeltaTimeArray;
 
         [SerializeField] TMP_Text fpsText;
 
@@ -35,5 +35,5 @@ namespace Dots.Utils.FPS
             }
             return frameDeltaTimeArray.Length / total;
         }
-    } 
+    }  
 }

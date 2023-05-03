@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Dots.GamePlay.Dot.Bad;
 using System.Threading.Tasks;
 using Dots.GamePlay.Dot.Timer;
 

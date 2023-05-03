@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.GamePlay.Dot.Bad;
 using Dots.ScorePoints.Model;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;

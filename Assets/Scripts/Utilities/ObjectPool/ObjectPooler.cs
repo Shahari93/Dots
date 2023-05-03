@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Dots.GamePlay.Dot;
 
 namespace Dots.Utils.ObjectPool
 {
