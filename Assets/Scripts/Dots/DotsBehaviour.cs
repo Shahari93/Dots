@@ -37,7 +37,7 @@ namespace Dots.GamePlay.Dot
         {
             if (collision.CompareTag("Bounds"))
             {
-                BehaveWhenIteractWithBounds();
+                BehaveWhenInteractWithBounds();
             }
         }
 
@@ -47,7 +47,7 @@ namespace Dots.GamePlay.Dot
         }
 
         // What happens if a dot hits the bounds collider
-        public void BehaveWhenIteractWithBounds()
+        public void BehaveWhenInteractWithBounds()
         {
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
@@ -56,7 +56,7 @@ namespace Dots.GamePlay.Dot
         /// <summary>
         /// Abstract method to control what happens when a dot is hit by the player
         /// </summary>
-        public abstract void BehaveWhenIteractWithPlayer();
+        public abstract void BehaveWhenInteractWithPlayer();
 
         public void ShowDestroyParticles(bool? isGoodDot)
         {

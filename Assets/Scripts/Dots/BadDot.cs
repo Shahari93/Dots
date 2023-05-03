@@ -11,7 +11,7 @@ namespace Dots.GamePlay.Dot.Bad
             IsGoodDot = false;
         }
 
-        public override void BehaveWhenIteractWithPlayer()
+        public override void BehaveWhenInteractWithPlayer()
         {
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);

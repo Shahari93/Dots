@@ -2,6 +2,6 @@ namespace Dots.Utils.Interaction
 {
 	public interface IInteractableObjects
 	{
-		public void BehaveWhenIteractWithPlayer();
+		public void BehaveWhenInteractWithPlayer();
 	} 
 }

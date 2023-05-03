@@ -10,14 +10,21 @@ namespace Dots.GamePlay.Player
         void Update()
         {
             RotateDotsAround(rotationDegree);
-            if (Input.touchCount == 1)
+            CheckForTouchInput();
+        }
+
+        private void CheckForTouchInput()
+        {
+            if (Input.touchCount != 1)
             {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    rotationDegree *= -1f;
-                }
+                return;
             }
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase != TouchPhase.Began)
+            {
+                return;
+            }
+            rotationDegree *= -1f;
         }
 
         void RotateDotsAround(float degree)

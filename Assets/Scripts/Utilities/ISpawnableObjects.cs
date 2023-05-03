@@ -10,7 +10,7 @@ namespace Dots.Utils.Spawnable
         int RandY { get; set; }
 
         void SetSpeedAndDirection();
-        void BehaveWhenIteractWithBounds();
+        void BehaveWhenInteractWithBounds();
         void ShowDestroyParticles(bool? IsGoodDot = null);
     } 
 }

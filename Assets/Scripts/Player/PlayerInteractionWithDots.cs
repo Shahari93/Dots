@@ -9,7 +9,7 @@ namespace Dots.GamePlay.Player.Interaction
         {
             if (collision.TryGetComponent(out IInteractableObjects interactable))
             {
-                interactable.BehaveWhenIteractWithPlayer();
+                interactable.BehaveWhenInteractWithPlayer();
             }
         }
     } 
