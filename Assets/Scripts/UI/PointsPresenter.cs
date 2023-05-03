@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using Dots.ScorePoints.Model;
+using Dots.GamePlay.Dot.Good;
 
 namespace Dots.ScorePoints.Presenter
 {

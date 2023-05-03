@@ -1,19 +1,21 @@
 using System;
-using Dots.GamePlay.Dot;
 
-public class GoodDot : DotsBehaviour
+namespace Dots.GamePlay.Dot.Good
 {
-    public static event Action<int> OnPlayerCollectedDot;
-
-    void Awake()
+    public class GoodDot : DotsBehaviour
     {
-        IsGoodDot = true;
-    }
+        public static event Action<int> OnPlayerCollectedDot;
 
-    public override void BehaveWhenIteractWithPlayer()
-    {
-        ShowDestroyParticles(IsGoodDot);
-        gameObject.SetActive(false);
-        OnPlayerCollectedDot?.Invoke(1);
-    }
+        void Awake()
+        {
+            IsGoodDot = true;
+        }
+
+        public override void BehaveWhenIteractWithPlayer()
+        {
+            ShowDestroyParticles(IsGoodDot);
+            gameObject.SetActive(false);
+            OnPlayerCollectedDot?.Invoke(1);
+        }
+    } 
 }

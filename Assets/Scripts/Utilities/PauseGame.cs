@@ -1,4 +1,5 @@
 using UnityEngine;
+using Dots.GamePlay.Dot.Bad;
 using System.Threading.Tasks;
 
 namespace Dots.Utils.Pause
