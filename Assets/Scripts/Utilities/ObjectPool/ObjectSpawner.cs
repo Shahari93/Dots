@@ -13,7 +13,7 @@ namespace Dots.Utils.ObjectPool
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
-            IncreaseSpeedOverTime.OnTenSecondsPassed += ChangeSpawnSpeed;
+            IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
         }
 
         void Awake()
@@ -77,7 +77,7 @@ namespace Dots.Utils.ObjectPool
         void OnDisable()
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
-            IncreaseSpeedOverTime.OnTenSecondsPassed -= ChangeSpawnSpeed;
+            IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
         }
     }
 }

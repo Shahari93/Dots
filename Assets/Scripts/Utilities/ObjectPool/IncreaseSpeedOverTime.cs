@@ -9,7 +9,7 @@ namespace Dots.GamePlay.Dot.Timer
         float tickTimer;
         const float TICK_TIMER_MAX = 20f;
 
-        public static event Action<int> OnTenSecondsPassed;
+        public static event Action<int> OnTickIncreased;
 
         void Awake()
         {
@@ -28,7 +28,7 @@ namespace Dots.GamePlay.Dot.Timer
             {
                 tickTimer -= TICK_TIMER_MAX;
                 tick++;
-                OnTenSecondsPassed?.Invoke(tick);
+                OnTickIncreased?.Invoke(tick);
             }
         }
     }
