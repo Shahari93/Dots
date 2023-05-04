@@ -34,11 +34,11 @@ namespace Dots.Utils.ObjectPool
                 float randomNumber = Random.Range(0f, 1f);
                 string spawnableTag = "";
 
-                if (randomNumber >= 0.0f && randomNumber <= 0.3f)
+                if (randomNumber >= 0.0f && randomNumber <= 0.2f)
                 {
                     spawnableTag = "GoodDot";
                 }
-                else if (randomNumber > 0.3f && randomNumber <= 1f)
+                else if (randomNumber > 0.2f && randomNumber <= 1f)
                 {
                     spawnableTag = "BadDot";
                 }

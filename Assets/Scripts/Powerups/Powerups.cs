@@ -2,12 +2,10 @@ using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 
-namespace Dots.GamePlay.Dot
+namespace Dots.GamePlay.Powerups
 {
-    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects
+    public abstract class Powerups : MonoBehaviour, ISpawnableObjects, IInteractableObjects
     {
-        protected bool IsGoodDot { get; set; }
-
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
@@ -15,12 +13,6 @@ namespace Dots.GamePlay.Dot
         float randY;
         float dotSpeed;
         Vector2 direction;
-
-
-        public float Speed { get => dotSpeed; set => dotSpeed = value; }
-        public Vector2 Direction { get => direction; set => direction = value; }
-        public float RandX { get => RandX; set => randX = value; }
-        public float RandY { get => RandY; set => randY = value; }
 
         void OnEnable()
         {
@@ -51,7 +43,7 @@ namespace Dots.GamePlay.Dot
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
-            ShowDestroyParticles(IsGoodDot);
+            ShowDestroyParticles(null);
             gameObject.SetActive(false);
         }
 
@@ -72,5 +64,10 @@ namespace Dots.GamePlay.Dot
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
         }
+
+        public float Speed { get => dotSpeed; set => dotSpeed = value; }
+        public Vector2 Direction { get => direction; set => direction = value; }
+        public float RandX { get => RandX; set => randX = value; }
+        public float RandY { get => RandY; set => randY = value; }
     }
 }
