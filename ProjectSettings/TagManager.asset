@@ -9,7 +9,8 @@ TagManager:
   - GoodDot
   - BadDot
   - AllGreen
-  - SlowTime
+  - SlowSpeed
+  - Shield
   layers:
   - Default
   - TransparentFX

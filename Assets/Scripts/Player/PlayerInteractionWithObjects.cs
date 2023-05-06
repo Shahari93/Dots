@@ -3,7 +3,7 @@ using Dots.Utils.Interaction;
 
 namespace Dots.GamePlay.Player.Interaction
 {
-    public class PlayerInteractionWithDots : MonoBehaviour
+    public class PlayerInteractionWithObjects : MonoBehaviour
     {
         void OnTriggerEnter2D(Collider2D collision)
         {

@@ -1,10 +1,11 @@
 namespace Dots.GamePlay.Powerups.SlowTime
 {
-    public class SlowDownTimePowerup : Powerups
+    public class SlowSpawnSpeedPowerup : Powerups
     {
         public override void BehaveWhenInteractWithPlayer()
         {
-            throw new System.NotImplementedException();
+            ShowDestroyParticles(null);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -34,13 +34,25 @@ namespace Dots.Utils.ObjectPool
                 float randomNumber = Random.Range(0f, 1f);
                 string spawnableTag = "";
 
-                if (randomNumber >= 0.0f && randomNumber <= 0.2f)
+                if (randomNumber >= 0.0f && randomNumber <= 0.1f)
                 {
                     spawnableTag = "GoodDot";
                 }
-                else if (randomNumber > 0.2f && randomNumber <= 1f)
+                else if (randomNumber > 0.1f && randomNumber <= 0.85f)
                 {
                     spawnableTag = "BadDot";
+                }
+                else if (randomNumber > 0.85f && randomNumber <= 0.88f)
+                {
+                    spawnableTag = "AllGreen";
+                }
+                else if (randomNumber > 0.88f && randomNumber <= 0.93f)
+                {
+                    spawnableTag = "Shield";
+                }
+                else if (randomNumber > 0.93f && randomNumber <= 1f)
+                {
+                    spawnableTag = "SlowSpeed";
                 }
 
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
@@ -68,9 +80,8 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        async void StopSpawnInvokation()
+        void StopSpawnInvokation()
         {
-            await Task.Delay(50);
             StopCoroutine(Spawn());
         }
 

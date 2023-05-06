@@ -11,12 +11,12 @@ namespace Dots.GamePlay.Powerups
 
         float randX;
         float randY;
-        float dotSpeed;
+        float powerupSpeed;
         Vector2 direction;
 
         void OnEnable()
         {
-            dotSpeed = 80f;
+            powerupSpeed = 80f;
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
@@ -37,7 +37,7 @@ namespace Dots.GamePlay.Powerups
 
         public void SetSpeedAndDirection()
         {
-            rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            rb2D.velocity = powerupSpeed * direction * Time.fixedDeltaTime;
         }
 
         // What happens if a dot hits the bounds collider
@@ -52,20 +52,23 @@ namespace Dots.GamePlay.Powerups
         /// </summary>
         public abstract void BehaveWhenInteractWithPlayer();
 
-        public void ShowDestroyParticles(bool? IsGoodDot)
+        public void ShowDestroyParticles(bool? isGoodDot)
         {
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
             ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
             ParticleSystem.MainModule main = particleSystem.main;
 
-            Color particlesColor = (bool)IsGoodDot ? Color.green : Color.red;
-            main.startColor = particlesColor;
+            if (isGoodDot != null)
+            {
+                Color particlesColor = (bool)isGoodDot ? Color.green : Color.red;
+                main.startColor = particlesColor;
+                particleSystem.Play();
+            }
 
-            particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
         }
 
-        public float Speed { get => dotSpeed; set => dotSpeed = value; }
+        public float Speed { get => powerupSpeed; set => powerupSpeed = value; }
         public Vector2 Direction { get => direction; set => direction = value; }
         public float RandX { get => RandX; set => randX = value; }
         public float RandY { get => RandY; set => randY = value; }

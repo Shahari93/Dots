@@ -1,7 +1,9 @@
+using Dots.GamePlay.Dot.Good;
+using Dots.GamePlay.Powerups;
 
-namespace Dots.GamePlay.Powerups.AllGreen
+namespace Dots.GamePlay.Powerups.Shield
 {
-    public class AllGreensPowerup : Powerups
+    public class ShieldPowerup : Powerups
     {
         public override void BehaveWhenInteractWithPlayer()
         {

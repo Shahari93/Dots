@@ -50,6 +50,10 @@ namespace Dots.ScorePoints.Presenter
 
             if (highScoreText != null)
             {
+                //TODO: Think if need to use this
+                /*if(PointsModel.HighScore == 0)
+                    highScoreText.gameObject.SetActive(false);*/
+
                 highScoreText.text = string.Format("High score: {0:0}", PlayerPrefs.GetInt("HighScore"));
             }
         }
