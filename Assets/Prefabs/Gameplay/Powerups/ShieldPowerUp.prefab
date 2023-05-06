@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82dd3aef65a35143840f1ee290ea848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerupDuration: 5
   rb2D: {fileID: 2991201480933358133}
   particles: {fileID: 9141086480664059811, guid: a2d5732320934c24599e69823ff108bf, type: 3}
 --- !u!212 &1367303601656713931
@@ -132,7 +133,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -6,6 +6,7 @@ namespace Dots.GamePlay.Powerups.SlowTime
         {
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
+            OnCollectedPower?.Invoke();
         }
     }
 }

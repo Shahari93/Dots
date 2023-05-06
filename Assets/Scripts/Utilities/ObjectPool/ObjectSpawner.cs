@@ -33,7 +33,6 @@ namespace Dots.Utils.ObjectPool
         private void Update()
         {
             powerupSpawnInterval -= Time.deltaTime;
-            Debug.Log(powerupSpawnInterval);
         }
 
         IEnumerator Spawn()

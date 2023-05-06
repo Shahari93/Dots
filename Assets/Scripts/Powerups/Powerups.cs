@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
@@ -6,6 +7,7 @@ namespace Dots.GamePlay.Powerups
 {
     public abstract class Powerups : MonoBehaviour, ISpawnableObjects, IInteractableObjects
     {
+        [SerializeField] protected float powerupDuration;
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
@@ -19,6 +21,8 @@ namespace Dots.GamePlay.Powerups
         public float RandY { get => RandY; set => randY = value; }
         public Vector2 Direction { get => direction; set => direction = value; }
 
+        public static Action OnCollectedPower;
+
         void OnEnable()
         {
             SetSpawnValues();
@@ -27,8 +31,8 @@ namespace Dots.GamePlay.Powerups
         private void SetSpawnValues()
         {
             powerupSpeed = 80f;
-            randX = Random.Range(-180, 181);
-            randY = Random.Range(-180, 181);
+            randX = UnityEngine.Random.Range(-180, 181);
+            randY = UnityEngine.Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
         }
 

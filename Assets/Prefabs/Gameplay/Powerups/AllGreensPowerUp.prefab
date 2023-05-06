@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b8e9322587527429b29d4a3f601a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerupDuration: 5
   rb2D: {fileID: 8518175992090226454}
   particles: {fileID: 9141086480664059811, guid: a2d5732320934c24599e69823ff108bf, type: 3}
 --- !u!212 &6218168599242031656

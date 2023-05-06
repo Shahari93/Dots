@@ -1,4 +1,3 @@
-
 namespace Dots.GamePlay.Powerups.AllGreen
 {
     public class AllGreensPowerup : Powerups
@@ -7,6 +6,7 @@ namespace Dots.GamePlay.Powerups.AllGreen
         {
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
+            OnCollectedPower?.Invoke();
         }
     } 
 }
