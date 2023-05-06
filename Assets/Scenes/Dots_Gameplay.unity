@@ -948,7 +948,7 @@ PrefabInstance:
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[3].objectToPool
       value: 
-      objectReference: {fileID: 1367303601656713930, guid: b5f3ef70c7f99854c98bd5b5906af3aa, type: 3}
+      objectReference: {fileID: 1367303601656713930, guid: 7a764cedb3d22ae4ebb83dd24cb449bd, type: 3}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[4].amountToPool
       value: 5
@@ -956,7 +956,7 @@ PrefabInstance:
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[4].objectToPool
       value: 
-      objectReference: {fileID: 1367303601656713930, guid: 7a764cedb3d22ae4ebb83dd24cb449bd, type: 3}
+      objectReference: {fileID: 1367303601656713930, guid: b5f3ef70c7f99854c98bd5b5906af3aa, type: 3}
     - target: {fileID: 8202648986772409387, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: m_Name
       value: SpawnPoint

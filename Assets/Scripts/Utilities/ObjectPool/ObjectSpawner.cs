@@ -1,19 +1,23 @@
 using UnityEngine;
 using System.Collections;
 using Dots.GamePlay.Dot.Bad;
-using System.Threading.Tasks;
 using Dots.GamePlay.Dot.Timer;
 
 namespace Dots.Utils.ObjectPool
 {
     public class ObjectSpawner : MonoBehaviour
     {
-        float spawnTime;
+        [SerializeField] float spawnTime;
+        [SerializeField] float powerupSpawnInterval;
+
+        float powerupSpawnIntervalInitValue;
 
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
+
+            powerupSpawnIntervalInitValue = powerupSpawnInterval;
         }
 
         void Awake()
@@ -24,6 +28,12 @@ namespace Dots.Utils.ObjectPool
         void Start()
         {
             StartCoroutine(Spawn());
+        }
+
+        private void Update()
+        {
+            powerupSpawnInterval -= Time.deltaTime;
+            Debug.Log(powerupSpawnInterval);
         }
 
         IEnumerator Spawn()
@@ -42,17 +52,24 @@ namespace Dots.Utils.ObjectPool
                 {
                     spawnableTag = "BadDot";
                 }
-                else if (randomNumber > 0.85f && randomNumber <= 0.88f)
+
+                if (Time.deltaTime >= powerupSpawnInterval)
                 {
-                    spawnableTag = "AllGreen";
-                }
-                else if (randomNumber > 0.88f && randomNumber <= 0.93f)
-                {
-                    spawnableTag = "Shield";
-                }
-                else if (randomNumber > 0.93f && randomNumber <= 1f)
-                {
-                    spawnableTag = "SlowSpeed";
+                    if (randomNumber > 0.85f && randomNumber <= 0.89f)
+                    {
+                        spawnableTag = "AllGreen";
+                        powerupSpawnInterval = powerupSpawnIntervalInitValue;
+                    }
+                    else if (randomNumber > 0.89f && randomNumber <= 0.94f)
+                    {
+                        spawnableTag = "Shield";
+                        powerupSpawnInterval = powerupSpawnIntervalInitValue;
+                    }
+                    else if (randomNumber > 0.94f && randomNumber <= 1f)
+                    {
+                        spawnableTag = "SlowSpeed";
+                        powerupSpawnInterval = powerupSpawnIntervalInitValue;
+                    }
                 }
 
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);

@@ -6,7 +6,6 @@ namespace Dots.GamePlay.Dot
 {
     public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects
     {
-
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
@@ -15,14 +14,18 @@ namespace Dots.GamePlay.Dot
         float dotSpeed;
         Vector2 direction;
 
-
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
-        public Vector2 Direction { get => direction; set => direction = value; }
         public float RandX { get => RandX; set => randX = value; }
         public float RandY { get => RandY; set => randY = value; }
         protected bool IsGoodDot { get; set; }
+        public Vector2 Direction { get => direction; set => direction = value; }
 
         void OnEnable()
+        {
+            SetSpawnValues();
+        }
+
+        private void SetSpawnValues()
         {
             dotSpeed = 80f;
             randX = Random.Range(-180, 181);

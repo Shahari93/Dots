@@ -14,7 +14,17 @@ namespace Dots.GamePlay.Powerups
         float powerupSpeed;
         Vector2 direction;
 
+        public float Speed { get => powerupSpeed; set => powerupSpeed = value; }
+        public float RandX { get => RandX; set => randX = value; }
+        public float RandY { get => RandY; set => randY = value; }
+        public Vector2 Direction { get => direction; set => direction = value; }
+
         void OnEnable()
+        {
+            SetSpawnValues();
+        }
+
+        private void SetSpawnValues()
         {
             powerupSpeed = 80f;
             randX = Random.Range(-180, 181);
@@ -67,10 +77,5 @@ namespace Dots.GamePlay.Powerups
 
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
         }
-
-        public float Speed { get => powerupSpeed; set => powerupSpeed = value; }
-        public Vector2 Direction { get => direction; set => direction = value; }
-        public float RandX { get => RandX; set => randX = value; }
-        public float RandY { get => RandY; set => randY = value; }
     }
 }
