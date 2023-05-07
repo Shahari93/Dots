@@ -4,6 +4,7 @@ using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 using System.Threading.Tasks;
 using Dots.Utils.Powerups.Objectpool;
+using System.Collections;
 
 namespace Dots.GamePlay.Powerups
 {
@@ -38,6 +39,11 @@ namespace Dots.GamePlay.Powerups
             direction = new Vector2(randX, randY).normalized;
         }
 
+        public void SetSpeedAndDirection()
+        {
+            rb2D.velocity = spawnSpeed * direction * Time.fixedDeltaTime;
+        }
+
         void FixedUpdate()
         {
             SetSpeedAndDirection();
@@ -57,7 +63,6 @@ namespace Dots.GamePlay.Powerups
             PowerupsSpawner.CanSpawn = true;
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
-            OnCollectedPower?.Invoke();
         }
 
         /// <summary>
@@ -65,26 +70,10 @@ namespace Dots.GamePlay.Powerups
         /// </summary>
         public virtual void BehaveWhenInteractWithPlayer()
         {
+            PowerupsSpawner.CanSpawn = true;
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
-            PowerupsSpawner.CanSpawn = true;
-        }
-        public abstract void StartDurationTimerAndDisablePowerup();
-
-        public void ShowDestroyParticles()
-        {
-            GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
-            ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
-            ParticleSystem.MainModule main = particleSystem.main;
-            Color particlesColor = Color.black;
-            main.startColor = particlesColor;
-            particleSystem.Play();
-            Destroy(particleSystem.gameObject, main.duration + 0.1f);
-        }
-
-        public void SetSpeedAndDirection()
-        {
-            rb2D.velocity = spawnSpeed * direction * Time.fixedDeltaTime;
+            OnCollectedPower?.Invoke();
         }
 
         public void ShowDestroyParticles(bool? isGoodDot)
@@ -92,7 +81,7 @@ namespace Dots.GamePlay.Powerups
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
             ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
             ParticleSystem.MainModule main = particleSystem.main;
-            if(isGoodDot == null)
+            if (isGoodDot == null)
             {
                 Color particlesColor = Color.black;
                 main.startColor = particlesColor;

@@ -39,6 +39,7 @@ namespace Dots.PauseGame.Presenter
         async void EnableLoseGamePanel()
         {
             await Task.Delay(100);
+            Time.timeScale = 0f;
             loseGamePanel.gameObject.SetActive(true);
             loseGameGO.gameObject.SetActive(true);
             int finalScore = PointsModel.CurrentPointsScore;
