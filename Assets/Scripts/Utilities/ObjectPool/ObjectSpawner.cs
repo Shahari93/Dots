@@ -37,7 +37,7 @@ namespace Dots.Utils.ObjectPool
                 {
                     spawnableTag = "GoodDot";
                 }
-                else if (randomNumber > 0.1f && randomNumber <= 0.85f)
+                else if (randomNumber > 0.1f && randomNumber <= 1f)
                 {
                     spawnableTag = "BadDot";
                 }

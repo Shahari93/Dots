@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTime: 1.5
-  powerupSpawnInterval: 20
 --- !u!114 &2623314561848402115
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,6 @@ namespace Dots.Utils.Spawnable
 
         void SetSpeedAndDirection();
         void BehaveWhenInteractWithBounds();
-        void ShowDestroyParticles(bool? IsGoodDot = null);
+        void ShowDestroyParticles(bool? isGoodDot = null);
     }
 }

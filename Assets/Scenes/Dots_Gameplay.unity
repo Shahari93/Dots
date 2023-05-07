@@ -314,7 +314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &734037870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -433,13 +433,76 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816515174 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 816515174, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
   m_PrefabInstance: {fileID: 5699107870602870819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &888545300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888545301}
+  - component: {fileID: 888545302}
+  - component: {fileID: 888545303}
+  m_Layer: 0
+  m_Name: PowerupsObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &888545301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888545300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &888545302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888545300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93097e6a42bd3b3408802fb29c653bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsObjects:
+  - {fileID: 6218168599242031659, guid: ef5ae9ff1f9069d439226c574e1170a8, type: 3}
+  - {fileID: 1367303601656713930, guid: 7a764cedb3d22ae4ebb83dd24cb449bd, type: 3}
+  - {fileID: 1367303601656713930, guid: b5f3ef70c7f99854c98bd5b5906af3aa, type: 3}
+  amountToBuffer: 
+  defaultAmount: 3
+--- !u!114 &888545303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888545300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb43c8fd3a818d47a1d82138e92bdfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1134143274
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +639,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1300391931 stripped
 MonoBehaviour:
@@ -619,7 +682,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1381050677
 MonoBehaviour:
@@ -821,7 +884,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1877066016
 MonoBehaviour:
@@ -847,9 +910,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 308892455450869403, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3957857318344678852, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3957857318344678852, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_LocalPosition.x
@@ -894,6 +961,10 @@ PrefabInstance:
     - target: {fileID: 3957857318344678855, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_Name
       value: PlayerDots
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299413606797777890, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
@@ -1005,29 +1076,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5928323749371905128, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[2].amountToPool
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[2].objectToPool
       value: 
-      objectReference: {fileID: 1367303601656713930, guid: b5f3ef70c7f99854c98bd5b5906af3aa, type: 3}
+      objectReference: {fileID: 1367303601656713930, guid: 7a764cedb3d22ae4ebb83dd24cb449bd, type: 3}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[3].amountToPool
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[3].objectToPool
       value: 
-      objectReference: {fileID: 1367303601656713930, guid: b5f3ef70c7f99854c98bd5b5906af3aa, type: 3}
+      objectReference: {fileID: 1367303601656713930, guid: 7a764cedb3d22ae4ebb83dd24cb449bd, type: 3}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[4].amountToPool
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[4].objectToPool
