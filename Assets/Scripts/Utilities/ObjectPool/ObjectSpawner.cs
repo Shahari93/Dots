@@ -37,14 +37,10 @@ namespace Dots.Utils.ObjectPool
         // Testing changing the spawn percentage
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (spawnChances[1] != GoodDot.spawnChance)
             {
-                GoodDot.spawnChance = 1f;
-                if (spawnChances[1] != GoodDot.spawnChance)
-                {
-                    spawnChances[1] = GoodDot.spawnChance;
-                    return;
-                }
+                spawnChances[1] = GoodDot.spawnChance;
+                return;
             }
         }
 
