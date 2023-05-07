@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Dots.GamePlay.Dot.Bad;
+using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
 
 namespace Dots.Utils.ObjectPool
@@ -9,6 +10,9 @@ namespace Dots.Utils.ObjectPool
     {
         [SerializeField] float spawnTime;
 
+        [SerializeField] float[] spawnChances;
+        [SerializeField] GameObject[] dotObjects;
+        float total;
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
@@ -23,6 +27,25 @@ namespace Dots.Utils.ObjectPool
         void Start()
         {
             StartCoroutine(Spawn());
+            spawnChances = new float[2] { BadDot.spawnChance, GoodDot.spawnChance };
+            foreach (var spawnChance in spawnChances)
+            {
+                total += spawnChance;
+            }
+        }
+
+        // Testing changing the spawn percentage
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                GoodDot.spawnChance = 1f;
+                if (spawnChances[1] != GoodDot.spawnChance)
+                {
+                    spawnChances[1] = GoodDot.spawnChance;
+                    return;
+                }
+            }
         }
 
         IEnumerator Spawn()
@@ -30,16 +53,21 @@ namespace Dots.Utils.ObjectPool
             while (true)
             {
                 yield return new WaitForSecondsRealtime(spawnTime);
-                float randomNumber = Random.Range(0f, 1f);
+                float randomNumber = Random.Range(0f, total);
                 string spawnableTag = "";
 
-                if (randomNumber >= 0.0f && randomNumber <= 0.25f)
+
+
+                for (int i = 0; i < spawnChances.Length; i++)
                 {
-                    spawnableTag = "GoodDot";
-                }
-                else if (randomNumber > 0.25f && randomNumber <= 1f)
-                {
-                    spawnableTag = "BadDot";
+                    if (randomNumber <= spawnChances[i])
+                    {
+                        spawnableTag = dotObjects[i].tag;
+                    }
+                    else
+                    {
+                        randomNumber -= spawnChances[i];
+                    }
                 }
 
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);

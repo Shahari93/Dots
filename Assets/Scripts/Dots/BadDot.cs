@@ -4,6 +4,7 @@ namespace Dots.GamePlay.Dot.Bad
 {
     public class BadDot : DotsBehaviour
     {
+        public static float spawnChance = 0.85f;
         public static event Action OnLoseGame;
 
         void Awake()
@@ -17,5 +18,5 @@ namespace Dots.GamePlay.Dot.Bad
             gameObject.SetActive(false);
             OnLoseGame?.Invoke();
         }
-    } 
+    }
 }

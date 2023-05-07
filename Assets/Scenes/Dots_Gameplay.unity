@@ -847,10 +847,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 308892455450869403, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3957857318344678852, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -898,10 +894,6 @@ PrefabInstance:
     - target: {fileID: 3957857318344678855, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_Name
       value: PlayerDots
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299413606797777890, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
@@ -1022,14 +1014,6 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6653167502293967985, guid: 51651e87cbeddb348b280a73aa493927, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6653167502293967985, guid: 51651e87cbeddb348b280a73aa493927, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6653167502293967985, guid: 51651e87cbeddb348b280a73aa493927, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1069,10 +1053,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6653167502293967987, guid: 51651e87cbeddb348b280a73aa493927, type: 3}
-      propertyPath: powerupSpawnIntirval
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51651e87cbeddb348b280a73aa493927, type: 3}
 --- !u!1001 &8202648985744071936
@@ -1085,10 +1065,6 @@ PrefabInstance:
     - target: {fileID: 5928323749371905128, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
-      propertyPath: itemsToPool.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7265664913213472720, guid: ef5c3e15ede0c924d9261715bb74f70a, type: 3}
       propertyPath: itemsToPool.Array.data[2].amountToPool

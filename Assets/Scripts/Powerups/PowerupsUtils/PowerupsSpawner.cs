@@ -36,7 +36,6 @@ namespace Dots.Utils.Powerups.Objectpool
         void Update()
         {
             powerupSpawnIntirval -= Time.deltaTime;
-            Debug.Log(powerupSpawnIntirval);
         }
 
         IEnumerator SpawnPowerups()
