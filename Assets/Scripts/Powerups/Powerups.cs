@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
+using System.Threading.Tasks;
 using Dots.Utils.Powerups.Objectpool;
 
 namespace Dots.GamePlay.Powerups
@@ -12,7 +13,7 @@ namespace Dots.GamePlay.Powerups
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
-        public static Action OnCollectedPower;
+        public static event Action OnCollectedPower;
 
         float randX;
         float randY;
@@ -56,12 +57,19 @@ namespace Dots.GamePlay.Powerups
             PowerupsSpawner.CanSpawn = true;
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
+            OnCollectedPower?.Invoke();
         }
 
         /// <summary>
         /// Abstract method to control what happens when a dot is hit by the player
         /// </summary>
-        public abstract void BehaveWhenInteractWithPlayer();
+        public virtual void BehaveWhenInteractWithPlayer()
+        {
+            ShowDestroyParticles(null);
+            gameObject.SetActive(false);
+            PowerupsSpawner.CanSpawn = true;
+        }
+        public abstract void StartDurationTimerAndDisablePowerup();
 
         public void ShowDestroyParticles()
         {
