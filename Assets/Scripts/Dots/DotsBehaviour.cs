@@ -17,8 +17,8 @@ namespace Dots.GamePlay.Dot
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
         public float RandX { get => RandX; set => randX = value; }
         public float RandY { get => RandY; set => randY = value; }
-        protected bool IsGoodDot { get; set; }
         public Vector2 Direction { get => direction; set => direction = value; }
+        protected bool IsGoodDot { get; set; }
 
         void OnEnable()
         {

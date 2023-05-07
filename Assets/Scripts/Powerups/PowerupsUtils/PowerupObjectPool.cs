@@ -13,12 +13,17 @@ namespace Dots.GamePlay.Powerups.Pool
         [SerializeField] int defaultAmount = 3;
 
 
-        private void Awake()
+        void Awake()
         {
             SharedInstance = this;
         }
 
-        private void Start()
+        void Start()
+        {
+            InitObjectPoolList();
+        }
+
+        void InitObjectPoolList()
         {
             powerupsPooledObjects = new List<GameObject>[powerupsObjects.Length];
             int i = 0;
@@ -57,7 +62,7 @@ namespace Dots.GamePlay.Powerups.Pool
                     {
                         GameObject pooledObject = powerupsPooledObjects[i][0];
                         pooledObject.SetActive(true);
-                        pooledObject.transform.parent = null;
+                        pooledObject.transform.parent = this.transform;
                         powerupsPooledObjects[i].Remove(pooledObject);
                         return pooledObject;
                     }

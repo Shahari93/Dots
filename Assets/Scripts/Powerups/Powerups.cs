@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
+using Dots.Utils.Powerups.Objectpool;
 
 namespace Dots.GamePlay.Powerups
 {
@@ -28,7 +29,7 @@ namespace Dots.GamePlay.Powerups
             SetSpawnValues();
         }
 
-        private void SetSpawnValues()
+        void SetSpawnValues()
         {
             spawnSpeed = 80f;
             randX = UnityEngine.Random.Range(-180, 181);
@@ -52,7 +53,8 @@ namespace Dots.GamePlay.Powerups
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
-            ShowDestroyParticles();
+            PowerupsSpawner.CanSpawn = true;
+            ShowDestroyParticles(null);
             gameObject.SetActive(false);
         }
 
@@ -82,9 +84,11 @@ namespace Dots.GamePlay.Powerups
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
             ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
             ParticleSystem.MainModule main = particleSystem.main;
-
-            Color particlesColor = (bool)isGoodDot ? Color.green : Color.red;
-            main.startColor = particlesColor;
+            if(isGoodDot == null)
+            {
+                Color particlesColor = Color.black;
+                main.startColor = particlesColor;
+            }
 
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);

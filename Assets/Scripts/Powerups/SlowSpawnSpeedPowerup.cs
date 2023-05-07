@@ -1,3 +1,5 @@
+using Dots.Utils.Powerups.Objectpool;
+
 namespace Dots.GamePlay.Powerups.SlowTime
 {
     public class SlowSpawnSpeedPowerup : Powerups
@@ -6,6 +8,7 @@ namespace Dots.GamePlay.Powerups.SlowTime
         {
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
+            PowerupsSpawner.CanSpawn = true;
             OnCollectedPower?.Invoke();
         }
     }

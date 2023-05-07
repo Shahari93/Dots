@@ -1,3 +1,5 @@
+using Dots.Utils.Powerups.Objectpool;
+
 namespace Dots.GamePlay.Powerups.Shield
 {
     public class ShieldPowerup : Powerups
@@ -6,6 +8,7 @@ namespace Dots.GamePlay.Powerups.Shield
         {
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
+            PowerupsSpawner.CanSpawn = true;
             OnCollectedPower?.Invoke();
         }
     } 
