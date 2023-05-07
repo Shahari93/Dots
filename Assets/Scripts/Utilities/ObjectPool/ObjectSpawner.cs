@@ -8,16 +8,11 @@ namespace Dots.Utils.ObjectPool
     public class ObjectSpawner : MonoBehaviour
     {
         [SerializeField] float spawnTime;
-        [SerializeField] float powerupSpawnInterval;
-
-        float powerupSpawnIntervalInitValue;
 
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
-
-            powerupSpawnIntervalInitValue = powerupSpawnInterval;
         }
 
         void Awake()
@@ -28,11 +23,6 @@ namespace Dots.Utils.ObjectPool
         void Start()
         {
             StartCoroutine(Spawn());
-        }
-
-        private void Update()
-        {
-            powerupSpawnInterval -= Time.deltaTime;
         }
 
         IEnumerator Spawn()
@@ -50,25 +40,6 @@ namespace Dots.Utils.ObjectPool
                 else if (randomNumber > 0.1f && randomNumber <= 0.85f)
                 {
                     spawnableTag = "BadDot";
-                }
-
-                if (Time.deltaTime >= powerupSpawnInterval)
-                {
-                    if (randomNumber > 0.85f && randomNumber <= 0.89f)
-                    {
-                        spawnableTag = "AllGreen";
-                        powerupSpawnInterval = powerupSpawnIntervalInitValue;
-                    }
-                    else if (randomNumber > 0.89f && randomNumber <= 0.94f)
-                    {
-                        spawnableTag = "Shield";
-                        powerupSpawnInterval = powerupSpawnIntervalInitValue;
-                    }
-                    else if (randomNumber > 0.94f && randomNumber <= 1f)
-                    {
-                        spawnableTag = "SlowSpeed";
-                        powerupSpawnInterval = powerupSpawnIntervalInitValue;
-                    }
                 }
 
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
