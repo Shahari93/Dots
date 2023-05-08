@@ -4,7 +4,7 @@ using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 using Dots.Utils.Powerups.Objectpool;
 
-namespace Dots.GamePlay.Powerups
+namespace Dots.GamePlay.PowerupsPerent
 {
     public abstract class Powerups : MonoBehaviour, IInteractableObjects, ISpawnableObjects
     {
@@ -12,7 +12,7 @@ namespace Dots.GamePlay.Powerups
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
-        public static event Action OnCollectedPower;
+        public static event Action<float> OnCollectedPower;
 
         float randX;
         float randY;
@@ -24,7 +24,7 @@ namespace Dots.GamePlay.Powerups
         public float RandY { get => RandY; set => randY = value; }
         public Vector2 Direction { get => direction; set => direction = value; }
 
-        void OnEnable()
+        void Awake()
         {
             SetSpawnValues();
         }
@@ -58,15 +58,24 @@ namespace Dots.GamePlay.Powerups
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
-            PowerupsSpawner.CanSpawn = true;
-            ShowDestroyParticles(null);
-            gameObject.SetActive(false);
+            DisablePowerupVisuals();
         }
 
         /// <summary>
         /// Abstract method to control what happens when a dot is hit by the player
         /// </summary>
-        public abstract void BehaveWhenInteractWithPlayer();
+        public virtual void BehaveWhenInteractWithPlayer()
+        {
+            DisablePowerupVisuals();
+            OnCollectedPower?.Invoke(powerupDuration);
+        }
+
+        private void DisablePowerupVisuals()
+        {
+            PowerupsSpawner.CanSpawn = true;
+            ShowDestroyParticles(null);
+            gameObject.SetActive(false);
+        }
 
         public void ShowDestroyParticles(bool? isGoodDot)
         {

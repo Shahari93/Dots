@@ -13,10 +13,12 @@ namespace Dots.Utils.ObjectPool
         [SerializeField] float[] spawnChances;
         [SerializeField] GameObject[] dotObjects;
         float total;
+
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
+            GamePlay.PowerupsPerent.Powerups.OnCollectedPower += StartPowerupCoroutine;
         }
 
         void Awake()
@@ -91,6 +93,25 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
+        void StartPowerupCoroutine(float duration)
+        {
+            StartCoroutine(DisablePowerupAbility(duration));
+        }
+
+        public IEnumerator DisablePowerupAbility(float duration)
+        {
+            while (duration > 0)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+                if (duration <= 0)
+                {
+                    GoodDot.spawnChance = 0.15f;
+                    break;
+                }
+            }
+        }
+
         void StopSpawnInvokation()
         {
             StopCoroutine(Spawn());
@@ -100,6 +121,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
+            GamePlay.PowerupsPerent.Powerups.OnCollectedPower -= StartPowerupCoroutine;
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using Dots.GamePlay.Powerups.Pool;
+using Dots.GamePlay.PowerupsPerent.Pool;
 
 namespace Dots.Utils.Powerups.Objectpool
 {

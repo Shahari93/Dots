@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Dots.GamePlay.Powerups.Pool 
+namespace Dots.GamePlay.PowerupsPerent.Pool 
 {
     public class PowerupObjectPool : MonoBehaviour
     {
@@ -68,7 +68,7 @@ namespace Dots.GamePlay.Powerups.Pool
                     }
                     else if (!onlyPooled)
                     {
-                        return Instantiate(powerupsObjects[i]);
+                        return Instantiate(powerupsObjects[i], this.transform);
                     }
                     break;
                 }

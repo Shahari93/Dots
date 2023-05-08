@@ -1,10 +1,10 @@
-namespace Dots.GamePlay.Powerups.SlowTime
+namespace Dots.GamePlay.PowerupsPerent.SlowTime
 {
     public class SlowSpawnSpeedPowerup : Powerups
     {
         public override void BehaveWhenInteractWithPlayer()
         {
-            throw new System.NotImplementedException();
+            base.BehaveWhenInteractWithPlayer();
         }
     }
 }
