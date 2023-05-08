@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1367303601656713972}
-  - component: {fileID: 3283604980513992919}
+  - component: {fileID: 881770573952928276}
+  - component: {fileID: -6057551254999834678}
   - component: {fileID: 1367303601656713931}
   - component: {fileID: 7842609654435594728}
   - component: {fileID: 2991201480933358133}
@@ -35,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3283604980513992919
+--- !u!114 &881770573952928276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +45,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1367303601656713930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c82dd3aef65a35143840f1ee290ea848, type: 3}
+  m_Script: {fileID: 11500000, guid: 7699aad3aa93cef4bb6545376b2d0863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupDuration: 5
-  rb2D: {fileID: 2991201480933358133}
   particles: {fileID: 9141086480664059811, guid: a2d5732320934c24599e69823ff108bf, type: 3}
+--- !u!114 &-6057551254999834678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367303601656713930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81e4cfbc37ceb14db302440dbc74ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 2991201480933358133}
 --- !u!212 &1367303601656713931
 SpriteRenderer:
   m_ObjectHideFlags: 0
