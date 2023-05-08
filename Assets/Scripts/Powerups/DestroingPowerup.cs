@@ -7,8 +7,9 @@ public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractable
 {
     protected float? powerupDuration;
     [SerializeField] protected ParticleSystem particles;
+    [SerializeField] PowerupEffectSO powerupEffect;
 
-    public static event Action<float?> OnCollectedPower;
+    public static Action<float?> OnCollectedPower;
 
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +32,7 @@ public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractable
     public virtual void BehaveWhenInteractWithPlayer()
     {
         DisablePowerupVisuals();
-        OnCollectedPower?.Invoke(powerupDuration);
+        powerupEffect.Apply(this.gameObject);
     }
 
     public void DisablePowerupVisuals()
