@@ -6,7 +6,7 @@ using Dots.Utils.Powerups.Objectpool;
 
 namespace Dots.GamePlay.PowerupsPerent
 {
-    public abstract class Powerups : MonoBehaviour, IInteractableObjects, ISpawnableObjects
+    public abstract class Powerups : MonoBehaviour, IInteractableObjects, ISpawnableObjects, IDestroyableObject
     {
         protected float? powerupDuration;
         [SerializeField] protected Rigidbody2D rb2D;
@@ -70,7 +70,7 @@ namespace Dots.GamePlay.PowerupsPerent
             OnCollectedPower?.Invoke(powerupDuration);
         }
 
-        private void DisablePowerupVisuals()
+        public void DisablePowerupVisuals()
         {
             PowerupsSpawner.CanSpawn = true;
             ShowDestroyParticles(null);

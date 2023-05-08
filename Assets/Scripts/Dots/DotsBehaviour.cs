@@ -4,7 +4,7 @@ using Dots.Utils.Interaction;
 
 namespace Dots.GamePlay.Dot
 {
-    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects
+    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects, IDestroyableObject
     {
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
@@ -54,14 +54,19 @@ namespace Dots.GamePlay.Dot
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
-            ShowDestroyParticles(IsGoodDot);
-            gameObject.SetActive(false);
+            DisablePowerupVisuals();
         }
 
         /// <summary>
         /// Abstract method to control what happens when a dot is hit by the player
         /// </summary>
         public abstract void BehaveWhenInteractWithPlayer();
+
+        public void DisablePowerupVisuals()
+        {
+            ShowDestroyParticles(IsGoodDot);
+            gameObject.SetActive(false);
+        }
 
         public void ShowDestroyParticles(bool? isGoodDot)
         {
