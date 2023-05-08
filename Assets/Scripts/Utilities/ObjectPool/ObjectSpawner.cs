@@ -93,13 +93,18 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        void StartPowerupCoroutine(float duration)
+        void StartPowerupCoroutine(float? duration)
         {
-            StartCoroutine(DisablePowerupAbility(duration));
+            StartCoroutine(DisablePowerupAbility((float)duration));
         }
 
-        public IEnumerator DisablePowerupAbility(float duration)
+        public IEnumerator DisablePowerupAbility(float? duration)
         {
+            if (duration == null)
+            {
+                yield break;
+            }
+
             while (duration > 0)
             {
                 duration -= Time.deltaTime;

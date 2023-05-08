@@ -8,11 +8,11 @@ namespace Dots.GamePlay.PowerupsPerent
 {
     public abstract class Powerups : MonoBehaviour, IInteractableObjects, ISpawnableObjects
     {
-        [SerializeField] protected float powerupDuration;
+        protected float? powerupDuration;
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
-        public static event Action<float> OnCollectedPower;
+        public static event Action<float?> OnCollectedPower;
 
         float randX;
         float randY;
@@ -24,7 +24,7 @@ namespace Dots.GamePlay.PowerupsPerent
         public float RandY { get => RandY; set => randY = value; }
         public Vector2 Direction { get => direction; set => direction = value; }
 
-        void Awake()
+        void OnEnable()
         {
             SetSpawnValues();
         }
