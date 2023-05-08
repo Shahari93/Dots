@@ -2,9 +2,7 @@ using System;
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
-using System.Threading.Tasks;
 using Dots.Utils.Powerups.Objectpool;
-using System.Collections;
 
 namespace Dots.GamePlay.Powerups
 {
@@ -68,13 +66,7 @@ namespace Dots.GamePlay.Powerups
         /// <summary>
         /// Abstract method to control what happens when a dot is hit by the player
         /// </summary>
-        public virtual void BehaveWhenInteractWithPlayer()
-        {
-            PowerupsSpawner.CanSpawn = true;
-            ShowDestroyParticles(null);
-            gameObject.SetActive(false);
-            OnCollectedPower?.Invoke();
-        }
+        public abstract void BehaveWhenInteractWithPlayer();
 
         public void ShowDestroyParticles(bool? isGoodDot)
         {
