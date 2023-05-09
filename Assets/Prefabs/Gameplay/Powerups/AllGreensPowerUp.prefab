@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 6218168599242031657}
   - component: {fileID: -3239184385585970785}
   - component: {fileID: -5987318383210128421}
-  - component: {fileID: 5218101018097372490}
   - component: {fileID: 6218168599242031656}
   - component: {fileID: -6789515280022651570}
   - component: {fileID: 8518175992090226454}
   m_Layer: 0
-  m_Name: AllGreensPowerUp
+  m_Name: AllGreensPowerup
   m_TagString: AllGreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,18 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 8518175992090226454}
---- !u!114 &5218101018097372490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218168599242031659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6112c3c1563414d9a68b6eee878c6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &6218168599242031656
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 1367303601656713972}
   - component: {fileID: -1497092563565262373}
   - component: {fileID: -2755631169277807426}
-  - component: {fileID: -4109181599017848536}
   - component: {fileID: 1367303601656713931}
   - component: {fileID: 2991201480933358133}
   - component: {fileID: 8300567938148501550}
   m_Layer: 0
-  m_Name: ShieldPowerUp
+  m_Name: ShieldPowerup
   m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,18 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 2991201480933358133}
---- !u!114 &-4109181599017848536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1367303601656713930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6112c3c1563414d9a68b6eee878c6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1367303601656713931
 SpriteRenderer:
   m_ObjectHideFlags: 0

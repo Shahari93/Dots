@@ -1,7 +1,7 @@
 using UnityEngine;
 using Dots.GamePlay.Dot.Good;
 
-[CreateAssetMenu(fileName = "SpawnGreens", menuName = "Powerups")]
+[CreateAssetMenu(fileName = "SpawnGreens")]
 public class SpawnGreenDotsPowerup : PowerupEffectSO
 {
     [Range(5,10)]
