@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b1a8a4d01fafd429ae14d150a91bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnWeigth: 0.2
   rb2D: {fileID: -9181250198187666182}
   particles: {fileID: 9141086480664059811, guid: a2d5732320934c24599e69823ff108bf, type: 3}
 --- !u!212 &4296681642482125850
