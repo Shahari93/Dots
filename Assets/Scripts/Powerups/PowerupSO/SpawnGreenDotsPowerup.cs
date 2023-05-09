@@ -1,16 +1,20 @@
 using UnityEngine;
 using Dots.GamePlay.Dot.Good;
+using Dots.Utils.Destroy;
 
-[CreateAssetMenu(fileName = "SpawnGreens")]
-public class SpawnGreenDotsPowerup : PowerupEffectSO
+namespace Dots.GamePlay.Powerups.SpawnGreens
 {
-    [Range(5,10)]
-    public float powerupDuration;
-
-    public override void Apply(GameObject target)
+    [CreateAssetMenu(fileName = "SpawnGreens")]
+    public class SpawnGreenDotsPowerup : PowerupEffectSO
     {
-        Debug.Log("Hit");
-        GoodDot.spawnChance = 1f;
-        DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
-    }
+        [Range(5, 10)]
+        public float powerupDuration;
+
+        public override void Apply(GameObject target)
+        {
+            Debug.Log("Hit");
+            GoodDot.spawnChance = 1f;
+            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
+        }
+    } 
 }

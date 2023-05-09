@@ -1,11 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShieldPowerup")]
-
-public class ShieldPowerup : PowerupEffectSO
+namespace Dots.GamePlay.Powerups.Shield
 {
-    public override void Apply(GameObject target)
+    [CreateAssetMenu(fileName = "ShieldPowerup")]
+
+    public class ShieldPowerup : PowerupEffectSO
     {
-        Debug.Log("Hit");
-    }
+        public override void Apply(GameObject target)
+        {
+            Debug.Log("Hit");
+        }
+    } 
 }

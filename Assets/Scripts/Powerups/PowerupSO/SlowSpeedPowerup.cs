@@ -1,10 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SlowSpeedPowerup")]
-public class SlowSpeedPowerup : PowerupEffectSO
+namespace Dots.GamePlay.Powerups.SlowSpeed
 {
-    public override void Apply(GameObject target)
+    [CreateAssetMenu(fileName = "SlowSpeedPowerup")]
+    public class SlowSpeedPowerup : PowerupEffectSO
     {
-        Debug.Log("Hit");
-    }
+        public override void Apply(GameObject target)
+        {
+            Debug.Log("Hit");
+        }
+    } 
 }

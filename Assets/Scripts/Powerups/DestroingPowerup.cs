@@ -1,59 +1,63 @@
 using System;
 using UnityEngine;
-using Dots.Utils.Powerups.Objectpool;
 using Dots.Utils.Interaction;
+using Dots.GamePlay.Powerups;
+using Dots.Utils.Powerups.Objectpool;
 
-public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
+namespace Dots.Utils.Destroy
 {
-    protected float? powerupDuration;
-    [SerializeField] protected ParticleSystem particles;
-    [SerializeField] PowerupEffectSO powerupEffect;
-
-    public static Action<float?> OnCollectedPower;
-
-
-    void OnTriggerEnter2D(Collider2D collision)
+    public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
     {
-        if (collision.CompareTag("Bounds"))
+        protected float? powerupDuration;
+        [SerializeField] protected ParticleSystem particles;
+        [SerializeField] PowerupEffectSO powerupEffect;
+
+        public static Action<float?> OnCollectedPower;
+
+
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            BehaveWhenInteractWithBounds();
-        }
-    }
-
-    // What happens if a dot hits the bounds collider
-    public void BehaveWhenInteractWithBounds()
-    {
-        DisablePowerupVisuals();
-    }
-
-    /// <summary>
-    /// Abstract method to control what happens when a dot is hit by the player
-    /// </summary>
-    public virtual void BehaveWhenInteractWithPlayer()
-    {
-        DisablePowerupVisuals();
-        powerupEffect.Apply(this.gameObject);
-    }
-
-    public void DisablePowerupVisuals()
-    {
-        PowerupsSpawner.CanSpawn = true;
-        ShowDestroyParticles(null);
-        gameObject.SetActive(false);
-    }
-
-    public void ShowDestroyParticles(bool? isGoodDot)
-    {
-        GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
-        ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
-        ParticleSystem.MainModule main = particleSystem.main;
-        if (isGoodDot == null)
-        {
-            Color particlesColor = Color.black;
-            main.startColor = particlesColor;
+            if (collision.CompareTag("Bounds"))
+            {
+                BehaveWhenInteractWithBounds();
+            }
         }
 
-        particleSystem.Play();
-        Destroy(particleSystem.gameObject, main.duration + 0.1f);
-    }
+        // What happens if a dot hits the bounds collider
+        public void BehaveWhenInteractWithBounds()
+        {
+            DisablePowerupVisuals();
+        }
+
+        /// <summary>
+        /// Abstract method to control what happens when a dot is hit by the player
+        /// </summary>
+        public virtual void BehaveWhenInteractWithPlayer()
+        {
+            DisablePowerupVisuals();
+            powerupEffect.Apply(this.gameObject);
+        }
+
+        public void DisablePowerupVisuals()
+        {
+            PowerupsSpawner.CanSpawn = true;
+            ShowDestroyParticles(null);
+            gameObject.SetActive(false);
+        }
+
+        public void ShowDestroyParticles(bool? isGoodDot)
+        {
+            GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);
+            ParticleSystem particleSystem = particleGO.GetComponent<ParticleSystem>();
+            ParticleSystem.MainModule main = particleSystem.main;
+            if (isGoodDot == null)
+            {
+                Color particlesColor = Color.black;
+                main.startColor = particlesColor;
+            }
+
+            particleSystem.Play();
+            Destroy(particleSystem.gameObject, main.duration + 0.1f);
+        }
+    } 
 }

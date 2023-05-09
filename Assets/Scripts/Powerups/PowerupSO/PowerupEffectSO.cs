@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class PowerupEffectSO : ScriptableObject
+namespace Dots.GamePlay.Powerups
 {
-    public abstract void Apply(GameObject target);
+	public abstract class PowerupEffectSO : ScriptableObject
+	{
+		public abstract void Apply(GameObject target);
+	} 
 }
