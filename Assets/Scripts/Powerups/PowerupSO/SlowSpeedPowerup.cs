@@ -10,7 +10,6 @@ namespace Dots.GamePlay.Powerups.SlowSpeed
 
         public override void Apply(GameObject target)
         {
-            Debug.Log("Hit" + this.name);
             InvokePowerupUI?.Invoke(powerupDuration);
         }
     } 

@@ -8,7 +8,6 @@ namespace Dots.GamePlay.Powerups.Shield
     {
         public override void Apply(GameObject target)
         {
-            Debug.Log("Hit" + this.name);
             InvokePowerupUI?.Invoke(0);
         }
     } 

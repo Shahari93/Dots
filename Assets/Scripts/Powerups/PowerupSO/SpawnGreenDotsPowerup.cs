@@ -12,7 +12,6 @@ namespace Dots.GamePlay.Powerups.SpawnGreens
 
         public override void Apply(GameObject target)
         {
-            Debug.Log("Hit" + this.name);
             GoodDot.spawnChance = 1f;
             DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
             InvokePowerupUI?.Invoke(powerupDuration);

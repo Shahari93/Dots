@@ -1,47 +1,53 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Dots.GamePlay.Powerups;
-using System;
 using System.Collections;
+using Dots.GamePlay.Powerups;
 
-public class PowerupDisplay : MonoBehaviour
+namespace Dots.GamePlay.UI.PowerupsDisplay
 {
-    private bool shouldEnableImage;
-    private float powerupDuration = 5;
-    [SerializeField] Image powerupDurationImage;
-
-    private void OnEnable()
+    public class PowerupDisplay : MonoBehaviour
     {
-        powerupDurationImage.fillAmount = 1;
-        PowerupEffectSO.InvokePowerupUI += EnablePowerupDurationDisplay;
-    }
+        private bool shouldEnableImage;
+        [SerializeField] Image powerupDurationImage;
 
-    private void Start()
-    {
-        StartCoroutine(EnablePowerupDurationCoroutine(powerupDuration));
-    }
-
-    private IEnumerator EnablePowerupDurationCoroutine(float duration)
-    {
-        if (shouldEnableImage)
+        private void OnEnable()
         {
-            powerupDurationImage.enabled = true;
-            while (powerupDuration > 0)
-            {
-                powerupDuration -= Time.deltaTime;
-                powerupDurationImage.fillAmount -= 1 / powerupDuration * Time.deltaTime;
-            }
-            yield return new WaitForEndOfFrame();
+            powerupDurationImage.enabled = false;
+            PowerupEffectSO.InvokePowerupUI += EnablePowerupDurationDisplay;
         }
-    }
 
-    private void EnablePowerupDurationDisplay(float duration)
-    {
-        shouldEnableImage = true;
-    }
+        private IEnumerator EnablePowerupDurationCoroutine(float duration)
+        {
+            if (shouldEnableImage)
+            {
+                if (duration != 0)
+                {
+                    powerupDurationImage.enabled = true;
+                }
 
-    private void OnDisable()
-    {
-        PowerupEffectSO.InvokePowerupUI -= EnablePowerupDurationDisplay;
-    }
+                while (duration > 0)
+                {
+                    duration -= Time.deltaTime;
+                    powerupDurationImage.fillAmount -= powerupDurationImage.fillAmount / duration * Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                if (duration <= 0)
+                {
+                    powerupDurationImage.fillAmount = 1;
+                    powerupDurationImage.enabled = false;
+                }
+            }
+        }
+
+        private void EnablePowerupDurationDisplay(float duration)
+        {
+            shouldEnableImage = true;
+            StartCoroutine(EnablePowerupDurationCoroutine(duration));
+        }
+
+        private void OnDisable()
+        {
+            PowerupEffectSO.InvokePowerupUI -= EnablePowerupDurationDisplay;
+        }
+    } 
 }
