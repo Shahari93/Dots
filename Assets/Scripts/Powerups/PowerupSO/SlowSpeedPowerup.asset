@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01165f5e51047f4f8f561bb47271de5, type: 3}
   m_Name: SlowSpeedPowerup
   m_EditorClassIdentifier: 
+  powerupDuration: 5
