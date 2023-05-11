@@ -1,5 +1,6 @@
-using Dots.GamePlay.Powerups.Shield;
 using System;
+using Dots.GamePlay.Powerups.Shield;
+using Dots.GamePlay.Player.Interaction.Shields;
 
 namespace Dots.GamePlay.Dot.Bad
 {

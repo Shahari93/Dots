@@ -49,19 +49,14 @@ namespace Dots.Utils.Powerups.Objectpool
 
                 if (canSpawn && Time.deltaTime >= powerupSpawnIntirval)
                 {
-                    if (randomNumber >= 0.0f && randomNumber <= 0.2f)
+                    if (randomNumber >= 0.0f && randomNumber <= 0.4f)
                     {
                         spawnableTag = "AllGreen";
                         canSpawn = false;
                     }
-                    else if (randomNumber > 0.2f && randomNumber <= 0.4f)
+                    else if (randomNumber > 0.4f && randomNumber <= 1)
                     {
                         spawnableTag = "Shield";
-                        canSpawn = false;
-                    }
-                    else if (randomNumber > 0.4f && randomNumber <= 1f)
-                    {
-                        spawnableTag = "SlowSpeed";
                         canSpawn = false;
                     }
                     powerupSpawnIntirval = powerupSpawnIntirvalInitValue;

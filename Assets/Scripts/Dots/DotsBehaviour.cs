@@ -1,6 +1,7 @@
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
+using Dots.GamePlay.Powerups.SlowSpeed;
 
 namespace Dots.GamePlay.Dot
 {
@@ -11,7 +12,6 @@ namespace Dots.GamePlay.Dot
 
         float randX;
         float randY;
-        float dotSpeed;
         Vector2 direction;
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
@@ -24,7 +24,6 @@ namespace Dots.GamePlay.Dot
         {
             SetSpawnValues();
         }
-
         private void SetSpawnValues()
         {
             dotSpeed = 80f;

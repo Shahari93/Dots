@@ -48,7 +48,6 @@ MonoBehaviour:
   powerupsObjects:
   - {fileID: 6218168599242031659, guid: ef5ae9ff1f9069d439226c574e1170a8, type: 3}
   - {fileID: 1367303601656713930, guid: 7a764cedb3d22ae4ebb83dd24cb449bd, type: 3}
-  - {fileID: 1367303601656713930, guid: b5f3ef70c7f99854c98bd5b5906af3aa, type: 3}
   amountToBuffer: 
   defaultAmount: 3
 --- !u!114 &6653167502293967987
@@ -63,4 +62,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb43c8fd3a818d47a1d82138e92bdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupSpawnIntirval: 5
+  powerupSpawnIntirval: 10

@@ -2,57 +2,59 @@ using UnityEngine;
 using Dots.Utils.Interaction;
 using Dots.GamePlay.Powerups.Shield;
 
-public class ActiveShields : MonoBehaviour
+namespace Dots.GamePlay.Player.Interaction.Shields
 {
-    [SerializeField] GameObject[] shields;
-
-    private static bool areShieldsActive;
-    public static bool AreShieldsActive
+    public class ActiveShields : MonoBehaviour
     {
-        get
+        [SerializeField] GameObject[] shields;
+
+        private static bool areShieldsActive;
+        public static bool AreShieldsActive
         {
-            return areShieldsActive;
+            get
+            {
+                return areShieldsActive;
+            }
+            set
+            {
+                areShieldsActive = value;
+            }
         }
-        set
+
+        private void OnEnable()
         {
-            areShieldsActive = value;
+            ShieldPowerup.OnCollectedShieldPowerup += EnableShieldsVisual;
         }
-    }
 
-    private void OnEnable()
-    {
-        ShieldPowerup.OnCollectedShieldPowerup += EnableShieldsVisual;
-    }
-
-    private void Awake()
-    {
-        areShieldsActive = false;
-        foreach (GameObject shield in shields)
+        private void Awake()
         {
-            shield.SetActive(false);
+            areShieldsActive = false;
+            foreach (GameObject shield in shields)
+            {
+                shield.SetActive(false);
+            }
         }
-    }
 
-    private void EnableShieldsVisual(bool isShieldOn)
-    {
-        areShieldsActive = isShieldOn;
-        foreach (GameObject shield in shields)
+        private void EnableShieldsVisual(bool isShieldOn)
         {
-            shield.SetActive(isShieldOn);
+            areShieldsActive = isShieldOn;
+            foreach (GameObject shield in shields)
+            {
+                shield.SetActive(isShieldOn);
+            }
         }
-    }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out IInteractableObjects interactable))
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            interactable.BehaveWhenInteractWithPlayer();
+            if (collision.TryGetComponent(out IInteractableObjects interactable))
+            {
+                interactable.BehaveWhenInteractWithPlayer();
+            }
         }
-    }
 
-    private void OnDisable()
-    {
-        ShieldPowerup.OnCollectedShieldPowerup -= EnableShieldsVisual;
-    }
-
+        private void OnDisable()
+        {
+            ShieldPowerup.OnCollectedShieldPowerup -= EnableShieldsVisual;
+        }
+    } 
 }
