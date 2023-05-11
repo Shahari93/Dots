@@ -870,11 +870,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: cbfde9d1-8814-4b48-8598-848240b048b1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Dots
+  organizationId: shahari1993
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
