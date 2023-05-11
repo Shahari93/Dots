@@ -10,6 +10,7 @@ namespace Dots.GamePlay.Dot
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
+        float dotSpeed;
         float randX;
         float randY;
         Vector2 direction;
