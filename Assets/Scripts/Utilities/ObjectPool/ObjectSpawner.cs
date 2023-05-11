@@ -55,8 +55,6 @@ namespace Dots.Utils.ObjectPool
                 float randomNumber = Random.Range(0f, total);
                 string spawnableTag = "";
 
-
-
                 for (int i = 0; i < spawnChances.Length; i++)
                 {
                     if (randomNumber <= spawnChances[i])
