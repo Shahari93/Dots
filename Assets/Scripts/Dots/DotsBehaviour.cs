@@ -1,7 +1,6 @@
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
-using Dots.GamePlay.Powerups.SlowSpeed;
 
 namespace Dots.GamePlay.Dot
 {
