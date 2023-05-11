@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6789515280022651570}
   - component: {fileID: 8518175992090226454}
   m_Layer: 0
-  m_Name: AllGreensPowerup
+  m_Name: AllGreensPowerUp
   m_TagString: AllGreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.2677527, g: 0.4339623, b: 0.20265219, a: 1}
+  m_Color: {r: 0.3254902, g: 1, b: 0.34117648, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
