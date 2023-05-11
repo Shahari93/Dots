@@ -1,4 +1,6 @@
 using System;
+using Dots.GamePlay.Powerups.Shield;
+using Dots.GamePlay.Player.Interaction.Shields;
 
 namespace Dots.GamePlay.Dot.Bad
 {
@@ -16,7 +18,15 @@ namespace Dots.GamePlay.Dot.Bad
         {
             ShowDestroyParticles(IsGoodDot);
             gameObject.SetActive(false);
-            OnLoseGame?.Invoke();
+            if (ActiveShields.AreShieldsActive)
+            {
+                ShieldPowerup.OnCollectedShieldPowerup(false);
+                ActiveShields.AreShieldsActive = false;
+            }
+            else
+            {
+                OnLoseGame?.Invoke();
+            }
         }
     }
 }

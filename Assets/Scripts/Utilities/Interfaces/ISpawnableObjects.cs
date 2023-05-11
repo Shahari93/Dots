@@ -10,7 +10,5 @@ namespace Dots.Utils.Spawnable
         Vector2 Direction { get; set; }
 
         void SetSpeedAndDirection();
-        void BehaveWhenInteractWithBounds();
-        void ShowDestroyParticles(bool? isGoodDot = null);
     }
 }

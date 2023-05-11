@@ -1,17 +1,18 @@
 using UnityEngine;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
+using Dots.GamePlay.Powerups.SlowSpeed;
 
 namespace Dots.GamePlay.Dot
 {
-    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects
+    public abstract class DotsBehaviour : MonoBehaviour, IInteractableObjects, ISpawnableObjects, IDestroyableObject
     {
         [SerializeField] protected Rigidbody2D rb2D;
         [SerializeField] protected ParticleSystem particles;
 
+        float dotSpeed;
         float randX;
         float randY;
-        float dotSpeed;
         Vector2 direction;
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
@@ -24,7 +25,6 @@ namespace Dots.GamePlay.Dot
         {
             SetSpawnValues();
         }
-
         private void SetSpawnValues()
         {
             dotSpeed = 80f;
@@ -54,14 +54,19 @@ namespace Dots.GamePlay.Dot
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
-            ShowDestroyParticles(IsGoodDot);
-            gameObject.SetActive(false);
+            DisablePowerupVisuals();
         }
 
         /// <summary>
         /// Abstract method to control what happens when a dot is hit by the player
         /// </summary>
         public abstract void BehaveWhenInteractWithPlayer();
+
+        public void DisablePowerupVisuals()
+        {
+            ShowDestroyParticles(IsGoodDot);
+            gameObject.SetActive(false);
+        }
 
         public void ShowDestroyParticles(bool? isGoodDot)
         {

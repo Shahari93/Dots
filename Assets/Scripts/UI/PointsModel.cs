@@ -48,10 +48,6 @@ namespace Dots.ScorePoints.Model
         void UpdateScore()
         {
             OnScoreChanged?.Invoke();
-        }
-
-        void OnDisable()
-        {
             if (currentPointsScore > highScore)
             {
                 highScore = currentPointsScore;
@@ -59,6 +55,5 @@ namespace Dots.ScorePoints.Model
                 OnHighScorePassed?.Invoke();
             }
         }
-
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
+using Dots.Utils.Destroy;
 
 namespace Dots.Utils.ObjectPool
 {
@@ -18,7 +19,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
-            GamePlay.PowerupsPerent.Powerups.OnCollectedPower += StartPowerupCoroutine;
+            DestroingPowerup.OnCollectedPower += StartPowerupCoroutine;
         }
 
         void Awake()
@@ -126,7 +127,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
-            GamePlay.PowerupsPerent.Powerups.OnCollectedPower -= StartPowerupCoroutine;
+            DestroingPowerup.OnCollectedPower -= StartPowerupCoroutine;
         }
     }
 }
