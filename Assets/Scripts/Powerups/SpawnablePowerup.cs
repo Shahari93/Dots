@@ -23,7 +23,7 @@ namespace Dots.Utils.Spawnable
 
         void SetSpawnValues()
         {
-            spawnSpeed = 80f;
+            spawnSpeed = 70;
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
