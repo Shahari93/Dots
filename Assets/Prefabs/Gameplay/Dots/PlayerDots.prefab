@@ -442,6 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3957857318344678852}
   - component: {fileID: 3957857318344678853}
+  - component: {fileID: 1486682263688943649}
   m_Layer: 0
   m_Name: PlayerDots
   m_TagString: Untagged
@@ -480,3 +481,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationDegree: 90
   rotationSpeed: 1.5
+--- !u!114 &1486682263688943649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957857318344678855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c755a1117933c745abdf979e2a5dd51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shields:
+  - {fileID: 885989136}
+  - {fileID: 1263979322}

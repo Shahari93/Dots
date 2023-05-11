@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Dots.GamePlay.Powerups.Shield
@@ -6,9 +7,12 @@ namespace Dots.GamePlay.Powerups.Shield
 
     public class ShieldPowerup : PowerupEffectSO
     {
+        public static Action<bool> OnCollectedShieldPowerup;
+
         public override void Apply(GameObject target)
         {
             InvokePowerupUI?.Invoke(0);
+            OnCollectedShieldPowerup?.Invoke(true);
         }
     } 
 }
