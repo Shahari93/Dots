@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.Utils.FTUE;
 using Dots.GamePlay.Dot.Bad;
 using Dots.ScorePoints.Model;
 using System.Threading.Tasks;
@@ -28,12 +29,14 @@ namespace Dots.PauseGame.Presenter
         {
             SceneManager.LoadScene(0);
             Time.timeScale = 1f;
+            CheckForFTUE.LaunchCount++;
         }
 
         void RestartGame()
         {
             SceneManager.LoadScene(1);
             Time.timeScale = 1f;
+            CheckForFTUE.LaunchCount++;
         }
 
         async void EnableLoseGamePanel()

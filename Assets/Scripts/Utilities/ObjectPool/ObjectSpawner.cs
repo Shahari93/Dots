@@ -1,9 +1,10 @@
 using UnityEngine;
+using Dots.Utils.FTUE;
+using Dots.Utils.Destroy;
 using System.Collections;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
-using Dots.Utils.Destroy;
 
 namespace Dots.Utils.ObjectPool
 {
@@ -14,12 +15,13 @@ namespace Dots.Utils.ObjectPool
         [SerializeField] float[] spawnChances;
         [SerializeField] GameObject[] dotObjects;
         float total;
+        bool ftueSpawn = true;
 
         void OnEnable()
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
-            DestroingPowerup.OnCollectedPower += StartPowerupCoroutine;
+            DestroingPowerup.OnCollectedPower += StartDisablePowerupCoroutine;
         }
 
         void Awake()
@@ -55,7 +57,12 @@ namespace Dots.Utils.ObjectPool
                 float randomNumber = Random.Range(0f, total);
                 string spawnableTag = "";
 
-
+                if(PlayerPrefs.HasKey("LaunchCount") && CheckForFTUE.LaunchCount < 1 && ftueSpawn)
+                {
+                    GoodDot.spawnChance = 1f;
+                    StartCoroutine(DisablePowerupAbility(8f));
+                    ftueSpawn = false;
+                }
 
                 for (int i = 0; i < spawnChances.Length; i++)
                 {
@@ -94,7 +101,7 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        void StartPowerupCoroutine(float? duration)
+        void StartDisablePowerupCoroutine(float? duration)
         {
             StartCoroutine(DisablePowerupAbility((float)duration));
         }
@@ -127,7 +134,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
-            DestroingPowerup.OnCollectedPower -= StartPowerupCoroutine;
+            DestroingPowerup.OnCollectedPower -= StartDisablePowerupCoroutine;
         }
     }
 }
