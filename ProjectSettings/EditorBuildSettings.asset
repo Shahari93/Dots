@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/IronSource/DemoScene/IronSourceDemo.unity
-    guid: ccc0ac08126704384bdda74c26d99797
+    path: Assets/Scenes/Dots_StartingScene.unity
+    guid: 2ffcce3494bf02146a2055b25b38fedb
+  - enabled: 1
+    path: Assets/Scenes/Dots_Gameplay.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
