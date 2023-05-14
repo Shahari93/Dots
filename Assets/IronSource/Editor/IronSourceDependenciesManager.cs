@@ -231,6 +231,10 @@ public class IronSourceDependenciesManager : EditorWindow
                                     ironSourceProviderInfo.displayProviderName = info.displayProviderName;
                                     ironSourceProviderInfo.downloadURL = info.downloadURL;
                                     ironSourceProviderInfo.providerName = info.providerName;
+                                    if (lowerCaseItem == "ınmobi")
+                                    {
+                                        lowerCaseItem = "inmobi";
+                                    }
                                     ironSourceProviderInfo.sdkVersionDic = info.sdkVersionDic;
                                     ironSourceProviderInfo.fileName = info.fileName;
                                     ironSourceProviderInfo.currentStatues = info.currentStatues;
