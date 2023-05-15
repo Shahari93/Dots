@@ -1,5 +1,3 @@
-using TMPro;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.GamePlay.Dot.Bad;
@@ -45,19 +43,6 @@ string appKey = "19f99b595";
             BadDot.OnLoseGame += ShowInterstitialAd;
         }
 
-        private void ShowInterstitialAd()
-        {
-            if (IronSource.Agent.isInterstitialReady())
-            {
-                IronSource.Agent.showInterstitial();
-            }
-            else
-            {
-                Debug.Log("Ad is not ready");
-                return;
-            }
-        }
-
         void Awake()
         {
             if (Instance != null)
@@ -80,15 +65,36 @@ string appKey = "19f99b595";
 
         void Start()
         {
-            //For Rewarded Video
-            IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
-            //For Interstitial
-            IronSource.Agent.init(appKey, IronSourceAdUnits.INTERSTITIAL);
+            InitAgents();
         }
 
         void OnApplicationPause(bool isPaused)
         {
             IronSource.Agent.onApplicationPause(isPaused);
+        }
+
+        #region Init Ads
+        private void InitAgents()
+        {
+            //For Rewarded Video
+            IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
+            //For Interstitial
+            IronSource.Agent.init(appKey, IronSourceAdUnits.INTERSTITIAL);
+        } 
+        #endregion
+
+        #region Showing Ads
+        private void ShowInterstitialAd()
+        {
+            if (IronSource.Agent.isInterstitialReady())
+            {
+                IronSource.Agent.showInterstitial();
+            }
+            else
+            {
+                Debug.Log("Ad is not ready");
+                return;
+            }
         }
 
         void ShowRewardedAd(string placement)
@@ -104,7 +110,10 @@ string appKey = "19f99b595";
             }
 
         }
+        #endregion
 
+
+        #region Interstitial Callbacks
         // Interstitial Callbacks
         // Invoked when the interstitial ad was loaded succesfully.
         void InterstitialOnAdReadyEvent(IronSourceAdInfo adInfo)
@@ -138,9 +147,11 @@ string appKey = "19f99b595";
         void InterstitialOnAdShowSucceededEvent(IronSourceAdInfo adInfo)
         {
         }
+        #endregion
 
+
+        #region Rewarded Ads Callbacks
         // Rewarded Ads Callbacks
-
         /************* RewardedVideo AdInfo Delegates *************/
         // Indicates that there’s an available ad.
         // The adInfo object includes information about the ad that was loaded successfully
@@ -183,7 +194,8 @@ string appKey = "19f99b595";
         // it’s supported by all networks you included in your build.
         void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
         {
-        }
+        } 
+        #endregion
 
         void OnDisable()
         {
