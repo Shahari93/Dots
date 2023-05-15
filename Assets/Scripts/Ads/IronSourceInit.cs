@@ -97,6 +97,7 @@ string appKey = "19f99b595";
         // Invoked when the interstitial ad closed and the user went back to the application screen.
         void InterstitialOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
+            IronSource.Agent.loadInterstitial();
         }
         // Invoked before the interstitial ad was opened, and before the InterstitialOnAdOpenedEvent is reported.
         // This callback is not supported by all networks, and we recommend using it only if  
@@ -106,6 +107,23 @@ string appKey = "19f99b595";
         }
 
         // Rewarded Ads Callbacks
+
+
+        void OnDisable()
+        {
+            IronSourceEvents.onSdkInitializationCompletedEvent -= SdkInitializationCompletedEvent;
+
+            //Interstitial 
+            IronSourceInterstitialEvents.onAdReadyEvent -= InterstitialOnAdReadyEvent;
+            IronSourceInterstitialEvents.onAdLoadFailedEvent -= InterstitialOnAdLoadFailed;
+            IronSourceInterstitialEvents.onAdOpenedEvent -= InterstitialOnAdOpenedEvent;
+            IronSourceInterstitialEvents.onAdClickedEvent -= InterstitialOnAdClickedEvent;
+            IronSourceInterstitialEvents.onAdShowSucceededEvent -= InterstitialOnAdShowSucceededEvent;
+            IronSourceInterstitialEvents.onAdShowFailedEvent -= InterstitialOnAdShowFailedEvent;
+            IronSourceInterstitialEvents.onAdClosedEvent -= InterstitialOnAdClosedEvent;
+
+            BadDot.OnLoseGame -= ShowInterstitialAd;
+        }
 
     }
 }
