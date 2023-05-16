@@ -1,26 +1,27 @@
+using Dots.Coins.Model;
 using System.IO;
 using UnityEngine;
 
 namespace Dots.Utils.SaveAndLoad
 {
-	public static class SaveAndLoadJson
+	public class SaveAndLoadJson
 	{
-		public static void SaveCoinsToJson(int coinsAmount)
+		public static void SaveCoinsToJson()
 		{
 			CoinsData data = new CoinsData();
-			data.savedCoinsInJson = coinsAmount;
+			data.savedCoinsInJson = CoinsModel.CurrentCoinsAmount;
 			string json = JsonUtility.ToJson(data,true);
-			File.WriteAllText(Application.persistentDataPath + "/CoinsValue.json", json);
+			File.WriteAllText(Application.dataPath + "/CoinsValue.json", json);
 		}
 
-		public static void LoadCoinsFromJson(int coinsAmount) 
+		public static void LoadCoinsFromJson() 
 		{
-			if (!File.Exists(Application.persistentDataPath + "/CoinsValue.json"))
+			if (!File.Exists(Application.dataPath + "/CoinsValue.json"))
 				return;
 
-			string json = File.ReadAllText(Application.persistentDataPath + "/CoinsValue.json");
+			string json = File.ReadAllText(Application.dataPath + "/CoinsValue.json");
 			CoinsData data = JsonUtility.FromJson<CoinsData>(json);
-			coinsAmount = data.savedCoinsInJson;
+            CoinsModel.CurrentCoinsAmount = data.savedCoinsInJson;
 		}
 	} 
 }
