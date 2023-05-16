@@ -54,7 +54,7 @@ namespace Dots.ScorePoints.Presenter
                 /*if(PointsModel.HighScore == 0)
                     highScoreText.gameObject.SetActive(false);*/
 
-                highScoreText.text = string.Format("High score: {0:0}", PlayerPrefs.GetInt("HighScore"));
+                highScoreText.text = string.Format("High score: {0:0}", PointsModel.HighScore.ToString());
             }
         }
 

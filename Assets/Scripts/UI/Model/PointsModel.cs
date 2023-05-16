@@ -23,13 +23,13 @@ namespace Dots.ScorePoints.Model
 
         void Awake()
         {
-            if(Instance != null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);  
+            DontDestroyOnLoad(gameObject);
         }
 
         // Updating the model data with the new score
@@ -52,6 +52,7 @@ namespace Dots.ScorePoints.Model
             {
                 highScore = currentPointsScore;
                 PlayerPrefs.SetInt("HighScore", highScore);
+                highScore = PlayerPrefs.GetInt("HighScore");
                 OnHighScorePassed?.Invoke();
             }
         }
