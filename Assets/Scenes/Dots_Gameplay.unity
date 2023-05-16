@@ -202,6 +202,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &259011096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5501708625272590539, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+  m_PrefabInstance: {fileID: 5699107870602870819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +737,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 5699107870602870821}
+  coinsPileParent: {fileID: 259011096}
+  coinsFinalPos: {fileID: 1680086083}
+--- !u!224 &1680086083 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2032837413862468562, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+  m_PrefabInstance: {fileID: 5699107870602870819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1827371941 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1827371941, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
@@ -856,10 +868,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500554263}
     m_Modifications:
-    - target: {fileID: 816515174, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5699107870424742745, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -947,26 +955,6 @@ PrefabInstance:
     - target: {fileID: 5699107870424742746, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_Name
       value: SafeAreaGameplayScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5951380793544051871, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5951380793544051871, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5951380793544051871, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5951380793544051871, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5951380793544051871, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
