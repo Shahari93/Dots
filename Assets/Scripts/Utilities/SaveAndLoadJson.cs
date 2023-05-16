@@ -17,6 +17,7 @@ namespace Dots.Utils.SaveAndLoad
 		{
 			if (!File.Exists(Application.persistentDataPath + "/CoinsValue.json"))
 				return;
+
 			string json = File.ReadAllText(Application.persistentDataPath + "/CoinsValue.json");
 			CoinsData data = JsonUtility.FromJson<CoinsData>(json);
 			coinsAmount = data.savedCoinsInJson;

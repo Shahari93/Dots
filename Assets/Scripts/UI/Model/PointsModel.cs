@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Dots.ScorePoints.Model
@@ -33,16 +32,16 @@ namespace Dots.ScorePoints.Model
         public void IncrementScore(int amount)
         {
             currentPointsScore += amount;
-            UpdateScore();
+            CheckForHighScore();
         }
 
         public void ResetScore()
         {
             currentPointsScore = 0;
-            UpdateScore();
+            CheckForHighScore();
         }
 
-        void UpdateScore()
+        void CheckForHighScore()
         {
             if (currentPointsScore > highScore)
             {
