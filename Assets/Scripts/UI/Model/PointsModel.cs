@@ -13,9 +13,6 @@ namespace Dots.ScorePoints.Model
         public static int CurrentPointsScore { get => currentPointsScore; set => currentPointsScore = value; }
         public static int HighScore { get => highScore; set => highScore = value; }
 
-        public event Action OnScoreChanged;
-        public event Action OnHighScorePassed;
-
         void OnEnable()
         {
             highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -47,13 +44,11 @@ namespace Dots.ScorePoints.Model
 
         void UpdateScore()
         {
-            OnScoreChanged?.Invoke();
             if (currentPointsScore > highScore)
             {
                 highScore = currentPointsScore;
                 PlayerPrefs.SetInt("HighScore", highScore);
                 highScore = PlayerPrefs.GetInt("HighScore");
-                OnHighScorePassed?.Invoke();
             }
         }
     }

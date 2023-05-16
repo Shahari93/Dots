@@ -15,17 +15,7 @@ namespace Dots.Coins.Model
         static CoinsModel Instance;
 
         static int currentCoinsAmount;
-        public static int CurrentCoinsAmount
-        {
-            get
-            {
-                return currentCoinsAmount;
-            }
-            set
-            {
-                currentCoinsAmount = value;
-            }
-        }
+        public static int CurrentCoinsAmount { get => currentCoinsAmount; set => currentCoinsAmount = value; }
 
         private void OnEnable()
         {
@@ -34,7 +24,7 @@ namespace Dots.Coins.Model
 
         private void Awake()
         {
-            if(Instance != null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
                 return;

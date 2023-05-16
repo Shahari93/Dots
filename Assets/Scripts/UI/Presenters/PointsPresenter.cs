@@ -17,8 +17,6 @@ namespace Dots.ScorePoints.Presenter
 
         void OnEnable()
         {
-            PointsModel.Instance.OnScoreChanged += ScoreChanged;
-            PointsModel.Instance.OnHighScorePassed += SetHighScoreText;
             GoodDot.OnPlayerCollectedDot += IncrementPointsScore;
         }
 
@@ -31,6 +29,7 @@ namespace Dots.ScorePoints.Presenter
         void IncrementPointsScore(int amount)
         {
             PointsModel.Instance?.IncrementScore(amount);
+            UpdateView();
         }
 
         void Reset()
@@ -58,20 +57,8 @@ namespace Dots.ScorePoints.Presenter
             }
         }
 
-        void ScoreChanged()
-        {
-            UpdateView();
-        }
-
-        void SetHighScoreText()
-        {
-            UpdateView();
-        }
-
         void OnDisable()
         {
-            PointsModel.Instance.OnScoreChanged -= ScoreChanged;
-            PointsModel.Instance.OnHighScorePassed -= SetHighScoreText;
             GoodDot.OnPlayerCollectedDot -= IncrementPointsScore;
         }
     }
