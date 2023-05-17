@@ -739,8 +739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 8465019308244502191}
-  coinsPileParent: {fileID: 1712952937722220962, guid: dabcf6b927a57fa4bb9f110796d3d36d, type: 3}
-  coinsFinalPos: {fileID: 110076153387828196, guid: b3abddb813c10bf478604b678d0d40c5, type: 3}
+  coinPileParent: {fileID: 1712952937722220962, guid: dabcf6b927a57fa4bb9f110796d3d36d, type: 3}
+  test: {fileID: 1462728175}
 --- !u!1001 &8465019308244502190
 PrefabInstance:
   m_ObjectHideFlags: 0
