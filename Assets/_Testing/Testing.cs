@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Dots.Coins.Model;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -14,15 +15,10 @@ public class Testing : MonoBehaviour
     [SerializeField] private int coinsAmount;
     [SerializeField] private Button button;
 
-    private void Awake()
-    {
-        //button.onClick.AddListener(CountCoins);
-    }
-
     void Start()
     {
         if (coinsAmount == 0)
-            coinsAmount = 10; // you need to change this value based on the number of coins in the inspector
+            coinsAmount = CoinsModel.CoinsToAdd;
 
         initialPos = new Vector2[coinsAmount];
         initialRotation = new Quaternion[coinsAmount];
@@ -45,34 +41,41 @@ public class Testing : MonoBehaviour
 
     public void CountCoins()
     {
-        ResetInitValues();
+        if (CoinsModel.CoinsToAdd <= 0)
+            return;
 
-        pileOfCoins.SetActive(true);
-
-        var delay = 0f;
-
-        for (int i = 0; i < pileOfCoins.transform.childCount; i++)
+        else
         {
-            pileOfCoins.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay + 0.1f).SetEase(Ease.OutBack);
+            ResetInitValues();
 
-            pileOfCoins.transform.GetChild(i).DOMove(target.position, 0.8f)
-                .SetDelay(delay + 0.5f).SetEase(Ease.InBack);
+            pileOfCoins.SetActive(true);
+
+            var delay = 0f;
+
+            for (int i = 0; i < pileOfCoins.transform.childCount; i++)
+            {
+                pileOfCoins.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay + 0.1f).SetEase(Ease.OutBack);
+
+                pileOfCoins.transform.GetChild(i).DOMove(target.position, 0.8f)
+                    .SetDelay(delay + 0.5f).SetEase(Ease.InBack);
 
 
-            pileOfCoins.transform.GetChild(i).DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)
-                .SetEase(Ease.Flash);
+                pileOfCoins.transform.GetChild(i).DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)
+                    .SetEase(Ease.Flash);
 
 
-            pileOfCoins.transform.GetChild(i).DOScale(0f, 0.3f).SetDelay(delay + 1.5f).SetEase(Ease.OutBack);
+                pileOfCoins.transform.GetChild(i).DOScale(0f, 0.3f).SetDelay(delay + 1.5f).SetEase(Ease.OutBack);
 
-            delay += 0.1f;
+                delay += 0.1f;
 
-            counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
+                counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
+            }
+
+            StartCoroutine(CountDollars());
         }
-
-        StartCoroutine(CountDollars());
     }
 
+    // TODO: Fix to show real coins amount
     IEnumerator CountDollars()
     {
         yield return new WaitForSecondsRealtime(0.5f);
