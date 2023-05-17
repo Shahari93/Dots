@@ -40,7 +40,7 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
 
-            BadDot.OnLoseGame += ShowInterstitialAd;
+            //BadDot.OnLoseGame += ShowInterstitialAd;
         }
 
         void Awake()
@@ -219,7 +219,7 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
 
-            BadDot.OnLoseGame -= ShowInterstitialAd;
+            //BadDot.OnLoseGame -= ShowInterstitialAd;
         }
     }
 }
