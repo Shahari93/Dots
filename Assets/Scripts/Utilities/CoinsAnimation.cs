@@ -3,9 +3,8 @@ using Dots.Coins.Model;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Testing : MonoBehaviour
+public class CoinsAnimation : MonoBehaviour
 {
     private int coinsAmount;
 
@@ -18,7 +17,7 @@ public class Testing : MonoBehaviour
     // TODO: Make pileOfCoins have number of children like the CoinsToAdd from the model (No more then 10)
     void Start()
     {
-        if(coinsAmount == 0)
+        if (coinsAmount == 0)
             coinsAmount = 10;
 
         initialPos = new Vector2[coinsAmount];
@@ -78,12 +77,9 @@ public class Testing : MonoBehaviour
         }
     }
 
-    // TODO: Fix to show real coins amount
     IEnumerator CountDollars()
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        PlayerPrefs.SetInt("CountDollar", PlayerPrefs.GetInt("CountDollar") + 50 + PlayerPrefs.GetInt("BPrize"));
-        coinsAmountText.text = PlayerPrefs.GetInt("CountDollar").ToString();
-        PlayerPrefs.SetInt("BPrize", 0);
+        coinsAmountText.text = CoinsModel.CurrentCoinsAmount.ToString();
     }
 }
