@@ -16,7 +16,7 @@ public class Testing : MonoBehaviour
 
     private void Awake()
     {
-        button.onClick.AddListener(CountCoins);
+        //button.onClick.AddListener(CountCoins);
     }
 
     void Start()
@@ -29,7 +29,7 @@ public class Testing : MonoBehaviour
 
         for (int i = 0; i < pileOfCoins.transform.childCount; i++)
         {
-            initialPos[i] = pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition;
+            initialPos[i] = pileOfCoins.transform.GetChild(i).position;
             initialRotation[i] = pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().rotation;
         }
     }
@@ -38,7 +38,7 @@ public class Testing : MonoBehaviour
     {
         for (int i = 0; i < pileOfCoins.transform.childCount; i++)
         {
-            pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition = initialPos[i];
+            pileOfCoins.transform.GetChild(i).position = initialPos[i];
             pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().rotation = initialRotation[i];
         }
     }
