@@ -7,18 +7,19 @@ using UnityEngine.UI;
 
 public class Testing : MonoBehaviour
 {
+    private int coinsAmount;
+
     [SerializeField] private GameObject pileOfCoins;
     [SerializeField] private Transform target;
-    [SerializeField] private TextMeshProUGUI counter;
+    [SerializeField] private TMP_Text coinsAmountText;
     [SerializeField] private Vector2[] initialPos;
     [SerializeField] private Quaternion[] initialRotation;
-    [SerializeField] private int coinsAmount;
-    [SerializeField] private Button button;
 
+    // TODO: Make pileOfCoins have number of children like the CoinsToAdd from the model (No more then 10)
     void Start()
     {
-        if (coinsAmount == 0)
-            coinsAmount = CoinsModel.CoinsToAdd;
+        if(coinsAmount == 0)
+            coinsAmount = 10;
 
         initialPos = new Vector2[coinsAmount];
         initialRotation = new Quaternion[coinsAmount];
@@ -28,6 +29,8 @@ public class Testing : MonoBehaviour
             initialPos[i] = pileOfCoins.transform.GetChild(i).position;
             initialRotation[i] = pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().rotation;
         }
+
+        CountCoins();
     }
 
     private void ResetInitValues()
@@ -39,7 +42,7 @@ public class Testing : MonoBehaviour
         }
     }
 
-    public void CountCoins()
+    private void CountCoins()
     {
         if (CoinsModel.CoinsToAdd <= 0)
             return;
@@ -68,7 +71,7 @@ public class Testing : MonoBehaviour
 
                 delay += 0.1f;
 
-                counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
+                coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
             }
 
             StartCoroutine(CountDollars());
@@ -80,7 +83,7 @@ public class Testing : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.5f);
         PlayerPrefs.SetInt("CountDollar", PlayerPrefs.GetInt("CountDollar") + 50 + PlayerPrefs.GetInt("BPrize"));
-        counter.text = PlayerPrefs.GetInt("CountDollar").ToString();
+        coinsAmountText.text = PlayerPrefs.GetInt("CountDollar").ToString();
         PlayerPrefs.SetInt("BPrize", 0);
     }
 }
