@@ -2,9 +2,6 @@ using TMPro;
 using UnityEngine;
 using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
-using DG.Tweening;
-using UnityEngine.UI;
-using System.Threading.Tasks;
 
 namespace Dots.Coins.Presenter
 {
@@ -25,6 +22,7 @@ namespace Dots.Coins.Presenter
         void IncrementCoinsValue()
         {
             CoinsModel.Instance.UpdateCoinsData();
+            UpdateView();
         }
 
         private void UpdateView()
