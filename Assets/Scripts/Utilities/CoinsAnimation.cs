@@ -34,7 +34,7 @@ namespace Dots.Utils.CoinsAnimation
             for (int i = 0; i < coinsAmount; i++)
             {
                 GameObject coinsChildren = Instantiate(coin, pileOfCoins.transform);
-
+                coinsChildren.transform.localPosition = new Vector2(Random.Range(-53.1f, 63f), Random.Range(-65.4f, 40.2f));
             }
 
             initialPos = new Vector2[coinsAmount];
