@@ -22,7 +22,7 @@ namespace Dots.Coins.Model
 
         private void OnEnable()
         {
-            SaveAndLoadJson.LoadCoinsFromJson();
+            SaveAndLoadJson.LoadFromJson();
         }
 
         private void Awake()
@@ -45,13 +45,8 @@ namespace Dots.Coins.Model
             if (coinsToAdd > 0)
             {
                 currentCoinsAmount += coinsToAdd;
-                SaveToJson();
+                SaveAndLoadJson.SaveToJson();
             }
-        }
-
-        private void SaveToJson()
-        {
-            SaveAndLoadJson.SaveCoinsToJson();
         }
     }
 }
