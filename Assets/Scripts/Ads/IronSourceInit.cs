@@ -1,5 +1,7 @@
 //using UnityEngine;
 //using UnityEngine.UI;
+//using Dots.GamePlay.Dot.Bad;
+//using UnityEngine.SceneManagement;
 
 //namespace Dots.Ads.Init
 //{
@@ -39,7 +41,7 @@
 //            IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
 
-//            //BadDot.OnLoseGame += ShowInterstitialAd;
+//            BadDot.OnLoseGame += ShowInterstitialAd;
 //        }
 
 //        void Awake()
@@ -218,7 +220,7 @@
 //            IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
 //            IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
 
-//            //BadDot.OnLoseGame -= ShowInterstitialAd;
+//            BadDot.OnLoseGame -= ShowInterstitialAd;
 //        }
 //    }
 //}
