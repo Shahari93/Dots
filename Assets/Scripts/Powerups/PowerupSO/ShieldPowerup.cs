@@ -11,7 +11,7 @@ namespace Dots.GamePlay.Powerups.Shield
 
         public override void Apply(GameObject target)
         {
-            InvokePowerupUI?.Invoke(0);
+            InvokePowerupUI?.Invoke(powerupDuration);
             OnCollectedShieldPowerup?.Invoke(true);
         }
     } 

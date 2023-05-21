@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7de819122f472fc4b8aa5911bdb3cbc9, type: 3}
-  m_Name: SpawnGreens
+  m_Name: Spawn Greens
   m_EditorClassIdentifier: 
   powerupImage: {fileID: 7810657173452605430, guid: 249ba8776f21ffd478c8b14dde85c6ab, type: 3}
   powerupDuration: 5
