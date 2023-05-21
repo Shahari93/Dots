@@ -722,6 +722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2102036745}
     m_Modifications:
+    - target: {fileID: 7776604636257335659, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: coinsCost
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7889599824184596577, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_Name
       value: SafeAreaStartingScene
