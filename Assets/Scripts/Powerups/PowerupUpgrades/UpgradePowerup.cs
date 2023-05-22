@@ -1,4 +1,5 @@
 using Dots.Coins.Model;
+using Dots.Utils.SaveAndLoad;
 using System;
 using TMPro;
 using UnityEngine;
@@ -6,13 +7,29 @@ using UnityEngine.UI;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
+    [System.Serializable]
+    public class CoinsCostData
+    {
+        public int savedCoinsCostInJson;
+    }
     public class UpgradePowerup : MonoBehaviour
     {
         private Button upgradeButton;
 
         public static event Action OnUpgradeBought;
 
-        [SerializeField] private int coinsCost; // TODO: Make this into a model 
+        private static int coinsCost = 10; // TODO: Make this into a model 
+        public static int CoinsCost
+        {
+            get
+            {
+                return coinsCost;
+            }
+            set
+            {
+                coinsCost = value;
+            }
+        }
 
         [SerializeField] PowerupEffectSO affectedPowerup;
         [SerializeField] TMP_Text powerupNameText;
@@ -23,6 +40,8 @@ namespace Dots.GamePlay.Powerups.Upgrade
         {
             upgradeButton = GetComponent<Button>();
             upgradeButton.onClick.AddListener(Upgrade);
+
+            SaveAndLoadJson.LoadCoinsUpgradeFromJson();
 
             powerupNameText.text = affectedPowerup.name;
             powerupDurationText.text = string.Format("{0} Seconds", affectedPowerup.powerupDuration.ToString());
@@ -65,6 +84,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
                 OnUpgradeBought?.Invoke();
+                SaveAndLoadJson.SaveCoinsUpgradeToJson();
             }
         }
     }
