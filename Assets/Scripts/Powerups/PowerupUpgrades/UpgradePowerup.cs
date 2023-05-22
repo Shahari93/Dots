@@ -27,11 +27,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
             set
             {
-                powerupDurationValue = value;   
+                powerupDurationValue = value;
             }
         }
 
-        private static int coinsCost = 1; // TODO: Make this into a model 
+        private static int coinsCost = 10; // TODO: Make this into a model 
         public static int CoinsCost
         {
             get
@@ -51,11 +51,14 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
         private void Awake()
         {
+            powerupDurationValue = affectedPowerup.powerupDuration;
             upgradeButton = GetComponent<Button>();
             upgradeButton.onClick.AddListener(Upgrade);
 
             SaveAndLoadJson.LoadCoinsUpgradeFromJson();
             SaveAndLoadJson.LoadPowerupDurationFromJson();
+
+            affectedPowerup.powerupDuration = powerupDurationValue;
 
             powerupNameText.text = affectedPowerup.name;
             powerupDurationValue = affectedPowerup.powerupDuration;
@@ -88,7 +91,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost);
 
                 // Adding more coins for the coins cost to upgrade and updating the model and the view
-                coinsCost += 1;
+                coinsCost += 10;
                 CoinsModel.CurrentCoinsAmount = totalCoins;
                 upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
 
