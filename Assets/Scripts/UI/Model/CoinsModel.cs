@@ -48,5 +48,14 @@ namespace Dots.Coins.Model
                 SaveAndLoadJson.SaveToJson();
             }
         }
+
+        public void UpdateCoinsDataAfterUpgrade(int coinCost)
+        {
+            if (currentCoinsAmount > 0)
+            {
+                currentCoinsAmount -= coinCost;
+                SaveAndLoadJson.SaveToJson();
+            }
+        }
     }
 }

@@ -10,7 +10,9 @@ namespace Dots.GamePlay.Powerups.Upgrade
     {
         private Button upgradeButton;
 
-        [SerializeField] private int coinsCost;
+        public static event Action OnUpgradeBought;
+
+        [SerializeField] private int coinsCost; // TODO: Make this into a model 
 
         [SerializeField] PowerupEffectSO affectedPowerup;
         [SerializeField] TMP_Text powerupNameText;
@@ -36,15 +38,27 @@ namespace Dots.GamePlay.Powerups.Upgrade
         {
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
-                return false;
+                return upgradeButton.interactable = false;
             }
             else
-                return true;
+                return upgradeButton.interactable = true;
         }
 
         private void Upgrade()
         {
-            throw new NotImplementedException();
+            int totalCoins = CoinsModel.CurrentCoinsAmount; 
+            if (CheckIfUpgradeable())
+            {
+                totalCoins -= coinsCost;
+                CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost);
+                coinsCost += 10;
+                CoinsModel.CurrentCoinsAmount = totalCoins;
+                upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
+                CheckIfUpgradeable();
+                affectedPowerup.powerupDuration += 0.1f;
+                powerupDurationText.text = string.Format("{0} Seconds", affectedPowerup.powerupDuration.ToString());
+                OnUpgradeBought?.Invoke(); 
+            }
         }
     }
 }
