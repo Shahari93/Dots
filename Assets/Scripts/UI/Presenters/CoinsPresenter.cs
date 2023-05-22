@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
+using Dots.GamePlay.Powerups.Upgrade;
 
 namespace Dots.Coins.Presenter
 {
@@ -12,6 +13,7 @@ namespace Dots.Coins.Presenter
         private void OnEnable()
         {
             BadDot.OnLoseGame += IncrementCoinsValue;
+            UpgradePowerup.OnUpgradeBought += UpdateView;
         }
 
         private void Awake()
@@ -39,6 +41,7 @@ namespace Dots.Coins.Presenter
         private void OnDisable()
         {
             BadDot.OnLoseGame -= IncrementCoinsValue;
+            UpgradePowerup.OnUpgradeBought -= UpdateView;
         }
     }
 }
