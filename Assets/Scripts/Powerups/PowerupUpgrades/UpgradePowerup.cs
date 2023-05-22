@@ -1,13 +1,14 @@
-using Dots.Coins.Model;
-using Dots.Utils.SaveAndLoad;
-using System;
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.Coins.Model;
+using Dots.Utils.SaveAndLoad;
+using System.Globalization;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
-    [System.Serializable]
+    [Serializable]
     public class CoinsCostData
     {
         public int savedCoinsCostInJson;
@@ -18,7 +19,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
         public static event Action OnUpgradeBought;
 
-        private static int coinsCost = 10; // TODO: Make this into a model 
+        private static int coinsCost = 1; // TODO: Make this into a model 
         public static int CoinsCost
         {
             get
@@ -73,7 +74,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost);
 
                 // Adding more coins for the coins cost to upgrade and updating the model and the view
-                coinsCost += 10;
+                coinsCost += 1;
                 CoinsModel.CurrentCoinsAmount = totalCoins;
                 upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
 

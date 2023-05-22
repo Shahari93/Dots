@@ -1,11 +1,12 @@
 using System.IO;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
 using Dots.Coins.Model;
 using Dots.GamePlay.Powerups.Upgrade;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Dots.Utils.SaveAndLoad
 {
+    // TODO: Create a more generic way to save and load using only 2 methods and not creating a new one for each data we want to save into a JSON
     public class SaveAndLoadJson
     {
         public static void SaveCoinsToJson()
