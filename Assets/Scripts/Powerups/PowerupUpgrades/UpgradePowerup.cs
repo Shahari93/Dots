@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Utils.SaveAndLoad;
-using System.Globalization;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
@@ -18,6 +17,19 @@ namespace Dots.GamePlay.Powerups.Upgrade
         private Button upgradeButton;
 
         public static event Action OnUpgradeBought;
+
+        private static float powerupDurationValue;
+        public static float PowerupDurationValue
+        {
+            get
+            {
+                return powerupDurationValue;
+            }
+            set
+            {
+                powerupDurationValue = value;   
+            }
+        }
 
         private static int coinsCost = 1; // TODO: Make this into a model 
         public static int CoinsCost
@@ -43,9 +55,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeButton.onClick.AddListener(Upgrade);
 
             SaveAndLoadJson.LoadCoinsUpgradeFromJson();
+            SaveAndLoadJson.LoadPowerupDurationFromJson();
 
             powerupNameText.text = affectedPowerup.name;
-            powerupDurationText.text = string.Format("{0} Seconds", affectedPowerup.powerupDuration.ToString());
+            powerupDurationValue = affectedPowerup.powerupDuration;
+            powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString());
             upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
         }
 
@@ -79,13 +93,15 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
 
                 // Updating the powerup duration and the view
-                affectedPowerup.powerupDuration += 0.1f;
-                powerupDurationText.text = string.Format("{0} Seconds", affectedPowerup.powerupDuration.ToString());
+                powerupDurationValue += 0.1f;
+                affectedPowerup.powerupDuration = powerupDurationValue;
+                powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString());
 
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
                 OnUpgradeBought?.Invoke();
                 SaveAndLoadJson.SaveCoinsUpgradeToJson();
+                SaveAndLoadJson.SavePowerupDurationToJson();
             }
         }
     }

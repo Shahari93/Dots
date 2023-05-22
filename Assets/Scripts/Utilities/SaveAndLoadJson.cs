@@ -3,6 +3,7 @@ using UnityEngine;
 using Dots.Coins.Model;
 using Dots.GamePlay.Powerups.Upgrade;
 using System.Runtime.Serialization.Formatters.Binary;
+using Dots.GamePlay.Powerups;
 
 namespace Dots.Utils.SaveAndLoad
 {
@@ -61,6 +62,37 @@ namespace Dots.Utils.SaveAndLoad
                 FileStream stream = new FileStream(path, FileMode.Open);
                 CoinsCostData data = formatter.Deserialize(stream) as CoinsCostData;
                 UpgradePowerup.CoinsCost = data.savedCoinsCostInJson;
+                stream.Close();
+                return data;
+            }
+            else
+            {
+                Debug.LogError("file not found");
+                return null;
+            }
+        }
+
+        public static void SavePowerupDurationToJson()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Application.persistentDataPath + "/powerupDuration.json";
+            FileStream stream = new FileStream(path, FileMode.Create);
+
+            PowerupData data = new PowerupData();
+            data.powerupDurationData = UpgradePowerup.PowerupDurationValue;
+            formatter.Serialize(stream, data);
+            stream.Close();
+        }
+
+        public static PowerupData LoadPowerupDurationFromJson()
+        {
+            string path = Application.persistentDataPath + "/powerupDuration.json";
+            if (File.Exists(path))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
+                PowerupData data = formatter.Deserialize(stream) as PowerupData;
+                UpgradePowerup.PowerupDurationValue = data.powerupDurationData;
                 stream.Close();
                 return data;
             }
