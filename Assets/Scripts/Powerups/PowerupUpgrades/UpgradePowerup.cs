@@ -46,18 +46,25 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
         private void Upgrade()
         {
-            int totalCoins = CoinsModel.CurrentCoinsAmount; 
+            int totalCoins = CoinsModel.CurrentCoinsAmount;
             if (CheckIfUpgradeable())
             {
+                // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
                 CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost);
+
+                // Adding more coins for the coins cost to upgrade and updating the model and the view
                 coinsCost += 10;
                 CoinsModel.CurrentCoinsAmount = totalCoins;
                 upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
-                CheckIfUpgradeable();
+
+                // Updating the powerup duration and the view
                 affectedPowerup.powerupDuration += 0.1f;
                 powerupDurationText.text = string.Format("{0} Seconds", affectedPowerup.powerupDuration.ToString());
-                OnUpgradeBought?.Invoke(); 
+
+                // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
+                CheckIfUpgradeable();
+                OnUpgradeBought?.Invoke();
             }
         }
     }
