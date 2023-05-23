@@ -1,6 +1,7 @@
 using UnityEngine;
 using Dots.Utils.Interaction;
 using Dots.GamePlay.Powerups.Shield;
+using Dots.Utils.Destroy;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {
@@ -42,6 +43,10 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             {
                 shield.SetActive(isShieldOn);
             }
+            if (!areShieldsActive)
+            {
+                DestroingPowerup.OnPowerupDisabled?.Invoke();
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collision)
@@ -56,5 +61,5 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         {
             ShieldPowerup.OnCollectedShieldPowerup -= EnableShieldsVisual;
         }
-    } 
+    }
 }
