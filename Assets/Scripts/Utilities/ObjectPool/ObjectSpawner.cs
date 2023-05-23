@@ -101,14 +101,14 @@ namespace Dots.Utils.ObjectPool
             }
         }
 
-        void StartDisablePowerupCoroutine(float? duration)
+        void StartDisablePowerupCoroutine(float duration)
         {
-            StartCoroutine(DisablePowerupAbility((float)duration));
+            StartCoroutine(DisablePowerupAbility(duration));
         }
 
-        public IEnumerator DisablePowerupAbility(float? duration)
+        public IEnumerator DisablePowerupAbility(float duration)
         {
-            if (duration == null)
+            if (duration <= 0)
             {
                 yield break;
             }
