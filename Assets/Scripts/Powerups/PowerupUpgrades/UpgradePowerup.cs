@@ -14,7 +14,6 @@ namespace Dots.GamePlay.Powerups.Upgrade
     }
     public class UpgradePowerup : MonoBehaviour
     {
-        private Button upgradeButton;
 
         public static event Action OnUpgradeBought;
 
@@ -45,6 +44,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
         }
 
         [SerializeField] PowerupEffectSO affectedPowerup;
+        [SerializeField] Button upgradeButton;
         [SerializeField] TMP_Text powerupNameText;
         [SerializeField] TMP_Text powerupDurationText;
         [SerializeField] TMP_Text upgradeCoinsCostText;
@@ -52,7 +52,6 @@ namespace Dots.GamePlay.Powerups.Upgrade
         private void Awake()
         {
             powerupDurationValue = affectedPowerup.powerupDuration;
-            upgradeButton = GetComponent<Button>();
             upgradeButton.onClick.AddListener(Upgrade);
 
             SaveAndLoadJson.LoadCoinsUpgradeFromJson();
@@ -71,14 +70,25 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeButton.interactable = CheckIfUpgradeable();
         }
 
+        // TODO: Make this more generic - The only difference is if the button is inactive we divide the alpha by 2
         private bool CheckIfUpgradeable()
         {
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
+                float alpha = upgradeButton.image.color.a / 2;
+                Color color = upgradeButton.image.color;
+                color.a = alpha;
+                upgradeButton.image.color = color;
                 return upgradeButton.interactable = false;
             }
             else
+            {
+                float alpha = upgradeButton.image.color.a;
+                Color color = upgradeButton.image.color;
+                color.a = alpha;
+                upgradeButton.image.color = color;
                 return upgradeButton.interactable = true;
+            }
         }
 
         private void Upgrade()
