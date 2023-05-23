@@ -12,6 +12,7 @@ namespace Dots.Utils.Destroy
         [SerializeField] PowerupEffectSO powerupEffect;
 
         public static Action<float> OnCollectedPower;
+        public static Action OnPowerupDisabled;
 
 
         void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +27,7 @@ namespace Dots.Utils.Destroy
         public void BehaveWhenInteractWithBounds()
         {
             DisablePowerupVisuals();
+            OnPowerupDisabled?.Invoke();
         }
 
         /// <summary>

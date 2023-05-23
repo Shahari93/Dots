@@ -120,6 +120,7 @@ namespace Dots.Utils.ObjectPool
                 if (duration <= 0)
                 {
                     GoodDot.spawnChance = 0.15f;
+                    DestroingPowerup.OnPowerupDisabled?.Invoke();
                     break;
                 }
             }

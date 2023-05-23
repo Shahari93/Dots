@@ -27,12 +27,19 @@ namespace Dots.Utils.Powerups.Objectpool
         {
             powerupSpawnIntirvalInitValue = powerupSpawnIntirval;
             DestroingPowerup.OnCollectedPower += StopPowerupsSpawn;
+            DestroingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
+        }
+
+        private void EnablePowerupSpawn()
+        {
+            canSpawn = true;
+            powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
+            StartCoroutine(SpawnPowerups());
         }
 
         private void StopPowerupsSpawn(float obj)
         {
             canSpawn = false;
-            powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
         }
 
         void Start()
@@ -86,6 +93,7 @@ namespace Dots.Utils.Powerups.Objectpool
         private void OnDisable()
         {
             DestroingPowerup.OnCollectedPower -= StopPowerupsSpawn;
+            DestroingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
         }
     }
 }
