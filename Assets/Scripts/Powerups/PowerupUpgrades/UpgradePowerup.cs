@@ -1,6 +1,7 @@
 using TMPro;
 using System;
 using UnityEngine;
+using Dots.Ads.Init;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Utils.SaveAndLoad;
@@ -14,7 +15,6 @@ namespace Dots.GamePlay.Powerups.Upgrade
     }
     public class UpgradePowerup : MonoBehaviour
     {
-
         public static event Action OnUpgradeBought;
 
         private static float powerupDurationValue;
@@ -49,6 +49,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
         [SerializeField] TMP_Text powerupDurationText;
         [SerializeField] TMP_Text upgradeCoinsCostText;
 
+        private void OnEnable()
+        {
+            IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
+        }
+
         private void Awake()
         {
             powerupDurationValue = affectedPowerup.powerupDuration;
@@ -75,7 +80,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
         {
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
-                float alpha = upgradeButton.image.color.a / 2;
+                float alpha = 255f / 2;
                 Color color = upgradeButton.image.color;
                 color.a = alpha;
                 upgradeButton.image.color = color;
@@ -83,7 +88,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
             else
             {
-                float alpha = upgradeButton.image.color.a;
+                float alpha = 255;
                 Color color = upgradeButton.image.color;
                 color.a = alpha;
                 upgradeButton.image.color = color;
@@ -116,6 +121,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 SaveAndLoadJson.SaveCoinsUpgradeToJson();
                 SaveAndLoadJson.SavePowerupDurationToJson();
             }
+        }
+
+        private void OnDisable()
+        {
+            IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
         }
     }
 }

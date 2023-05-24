@@ -19,7 +19,8 @@ string appKey = "19f99b595";
         const string COINS_PLACEMENT = "Extra_Coins";
         const string SHIELD_PLACEMENT = "Start_Shield";
 
-        public static event Action<int> OnCoinsRvWatched;
+        public static event Action OnCoinsRvWatched;
+        public static event Func<bool> OnCheckIfUpgradeable;
 
         List<Button> rewardedAdsButton = new List<Button>();
         [SerializeField] Button coinsRVButton, shieldRVButton;
@@ -196,12 +197,12 @@ string appKey = "19f99b595";
 
                 if (getPlacementName == COINS_PLACEMENT)
                 {
-                    OnCoinsRvWatched?.Invoke(getRewardAmount);
+                    OnCoinsRvWatched?.Invoke();
+                    OnCheckIfUpgradeable?.Invoke();
                 }
             }
             if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
             {
-                Debug.Log(IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()));
                 for (int i = 0; i < rewardedAdsButton.Count; i++)
                 {
                     if (placement.getRewardName() == rewardedAdsButton[i].name)
