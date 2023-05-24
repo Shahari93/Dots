@@ -1,10 +1,7 @@
-using Dots.Coins.Model;
-using Dots.Coins.Presenter;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace Dots.Ads.Init
 {
