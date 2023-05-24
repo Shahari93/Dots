@@ -251,6 +251,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &360030541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9123578809843555929, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_PrefabInstance: {fileID: 8465019308244502190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &459827222
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a772ceed132d76e42b10a04d3220e3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinsRVButton: {fileID: 360030541}
+  shieldRVButton: {fileID: 1567405596}
 --- !u!1 &486912990
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +561,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1567405596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_PrefabInstance: {fileID: 8465019308244502190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1584983515
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2135449520
 AudioSource:
   m_ObjectHideFlags: 0
@@ -946,6 +970,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 459827224}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowRewardedAd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Ads.Init.IronSourceInit, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7240484676080882133, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1046,6 +1098,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9123578809843555929, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 459827224}
     m_RemovedComponents:
     - {fileID: 6682457212275517780, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
