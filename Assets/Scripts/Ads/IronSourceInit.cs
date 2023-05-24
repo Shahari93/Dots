@@ -1,4 +1,7 @@
 using Dots.Coins.Model;
+using Dots.Coins.Presenter;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,9 +16,15 @@ namespace Dots.Ads.Init
 string appKey = "19f99b595";
 #endif
 
+        bool isPaused = false;
+
         public static IronSourceInit Instance;
         const string COINS_PLACEMENT = "Extra_Coins";
-        const string SHIELD_PLACEMENT = "shield";
+        const string SHIELD_PLACEMENT = "Start_Shield";
+
+        public static event Action<int> OnCoinsRvWatched;
+
+        List<Button> rewardedAdsButton = new List<Button>();
         [SerializeField] Button coinsRVButton, shieldRVButton;
 
 
@@ -57,6 +66,10 @@ string appKey = "19f99b595";
 
             coinsRVButton.onClick.AddListener(delegate { ShowRewardedAd(COINS_PLACEMENT); });
             shieldRVButton.onClick.AddListener(delegate { ShowRewardedAd(SHIELD_PLACEMENT); });
+
+            // For testing
+            rewardedAdsButton.Add(coinsRVButton);
+            rewardedAdsButton.Add(shieldRVButton);
         }
 
         private void SdkInitializationCompletedEvent()
@@ -166,6 +179,7 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
+            OnApplicationFocus(false);
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
@@ -185,10 +199,21 @@ string appKey = "19f99b595";
 
                 if (getPlacementName == COINS_PLACEMENT)
                 {
-                    CoinsModel.CurrentCoinsAmount += getRewardAmount;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    OnCoinsRvWatched?.Invoke(getRewardAmount);
                 }
             }
+            if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
+            {
+                Debug.Log(IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()));
+                for (int i = 0; i < rewardedAdsButton.Count; i++)
+                {
+                    if (placement.getRewardName() == rewardedAdsButton[i].name)
+                    {
+                        rewardedAdsButton[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            OnApplicationFocus(true);
         }
         // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
@@ -203,11 +228,11 @@ string appKey = "19f99b595";
         }
         #endregion
 
-        void OnApplicationPause(bool isPaused)
+        void OnApplicationFocus(bool hasFocus)
         {
+            isPaused = !hasFocus;
             IronSource.Agent.onApplicationPause(isPaused);
         }
-
         void OnDisable()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent -= SdkInitializationCompletedEvent;

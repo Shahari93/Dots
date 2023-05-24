@@ -39,6 +39,12 @@ namespace Dots.Coins.Model
             DontDestroyOnLoad(gameObject);
         }
 
+        public void UpdateCoinsDataOnRv(int coins)
+        {
+            currentCoinsAmount += coins;
+            SaveAndLoadJson.SaveCoinsToJson();
+        }
+
         public void UpdateCoinsData()
         {
             coinsToAdd = PointsModel.CurrentPointsScore;

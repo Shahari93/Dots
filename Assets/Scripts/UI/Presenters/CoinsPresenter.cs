@@ -3,6 +3,7 @@ using UnityEngine;
 using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Powerups.Upgrade;
+using Dots.Ads.Init;
 
 namespace Dots.Coins.Presenter
 {
@@ -14,6 +15,7 @@ namespace Dots.Coins.Presenter
         {
             BadDot.OnLoseGame += IncrementCoinsValue;
             UpgradePowerup.OnUpgradeBought += UpdateView;
+            IronSourceInit.OnCoinsRvWatched += IncrementCoinsValue;
         }
 
         private void Awake()
@@ -24,6 +26,12 @@ namespace Dots.Coins.Presenter
         void IncrementCoinsValue()
         {
             CoinsModel.Instance.UpdateCoinsData();
+            UpdateView();
+        }
+
+        void IncrementCoinsValue(int coins)
+        {
+            CoinsModel.Instance.UpdateCoinsDataOnRv(coins);
             UpdateView();
         }
 
@@ -42,6 +50,7 @@ namespace Dots.Coins.Presenter
         {
             BadDot.OnLoseGame -= IncrementCoinsValue;
             UpgradePowerup.OnUpgradeBought -= UpdateView;
+            IronSourceInit.OnCoinsRvWatched -= IncrementCoinsValue;
         }
     }
 }

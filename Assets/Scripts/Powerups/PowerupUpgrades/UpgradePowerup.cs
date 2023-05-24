@@ -98,7 +98,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             {
                 // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
-                CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost);
+                CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost); // TODO: Make sure this is the right place to use this method (Probably should be in the CoinsPresenter)
 
                 // Adding more coins for the coins cost to upgrade and updating the model and the view
                 coinsCost += 10;
