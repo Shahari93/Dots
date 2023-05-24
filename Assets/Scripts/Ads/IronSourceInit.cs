@@ -195,6 +195,7 @@ string appKey = "19f99b595";
                 _ = placement.getRewardName();
                 int getRewardAmount = placement.getRewardAmount();
 
+                // TODO: FInd a way to check the placement according to the pressed RV button
                 if (getPlacementName == COINS_PLACEMENT)
                 {
                     OnCoinsRvWatched?.Invoke();
