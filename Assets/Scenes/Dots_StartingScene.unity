@@ -251,17 +251,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &360030541 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9123578809843555929, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &459827222
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,8 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a772ceed132d76e42b10a04d3220e3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinsRVButton: {fileID: 360030541}
-  shieldRVButton: {fileID: 1567405596}
 --- !u!1 &486912990
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,17 +540,6 @@ Transform:
 --- !u!114 &1462728175 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3372205886444871604, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1567405596 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
   m_PrefabInstance: {fileID: 8465019308244502190}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

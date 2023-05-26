@@ -18,18 +18,13 @@ string appKey = "19f99b595";
 
         public static IronSourceInit Instance;
         const string COINS_PLACEMENT = "Extra_Coins";
-        const string SHIELD_PLACEMENT = "Level_Start";
+        const string SHIELD_PLACEMENT = "Start_Shield";
 
         public static event Action OnCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
 
         public static event Func<bool> OnShieldRvWatched;
         public static bool IsShieldFromRV;
-
-
-        List<Button> rewardedAdsButton = new List<Button>();
-        [SerializeField] Button coinsRVButton, shieldRVButton;
-
 
         void OnEnable()
         {
@@ -66,13 +61,6 @@ string appKey = "19f99b595";
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            coinsRVButton.onClick.AddListener(delegate { ShowRewardedAd(COINS_PLACEMENT); });
-            shieldRVButton.onClick.AddListener(delegate { ShowRewardedAd(SHIELD_PLACEMENT); });
-
-            // For testing
-            rewardedAdsButton.Add(coinsRVButton);
-            rewardedAdsButton.Add(shieldRVButton);
         }
 
         private void SdkInitializationCompletedEvent()
@@ -159,7 +147,7 @@ string appKey = "19f99b595";
             }
             else
             {
-                Debug.Log("Ad is not ready");
+                Debug.Log("Ad is not ready " + placement);
                 return;
             }
 
@@ -199,34 +187,34 @@ string appKey = "19f99b595";
             if (placement != null)
             {
                 string getPlacementName = placement.getPlacementName();
-                _ = placement.getRewardName();
+                string getRewardName = placement.getRewardName();
                 int getRewardAmount = placement.getRewardAmount();
 
-                // TODO: FInd a way to check the placement according to the pressed RV button
-                if (getPlacementName == COINS_PLACEMENT)
+                if (getPlacementName == SHIELD_PLACEMENT || getRewardName == "Shield")
                 {
-                    Debug.Log("Shahar coins test");
+                    OnShieldRvWatched?.Invoke();
+                    IsShieldFromRV = true;
+                    Debug.Log(name + " Shahar " + IsShieldFromRV);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+
+                // TODO: FInd a way to check the placement according to the pressed RV button
+                if (getPlacementName == COINS_PLACEMENT || getRewardName == "Coins")
+                {
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
                 }
-                else if (getPlacementName == SHIELD_PLACEMENT)
-                {
-                    Debug.Log("Shahar shield");
-                    OnShieldRvWatched?.Invoke();
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }
-                Debug.Log("Shahar true non");
             }
-            if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
-            {
-                for (int i = 0; i < rewardedAdsButton.Count; i++)
-                {
-                    if (placement.getRewardName() == rewardedAdsButton[i].name)
-                    {
-                        rewardedAdsButton[i].gameObject.SetActive(false);
-                    }
-                }
-            }
+            //if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
+            //{
+            //    for (int i = 0; i < rewardedAdsButton.Count; i++)
+            //    {
+            //        if (placement.getRewardName() == rewardedAdsButton[i].name)
+            //        {
+            //            rewardedAdsButton[i].gameObject.SetActive(false);
+            //        }
+            //    }
+            //}
             OnApplicationFocus(true);
             IronSource.Agent.loadRewardedVideo();
         }
