@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 namespace Dots.Ads.Init
@@ -61,6 +59,8 @@ string appKey = "19f99b595";
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            IronSource.Agent.loadInterstitial();
+            IronSource.Agent.loadRewardedVideo();
         }
 
         private void SdkInitializationCompletedEvent()
@@ -162,16 +162,19 @@ string appKey = "19f99b595";
         // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
         void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo)
         {
+            IronSource.Agent.loadRewardedVideo();
         }
         // Indicates that no ads are available to be displayed
         // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
         void RewardedVideoOnAdUnavailable()
         {
+            IronSource.Agent.loadRewardedVideo();
         }
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
             OnApplicationFocus(false);
+            IronSource.Agent.loadRewardedVideo();
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
@@ -221,6 +224,7 @@ string appKey = "19f99b595";
         // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
         {
+            IronSource.Agent.loadRewardedVideo();
         }
         // Invoked when the video ad was clicked.
         // This callback is not supported by all networks, and we recommend using it only if
