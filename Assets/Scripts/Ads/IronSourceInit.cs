@@ -18,7 +18,7 @@ string appKey = "19f99b595";
 
         public static IronSourceInit Instance;
         const string COINS_PLACEMENT = "Extra_Coins";
-        const string SHIELD_PLACEMENT = "Start_Shield";
+        const string SHIELD_PLACEMENT = "Level_Start";
 
         public static event Action OnCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
@@ -155,6 +155,7 @@ string appKey = "19f99b595";
             {
                 IronSource.Agent.showRewardedVideo(placement);
                 _ = IronSource.Agent.getPlacementInfo(placement);
+                IronSource.Agent.loadRewardedVideo();
             }
             else
             {
@@ -194,7 +195,6 @@ string appKey = "19f99b595";
         // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
         void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
         {
-            IronSource.Agent.loadRewardedVideo();
             //Placement can return null if the placementName is not valid.
             if (placement != null)
             {
@@ -205,14 +205,17 @@ string appKey = "19f99b595";
                 // TODO: FInd a way to check the placement according to the pressed RV button
                 if (getPlacementName == COINS_PLACEMENT)
                 {
+                    Debug.Log("Shahar coins test");
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
                 }
                 else if (getPlacementName == SHIELD_PLACEMENT)
                 {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    Debug.Log("Shahar shield");
                     OnShieldRvWatched?.Invoke();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
+                Debug.Log("Shahar true non");
             }
             if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
             {
@@ -225,6 +228,7 @@ string appKey = "19f99b595";
                 }
             }
             OnApplicationFocus(true);
+            IronSource.Agent.loadRewardedVideo();
         }
         // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)

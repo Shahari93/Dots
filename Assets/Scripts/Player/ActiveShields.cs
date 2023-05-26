@@ -46,6 +46,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                 {
                     shield.SetActive(true);
                 }
+                IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
             }
         }
 
@@ -65,7 +66,14 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         private bool IsShieldFromRV()
         {
             DestroingPowerup.OnCollectedPower?.Invoke(0);
-            return IronSourceInit.IsShieldFromRV = true;
+            if (IronSourceInit.IsShieldFromRV)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collision)

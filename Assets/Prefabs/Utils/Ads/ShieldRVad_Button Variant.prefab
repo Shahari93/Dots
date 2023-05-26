@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 937872042838511505, guid: 5b33a2e610ed2ef4394cdb6de8be6411, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Start_Shield
+      value: Level_Start
       objectReference: {fileID: 0}
     - target: {fileID: 937872042838511505, guid: 5b33a2e610ed2ef4394cdb6de8be6411, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
