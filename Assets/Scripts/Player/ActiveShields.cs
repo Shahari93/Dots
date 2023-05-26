@@ -1,7 +1,8 @@
 using UnityEngine;
+using Dots.Ads.Init;
 using Dots.Utils.Interaction;
-using Dots.GamePlay.Powerups.Shield;
 using Dots.Utils.Destroy;
+using Dots.GamePlay.Powerups.Shield;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {
@@ -25,14 +26,26 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         private void OnEnable()
         {
             ShieldPowerup.OnCollectedShieldPowerup += EnableShieldsVisual;
+            IronSourceInit.OnShieldRvWatched += IsShieldFromRV;
         }
 
         private void Awake()
         {
-            areShieldsActive = false;
-            foreach (GameObject shield in shields)
+            if (!IsShieldFromRV())
             {
-                shield.SetActive(false);
+                areShieldsActive = false;
+                foreach (GameObject shield in shields)
+                {
+                    shield.SetActive(false);
+                }
+            }
+            else
+            {
+                areShieldsActive = true;
+                foreach (GameObject shield in shields)
+                {
+                    shield.SetActive(true);
+                }
             }
         }
 
@@ -49,6 +62,12 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
         }
 
+        private bool IsShieldFromRV()
+        {
+            DestroingPowerup.OnCollectedPower?.Invoke(0);
+            return IronSourceInit.IsShieldFromRV = true;
+        }
+
         void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent(out IInteractableObjects interactable))
@@ -60,6 +79,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         private void OnDisable()
         {
             ShieldPowerup.OnCollectedShieldPowerup -= EnableShieldsVisual;
+            IronSourceInit.OnShieldRvWatched -= IsShieldFromRV;
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
+using Dots.Utils.Destroy;
 using System.Collections;
 using Dots.GamePlay.PowerupsPerent.Pool;
-using Dots.Utils.Destroy;
 
 namespace Dots.Utils.Powerups.Objectpool
 {

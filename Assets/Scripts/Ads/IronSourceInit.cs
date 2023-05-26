@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace Dots.Ads.Init
 {
@@ -21,6 +22,10 @@ string appKey = "19f99b595";
 
         public static event Action OnCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
+
+        public static event Func<bool> OnShieldRvWatched;
+        public static bool IsShieldFromRV;
+
 
         List<Button> rewardedAdsButton = new List<Button>();
         [SerializeField] Button coinsRVButton, shieldRVButton;
@@ -182,12 +187,14 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
+            IronSource.Agent.loadRewardedVideo();
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
         // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
         void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
         {
+            IronSource.Agent.loadRewardedVideo();
             //Placement can return null if the placementName is not valid.
             if (placement != null)
             {
@@ -200,6 +207,11 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
+                }
+                else if (getPlacementName == SHIELD_PLACEMENT)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    OnShieldRvWatched?.Invoke();
                 }
             }
             if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
