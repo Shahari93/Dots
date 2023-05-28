@@ -57,17 +57,19 @@ string appKey = "19f99b595";
             Instance = this;
             DontDestroyOnLoad(gameObject);
             IronSource.Agent.loadRewardedVideo();
+
         }
 
         private void SdkInitializationCompletedEvent()
         {
-            IronSource.Agent.validateIntegration();
             IronSource.Agent.loadInterstitial();
+            IronSource.Agent.loadRewardedVideo();
         }
 
         void Start()
         {
             InitAdUnits();
+            IronSource.Agent.validateIntegration();
         }
 
         #region Init Ads
@@ -135,7 +137,6 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
-                IronSource.Agent.loadRewardedVideo();
             }
             else
             {
@@ -185,6 +186,7 @@ string appKey = "19f99b595";
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                     IronSource.Agent.loadRewardedVideo();
 
+
                 }
 
                 // TODO: FInd a way to check the placement according to the pressed RV button
@@ -193,6 +195,7 @@ string appKey = "19f99b595";
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
                     IronSource.Agent.loadRewardedVideo();
+
                 }
             }
             OnApplicationFocus(true);
@@ -215,7 +218,7 @@ string appKey = "19f99b595";
             isPaused = !hasFocus;
             IronSource.Agent.onApplicationPause(isPaused);
         }
-        void OnDisable()
+        void OnDestroy()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent -= SdkInitializationCompletedEvent;
 
@@ -236,8 +239,6 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
-
-            //BadDot.OnLoseGame -= ShowInterstitialAd;
         }
     }
 }
