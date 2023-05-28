@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 1500554260}
   - component: {fileID: 1500554266}
   - component: {fileID: 1500554267}
+  - component: {fileID: 1500554268}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -529,6 +530,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupDurationImage: {fileID: 5699107870602870820}
+--- !u!114 &1500554268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500554259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9aa70310cd5d6b4c811632aba7ca258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsText: {fileID: 0}
 --- !u!114 &1827371941 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1827371941, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
