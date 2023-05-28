@@ -56,6 +56,7 @@ string appKey = "19f99b595";
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            IronSource.Agent.loadRewardedVideo();
         }
 
         private void SdkInitializationCompletedEvent()
@@ -194,16 +195,6 @@ string appKey = "19f99b595";
                     IronSource.Agent.loadRewardedVideo();
                 }
             }
-            //if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
-            //{
-            //    for (int i = 0; i < rewardedAdsButton.Count; i++)
-            //    {
-            //        if (placement.getRewardName() == rewardedAdsButton[i].name)
-            //        {
-            //            rewardedAdsButton[i].gameObject.SetActive(false);
-            //        }
-            //    }
-            //}
             OnApplicationFocus(true);
         }
         // The rewarded video ad was failed to show.
