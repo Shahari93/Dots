@@ -27,7 +27,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         {
             ShieldPowerup.OnCollectedShieldPowerup += EnableShieldsVisual;
             IronSourceInit.OnShieldRvWatched += IsShieldFromRV;
-            Debug.Log(name + " Shahar 1 " + IronSourceInit.IsShieldFromRV);
         }
 
         private void Awake()
@@ -48,7 +47,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                     shield.SetActive(true);
                 }
                 IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
-                Debug.Log(name + " Shahar 2 " + IronSourceInit.IsShieldFromRV);
             }
         }
 
@@ -70,7 +68,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             if (IronSourceInit.IsShieldFromRV)
             {
                 DestroingPowerup.OnCollectedPower?.Invoke(0);
-                Debug.Log(name + " Shahar 3 " + IronSourceInit.IsShieldFromRV);
                 return true;
             }
             else

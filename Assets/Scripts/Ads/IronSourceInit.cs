@@ -45,9 +45,6 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
-
-
-            //BadDot.OnLoseGame += ShowInterstitialAd;
         }
 
         void Awake()
@@ -59,24 +56,21 @@ string appKey = "19f99b595";
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            IronSource.Agent.loadInterstitial();
-            IronSource.Agent.loadRewardedVideo();
         }
 
         private void SdkInitializationCompletedEvent()
         {
             IronSource.Agent.validateIntegration();
             IronSource.Agent.loadInterstitial();
-            IronSource.Agent.loadRewardedVideo();
         }
 
         void Start()
         {
-            InitAgents();
+            InitAdUnits();
         }
 
         #region Init Ads
-        private void InitAgents()
+        private void InitAdUnits()
         {
             //For Rewarded Video
             IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
@@ -94,7 +88,6 @@ string appKey = "19f99b595";
             }
             else
             {
-                Debug.Log("Ad is not ready");
                 return;
             }
         }
@@ -105,7 +98,6 @@ string appKey = "19f99b595";
         // Invoked when the interstitial ad was loaded succesfully.
         void InterstitialOnAdReadyEvent(IronSourceAdInfo adInfo)
         {
-            Debug.Log("Ad is ready");
         }
         // Invoked when the initialization process has failed.
         void InterstitialOnAdLoadFailed(IronSourceError ironSourceError)
@@ -142,12 +134,10 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
-                _ = IronSource.Agent.getPlacementInfo(placement);
                 IronSource.Agent.loadRewardedVideo();
             }
             else
             {
-                Debug.Log("Ad is not ready " + placement);
                 return;
             }
 
@@ -162,24 +152,19 @@ string appKey = "19f99b595";
         // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
         void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo)
         {
-            IronSource.Agent.loadRewardedVideo();
         }
         // Indicates that no ads are available to be displayed
         // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
         void RewardedVideoOnAdUnavailable()
         {
-            IronSource.Agent.loadRewardedVideo();
         }
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
-            OnApplicationFocus(false);
-            IronSource.Agent.loadRewardedVideo();
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            IronSource.Agent.loadRewardedVideo();
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
@@ -191,14 +176,14 @@ string appKey = "19f99b595";
             {
                 string getPlacementName = placement.getPlacementName();
                 string getRewardName = placement.getRewardName();
-                int getRewardAmount = placement.getRewardAmount();
 
                 if (getPlacementName == SHIELD_PLACEMENT || getRewardName == "Shield")
                 {
                     OnShieldRvWatched?.Invoke();
                     IsShieldFromRV = true;
-                    Debug.Log(name + " Shahar " + IsShieldFromRV);
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    IronSource.Agent.loadRewardedVideo();
+
                 }
 
                 // TODO: FInd a way to check the placement according to the pressed RV button
@@ -206,6 +191,7 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
+                    IronSource.Agent.loadRewardedVideo();
                 }
             }
             //if (IronSource.Agent.isRewardedVideoPlacementCapped(placement.getPlacementName()))
@@ -219,12 +205,10 @@ string appKey = "19f99b595";
             //    }
             //}
             OnApplicationFocus(true);
-            IronSource.Agent.loadRewardedVideo();
         }
         // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
         {
-            IronSource.Agent.loadRewardedVideo();
         }
         // Invoked when the video ad was clicked.
         // This callback is not supported by all networks, and we recommend using it only if
