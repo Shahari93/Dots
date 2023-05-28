@@ -1,13 +1,16 @@
 using System.IO;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
 using Dots.Coins.Model;
+using Dots.GamePlay.Powerups.Upgrade;
+using System.Runtime.Serialization.Formatters.Binary;
+using Dots.GamePlay.Powerups;
 
 namespace Dots.Utils.SaveAndLoad
 {
+    // TODO: Create a more generic way to save and load using only 2 methods and not creating a new one for each data we want to save into a JSON
     public class SaveAndLoadJson
     {
-        public static void SaveToJson()
+        public static void SaveCoinsToJson()
         {
             BinaryFormatter formatter = new BinaryFormatter();
             string path = Application.persistentDataPath + "/coins.json";
@@ -19,7 +22,7 @@ namespace Dots.Utils.SaveAndLoad
             stream.Close();
         }
 
-        public static CoinsData LoadFromJson()
+        public static CoinsData LoadCoinsFromJson()
         {
             string path = Application.persistentDataPath + "/coins.json";
             if (File.Exists(path))
@@ -38,33 +41,66 @@ namespace Dots.Utils.SaveAndLoad
             }
         }
 
-        //public static void SaveCoinsToJson()
-        //{
-        //    if (!File.Exists(Application.persistentDataPath + "/CoinsValue.json"))
-        //    {
-        //        File.Create(Application.persistentDataPath + "/CoinsValue.json");
-        //    }
-        //    else
-        //    {
-        //        CoinsData data = new CoinsData();
-        //        data.savedCoinsInJson = CoinsModel.CurrentCoinsAmount;
-        //        string json = JsonUtility.ToJson(data, true);
-        //        File.WriteAllText(Application.persistentDataPath + "/CoinsValue.json", json);
-        //    }
-        //}
+        public static void SaveCoinsUpgradeToJson()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Application.persistentDataPath + "/coinsCost.json";
+            FileStream stream = new FileStream(path, FileMode.Create);
 
-        //public static void LoadCoinsFromJson()
-        //{
-        //    if (!File.Exists(Application.persistentDataPath + "/CoinsValue.json"))
-        //    {
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        string Json = File.ReadAllText(Application.persistentDataPath + "/CoinsValue.json");
-        //        CoinsData Data = JsonUtility.FromJson<CoinsData>(Json);
-        //        CoinsModel.CurrentCoinsAmount = Data.savedCoinsInJson;
-        //    }
-        //}
+            CoinsCostData data = new CoinsCostData();
+            data.savedCoinsCostInJson = UpgradePowerup.CoinsCost;
+            formatter.Serialize(stream, data);
+            stream.Close();
+        }
+
+        public static CoinsCostData LoadCoinsUpgradeFromJson()
+        {
+            string path = Application.persistentDataPath + "/coinsCost.json";
+            if (File.Exists(path))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
+                CoinsCostData data = formatter.Deserialize(stream) as CoinsCostData;
+                UpgradePowerup.CoinsCost = data.savedCoinsCostInJson;
+                stream.Close();
+                return data;
+            }
+            else
+            {
+                Debug.LogError("file not found");
+                return null;
+            }
+        }
+
+        public static void SavePowerupDurationToJson()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Application.persistentDataPath + "/powerupDuration.json";
+            FileStream stream = new FileStream(path, FileMode.Create);
+
+            PowerupData data = new PowerupData();
+            data.powerupDurationData = UpgradePowerup.PowerupDurationValue;
+            formatter.Serialize(stream, data);
+            stream.Close();
+        }
+
+        public static PowerupData LoadPowerupDurationFromJson()
+        {
+            string path = Application.persistentDataPath + "/powerupDuration.json";
+            if (File.Exists(path))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
+                PowerupData data = formatter.Deserialize(stream) as PowerupData;
+                UpgradePowerup.PowerupDurationValue = data.powerupDurationData;
+                stream.Close();
+                return data;
+            }
+            else
+            {
+                Debug.LogError("file not found");
+                return null;
+            }
+        }
     }
 }
