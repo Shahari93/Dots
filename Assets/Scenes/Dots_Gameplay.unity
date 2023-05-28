@@ -642,6 +642,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc127471fd5774a4d81cd11d840a8936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseGameButton: {fileID: 1928261315}
+--- !u!114 &1928261315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5980085192885822214, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+  m_PrefabInstance: {fileID: 5699107870602870819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2057730938 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5699107870424742745, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
@@ -714,10 +726,6 @@ PrefabInstance:
     - target: {fileID: 816515174, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827371941, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2523853535529285602, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_IsActive

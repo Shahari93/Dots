@@ -185,8 +185,6 @@ string appKey = "19f99b595";
                     IsShieldFromRV = true;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                     IronSource.Agent.loadRewardedVideo();
-
-
                 }
 
                 // TODO: FInd a way to check the placement according to the pressed RV button
@@ -195,7 +193,6 @@ string appKey = "19f99b595";
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
                     IronSource.Agent.loadRewardedVideo();
-
                 }
             }
             OnApplicationFocus(true);

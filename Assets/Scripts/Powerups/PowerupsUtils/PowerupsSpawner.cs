@@ -57,7 +57,7 @@ namespace Dots.Utils.Powerups.Objectpool
         {
             while (canSpawn)
             {
-                yield return new WaitForSecondsRealtime(3f);
+                yield return new WaitForSeconds(3f);
                 float randomNumber = Random.Range(0f, 1f);
                 string spawnableTag = "";
 

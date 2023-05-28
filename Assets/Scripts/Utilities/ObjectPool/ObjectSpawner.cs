@@ -53,7 +53,7 @@ namespace Dots.Utils.ObjectPool
         {
             while (true)
             {
-                yield return new WaitForSecondsRealtime(spawnTime);
+                yield return new WaitForSeconds(spawnTime);
                 float randomNumber = Random.Range(0f, total);
                 string spawnableTag = "";
 
