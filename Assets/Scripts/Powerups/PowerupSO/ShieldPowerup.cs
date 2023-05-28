@@ -1,3 +1,4 @@
+using Dots.Utils.Destroy;
 using System;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ namespace Dots.GamePlay.Powerups.Shield
 
         public override void Apply(GameObject target)
         {
-            InvokePowerupUI?.Invoke(0);
+            InvokePowerupUI?.Invoke(powerupDuration);
+            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration); // TODO: Not final need to refactor
             OnCollectedShieldPowerup?.Invoke(true);
         }
     } 

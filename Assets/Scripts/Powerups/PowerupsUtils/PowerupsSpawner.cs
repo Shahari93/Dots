@@ -1,4 +1,5 @@
 using UnityEngine;
+using Dots.Utils.Destroy;
 using System.Collections;
 using Dots.GamePlay.PowerupsPerent.Pool;
 
@@ -25,6 +26,20 @@ namespace Dots.Utils.Powerups.Objectpool
         void OnEnable()
         {
             powerupSpawnIntirvalInitValue = powerupSpawnIntirval;
+            DestroingPowerup.OnCollectedPower += StopPowerupsSpawn;
+            DestroingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
+        }
+
+        private void EnablePowerupSpawn()
+        {
+            canSpawn = true;
+            powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
+            StartCoroutine(SpawnPowerups());
+        }
+
+        private void StopPowerupsSpawn(float obj)
+        {
+            canSpawn = false;
         }
 
         void Start()
@@ -40,7 +55,7 @@ namespace Dots.Utils.Powerups.Objectpool
 
         IEnumerator SpawnPowerups()
         {
-            while (true)
+            while (canSpawn)
             {
                 yield return new WaitForSecondsRealtime(3f);
                 float randomNumber = Random.Range(0f, 1f);
@@ -74,6 +89,11 @@ namespace Dots.Utils.Powerups.Objectpool
                     spawnable.SetActive(true);
                 }
             }
+        }
+        private void OnDisable()
+        {
+            DestroingPowerup.OnCollectedPower -= StopPowerupsSpawn;
+            DestroingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
         }
     }
 }

@@ -8,11 +8,11 @@ namespace Dots.Utils.Destroy
 {
     public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
     {
-        protected float? powerupDuration;
         [SerializeField] protected ParticleSystem particles;
         [SerializeField] PowerupEffectSO powerupEffect;
 
-        public static Action<float?> OnCollectedPower;
+        public static Action<float> OnCollectedPower;
+        public static Action OnPowerupDisabled;
 
 
         void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +27,7 @@ namespace Dots.Utils.Destroy
         public void BehaveWhenInteractWithBounds()
         {
             DisablePowerupVisuals();
+            OnPowerupDisabled?.Invoke();
         }
 
         /// <summary>

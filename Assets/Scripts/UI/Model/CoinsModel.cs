@@ -22,7 +22,7 @@ namespace Dots.Coins.Model
 
         private void OnEnable()
         {
-            SaveAndLoadJson.LoadFromJson();
+            SaveAndLoadJson.LoadCoinsFromJson();
         }
 
         private void Awake()
@@ -39,13 +39,28 @@ namespace Dots.Coins.Model
             DontDestroyOnLoad(gameObject);
         }
 
+        public void UpdateCoinsDataOnRv(int coins)
+        {
+            currentCoinsAmount += coins;
+            SaveAndLoadJson.SaveCoinsToJson();
+        }
+
         public void UpdateCoinsData()
         {
             coinsToAdd = PointsModel.CurrentPointsScore;
             if (coinsToAdd > 0)
             {
                 currentCoinsAmount += coinsToAdd;
-                SaveAndLoadJson.SaveToJson();
+                SaveAndLoadJson.SaveCoinsToJson();
+            }
+        }
+
+        public void UpdateCoinsDataAfterUpgrade(int coinCost)
+        {
+            if (currentCoinsAmount > 0)
+            {
+                currentCoinsAmount -= coinCost;
+                SaveAndLoadJson.SaveCoinsToJson();
             }
         }
     }
