@@ -66,7 +66,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
             powerupNameText.text = affectedPowerup.name;
             powerupDurationValue = affectedPowerup.powerupDuration;
-            powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString());
+            powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString("F1"));
             upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
         }
 
@@ -113,7 +113,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 // Updating the powerup duration and the view
                 powerupDurationValue += 0.1f;
                 affectedPowerup.powerupDuration = powerupDurationValue;
-                powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString());
+                powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString("F1"));
 
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
