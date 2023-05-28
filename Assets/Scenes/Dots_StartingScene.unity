@@ -791,7 +791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2135449520
 AudioSource:
   m_ObjectHideFlags: 0
@@ -946,6 +946,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 459827224}
+    - target: {fileID: 4893743095152107088, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Name
+      value: Start_Shield
+      objectReference: {fileID: 0}
     - target: {fileID: 7240484676080882133, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1046,6 +1054,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8946446685335079549, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Name
+      value: Extra_Coins
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123578809843555929, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 459827224}
     m_RemovedComponents:
     - {fileID: 6682457212275517780, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
