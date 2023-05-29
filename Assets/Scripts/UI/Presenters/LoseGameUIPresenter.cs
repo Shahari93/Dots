@@ -2,14 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.Utils.FTUE;
-using Dots.GamePlay.Dot.Bad;
 using Dots.ScorePoints.Model;
-using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Dots.PauseGame.Presenter
 {
-    public class PauseGameUIPresenter : MonoBehaviour
+    public class LoseGameUIPresenter : MonoBehaviour
     {
         [SerializeField] TMP_Text loseGameScoreText;
         [SerializeField] Button loseGameRestartButton;

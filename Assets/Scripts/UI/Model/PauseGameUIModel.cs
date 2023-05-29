@@ -8,7 +8,7 @@ namespace Dots.PauseGame.Model
     /// </summary>
 	public class PauseGameUIModel : MonoBehaviour
     {
-        public static event Action OnGamePaused;
+        public static Action OnGamePaused;
 
         private void OnApplicationPause(bool pause)
         {

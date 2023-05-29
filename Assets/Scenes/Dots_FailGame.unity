@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 667064489}
   - component: {fileID: 667064488}
   m_Layer: 0
-  m_Name: PauseGamePresenter
+  m_Name: LoseGamePresenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
