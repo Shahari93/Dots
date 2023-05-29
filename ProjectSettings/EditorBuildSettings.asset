@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Dots_GDPRScene.unity
+    guid: d616e6d2d9cca8643996a6b266434dc3
+  - enabled: 1
     path: Assets/Scenes/Dots_StartingScene.unity
     guid: 2ffcce3494bf02146a2055b25b38fedb
   - enabled: 1
