@@ -44,7 +44,7 @@ namespace Dots.ScorePoints.Model
             currentPointsScore = 0;
         }
 
-        void CheckForHighScore()
+        public void CheckForHighScore()
         {
             if (currentPointsScore > highScore)
             {

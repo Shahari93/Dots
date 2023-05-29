@@ -33,9 +33,11 @@ namespace Dots.PauseGame.Presenter
 
         void RestartGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
+            PointsModel.Instance.CheckForHighScore();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
         }
 
         void EnableLoseGamePanel()
