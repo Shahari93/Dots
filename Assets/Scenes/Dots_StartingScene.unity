@@ -947,6 +947,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 459827224}
@@ -1057,6 +1061,10 @@ PrefabInstance:
     - target: {fileID: 8946446685335079549, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_Name
       value: Extra_Coins
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123578809843555929, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123578809843555929, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

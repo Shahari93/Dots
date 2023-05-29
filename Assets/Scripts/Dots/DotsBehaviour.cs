@@ -26,7 +26,7 @@ namespace Dots.GamePlay.Dot
         }
         private void SetSpawnValues()
         {
-            dotSpeed = Random.Range(80f, 90f);
+            dotSpeed = Random.Range(85f, 90f);
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
