@@ -1,6 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.Coins.Model;
+using Dots.ScorePoints.Model;
+using UnityEngine.SceneManagement;
 
 namespace Dots.Utils.Pause
 {
@@ -18,15 +20,19 @@ namespace Dots.Utils.Pause
         private void Awake()
         {
             pauseGameButton.onClick.AddListener(PauseGame);
+
             returnToGameButton.onClick.AddListener(UnPauseGame);
+
+            restartGameButton.onClick.AddListener(RestartGame);
+
+            returnToMainMenuButton.onClick.AddListener(ReturnToHome);
         }
 
         private void PauseGame()
         {
             if (!isGamePaused)
             {
-                darkenPanel.gameObject.SetActive(true);
-                pauseGamePanel.gameObject.SetActive(true);
+                ShowPausePanel(true);
                 isGamePaused = true;
                 Time.timeScale = 0;
             }
@@ -36,11 +42,35 @@ namespace Dots.Utils.Pause
         {
             if (isGamePaused)
             {
-                darkenPanel.gameObject.SetActive(false);
-                pauseGamePanel.gameObject.SetActive(false);
+                ShowPausePanel(false);
                 Time.timeScale = 1;
                 isGamePaused = false;
             }
+        }
+
+        private void ReturnToHome()
+        {
+            ReturnToFlow(1);
+        }
+
+        private void RestartGame()
+        {
+            ReturnToFlow(0);
+        }
+
+        private void ShowPausePanel(bool show)
+        {
+            darkenPanel.gameObject.SetActive(show);
+            pauseGamePanel.gameObject.SetActive(show);
+        }
+
+        private void ReturnToFlow(int sceneIndex)
+        {
+            Time.timeScale = 1;
+            isGamePaused = false;
+            PointsModel.Instance.ResetScoreFromPause();
+            CoinsModel.Instance.ResetCoins();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - sceneIndex);
         }
     }
 }

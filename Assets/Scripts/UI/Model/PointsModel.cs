@@ -32,13 +32,16 @@ namespace Dots.ScorePoints.Model
         public void IncrementScore(int amount)
         {
             currentPointsScore += amount;
-            CheckForHighScore();
         }
 
         public void ResetScore()
         {
             currentPointsScore = 0;
-            CheckForHighScore();
+        }
+
+        public void ResetScoreFromPause()
+        {
+            currentPointsScore = 0;
         }
 
         void CheckForHighScore()
@@ -49,6 +52,11 @@ namespace Dots.ScorePoints.Model
                 PlayerPrefs.SetInt("HighScore", highScore);
                 highScore = PlayerPrefs.GetInt("HighScore");
             }
+        }
+
+        private void OnDisable()
+        {
+            CheckForHighScore();
         }
     }
 }

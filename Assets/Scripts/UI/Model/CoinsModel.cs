@@ -55,6 +55,11 @@ namespace Dots.Coins.Model
             }
         }
 
+        public void ResetCoins()
+        {
+            coinsToAdd = 0;
+        }
+
         public void UpdateCoinsDataAfterUpgrade(int coinCost)
         {
             if (currentCoinsAmount > 0)
