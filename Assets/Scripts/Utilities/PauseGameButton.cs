@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
+using Dots.PauseGame.Model;
 
 namespace Dots.Utils.Pause
 {
@@ -35,6 +36,7 @@ namespace Dots.Utils.Pause
                 ShowPausePanel(true);
                 isGamePaused = true;
                 Time.timeScale = 0;
+                PauseGameUIModel.OnGamePaused?.Invoke();
             }
         }
 
@@ -43,8 +45,8 @@ namespace Dots.Utils.Pause
             if (isGamePaused)
             {
                 ShowPausePanel(false);
-                Time.timeScale = 1;
                 isGamePaused = false;
+                Time.timeScale = 1;
             }
         }
 
