@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace Dots.Ads.Init
@@ -23,6 +24,8 @@ string appKey = "19f99b595";
 
         public static event Func<bool> OnShieldRvWatched;
         public static bool IsShieldFromRV;
+        [SerializeField] RewardedAdsButtons coinsRV;
+        [SerializeField] RewardedAdsButtons shieldRV;
 
         void OnEnable()
         {
@@ -45,10 +48,13 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
+
+            IronSource.Agent.loadRewardedVideo();
         }
 
         void Awake()
         {
+            IronSource.Agent.loadRewardedVideo();
             if (Instance != null)
             {
                 Destroy(gameObject);
@@ -56,12 +62,12 @@ string appKey = "19f99b595";
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            IronSource.Agent.loadRewardedVideo();
-
         }
 
         private void SdkInitializationCompletedEvent()
         {
+            IronSource.Agent.loadRewardedVideo();
+
             IronSource.Agent.loadInterstitial();
             IronSource.Agent.loadRewardedVideo();
         }
@@ -167,9 +173,14 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
-            IronSource.Agent.shouldTrackNetworkState(true);
+            Debug.Log("Shahar 1");
+            if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
+            {
+                coinsRV.GetComponent<Button>().interactable = false;
+                Debug.Log("Shahar 2");
+            }
             IronSource.Agent.loadRewardedVideo();
+            Debug.Log("Shahar 3");
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
@@ -187,6 +198,7 @@ string appKey = "19f99b595";
                     OnShieldRvWatched?.Invoke();
                     IsShieldFromRV = true;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    Debug.Log("Shahar 4");
                 }
 
                 // TODO: FInd a way to check the placement according to the pressed RV button
@@ -194,14 +206,10 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
+                    Debug.Log("Shahar 5");
                 }
             }
             OnApplicationFocus(true);
-
-            if (IsRewardedVideoPlacementCapped(placement.getPlacementName()))
-            {
-                Debug.Log("Shahar");
-            }
         }
 
         bool IsRewardedVideoPlacementCapped(string placementName)
@@ -248,6 +256,8 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
+            IronSource.Agent.loadRewardedVideo();
+
         }
     }
 }
