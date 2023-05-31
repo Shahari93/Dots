@@ -70,6 +70,7 @@ string appKey = "19f99b595";
         {
             InitAdUnits();
             IronSource.Agent.validateIntegration();
+            IronSource.Agent.shouldTrackNetworkState(true);
         }
 
         #region Init Ads
@@ -142,7 +143,6 @@ string appKey = "19f99b595";
             {
                 return;
             }
-
         }
         #endregion
 
@@ -167,6 +167,9 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
+            IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
+            IronSource.Agent.shouldTrackNetworkState(true);
+            IronSource.Agent.loadRewardedVideo();
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
@@ -184,7 +187,6 @@ string appKey = "19f99b595";
                     OnShieldRvWatched?.Invoke();
                     IsShieldFromRV = true;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                    IronSource.Agent.loadRewardedVideo();
                 }
 
                 // TODO: FInd a way to check the placement according to the pressed RV button
@@ -192,21 +194,31 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
-                    IronSource.Agent.loadRewardedVideo();
                 }
             }
             OnApplicationFocus(true);
+
+            if (IsRewardedVideoPlacementCapped(placement.getPlacementName()))
+            {
+                Debug.Log("Shahar");
+            }
         }
+
+        bool IsRewardedVideoPlacementCapped(string placementName)
+        {
+            return !IronSource.Agent.isRewardedVideoPlacementCapped(placementName);
+        }
+
         // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
         {
         }
+
         // Invoked when the video ad was clicked.
         // This callback is not supported by all networks, and we recommend using it only if
         // it’s supported by all networks you included in your build.
         void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
         {
-            IronSource.Agent.loadRewardedVideo();
         }
         #endregion
 

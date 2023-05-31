@@ -58,8 +58,8 @@
     <file>Assets/Plugins/Android/org.jetbrains.kotlinx.kotlinx-coroutines-core-jvm-1.6.4.jar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="com.DawnGames.Dots" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="bundleId" value="com.dawngames.dots" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradleTemplateEnabled" value="False" />
