@@ -15,7 +15,6 @@ string appKey = "19f99b595";
 
         bool isPaused = false;
 
-        public static IronSourceInit Instance;
         const string COINS_PLACEMENT = "Extra_Coins";
         const string SHIELD_PLACEMENT = "Start_Shield";
 
@@ -27,7 +26,7 @@ string appKey = "19f99b595";
         [SerializeField] RewardedAdsButtons coinsRV;
         [SerializeField] RewardedAdsButtons shieldRV;
 
-        void OnEnable()
+        private void OnEnable()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
 
@@ -49,34 +48,22 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
-            IronSource.Agent.loadRewardedVideo();
-        }
-
-        void Awake()
-        {
-            IronSource.Agent.loadRewardedVideo();
-            if (Instance != null)
+            if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
             {
-                Destroy(gameObject);
-                return;
+                coinsRV.GetComponent<Button>().interactable = false;
             }
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
-        private void SdkInitializationCompletedEvent()
-        {
-            IronSource.Agent.loadRewardedVideo();
-
-            IronSource.Agent.loadInterstitial();
-            IronSource.Agent.loadRewardedVideo();
-        }
-
-        void Start()
+        private void Start()
         {
             InitAdUnits();
             IronSource.Agent.validateIntegration();
             IronSource.Agent.shouldTrackNetworkState(true);
+        }
+
+        private void SdkInitializationCompletedEvent()
+        {
+            IronSource.Agent.loadInterstitial();
         }
 
         #region Init Ads
@@ -141,6 +128,7 @@ string appKey = "19f99b595";
         #region Rewarded Ads
         public void ShowRewardedAd(string placement)
         {
+            Debug.Log("Test");
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
@@ -149,6 +137,7 @@ string appKey = "19f99b595";
             {
                 return;
             }
+            
         }
         #endregion
 
@@ -173,14 +162,10 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            Debug.Log("Shahar 1");
             if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
             {
                 coinsRV.GetComponent<Button>().interactable = false;
-                Debug.Log("Shahar 2");
             }
-            IronSource.Agent.loadRewardedVideo();
-            Debug.Log("Shahar 3");
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
@@ -198,7 +183,6 @@ string appKey = "19f99b595";
                     OnShieldRvWatched?.Invoke();
                     IsShieldFromRV = true;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                    Debug.Log("Shahar 4");
                 }
 
                 // TODO: FInd a way to check the placement according to the pressed RV button
@@ -206,7 +190,6 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke();
                     OnCheckIfUpgradeable?.Invoke();
-                    Debug.Log("Shahar 5");
                 }
             }
             OnApplicationFocus(true);
@@ -256,8 +239,6 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
-            IronSource.Agent.loadRewardedVideo();
-
         }
     }
 }
