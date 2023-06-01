@@ -23,8 +23,8 @@ string appKey = "19f99b595";
 
         public static event Func<bool> OnShieldRvWatched;
         public static bool IsShieldFromRV;
-        [SerializeField] RewardedAdsButtons coinsRV;
-        [SerializeField] RewardedAdsButtons shieldRV;
+        [SerializeField] Button coinsRV;
+        [SerializeField] Button shieldRV;
 
         private void OnEnable()
         {
@@ -50,7 +50,7 @@ string appKey = "19f99b595";
 
             if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
             {
-                coinsRV.GetComponent<Button>().interactable = false;
+                coinsRV.gameObject.SetActive(false);
             }
         }
 
@@ -128,7 +128,6 @@ string appKey = "19f99b595";
         #region Rewarded Ads
         public void ShowRewardedAd(string placement)
         {
-            Debug.Log("Test");
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
@@ -164,7 +163,7 @@ string appKey = "19f99b595";
         {
             if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
             {
-                coinsRV.GetComponent<Button>().interactable = false;
+                coinsRV.gameObject.SetActive(false);
             }
         }
         // The user completed to watch the video, and should be rewarded.

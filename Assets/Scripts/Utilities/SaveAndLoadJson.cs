@@ -36,7 +36,6 @@ namespace Dots.Utils.SaveAndLoad
             }
             else
             {
-                Debug.LogError("file not found");
                 return null;
             }
         }
@@ -67,7 +66,6 @@ namespace Dots.Utils.SaveAndLoad
             }
             else
             {
-                Debug.LogError("file not found");
                 return null;
             }
         }
@@ -98,7 +96,6 @@ namespace Dots.Utils.SaveAndLoad
             }
             else
             {
-                Debug.LogError("file not found");
                 return null;
             }
         }
