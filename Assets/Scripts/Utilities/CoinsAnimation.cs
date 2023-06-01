@@ -26,7 +26,7 @@ namespace Dots.Utils.CoinsAnimation
             restartGameButton.interactable = false;
             coinsAmount = CoinsModel.CoinsToAdd;
 
-            if(coinsAmount >= 10)
+            if (coinsAmount >= 10)
             {
                 coinsAmount = 10;
             }
@@ -58,9 +58,8 @@ namespace Dots.Utils.CoinsAnimation
             }
         }
 
-        private async void CountCoins()
+        private void CountCoins()
         {
-            await Task.Delay(1000);
             restartGameButton.interactable = true;
 
             if (CoinsModel.CoinsToAdd <= 0)

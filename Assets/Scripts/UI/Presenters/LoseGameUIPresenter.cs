@@ -26,7 +26,7 @@ namespace Dots.PauseGame.Presenter
 
         void ReturnToMenu()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
         }

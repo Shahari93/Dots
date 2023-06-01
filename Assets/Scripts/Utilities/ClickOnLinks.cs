@@ -57,8 +57,6 @@ namespace Dots.Utils.GDPR
                 _ => throw new System.NotImplementedException()
             };
 
-            Debug.Log($"URL clicked: linkInfo[{linkIndex}].id={linkId}   ==>   url={url}");
-
             // Let's see that web page!
             Application.OpenURL(url);
         }
