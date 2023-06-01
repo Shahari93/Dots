@@ -27,6 +27,7 @@ namespace Dots.Utils.ObjectPool
         void Awake()
         {
             spawnTime = 1.5f;
+            GoodDot.spawnChance = 0.15f;
         }
 
         void Start()
