@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Dots.GamePlay.Dot.Good
 {
@@ -16,6 +15,7 @@ namespace Dots.GamePlay.Dot.Good
         public override void BehaveWhenInteractWithPlayer()
         {
             ShowDestroyParticles(IsGoodDot);
+            transform.localScale -= startScale;
             gameObject.SetActive(false);
             OnPlayerCollectedDot?.Invoke(1);
         }

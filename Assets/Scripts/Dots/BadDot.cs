@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.GamePlay.Player.Interaction.Shields;
 
@@ -18,6 +17,7 @@ namespace Dots.GamePlay.Dot.Bad
         public override void BehaveWhenInteractWithPlayer()
         {
             ShowDestroyParticles(IsGoodDot);
+            transform.localScale -= startScale;
             gameObject.SetActive(false);
             if (ActiveShields.AreShieldsActive)
             {

@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
+using Dots.GamePlay.Dot.Timer;
 
 namespace Dots.GamePlay.Dot
 {
@@ -14,7 +15,8 @@ namespace Dots.GamePlay.Dot
         float randX;
         float randY;
         Vector2 direction;
-        protected Vector3 startScale = Vector3.zero;
+        protected Vector3 startScale = new Vector3(0.71f, 0.71f, 0f);
+        private float spawnTime = 0.5f;
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
         public float RandX { get => RandX; set => randX = value; }
@@ -24,8 +26,8 @@ namespace Dots.GamePlay.Dot
 
         void OnEnable()
         {
-            transform.localScale = startScale;
             SetSpawnValues();
+            IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
         }
         private void SetSpawnValues()
         {
@@ -33,11 +35,28 @@ namespace Dots.GamePlay.Dot
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
+            transform.localScale = Vector3.zero;
+        }
+
+        void ChangeSpawnSpeed(int ticks)
+        {
+            if (ticks > 0)
+            {
+                spawnTime -= 0.1f;
+            }
+
+            if (spawnTime <= 0.1f)
+            {
+                spawnTime = 0.1f;
+            }
         }
 
         void FixedUpdate()
         {
-            SetSpeedAndDirection();
+            transform.DOScale(0.7f, spawnTime).OnComplete(() =>
+            {
+                SetSpeedAndDirection();
+            });
         }
 
         void OnTriggerEnter2D(Collider2D collision)
@@ -50,15 +69,13 @@ namespace Dots.GamePlay.Dot
 
         public void SetSpeedAndDirection()
         {
-            transform.DOScale(0.7f, 0.25f).OnComplete(() =>
-            {
-                rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
-            });
+            rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
         }
 
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
+            transform.localScale -= startScale;
             DisablePowerupVisuals();
         }
 
@@ -84,6 +101,10 @@ namespace Dots.GamePlay.Dot
 
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
+        }
+        private void OnDisable()
+        {
+            IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
         }
     }
 }
