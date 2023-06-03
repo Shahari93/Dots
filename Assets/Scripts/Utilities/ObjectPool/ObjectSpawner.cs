@@ -80,8 +80,8 @@ namespace Dots.Utils.ObjectPool
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
                 if (spawnable != null)
                 {
-                    spawnable.transform.position = this.transform.position;
-                    spawnable.transform.rotation = this.transform.rotation;
+                    spawnable.transform.position = transform.position;
+                    spawnable.transform.rotation = transform.rotation;
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);

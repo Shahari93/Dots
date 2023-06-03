@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 
@@ -13,6 +14,7 @@ namespace Dots.GamePlay.Dot
         float randX;
         float randY;
         Vector2 direction;
+        protected Vector3 startScale = Vector3.zero;
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
         public float RandX { get => RandX; set => randX = value; }
@@ -22,6 +24,7 @@ namespace Dots.GamePlay.Dot
 
         void OnEnable()
         {
+            transform.localScale = startScale;
             SetSpawnValues();
         }
         private void SetSpawnValues()
@@ -47,7 +50,10 @@ namespace Dots.GamePlay.Dot
 
         public void SetSpeedAndDirection()
         {
-            rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            transform.DOScale(0.7f, 0.25f).OnComplete(() =>
+            {
+                rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            });
         }
 
         // What happens if a dot hits the bounds collider
