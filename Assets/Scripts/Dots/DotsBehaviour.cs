@@ -3,6 +3,7 @@ using DG.Tweening;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 using Dots.GamePlay.Dot.Timer;
+using System.Threading.Tasks;
 
 namespace Dots.GamePlay.Dot
 {
@@ -29,13 +30,14 @@ namespace Dots.GamePlay.Dot
             SetSpawnValues();
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
         }
-        private void SetSpawnValues()
+        private async void SetSpawnValues()
         {
             dotSpeed = Random.Range(85f, 90f);
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
             transform.localScale = Vector3.zero;
+            await Task.Delay(500);
         }
 
         void ChangeSpawnSpeed(int ticks)
@@ -52,7 +54,7 @@ namespace Dots.GamePlay.Dot
         }
 
         void FixedUpdate()
-        {
+        {    
             transform.DOScale(0.7f, spawnTime).OnComplete(() =>
             {
                 SetSpeedAndDirection();
