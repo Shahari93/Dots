@@ -2,7 +2,6 @@ using UnityEngine;
 using DG.Tweening;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
-using Dots.GamePlay.Dot.Timer;
 using System.Threading.Tasks;
 
 namespace Dots.GamePlay.Dot
@@ -17,7 +16,6 @@ namespace Dots.GamePlay.Dot
         float randY;
         Vector2 direction;
         protected Vector3 startScale = new Vector3(0.71f, 0.71f, 0f);
-        private float spawnTime = 0.5f;
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
         public float RandX { get => RandX; set => randX = value; }
@@ -28,7 +26,6 @@ namespace Dots.GamePlay.Dot
         void OnEnable()
         {
             SetSpawnValues();
-            IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
         }
         private async void SetSpawnValues()
         {
@@ -40,22 +37,9 @@ namespace Dots.GamePlay.Dot
             await Task.Delay(500);
         }
 
-        void ChangeSpawnSpeed(int ticks)
-        {
-            if (ticks > 0)
-            {
-                spawnTime -= 0.1f;
-            }
-
-            if (spawnTime <= 0.1f)
-            {
-                spawnTime = 0.1f;
-            }
-        }
-
         void FixedUpdate()
         {    
-            transform.DOScale(0.7f, spawnTime).OnComplete(() =>
+            transform.DOScale(0.7f, 0.5f).OnComplete(() =>
             {
                 SetSpeedAndDirection();
             });
@@ -103,10 +87,6 @@ namespace Dots.GamePlay.Dot
 
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
-        }
-        private void OnDisable()
-        {
-            IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
         }
     }
 }
