@@ -13,7 +13,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
     {
         public int savedCoinsCostInJson;
     }
-    public class UpgradePowerup : MonoBehaviour
+    public class UpgradePowerup : MonoBehaviour, ISaveable
     {
         public static event Action OnUpgradeBought;
 
@@ -59,9 +59,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             powerupDurationValue = affectedPowerup.powerupDuration;
             upgradeButton.onClick.AddListener(Upgrade);
 
-            SaveAndLoadJson.LoadCoinsUpgradeFromJson();
-            SaveAndLoadJson.LoadPowerupDurationFromJson();
-
+            SaveAndLoadJson.LoadFromJson("/SavedData.json");
             affectedPowerup.powerupDuration = powerupDurationValue;
 
             powerupNameText.text = affectedPowerup.name;
@@ -118,8 +116,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
                 OnUpgradeBought?.Invoke();
-                SaveAndLoadJson.SaveCoinsUpgradeToJson();
-                SaveAndLoadJson.SavePowerupDurationToJson();
+                SaveAndLoadJson.SavingToJson("/SavedData.json", this);
             }
         }
 
