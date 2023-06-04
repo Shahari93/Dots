@@ -24,8 +24,11 @@ namespace Dots.ScorePoints.Model
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         // Updating the model data with the new score

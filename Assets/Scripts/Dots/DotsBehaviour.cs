@@ -35,14 +35,15 @@ namespace Dots.GamePlay.Dot
             direction = new Vector2(randX, randY).normalized;
             transform.localScale = Vector3.zero;
             await Task.Delay(500);
+            SetSpeedAndDirection();
         }
 
         void FixedUpdate()
-        {    
-            transform.DOScale(0.7f, 0.5f).OnComplete(() =>
-            {
-                SetSpeedAndDirection();
-            });
+        {
+            //transform.DOScale(0.7f, 0.5f).OnComplete(() =>
+            //{
+            //    SetSpeedAndDirection();
+            //});
         }
 
         void OnTriggerEnter2D(Collider2D collision)
@@ -55,7 +56,10 @@ namespace Dots.GamePlay.Dot
 
         public void SetSpeedAndDirection()
         {
-            rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            transform.DOScale(0.7f, 0.5f).OnComplete(() =>
+            {
+                rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            });
         }
 
         // What happens if a dot hits the bounds collider

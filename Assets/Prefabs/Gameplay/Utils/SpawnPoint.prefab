@@ -50,10 +50,10 @@ MonoBehaviour:
   pooledObject: []
   itemsToPool:
   - objectToPool: {fileID: 4296681642482125849, guid: e24352c0ee69c064b94cdaa870ba54e0, type: 3}
-    amountToPool: 5
+    amountToPool: 8
     shouldExpend: 0
   - objectToPool: {fileID: 5376683166059210708, guid: 2a5e7678d9495e64ca364767f53889ef, type: 3}
-    amountToPool: 5
+    amountToPool: 8
     shouldExpend: 0
 --- !u!114 &5120890674966353500
 MonoBehaviour:

@@ -35,8 +35,8 @@ namespace Dots.Coins.Model
             else
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
-            DontDestroyOnLoad(gameObject);
         }
 
         //TODO: Test on APK that the added coins from RV are saving to the JSON
