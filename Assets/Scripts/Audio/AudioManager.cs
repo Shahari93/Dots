@@ -7,8 +7,9 @@ namespace Dots.Audio.Manager
     {
         [SerializeField] Sounds[] musicAudio, sfxAudio;
         [SerializeField] AudioSource musicSource, sfxSource;
-        #region Singleton
         public static AudioManager Instance;
+
+        #region Singleton
 
         private void Awake()
         {
@@ -22,8 +23,6 @@ namespace Dots.Audio.Manager
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            musicSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("Music"));
-            sfxSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("SFX"));
         }
         #endregion
 
@@ -48,7 +47,7 @@ namespace Dots.Audio.Manager
         {
             musicSource.mute = !musicSource.mute;
             PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
-        } 
+        }
         #endregion
 
         #region SFX control
@@ -71,7 +70,7 @@ namespace Dots.Audio.Manager
         {
             sfxSource.mute = !sfxSource.mute;
             PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
-        } 
+        }
         #endregion
     }
 }

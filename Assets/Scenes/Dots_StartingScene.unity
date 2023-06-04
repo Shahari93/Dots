@@ -750,8 +750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a893bdce0e0e64ca77150f55ae4103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicButton: {fileID: 8465019308244502192}
-  sfxButton: {fileID: 8465019308244502193}
+  musicToggle: {fileID: 8465019308244502193}
+  sfxToggle: {fileID: 8465019308244502192}
 --- !u!1001 &560000658979301579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -856,13 +856,133 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2102036749}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Audio.ToggleAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 462230969576572019, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1259834470498142011, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: darkPanel
       value: 
       objectReference: {fileID: 565153977}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2102036749}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Audio.ToggleAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705480305296706232, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3137427574365601196, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2102036749}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Audio.ToggleAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321609935129442942, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2102036749}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Audio.ToggleAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4710569635283470964, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -871,6 +991,38 @@ PrefabInstance:
     - target: {fileID: 4893743095152107088, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_Name
       value: Start_Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2102036749}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Audio.ToggleAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097935333731347308, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5345811893711324640, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -980,6 +1132,34 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2102036749}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dots.Audio.ToggleAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8946446685335079549, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_Name
       value: Extra_Coins
@@ -1007,24 +1187,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &8465019308244502192 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3515268142466467227, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
   m_PrefabInstance: {fileID: 8465019308244502190}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8465019308244502193 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5430219798927338411, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
   m_PrefabInstance: {fileID: 8465019308244502190}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8465019308244502194 stripped

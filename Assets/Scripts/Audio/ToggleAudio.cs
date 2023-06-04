@@ -1,25 +1,50 @@
-using UnityEngine;
-using Dots.Audio.Manager;
-using UnityEngine.UI;
 using System;
+using UnityEngine;
+using UnityEngine.UI;
+using Dots.Audio.Manager;
 
 namespace Dots.Audio
 {
     public class ToggleAudio : MonoBehaviour
     {
-        [SerializeField] Toggle musicButton, sfxButton;
+        [SerializeField] Toggle musicToggle, sfxToggle;
+        private bool musicToggleState, sfxToggleState;
+
+        private void OnEnable()
+        {
+            if (!PlayerPrefs.HasKey("MusicToggle") && !PlayerPrefs.HasKey("SFXToggle"))
+            {
+                PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(true));
+                PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(true));
+
+                musicToggleState = Convert.ToBoolean(PlayerPrefs.GetInt("MusicToggle"));
+                sfxToggleState = Convert.ToBoolean(PlayerPrefs.GetInt("SFXToggle"));
+            }
+
+            else
+            {
+                musicToggleState = Convert.ToBoolean(PlayerPrefs.GetInt("MusicToggle"));
+                sfxToggleState = Convert.ToBoolean(PlayerPrefs.GetInt("SFXToggle"));
+            }
+
+            musicToggle.isOn = musicToggleState;
+            sfxToggle.isOn = sfxToggleState;
+        }
+
         public void ToggleMusic()
         {
             AudioManager.Instance.ToggleMusic();
-            musicButton.isOn = !musicButton.isOn;
-            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicButton.isOn));
         }
 
         public void ToggleSFX()
         {
             AudioManager.Instance.ToggleSFX();
-            sfxButton.isOn = !sfxButton.isOn;
-            PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxButton.isOn));
+        }
+
+        private void OnDisable()
+        {
+            PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(musicToggle.isOn));
+            PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(sfxToggle.isOn));
         }
     }
 }
