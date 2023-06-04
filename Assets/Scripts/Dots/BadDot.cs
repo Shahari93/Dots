@@ -1,6 +1,8 @@
 using System;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.GamePlay.Player.Interaction.Shields;
+using Dots.Audio.Manager;
+using System.Threading.Tasks;
 
 namespace Dots.GamePlay.Dot.Bad
 {
@@ -26,6 +28,7 @@ namespace Dots.GamePlay.Dot.Bad
             }
             else
             {
+                AudioManager.Instance.PlaySFX("LoseGame");
                 OnLoseGame?.Invoke();
             }
         }

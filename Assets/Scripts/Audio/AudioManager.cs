@@ -25,11 +25,6 @@ namespace Dots.Audio.Manager
         }
         #endregion
 
-        private void Start()
-        {
-            PlayMusic("ThemeMusic");
-        }
-
         // Call this method when you want to play the BG music
         public void PlayMusic(string name)
         {

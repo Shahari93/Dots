@@ -5,6 +5,7 @@ using Dots.Coins.Model;
 using System.Collections;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using Dots.Audio.Manager;
 
 namespace Dots.Utils.CoinsAnimation
 {
@@ -78,7 +79,7 @@ namespace Dots.Utils.CoinsAnimation
                     pileOfCoins.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay + 0.1f).SetEase(Ease.OutBack);
 
                     pileOfCoins.transform.GetChild(i).DOMove(target.position, 0.8f)
-                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack);
+                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(()=> AudioManager.Instance.PlaySFX("CoinsCollected"));
 
 
                     pileOfCoins.transform.GetChild(i).DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)

@@ -3,10 +3,11 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Dots.Utils.FTUE;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
+using Dots.Audio.Manager;
+using System.Threading.Tasks;
 
 namespace Dots.Utils.GDPR
 {
@@ -21,7 +22,7 @@ namespace Dots.Utils.GDPR
 
         [SerializeField] Image gdprPanel;
 
-        private void Awake()
+        private async void Awake()
         {
             AcceptGDPR.DidAcceptGdpr = Convert.ToBoolean(PlayerPrefs.GetInt("AcceptGDPR"));
             if (!AcceptGDPR.DidAcceptGdpr)
@@ -32,6 +33,8 @@ namespace Dots.Utils.GDPR
             {
                 gdprPanel.gameObject.SetActive(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                await Task.Delay(100);
+                AudioManager.Instance.PlayMusic("ThemeMusic");
             }
 
         }

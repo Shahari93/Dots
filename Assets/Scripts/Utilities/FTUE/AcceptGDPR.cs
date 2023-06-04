@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 namespace Dots.Utils.GDPR
 {
-	public class AcceptGDPR : MonoBehaviour
-	{
-		[SerializeField] Button acceptButton;
+    public class AcceptGDPR : MonoBehaviour
+    {
+        [SerializeField] Button acceptButton;
 
         private static bool didAcceptGdpr;
         public static bool DidAcceptGdpr
@@ -32,8 +32,9 @@ namespace Dots.Utils.GDPR
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            AudioManager.Instance.PlayMusic("ThemeMusic");
             didAcceptGdpr = true;
             PlayerPrefs.SetInt("AcceptGDPR", Convert.ToInt32(didAcceptGdpr));
         }
-    } 
+    }
 }

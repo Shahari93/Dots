@@ -328,6 +328,10 @@ MonoBehaviour:
   sfxAudio:
   - audioName: ButtonClick
     audioClip: {fileID: 8300000, guid: e7f15d990fdc1a841a3dee4c63f1c8be, type: 3}
+  - audioName: LoseGame
+    audioClip: {fileID: 8300000, guid: 633496db37bb990409b4eb1b4cdc154c, type: 3}
+  - audioName: CoinsCollected
+    audioClip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
   musicSource: {fileID: 2118445493}
   sfxSource: {fileID: 2061619196}
 --- !u!4 &1581229351
@@ -623,7 +627,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
