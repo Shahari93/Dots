@@ -117,6 +117,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
+                AudioManager.Instance.PlaySFX("Upgrade");
                 OnUpgradeBought?.Invoke();
                 SaveAndLoadJson.SavingToJson("/SavedData.json", this);
             }

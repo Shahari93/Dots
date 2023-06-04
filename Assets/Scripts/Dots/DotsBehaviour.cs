@@ -3,6 +3,7 @@ using DG.Tweening;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
 using System.Threading.Tasks;
+using Dots.Audio.Manager;
 
 namespace Dots.GamePlay.Dot
 {
@@ -50,6 +51,10 @@ namespace Dots.GamePlay.Dot
         {
             transform.DOScale(0.7f, 0.5f).OnComplete(() =>
             {
+                if (gameObject.activeSelf)
+                {
+                    AudioManager.Instance.PlaySFX("DotCreated");
+                }
                 rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
             });
         }

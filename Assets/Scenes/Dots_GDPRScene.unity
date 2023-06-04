@@ -332,6 +332,12 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 633496db37bb990409b4eb1b4cdc154c, type: 3}
   - audioName: CoinsCollected
     audioClip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  - audioName: CollectedGreen
+    audioClip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  - audioName: Upgrade
+    audioClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  - audioName: DotCreated
+    audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   musicSource: {fileID: 2118445493}
   sfxSource: {fileID: 2061619196}
 --- !u!4 &1581229351
@@ -627,7 +633,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

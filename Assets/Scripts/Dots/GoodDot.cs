@@ -1,3 +1,4 @@
+using Dots.Audio.Manager;
 using System;
 
 namespace Dots.GamePlay.Dot.Good
@@ -17,6 +18,7 @@ namespace Dots.GamePlay.Dot.Good
             ShowDestroyParticles(IsGoodDot);
             transform.localScale -= startScale;
             gameObject.SetActive(false);
+            AudioManager.Instance.PlaySFX("CollectedGreen");
             OnPlayerCollectedDot?.Invoke(1);
         }
     } 
