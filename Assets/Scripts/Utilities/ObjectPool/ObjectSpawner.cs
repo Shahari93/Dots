@@ -5,6 +5,7 @@ using System.Collections;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
+using Dots.Audio.Manager;
 
 namespace Dots.Utils.ObjectPool
 {
@@ -121,6 +122,7 @@ namespace Dots.Utils.ObjectPool
                 if (duration <= 0)
                 {
                     GoodDot.spawnChance = 0.15f;
+                    AudioManager.Instance.PlaySFX("PowerupDisabled");
                     DestroingPowerup.OnPowerupDisabled?.Invoke();
                     break;
                 }

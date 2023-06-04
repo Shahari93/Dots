@@ -1,6 +1,7 @@
 using UnityEngine;
 using Dots.Utils.Destroy;
 using Dots.GamePlay.Dot.Good;
+using Dots.Audio.Manager;
 
 namespace Dots.GamePlay.Powerups.SpawnGreens
 {

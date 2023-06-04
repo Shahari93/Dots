@@ -338,6 +338,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
   - audioName: DotCreated
     audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  - audioName: CollectedPowerup
+    audioClip: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
   musicSource: {fileID: 2118445493}
   sfxSource: {fileID: 2061619196}
 --- !u!4 &1581229351

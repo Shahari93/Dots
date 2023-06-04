@@ -23,6 +23,7 @@ namespace Dots.GamePlay.Dot.Bad
             gameObject.SetActive(false);
             if (ActiveShields.AreShieldsActive)
             {
+                AudioManager.Instance.PlaySFX("PowerupDisabled");
                 ShieldPowerup.OnCollectedShieldPowerup(false);
                 ActiveShields.AreShieldsActive = false;
             }
