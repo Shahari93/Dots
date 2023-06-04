@@ -7,7 +7,7 @@ namespace Dots.GamePlay.Dot.Timer
     {
         int tick;
         float tickTimer;
-        const float TICK_TIMER_MAX = 20f;
+        const float TICK_TIMER_MAX = 15f;
 
         public static event Action<int> OnTickIncreased;
 

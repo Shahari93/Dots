@@ -4,6 +4,7 @@ using UnityEngine;
 using Dots.Ads.Init;
 using UnityEngine.UI;
 using Dots.Coins.Model;
+using Dots.Audio.Manager;
 using Dots.Utils.SaveAndLoad;
 
 namespace Dots.GamePlay.Powerups.Upgrade
@@ -99,6 +100,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             int totalCoins = CoinsModel.CurrentCoinsAmount;
             if (CheckIfUpgradeable())
             {
+                AudioManager.Instance.PlaySFX("ButtonClick");
                 // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
                 CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost); // TODO: Make sure this is the right place to use this method (Probably should be in the CoinsPresenter)

@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.Utils.FTUE;
+using Dots.Audio.Manager;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
 
@@ -26,6 +27,7 @@ namespace Dots.PauseGame.Presenter
 
         void ReturnToMenu()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             SceneManager.LoadScene(1);
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
@@ -33,6 +35,7 @@ namespace Dots.PauseGame.Presenter
 
         void RestartGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
             PointsModel.Instance.CheckForHighScore();

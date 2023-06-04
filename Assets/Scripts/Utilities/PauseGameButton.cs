@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.Coins.Model;
+using Dots.Audio.Manager;
+using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
-using Dots.PauseGame.Model;
 
 namespace Dots.Utils.Pause
 {
@@ -31,6 +32,7 @@ namespace Dots.Utils.Pause
 
         private void PauseGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             if (!isGamePaused)
             {
                 ShowPausePanel(true);
@@ -42,6 +44,7 @@ namespace Dots.Utils.Pause
 
         private void UnPauseGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             if (isGamePaused)
             {
                 ShowPausePanel(false);
@@ -52,11 +55,13 @@ namespace Dots.Utils.Pause
 
         private void ReturnToHome()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             ReturnToFlow(1);
         }
 
         private void RestartGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             ReturnToFlow(0);
         }
 

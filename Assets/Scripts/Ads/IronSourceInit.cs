@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
 
 namespace Dots.Ads.Init
@@ -128,6 +129,7 @@ string appKey = "19f99b595";
         #region Rewarded Ads
         public void ShowRewardedAd(string placement)
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);

@@ -38,14 +38,6 @@ namespace Dots.GamePlay.Dot
             SetSpeedAndDirection();
         }
 
-        void FixedUpdate()
-        {
-            //transform.DOScale(0.7f, 0.5f).OnComplete(() =>
-            //{
-            //    SetSpeedAndDirection();
-            //});
-        }
-
         void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Bounds"))

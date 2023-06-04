@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Dots.Audio.Manager;
+using UnityEngine.SceneManagement;
 
 namespace Dots.Utils.GDPR
 {
@@ -29,6 +30,7 @@ namespace Dots.Utils.GDPR
 
         private void MoveToStartingScene()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             didAcceptGdpr = true;
             PlayerPrefs.SetInt("AcceptGDPR", Convert.ToInt32(didAcceptGdpr));
