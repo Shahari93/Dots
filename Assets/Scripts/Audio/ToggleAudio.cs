@@ -7,35 +7,58 @@ namespace Dots.Audio
 {
     public class ToggleAudio : MonoBehaviour
     {
-        [SerializeField] Toggle musicToggle, sfxToggle;
-        private bool musicToggleState, sfxToggleState;
+        [SerializeField] SpriteState spriteState;
+        [SerializeField] Button musicButton, sfxButton;
 
-        private void Start()
+        public void MusicSpriteChange()
         {
-            if (PlayerPrefs.HasKey("MusicToggle"))
-            {
-                musicToggleState = Convert.ToBoolean(PlayerPrefs.GetInt("MusicToggle"));
-                musicToggle.isOn = musicToggleState;
-            }
-            else
-            {
-                musicToggleState = true;
-                musicToggle.isOn = true;
-            }
+            musicButton.spriteState = spriteState;
         }
 
-        public void ToggleMusic()
+        public void SFXSpriteChange()
         {
-            AudioManager.Instance.ToggleMusic();
-            musicToggleState = musicToggle.isOn;
-            PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(musicToggleState));
-        }
-
-        public void ToggleSFX()
-        {
+            sfxButton.spriteState = spriteState;
             AudioManager.Instance.ToggleSFX();
-            sfxToggleState = sfxToggle.isOn;
-            PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxToggleState));
-        }
+        }   
     }
 }
+
+//[SerializeField] Toggle musicToggle, sfxToggle;
+
+//private void Start()
+//{
+//    if (PlayerPrefs.HasKey("MusicToggle") && PlayerPrefs.HasKey("SFXToggle"))
+//    {
+//        musicToggle.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("MusicToggle"));
+//        sfxToggle.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("SFXToggle"));
+//    }
+//    else
+//    {
+//        musicToggle.isOn = true;
+//        sfxToggle.isOn = true;
+//    }
+//}
+
+//public void ToggleMusic()
+//{
+//    musicToggle.onValueChanged.AddListener(delegate
+//    {
+//        musicToggle.isOn = !musicToggle.isOn;
+//    });
+//    AudioManager.Instance.ToggleMusic();
+//}
+
+//public void ToggleSFX()
+//{
+//    sfxToggle.onValueChanged.AddListener(delegate
+//    {
+//        sfxToggle.isOn = !sfxToggle.isOn;
+//    });
+//    AudioManager.Instance.ToggleSFX();
+//}
+
+//private void OnDestroy()
+//{
+//    PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(musicToggle.isOn));
+//    PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(sfxToggle.isOn));
+//}
