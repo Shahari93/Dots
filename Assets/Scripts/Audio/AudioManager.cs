@@ -26,6 +26,20 @@ namespace Dots.Audio.Manager
         }
         #endregion
 
+        private void OnEnable()
+        {
+            if (PlayerPrefs.HasKey("Music") && PlayerPrefs.HasKey("SFX"))
+            {
+                musicSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("Music"));
+                sfxSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("SFX"));
+            }
+            else
+            {
+                musicSource.mute = false;
+                sfxSource.mute = false;
+            }
+        }
+
         #region Music control
         // Call this method when you want to play the BG music
         public void PlayMusic(string name)

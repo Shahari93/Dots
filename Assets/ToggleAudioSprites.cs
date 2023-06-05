@@ -11,10 +11,10 @@ public class ToggleAudioSprites : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerPrefs.HasKey("Music") && PlayerPrefs.HasKey("SFX"))
+        if (PlayerPrefs.HasKey("MusicToggle") && PlayerPrefs.HasKey("SFXToggle"))
         {
-            isSoundOn = Convert.ToBoolean(PlayerPrefs.GetInt("Music"));
-            isSFXOn = Convert.ToBoolean(PlayerPrefs.GetInt("SFX"));
+            isSoundOn = Convert.ToBoolean(PlayerPrefs.GetInt("MusicToggle"));
+            isSFXOn = Convert.ToBoolean(PlayerPrefs.GetInt("SFXToggle"));
         }
         else
         {
@@ -62,7 +62,7 @@ public class ToggleAudioSprites : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerPrefs.SetInt("Music", Convert.ToInt32(isSoundOn));
-        PlayerPrefs.SetInt("SFX", Convert.ToInt32(isSFXOn));
+        PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
+        PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
     }
 }
