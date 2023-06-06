@@ -16,6 +16,12 @@ namespace Dots.Utils.Destroy
         public static Action<float> OnCollectedPower;
         public static Action OnPowerupDisabled;
 
+        private bool isHapticOn;
+
+        private void Awake()
+        {
+            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
+        }
 
         void OnTriggerEnter2D(Collider2D collision)
         {
@@ -37,7 +43,11 @@ namespace Dots.Utils.Destroy
         /// </summary>
         public virtual void BehaveWhenInteractWithPlayer()
         {
-            HapticFeedback.MediumFeedback();
+            if (isHapticOn)
+            {
+                HapticFeedback.MediumFeedback();
+            }
+
             AudioManager.Instance.PlaySFX("CollectedPowerup");
             DisablePowerupVisuals();
             powerupEffect.Apply(this.gameObject);
@@ -64,5 +74,5 @@ namespace Dots.Utils.Destroy
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
         }
-    } 
+    }
 }
