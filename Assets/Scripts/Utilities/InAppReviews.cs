@@ -14,7 +14,7 @@ namespace Dots.Utils.Reviews
         private void Start()
         {
             loseCount = PlayerPrefs.GetInt("LoseCount");
-            if (loseCount == 3 || loseCount == 5)
+            if (loseCount == 5 || loseCount == 8)
             {
                 StartCoroutine(RequestReview());
             }
