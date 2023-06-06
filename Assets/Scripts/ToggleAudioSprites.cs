@@ -29,6 +29,7 @@ public class ToggleAudioSprites : MonoBehaviour
 
     public void ChangeMusicButtonSprite()
     {
+        AudioManager.Instance.PlaySFX("ButtonClick");
         if (isSoundOn)
         {
             musicTargetButton.sprite = buttonSprites[1];
@@ -46,6 +47,7 @@ public class ToggleAudioSprites : MonoBehaviour
 
     public void ChangeSFXButtonSprite()
     {
+        AudioManager.Instance.PlaySFX("ButtonClick");
         if (isSFXOn)
         {
             sfxTargetButton.sprite = buttonSprites[1];

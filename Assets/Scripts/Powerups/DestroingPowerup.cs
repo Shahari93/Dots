@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using Dots.Audio.Manager;
 using Dots.Utils.Interaction;
 using Dots.GamePlay.Powerups;
+using CandyCoded.HapticFeedback;
 using Dots.Utils.Powerups.Objectpool;
-using Dots.Audio.Manager;
 
 namespace Dots.Utils.Destroy
 {
@@ -36,6 +37,7 @@ namespace Dots.Utils.Destroy
         /// </summary>
         public virtual void BehaveWhenInteractWithPlayer()
         {
+            HapticFeedback.MediumFeedback();
             AudioManager.Instance.PlaySFX("CollectedPowerup");
             DisablePowerupVisuals();
             powerupEffect.Apply(this.gameObject);

@@ -1,5 +1,6 @@
-using Dots.Audio.Manager;
 using System;
+using Dots.Audio.Manager;
+using CandyCoded.HapticFeedback;
 
 namespace Dots.GamePlay.Dot.Good
 {
@@ -15,6 +16,7 @@ namespace Dots.GamePlay.Dot.Good
 
         public override void BehaveWhenInteractWithPlayer()
         {
+            HapticFeedback.MediumFeedback();
             ShowDestroyParticles(IsGoodDot);
             transform.localScale -= startScale;
             gameObject.SetActive(false);
