@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Dots.Audio.Manager;
 
+// TODO: Change class name to "SettingMenuManager" and make it more dynamic
 public class ToggleAudioSprites : MonoBehaviour
 {
     [SerializeField] Sprite[] buttonSprites;

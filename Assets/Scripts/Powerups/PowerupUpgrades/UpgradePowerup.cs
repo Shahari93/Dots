@@ -77,6 +77,13 @@ namespace Dots.GamePlay.Powerups.Upgrade
         // TODO: Make this more generic - The only difference is if the button is inactive we divide the alpha by 2
         private bool CheckIfUpgradeable()
         {
+            if (affectedPowerup.powerupDuration >= affectedPowerup.powerupDurationLimit)
+            {
+                affectedPowerup.powerupDuration = affectedPowerup.powerupDurationLimit;
+                
+                return upgradeButton.interactable = false;
+            }
+
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
                 float alpha = 255f / 2;

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Spawn Greens
   m_EditorClassIdentifier: 
   powerupDuration: 5
+  powerupDurationLimit: 10

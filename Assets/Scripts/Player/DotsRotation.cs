@@ -1,4 +1,5 @@
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 namespace Dots.GamePlay.Player
 {
@@ -24,6 +25,7 @@ namespace Dots.GamePlay.Player
             {
                 return;
             }
+            HapticFeedback.MediumFeedback();
             rotationDegree *= -1f;
         }
 

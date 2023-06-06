@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SlowSpeedPowerup
   m_EditorClassIdentifier: 
   powerupDuration: 5
+  powerupDurationLimit: 10
