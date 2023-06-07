@@ -518,59 +518,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7889599824184596578, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
   m_PrefabInstance: {fileID: 8465019308244502190}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1766237171
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1766237172}
-  - component: {fileID: 1766237174}
-  m_Layer: 0
-  m_Name: ToggleAudio
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1766237172
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766237171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1766237174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766237171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3766db54ce396ef46bf86f4e40f077f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonSprites:
-  - {fileID: 21300000, guid: 35eee2a38629da146bd4471ffe708248, type: 3}
-  - {fileID: 21300000, guid: 67439dfd33f084742971bd48cf67bf9c, type: 3}
-  musicTargetButton: {fileID: 8465019308244502196}
-  sfxTargetButton: {fileID: 8465019308244502195}
-  hapticTargetButton: {fileID: 8465019308244502192}
-  isSoundOn: 1
-  isSFXOn: 1
-  isHapticOn: 1
 --- !u!1 &1773468592
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +564,7 @@ GameObject:
   - component: {fileID: 2102036746}
   - component: {fileID: 2102036747}
   - component: {fileID: 2102036748}
+  - component: {fileID: 2102036749}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -746,6 +694,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 8465019308244502191}
+--- !u!114 &2102036749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102036739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3766db54ce396ef46bf86f4e40f077f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonSprites:
+  - {fileID: 21300000, guid: 35eee2a38629da146bd4471ffe708248, type: 3}
+  - {fileID: 21300000, guid: 67439dfd33f084742971bd48cf67bf9c, type: 3}
+  musicTargetButton: {fileID: 8465019308244502196}
+  sfxTargetButton: {fileID: 8465019308244502195}
+  hapticTargetButton: {fileID: 8465019308244502192}
+  isSoundOn: 1
+  isSFXOn: 1
+  isHapticOn: 1
 --- !u!1001 &560000658979301579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -893,7 +862,7 @@ PrefabInstance:
     - target: {fileID: 853732439402073796, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1766237174}
+      objectReference: {fileID: 2102036749}
     - target: {fileID: 853732439402073796, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1025,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 4961549097040133378, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1766237174}
+      objectReference: {fileID: 2102036749}
     - target: {fileID: 4961549097040133378, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1085,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: 5104193837089333632, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1766237174}
+      objectReference: {fileID: 2102036749}
     - target: {fileID: 5104193837089333632, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

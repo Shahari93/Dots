@@ -51,7 +51,11 @@ string appKey = "19f99b595";
 
             if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
             {
-                coinsRV.gameObject.SetActive(false);
+                coinsRV.interactable = false;
+            }
+            else
+            {
+                coinsRV.interactable = true;
             }
         }
 
@@ -138,7 +142,7 @@ string appKey = "19f99b595";
             {
                 return;
             }
-            
+
         }
         #endregion
 

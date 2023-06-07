@@ -86,11 +86,17 @@ namespace Dots.Audio.Manager
             PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
         }
         #endregion
-
+        private void OnApplicationPause(bool pause)
+        {
+            PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
+            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
+            PlayerPrefs.Save();
+        }
         private void OnDestroy()
         {
-            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
             PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
+            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
+            PlayerPrefs.Save();
         }
     }
 }

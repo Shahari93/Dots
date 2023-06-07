@@ -38,6 +38,7 @@ public class ToggleAudioSprites : MonoBehaviour
             musicTargetButton.sprite = buttonSprites[1];
             AudioManager.Instance.ToggleMusic();
             isSoundOn = false;
+            PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
             return;
         }
         else
@@ -45,6 +46,7 @@ public class ToggleAudioSprites : MonoBehaviour
             musicTargetButton.sprite = buttonSprites[0];
             AudioManager.Instance.ToggleMusic();
             isSoundOn = true;
+            PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
         }
     }
 
@@ -56,6 +58,7 @@ public class ToggleAudioSprites : MonoBehaviour
             sfxTargetButton.sprite = buttonSprites[1];
             AudioManager.Instance.ToggleSFX();
             isSFXOn = false;
+            PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
             return;
         }
         else
@@ -63,6 +66,7 @@ public class ToggleAudioSprites : MonoBehaviour
             sfxTargetButton.sprite = buttonSprites[0];
             AudioManager.Instance.ToggleSFX();
             isSFXOn = true;
+            PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
         }
     }
 
@@ -73,19 +77,29 @@ public class ToggleAudioSprites : MonoBehaviour
         {
             hapticTargetButton.sprite = buttonSprites[1];
             isHapticOn = false;
+            PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
             return;
         }
         else
         {
             hapticTargetButton.sprite = buttonSprites[0];
             isHapticOn = true;
+            PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
         }
     }
 
+    private void OnApplicationPause(bool pause)
+    {
+        PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
+        PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
+        PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
+        PlayerPrefs.Save();
+    }
     private void OnDestroy()
     {
-        PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
-        PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
         PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
+        PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
+        PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
+        PlayerPrefs.Save();
     }
 }
