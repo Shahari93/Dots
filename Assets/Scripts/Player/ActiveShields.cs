@@ -36,7 +36,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                 areShieldsActive = false;
                 foreach (GameObject shield in shields)
                 {
-                    shield.SetActive(false);
+                    shield.SetActive(areShieldsActive);
                 }
             }
             else
@@ -44,8 +44,8 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                 areShieldsActive = true;
                 foreach (GameObject shield in shields)
                 {
-                    shield.SetActive(true);
-                    EnableShieldsVisual(true);
+                    shield.SetActive(areShieldsActive);
+                    EnableShieldsVisual(areShieldsActive);
                 }
                 IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
             }
