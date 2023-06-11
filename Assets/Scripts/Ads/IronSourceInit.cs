@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
-using Dots.Coins.Model;
 
 namespace Dots.Ads.Init
 {
@@ -149,7 +149,6 @@ string appKey = "19f99b595";
             {
                 return;
             }
-
         }
         #endregion
 
@@ -204,8 +203,8 @@ string appKey = "19f99b595";
 
                 if (getPlacementName == DOUBLE_COINS_PLACEMENT || getRewardName == "DoubleCoins")
                 {
-                    OnCoinsRvWatched?.Invoke(CoinsModel.CurrentCoinsAmount * 2);
-                    //OnCheckIfUpgradeable?.Invoke();
+                    OnCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd * 2);
+                    doubleCoinsRV.gameObject.SetActive(false);
                 }
             }
             OnApplicationFocus(true);
