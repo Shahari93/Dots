@@ -1207,6 +1207,10 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8885906295942143847, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8946446685335079549, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_Name
       value: Extra_Coins

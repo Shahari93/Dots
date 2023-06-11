@@ -29,9 +29,9 @@ namespace Dots.Coins.Presenter
             UpdateView();
         }
 
-        void IncrementCoinsValueFromRV()
+        void IncrementCoinsValueFromRV(int coinsToAdd)
         {
-            CoinsModel.Instance.UpdateCoinsDataOnRv(5);
+            CoinsModel.Instance.UpdateCoinsDataOnRv(coinsToAdd);
             UpdateView();
         }
 

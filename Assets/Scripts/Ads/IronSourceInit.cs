@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
+using Dots.Coins.Model;
 
 namespace Dots.Ads.Init
 {
@@ -17,15 +18,18 @@ string appKey = "19f99b595";
         bool isPaused = false;
 
         const string COINS_PLACEMENT = "Extra_Coins";
+        const string DOUBLE_COINS_PLACEMENT = "Double_Coins";
         const string SHIELD_PLACEMENT = "Start_Shield";
 
-        public static event Action OnCoinsRvWatched;
+        public static event Action<int> OnCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
 
         public static event Func<bool> OnShieldRvWatched;
         public static bool IsShieldFromRV;
         [SerializeField] Button coinsRV;
         [SerializeField] Button shieldRV;
+        [SerializeField] Button reviveRV;
+        [SerializeField] Button doubleCoinsRV;
 
         private void OnEnable()
         {
@@ -48,7 +52,16 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
-            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+
+            if (coinsRV != null)
+            {
+                coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+            }
+
+            if (doubleCoinsRV != null && CoinsModel.CoinsToAdd != 0)
+            {
+                doubleCoinsRV.gameObject.SetActive(true);
+            }
         }
 
         private void Start()
@@ -185,8 +198,14 @@ string appKey = "19f99b595";
                 // TODO: FInd a way to check the placement according to the pressed RV button
                 if (getPlacementName == COINS_PLACEMENT || getRewardName == "Coins")
                 {
-                    OnCoinsRvWatched?.Invoke();
+                    OnCoinsRvWatched?.Invoke(5);
                     OnCheckIfUpgradeable?.Invoke();
+                }
+
+                if (getPlacementName == DOUBLE_COINS_PLACEMENT || getRewardName == "DoubleCoins")
+                {
+                    OnCoinsRvWatched?.Invoke(CoinsModel.CurrentCoinsAmount * 2);
+                    //OnCheckIfUpgradeable?.Invoke();
                 }
             }
             OnApplicationFocus(true);
