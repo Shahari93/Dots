@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
+using Dots.GamePlay.Dot.Bad;
+using Dots.PauseGame.Presenter;
 
 namespace Dots.Ads.Init
 {
@@ -62,6 +64,9 @@ string appKey = "19f99b595";
             {
                 doubleCoinsRV.gameObject.SetActive(true);
             }
+
+            LoseGameUIPresenter.OnRestartClicked += ShowInterstitialAd;
+            LoseGameUIPresenter.OnReturnHomeClicked += ShowInterstitialAd;
         }
 
         private void Start()
@@ -93,6 +98,7 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isInterstitialReady())
             {
                 IronSource.Agent.showInterstitial();
+                IronSource.Agent.loadInterstitial();
             }
             else
             {
@@ -254,6 +260,9 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
+
+            LoseGameUIPresenter.OnRestartClicked -= ShowInterstitialAd;
+            LoseGameUIPresenter.OnReturnHomeClicked -= ShowInterstitialAd;
         }
     }
 }

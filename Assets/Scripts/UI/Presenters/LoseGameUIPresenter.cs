@@ -5,6 +5,7 @@ using Dots.Utils.FTUE;
 using Dots.Audio.Manager;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Dots.PauseGame.Presenter
 {
@@ -13,6 +14,9 @@ namespace Dots.PauseGame.Presenter
         [SerializeField] TMP_Text loseGameScoreText;
         [SerializeField] Button loseGameRestartButton;
         [SerializeField] Button returnToMenuButton;
+
+        public static event Action OnRestartClicked;
+        public static event Action OnReturnHomeClicked;
 
         void OnEnable()
         {
@@ -31,6 +35,7 @@ namespace Dots.PauseGame.Presenter
             SceneManager.LoadScene(1);
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
+            OnReturnHomeClicked?.Invoke();
         }
 
         void RestartGame()
@@ -39,8 +44,8 @@ namespace Dots.PauseGame.Presenter
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
             PointsModel.Instance.CheckForHighScore();
+            OnRestartClicked?.Invoke();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-
         }
 
         void EnableLoseGamePanel()
