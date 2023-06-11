@@ -48,15 +48,7 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
-
-            if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
-            {
-                coinsRV.interactable = false;
-            }
-            else
-            {
-                coinsRV.interactable = true;
-            }
+            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
 
         private void Start()
@@ -69,6 +61,7 @@ string appKey = "19f99b595";
         private void SdkInitializationCompletedEvent()
         {
             IronSource.Agent.loadInterstitial();
+            IronSource.Agent.loadRewardedVideo();
         }
 
         #region Init Ads
@@ -137,6 +130,7 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
+                coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
             }
             else
             {
@@ -163,14 +157,12 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
+            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
-            {
-                coinsRV.gameObject.SetActive(false);
-            }
+            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
