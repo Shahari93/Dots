@@ -33,7 +33,7 @@ string appKey = "19f99b595";
         [SerializeField] Button reviveRV;
         [SerializeField] Button doubleCoinsRV;
 
-        private void OnEnable()
+        void OnEnable()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
 
@@ -69,21 +69,21 @@ string appKey = "19f99b595";
             LoseGameUIPresenter.OnReturnHomeClicked += ShowInterstitialAd;
         }
 
-        private void Start()
+        void Start()
         {
             InitAdUnits();
             IronSource.Agent.validateIntegration();
             IronSource.Agent.shouldTrackNetworkState(true);
         }
 
-        private void SdkInitializationCompletedEvent()
+        void SdkInitializationCompletedEvent()
         {
             IronSource.Agent.loadInterstitial();
             IronSource.Agent.loadRewardedVideo();
         }
 
         #region Init Ads
-        private void InitAdUnits()
+        void InitAdUnits()
         {
             //For Rewarded Video
             IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
@@ -93,7 +93,7 @@ string appKey = "19f99b595";
         #endregion
 
         #region Interstitial Ads
-        private void ShowInterstitialAd()
+        void ShowInterstitialAd()
         {
             if (IronSource.Agent.isInterstitialReady())
             {

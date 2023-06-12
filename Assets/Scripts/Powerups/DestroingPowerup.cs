@@ -16,9 +16,9 @@ namespace Dots.Utils.Destroy
         public static Action<float> OnCollectedPower;
         public static Action OnPowerupDisabled;
 
-        private bool isHapticOn;
+        bool isHapticOn;
 
-        private void Awake()
+        void Awake()
         {
             isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
         }

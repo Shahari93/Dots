@@ -10,7 +10,7 @@ namespace Dots.PauseGame.Model
     {
         public static Action OnGamePaused;
 
-        private void OnApplicationPause(bool pause)
+        void OnApplicationPause(bool pause)
         {
             OnGamePaused?.Invoke();
         }

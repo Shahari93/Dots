@@ -20,12 +20,12 @@ namespace Dots.Coins.Model
         public static int CurrentCoinsAmount { get => currentCoinsAmount; set => currentCoinsAmount = value; }
         public static int CoinsToAdd { get => coinsToAdd; set => coinsToAdd = value; }
 
-        private void OnEnable()
+        void OnEnable()
         {
             SaveAndLoadJson.LoadFromJson("/SavedData.json");
         }
 
-        private void Awake()
+        void Awake()
         {
             if (Instance != null)
             {

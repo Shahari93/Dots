@@ -10,12 +10,12 @@ namespace Dots.Utils.SafeArea
 		Vector2 minAnchor;
 		Vector2 maxAnchor;
 
-        private void Awake()
+        void Awake()
         {
             SetSafeArea();
         }
 
-        private void SetSafeArea()
+        void SetSafeArea()
         {
             rectTransform = GetComponent<RectTransform>();
             safeArea = Screen.safeArea;

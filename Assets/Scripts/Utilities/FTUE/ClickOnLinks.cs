@@ -14,15 +14,15 @@ namespace Dots.Utils.GDPR
     public class ClickOnLinks : MonoBehaviour, IPointerClickHandler
     {
         // URLs to open when links clicked
-        private const string PRIVACY_POLICY = "https://sites.google.com/view/dots-privacy-policy/home";
-        private const string TERMS_AND_CONDITIONS = "https://sites.google.com/view/dots-terms-conditions/home";
+        const string PRIVACY_POLICY = "https://sites.google.com/view/dots-privacy-policy/home";
+        const string TERMS_AND_CONDITIONS = "https://sites.google.com/view/dots-terms-conditions/home";
 
         [SerializeField, Tooltip("The UI GameObject having the TextMesh Pro component.")]
-        private TMP_Text text = default;
+        TMP_Text text = default;
 
         [SerializeField] Image gdprPanel;
 
-        private async void Awake()
+        async void Awake()
         {
             AcceptGDPR.DidAcceptGdpr = Convert.ToBoolean(PlayerPrefs.GetInt("AcceptGDPR"));
             if (!AcceptGDPR.DidAcceptGdpr)

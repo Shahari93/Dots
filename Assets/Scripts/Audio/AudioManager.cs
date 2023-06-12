@@ -11,7 +11,7 @@ namespace Dots.Audio.Manager
 
         #region Singleton
 
-        private void Awake()
+        void Awake()
         {
             if (Instance != null)
             {
@@ -26,7 +26,7 @@ namespace Dots.Audio.Manager
         }
         #endregion
 
-        private void OnEnable()
+        void OnEnable()
         {
             if (PlayerPrefs.HasKey("Music") && PlayerPrefs.HasKey("SFX"))
             {
@@ -86,13 +86,13 @@ namespace Dots.Audio.Manager
             PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
         }
         #endregion
-        private void OnApplicationPause(bool pause)
+        void OnApplicationPause(bool pause)
         {
             PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
             PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
             PlayerPrefs.Save();
         }
-        private void OnDestroy()
+        void OnDestroy()
         {
             PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
             PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));

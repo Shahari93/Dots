@@ -6,12 +6,12 @@ namespace Dots.Utils.Reviews
 {
     public class InAppReviews : MonoBehaviour
     {
-        private ReviewManager _reviewManager;
-        private PlayReviewInfo _playReviewInfo;
+        ReviewManager _reviewManager;
+        PlayReviewInfo _playReviewInfo;
 
         int loseCount;
 
-        private void Start()
+        void Start()
         {
             loseCount = PlayerPrefs.GetInt("LoseCount");
             if (loseCount == 5 || loseCount == 8)
@@ -20,7 +20,7 @@ namespace Dots.Utils.Reviews
             }
         }
 
-        private IEnumerator RequestReview()
+        IEnumerator RequestReview()
         {
             _reviewManager = new ReviewManager();
 

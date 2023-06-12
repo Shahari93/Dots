@@ -8,7 +8,7 @@ namespace Dots.Utils.FPS
     /// </summary>
     public class FPSDisplay : MonoBehaviour
     {
-        private int lastFrameIndex;
+        int lastFrameIndex;
         float[] frameDeltaTimeArray;
 
         [SerializeField] TMP_Text fpsText;
@@ -26,7 +26,7 @@ namespace Dots.Utils.FPS
             fpsText.text = Mathf.RoundToInt(CalculateFPS()).ToString();
         }
 
-        private float CalculateFPS()
+        float CalculateFPS()
         {
             float total = 0f;
             foreach (float deltaTime in frameDeltaTimeArray)

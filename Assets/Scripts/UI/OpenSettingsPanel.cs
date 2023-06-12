@@ -6,12 +6,12 @@ namespace Dots.Settings.UI
 {
     public class OpenSettingsPanel : MonoBehaviour
     {
-        private Button settingsButton;
+        Button settingsButton;
         [SerializeField] Button closeButton;
         [SerializeField] Image panel;
         [SerializeField] Image darkPanel;
 
-        private void Awake()
+        void Awake()
         {
             settingsButton = GetComponent<Button>();
             settingsButton.onClick.AddListener(OpenSettings);
@@ -21,14 +21,14 @@ namespace Dots.Settings.UI
             darkPanel.gameObject.SetActive(false);
         }
 
-        private void OpenSettings()
+        void OpenSettings()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             darkPanel.gameObject.SetActive(true);
             panel.gameObject.SetActive(true);
         }
 
-        private void CloseSettings()
+        void CloseSettings()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             darkPanel.gameObject.SetActive(false);

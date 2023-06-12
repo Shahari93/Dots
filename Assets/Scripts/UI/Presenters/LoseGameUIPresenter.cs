@@ -24,7 +24,7 @@ namespace Dots.PauseGame.Presenter
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
         }
 
-        private void Awake()
+        void Awake()
         {
             EnableLoseGamePanel();
         }
@@ -32,19 +32,19 @@ namespace Dots.PauseGame.Presenter
         void ReturnToMenu()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
+            OnReturnHomeClicked?.Invoke();
             SceneManager.LoadScene(1);
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
-            OnReturnHomeClicked?.Invoke();
         }
 
         void RestartGame()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
+            OnRestartClicked?.Invoke();
             Time.timeScale = 1f;
             CheckForFTUE.LaunchCount++;
             PointsModel.Instance.CheckForHighScore();
-            OnRestartClicked?.Invoke();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
 

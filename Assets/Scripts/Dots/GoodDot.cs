@@ -10,7 +10,7 @@ namespace Dots.GamePlay.Dot.Good
         public static float spawnChance = 0.15f;
         public static event Action<int> OnPlayerCollectedDot;
 
-        private bool isHapticOn;
+        bool isHapticOn;
 
         void Awake()
         {

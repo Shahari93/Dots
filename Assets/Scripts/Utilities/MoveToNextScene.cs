@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MoveToNextScene : MonoBehaviour
 {
-    private static int loseCount;
+    static int loseCount;
     public static int LoseCount
     {
         get
@@ -22,7 +22,7 @@ public class MoveToNextScene : MonoBehaviour
         BadDot.OnLoseGame += MoveToLoseGameScene;
     }
 
-    private void MoveToLoseGameScene()
+    void MoveToLoseGameScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 

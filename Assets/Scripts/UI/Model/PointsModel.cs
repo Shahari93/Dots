@@ -57,7 +57,7 @@ namespace Dots.ScorePoints.Model
             }
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             CheckForHighScore();
         }

@@ -5,7 +5,7 @@ namespace Dots.Utils.FPS
 	public class SetFPS : MonoBehaviour
 	{
 #if UNITY_ANDROID || UNITY_IPONE
-        private void Awake()
+        void Awake()
         {
             Application.targetFrameRate = 60;
         } 

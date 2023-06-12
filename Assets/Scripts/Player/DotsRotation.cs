@@ -9,9 +9,9 @@ namespace Dots.GamePlay.Player
         [SerializeField] float rotationDegree;
         [SerializeField] float rotationSpeed;
 
-        private bool isHapticOn;
+        bool isHapticOn;
 
-        private void OnEnable()
+        void OnEnable()
         {
             isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
         }
@@ -22,7 +22,7 @@ namespace Dots.GamePlay.Player
             CheckForTouchInput();
         }
 
-        private void CheckForTouchInput()
+        void CheckForTouchInput()
         {
             if (Input.touchCount != 1)
             {

@@ -4,7 +4,7 @@ namespace Dots.Utils.FTUE
 {
     public class CheckForFTUE : MonoBehaviour
     {
-        private static int launchCount;
+        static int launchCount;
         public static int LaunchCount
         {
             get

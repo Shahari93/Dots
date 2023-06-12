@@ -18,7 +18,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
     {
         public static event Action OnUpgradeBought;
 
-        private static float powerupDurationValue;
+        static float powerupDurationValue;
         public static float PowerupDurationValue
         {
             get
@@ -31,7 +31,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
         }
 
-        private static int coinsCost = 10; // TODO: Make this into a model 
+        static int coinsCost = 10; // TODO: Make this into a model 
         public static int CoinsCost
         {
             get
@@ -50,12 +50,12 @@ namespace Dots.GamePlay.Powerups.Upgrade
         [SerializeField] TMP_Text powerupDurationText;
         [SerializeField] TMP_Text upgradeCoinsCostText;
 
-        private void OnEnable()
+        void OnEnable()
         {
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
         }
 
-        private void Awake()
+        void Awake()
         {
             powerupDurationValue = affectedPowerup.powerupDuration;
             upgradeButton.onClick.AddListener(Upgrade);
@@ -69,13 +69,13 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
         }
 
-        private void Start()
+        void Start()
         {
             upgradeButton.interactable = CheckIfUpgradeable();
         }
 
         // TODO: Make this more generic - The only difference is if the button is inactive we divide the alpha by 2
-        private bool CheckIfUpgradeable()
+        bool CheckIfUpgradeable()
         {
             if (affectedPowerup.powerupDuration >= affectedPowerup.powerupDurationLimit)
             {
@@ -102,7 +102,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
         }
 
-        private void Upgrade()
+        void Upgrade()
         {
             int totalCoins = CoinsModel.CurrentCoinsAmount;
             if (CheckIfUpgradeable())
@@ -130,7 +130,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
         }

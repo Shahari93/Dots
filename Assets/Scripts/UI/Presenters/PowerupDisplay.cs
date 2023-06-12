@@ -7,16 +7,16 @@ namespace Dots.GamePlay.UI.PowerupsDisplay
 {
     public class PowerupDisplay : MonoBehaviour
     {
-        private bool shouldEnableImage;
+        bool shouldEnableImage;
         [SerializeField] Image powerupDurationImage;
 
-        private void OnEnable()
+        void OnEnable()
         {
             powerupDurationImage.enabled = false;
             PowerupEffectSO.InvokePowerupUI += EnablePowerupDurationDisplay;
         }
 
-        private IEnumerator EnablePowerupDurationCoroutine(float duration)
+        IEnumerator EnablePowerupDurationCoroutine(float duration)
         {
             if (shouldEnableImage)
             {
@@ -39,13 +39,13 @@ namespace Dots.GamePlay.UI.PowerupsDisplay
             }
         }
 
-        private void EnablePowerupDurationDisplay(float duration)
+        void EnablePowerupDurationDisplay(float duration)
         {
             shouldEnableImage = true;
             StartCoroutine(EnablePowerupDurationCoroutine(duration));
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             PowerupEffectSO.InvokePowerupUI -= EnablePowerupDurationDisplay;
         }

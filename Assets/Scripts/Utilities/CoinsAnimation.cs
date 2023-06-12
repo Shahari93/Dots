@@ -11,16 +11,16 @@ namespace Dots.Utils.CoinsAnimation
 {
     public class CoinsAnimation : MonoBehaviour
     {
-        private int coinsAmount;
+        int coinsAmount;
 
-        [SerializeField] private GameObject coin;
-        [SerializeField] private GameObject pileOfCoins;
-        [SerializeField] private Transform target;
-        [SerializeField] private TMP_Text coinsAmountText;
-        [SerializeField] private Button restartGameButton;
+        [SerializeField] GameObject coin;
+        [SerializeField] GameObject pileOfCoins;
+        [SerializeField] Transform target;
+        [SerializeField] TMP_Text coinsAmountText;
+        [SerializeField] Button restartGameButton;
 
-        [SerializeField] private Vector2[] initialPos;
-        [SerializeField] private Quaternion[] initialRotation;
+        [SerializeField] Vector2[] initialPos;
+        [SerializeField] Quaternion[] initialRotation;
 
         void Start()
         {
@@ -50,7 +50,7 @@ namespace Dots.Utils.CoinsAnimation
             CountCoins();
         }
 
-        private void ResetInitValues()
+        void ResetInitValues()
         {
             for (int i = 0; i < pileOfCoins.transform.childCount; i++)
             {
@@ -59,7 +59,7 @@ namespace Dots.Utils.CoinsAnimation
             }
         }
 
-        private void CountCoins()
+        void CountCoins()
         {
             restartGameButton.interactable = true;
 

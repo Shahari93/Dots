@@ -28,7 +28,7 @@ namespace Dots.GamePlay.Dot
         {
             SetSpawnValues();
         }
-        private async void SetSpawnValues()
+        async void SetSpawnValues()
         {
             dotSpeed = Random.Range(85f, 90f);
             randX = Random.Range(-180, 181);

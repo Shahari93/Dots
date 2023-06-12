@@ -10,7 +10,7 @@ namespace Dots.Utils.GDPR
     {
         [SerializeField] Button acceptButton;
 
-        private static bool didAcceptGdpr;
+        static bool didAcceptGdpr;
         public static bool DidAcceptGdpr
         {
             get
@@ -23,12 +23,12 @@ namespace Dots.Utils.GDPR
             }
         }
 
-        private void Awake()
+        void Awake()
         {
             acceptButton.onClick.AddListener(MoveToStartingScene);
         }
 
-        private void MoveToStartingScene()
+        void MoveToStartingScene()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

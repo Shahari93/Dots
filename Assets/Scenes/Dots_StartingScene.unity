@@ -694,6 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 8465019308244502191}
+  coinsAddedText: {fileID: 8465019308244502193}
 --- !u!114 &2102036749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +911,10 @@ PrefabInstance:
     - target: {fileID: 1597753998157101038, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705480305296706232, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Name
+      value: Settings_Panel
       objectReference: {fileID: 0}
     - target: {fileID: 2705480305296706232, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_IsActive
@@ -1245,6 +1250,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8465019308244502193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5359119279788998905, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_PrefabInstance: {fileID: 8465019308244502190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8465019308244502194 stripped

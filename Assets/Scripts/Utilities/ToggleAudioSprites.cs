@@ -10,7 +10,7 @@ public class ToggleAudioSprites : MonoBehaviour
     [SerializeField] Image musicTargetButton, sfxTargetButton, hapticTargetButton;
     [SerializeField] bool isSoundOn = true, isSFXOn = true, isHapticOn = true;
 
-    private void OnEnable()
+    void OnEnable()
     {
         if (PlayerPrefs.HasKey("MusicToggle") && PlayerPrefs.HasKey("SFXToggle") && PlayerPrefs.HasKey("HapticToggle"))
         {
@@ -88,14 +88,14 @@ public class ToggleAudioSprites : MonoBehaviour
         }
     }
 
-    private void OnApplicationPause(bool pause)
+    void OnApplicationPause(bool pause)
     {
         PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
         PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
         PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
         PlayerPrefs.Save();
     }
-    private void OnDestroy()
+    void OnDestroy()
     {
         PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
         PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));

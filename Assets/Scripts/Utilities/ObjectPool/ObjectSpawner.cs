@@ -42,7 +42,7 @@ namespace Dots.Utils.ObjectPool
         }
 
         // Testing changing the spawn percentage
-        private void Update()
+        void Update()
         {
             if (spawnChances[1] != GoodDot.spawnChance)
             {
