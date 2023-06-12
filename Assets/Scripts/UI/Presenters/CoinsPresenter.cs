@@ -1,11 +1,10 @@
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Powerups.Upgrade;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
-using DG.Tweening;
 
 namespace Dots.Coins.Presenter
 {
