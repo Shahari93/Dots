@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 1257108457}
-  coinsAddedText: {fileID: 641918383}
+  coinsAnimationText: {fileID: 641918383}
 --- !u!1001 &1257108452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,49 +500,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 140
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624970125860518268, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3642696610385636379, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_fontSize
-      value: 42
-      objectReference: {fileID: 0}
     - target: {fileID: 3642696610385636379, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_fontSizeBase
       value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 3642696610385636379, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 3642696610385636379, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5407961184293156609, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_Pivot.x

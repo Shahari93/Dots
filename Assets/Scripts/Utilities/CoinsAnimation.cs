@@ -1,10 +1,9 @@
 using TMPro;
-using UnityEngine;
+using System;
 using DG.Tweening;
-using Dots.Coins.Model;
-using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
+using Dots.Coins.Model;
 using Dots.Audio.Manager;
 
 namespace Dots.Utils.CoinsAnimation
@@ -22,6 +21,8 @@ namespace Dots.Utils.CoinsAnimation
         [SerializeField] Vector2[] initialPos;
         [SerializeField] Quaternion[] initialRotation;
 
+        public static event Action OnCoinsAnimationCompleted;
+
         void Start()
         {
             restartGameButton.interactable = false;
@@ -35,7 +36,7 @@ namespace Dots.Utils.CoinsAnimation
             for (int i = 0; i < coinsAmount; i++)
             {
                 GameObject coinsChildren = Instantiate(coin, pileOfCoins.transform);
-                coinsChildren.transform.localPosition = new Vector2(Random.Range(-53.1f, 63f), Random.Range(-65.4f, 40.2f));
+                coinsChildren.transform.localPosition = new Vector2(UnityEngine.Random.Range(-53.1f, 63f), UnityEngine.Random.Range(-65.4f, 40.2f));
             }
 
             initialPos = new Vector2[coinsAmount];
@@ -90,7 +91,11 @@ namespace Dots.Utils.CoinsAnimation
 
                     delay += 0.1f;
 
-                    coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
+                    coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f).OnComplete(() =>
+                    {
+                        OnCoinsAnimationCompleted?.Invoke();
+                    });
+                    
                 }
             }
         }

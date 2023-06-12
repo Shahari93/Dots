@@ -107,6 +107,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             int totalCoins = CoinsModel.CurrentCoinsAmount;
             if (CheckIfUpgradeable())
             {
+                OnUpgradeBought?.Invoke();
                 AudioManager.Instance.PlaySFX("ButtonClick");
                 // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
@@ -125,7 +126,6 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
                 AudioManager.Instance.PlaySFX("Upgrade");
-                OnUpgradeBought?.Invoke();
                 SaveAndLoadJson.SavingToJson("/SavedData.json", this);
             }
         }

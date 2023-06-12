@@ -4,6 +4,7 @@ using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
+using Dots.Utils.CoinsAnimation;
 using Dots.GamePlay.Powerups.Upgrade;
 
 namespace Dots.Coins.Presenter
@@ -11,12 +12,14 @@ namespace Dots.Coins.Presenter
     public class CoinsPresenter : MonoBehaviour
     {
         [SerializeField] TMP_Text coinsText;
-        [SerializeField] TMP_Text coinsAddedText;
+        [SerializeField] TMP_Text coinsAnimationText;
 
         void OnEnable()
         {
             BadDot.OnLoseGame += IncrementCoinsValue;
-            UpgradePowerup.OnUpgradeBought += UpdateView;
+            UpgradePowerup.OnUpgradeBought += ShowUsedCoinsText;
+
+            CoinsAnimation.OnCoinsAnimationCompleted += ShowAddedCoinsText;
             IronSourceInit.OnCoinsRvWatched += IncrementCoinsValueFromRV;
         }
 
@@ -46,30 +49,45 @@ namespace Dots.Coins.Presenter
             {
                 coinsText.text = CoinsModel.CurrentCoinsAmount.ToString();
                 coinsText.text = string.Format("{0}", coinsText.text);
-                ShowAddedCoinsText();
             }
         }
 
+        //TODO: Find a way to make this 2 functions (ShowAddedCoinsText() and ShowUsedCoinsText()) to be more generic
         void ShowAddedCoinsText()
         {
             if (CoinsModel.CoinsToAdd > 0)
             {
-                coinsAddedText.text = CoinsModel.CoinsToAdd.ToString();
-                coinsAddedText.text = string.Format("{0}", coinsAddedText.text);
-                coinsAddedText.gameObject.SetActive(true);
-                coinsAddedText.rectTransform.DOAnchorPos(new Vector3(-35, -60, 0), 1f).OnComplete(() =>
+                coinsAnimationText.text = CoinsModel.CoinsToAdd.ToString();
+                coinsAnimationText.text = string.Format("+ {0}", coinsAnimationText.text);
+                coinsAnimationText.gameObject.SetActive(true);
+                coinsAnimationText.rectTransform.DOAnchorPos(new Vector3(-35, 0, 0), 1f).OnComplete(() =>
                 {
-                    coinsAddedText.gameObject.SetActive(false);
-                    coinsAddedText.rectTransform.DOAnchorPos(new Vector3(-35, 0, 0), 1f);
-                }); 
+                    coinsAnimationText.gameObject.SetActive(false);
+                    coinsAnimationText.rectTransform.DOAnchorPos(new Vector3(-35, -60, 0), 1f);
+                });
             }
+        }
+
+        void ShowUsedCoinsText()
+        {
+            coinsAnimationText.text = UpgradePowerup.CoinsCost.ToString();
+            coinsAnimationText.text = string.Format("- {0}", coinsAnimationText.text);
+            coinsAnimationText.gameObject.SetActive(true);
+            coinsAnimationText.rectTransform.DOAnchorPos(new Vector3(-35, -60, 0), 1f).OnComplete(() =>
+            {
+                coinsAnimationText.gameObject.SetActive(false);
+                coinsAnimationText.rectTransform.DOAnchorPos(new Vector3(-35, 0, 0), 1f);
+                UpdateView();
+            });
         }
 
         void OnDisable()
         {
             BadDot.OnLoseGame -= IncrementCoinsValue;
-            UpgradePowerup.OnUpgradeBought -= UpdateView;
             IronSourceInit.OnCoinsRvWatched -= IncrementCoinsValueFromRV;
+
+            CoinsAnimation.OnCoinsAnimationCompleted -= ShowAddedCoinsText;
+            UpgradePowerup.OnUpgradeBought -= ShowUsedCoinsText;
         }
     }
 }

@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 8465019308244502191}
-  coinsAddedText: {fileID: 8465019308244502193}
+  coinsAnimationText: {fileID: 8465019308244502193}
 --- !u!114 &2102036749
 MonoBehaviour:
   m_ObjectHideFlags: 0
