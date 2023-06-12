@@ -1,6 +1,8 @@
 using System;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.GamePlay.Player.Interaction.Shields;
+using Dots.Audio.Manager;
+using System.Threading.Tasks;
 
 namespace Dots.GamePlay.Dot.Bad
 {
@@ -17,14 +19,17 @@ namespace Dots.GamePlay.Dot.Bad
         public override void BehaveWhenInteractWithPlayer()
         {
             ShowDestroyParticles(IsGoodDot);
+            transform.localScale -= startScale;
             gameObject.SetActive(false);
             if (ActiveShields.AreShieldsActive)
             {
+                AudioManager.Instance.PlaySFX("PowerupDisabled");
                 ShieldPowerup.OnCollectedShieldPowerup(false);
                 ActiveShields.AreShieldsActive = false;
             }
             else
             {
+                AudioManager.Instance.PlaySFX("LoseGame");
                 OnLoseGame?.Invoke();
             }
         }

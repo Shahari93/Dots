@@ -11,7 +11,7 @@ public class CoinsData
 namespace Dots.Coins.Model
 {
 
-    public class CoinsModel : MonoBehaviour
+    public class CoinsModel : MonoBehaviour, ISaveable
     {
         public static CoinsModel Instance;
 
@@ -20,12 +20,12 @@ namespace Dots.Coins.Model
         public static int CurrentCoinsAmount { get => currentCoinsAmount; set => currentCoinsAmount = value; }
         public static int CoinsToAdd { get => coinsToAdd; set => coinsToAdd = value; }
 
-        private void OnEnable()
+        void OnEnable()
         {
-            SaveAndLoadJson.LoadCoinsFromJson();
+            SaveAndLoadJson.LoadFromJson("/SavedData.json");
         }
 
-        private void Awake()
+        void Awake()
         {
             if (Instance != null)
             {
@@ -35,14 +35,15 @@ namespace Dots.Coins.Model
             else
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
-            DontDestroyOnLoad(gameObject);
         }
 
+        //TODO: Test on APK that the added coins from RV are saving to the JSON
         public void UpdateCoinsDataOnRv(int coins)
         {
             currentCoinsAmount += coins;
-            SaveAndLoadJson.SaveCoinsToJson();
+            SaveAndLoadJson.SavingToJson("/SavedData.json", this);
         }
 
         public void UpdateCoinsData()
@@ -51,7 +52,7 @@ namespace Dots.Coins.Model
             if (coinsToAdd > 0)
             {
                 currentCoinsAmount += coinsToAdd;
-                SaveAndLoadJson.SaveCoinsToJson();
+                SaveAndLoadJson.SavingToJson("/SavedData.json", this);
             }
         }
 
@@ -65,7 +66,7 @@ namespace Dots.Coins.Model
             if (currentCoinsAmount > 0)
             {
                 currentCoinsAmount -= coinCost;
-                SaveAndLoadJson.SaveCoinsToJson();
+                SaveAndLoadJson.SavingToJson("/SavedData.json", this);
             }
         }
     }

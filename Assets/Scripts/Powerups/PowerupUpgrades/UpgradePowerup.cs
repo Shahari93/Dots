@@ -4,6 +4,7 @@ using UnityEngine;
 using Dots.Ads.Init;
 using UnityEngine.UI;
 using Dots.Coins.Model;
+using Dots.Audio.Manager;
 using Dots.Utils.SaveAndLoad;
 
 namespace Dots.GamePlay.Powerups.Upgrade
@@ -13,11 +14,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
     {
         public int savedCoinsCostInJson;
     }
-    public class UpgradePowerup : MonoBehaviour
+    public class UpgradePowerup : MonoBehaviour, ISaveable
     {
         public static event Action OnUpgradeBought;
 
-        private static float powerupDurationValue;
+        static float powerupDurationValue;
         public static float PowerupDurationValue
         {
             get
@@ -30,7 +31,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
         }
 
-        private static int coinsCost = 10; // TODO: Make this into a model 
+        static int coinsCost = 10; // TODO: Make this into a model 
         public static int CoinsCost
         {
             get
@@ -49,19 +50,17 @@ namespace Dots.GamePlay.Powerups.Upgrade
         [SerializeField] TMP_Text powerupDurationText;
         [SerializeField] TMP_Text upgradeCoinsCostText;
 
-        private void OnEnable()
+        void OnEnable()
         {
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
         }
 
-        private void Awake()
+        void Awake()
         {
             powerupDurationValue = affectedPowerup.powerupDuration;
             upgradeButton.onClick.AddListener(Upgrade);
 
-            SaveAndLoadJson.LoadCoinsUpgradeFromJson();
-            SaveAndLoadJson.LoadPowerupDurationFromJson();
-
+            SaveAndLoadJson.LoadFromJson("/SavedData.json");
             affectedPowerup.powerupDuration = powerupDurationValue;
 
             powerupNameText.text = affectedPowerup.name;
@@ -70,14 +69,21 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
         }
 
-        private void Start()
+        void Start()
         {
             upgradeButton.interactable = CheckIfUpgradeable();
         }
 
         // TODO: Make this more generic - The only difference is if the button is inactive we divide the alpha by 2
-        private bool CheckIfUpgradeable()
+        bool CheckIfUpgradeable()
         {
+            if (affectedPowerup.powerupDuration >= affectedPowerup.powerupDurationLimit)
+            {
+                affectedPowerup.powerupDuration = affectedPowerup.powerupDurationLimit;
+                
+                return upgradeButton.interactable = false;
+            }
+
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
                 float alpha = 255f / 2;
@@ -96,17 +102,19 @@ namespace Dots.GamePlay.Powerups.Upgrade
             }
         }
 
-        private void Upgrade()
+        void Upgrade()
         {
             int totalCoins = CoinsModel.CurrentCoinsAmount;
             if (CheckIfUpgradeable())
             {
+                OnUpgradeBought?.Invoke();
+                AudioManager.Instance.PlaySFX("ButtonClick");
                 // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
                 CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost); // TODO: Make sure this is the right place to use this method (Probably should be in the CoinsPresenter)
 
                 // Adding more coins for the coins cost to upgrade and updating the model and the view
-                coinsCost += 10;
+                coinsCost += 5;
                 CoinsModel.CurrentCoinsAmount = totalCoins;
                 upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
 
@@ -117,13 +125,12 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
                 // Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
                 CheckIfUpgradeable();
-                OnUpgradeBought?.Invoke();
-                SaveAndLoadJson.SaveCoinsUpgradeToJson();
-                SaveAndLoadJson.SavePowerupDurationToJson();
+                AudioManager.Instance.PlaySFX("Upgrade");
+                SaveAndLoadJson.SavingToJson("/SavedData.json", this);
             }
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
         }

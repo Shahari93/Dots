@@ -10,7 +10,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
     {
         [SerializeField] GameObject[] shields;
 
-        private static bool areShieldsActive;
+        static bool areShieldsActive;
         public static bool AreShieldsActive
         {
             get
@@ -23,20 +23,20 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             ShieldPowerup.OnCollectedShieldPowerup += EnableShieldsVisual;
             IronSourceInit.OnShieldRvWatched += IsShieldFromRV;
         }
 
-        private void Awake()
+        void Awake()
         {
             if (!IsShieldFromRV())
             {
                 areShieldsActive = false;
                 foreach (GameObject shield in shields)
                 {
-                    shield.SetActive(false);
+                    shield.SetActive(areShieldsActive);
                 }
             }
             else
@@ -44,13 +44,14 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                 areShieldsActive = true;
                 foreach (GameObject shield in shields)
                 {
-                    shield.SetActive(true);
+                    shield.SetActive(areShieldsActive);
+                    EnableShieldsVisual(areShieldsActive);
                 }
                 IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
             }
         }
 
-        private void EnableShieldsVisual(bool isShieldOn)
+        void EnableShieldsVisual(bool isShieldOn)
         {
             areShieldsActive = isShieldOn;
             foreach (GameObject shield in shields)
@@ -63,7 +64,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
         }
 
-        private bool IsShieldFromRV()
+        bool IsShieldFromRV()
         {
             if (IronSourceInit.IsShieldFromRV)
             {
@@ -84,7 +85,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             ShieldPowerup.OnCollectedShieldPowerup -= EnableShieldsVisual;
             IronSourceInit.OnShieldRvWatched -= IsShieldFromRV;

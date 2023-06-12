@@ -1,25 +1,27 @@
 using TMPro;
-using UnityEngine;
+using System;
 using DG.Tweening;
-using Dots.Coins.Model;
-using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
+using Dots.Coins.Model;
+using Dots.Audio.Manager;
 
 namespace Dots.Utils.CoinsAnimation
 {
     public class CoinsAnimation : MonoBehaviour
     {
-        private int coinsAmount;
+        int coinsAmount;
 
-        [SerializeField] private GameObject coin;
-        [SerializeField] private GameObject pileOfCoins;
-        [SerializeField] private Transform target;
-        [SerializeField] private TMP_Text coinsAmountText;
-        [SerializeField] private Button restartGameButton;
+        [SerializeField] GameObject coin;
+        [SerializeField] GameObject pileOfCoins;
+        [SerializeField] Transform target;
+        [SerializeField] TMP_Text coinsAmountText;
+        [SerializeField] Button restartGameButton;
 
-        [SerializeField] private Vector2[] initialPos;
-        [SerializeField] private Quaternion[] initialRotation;
+        [SerializeField] Vector2[] initialPos;
+        [SerializeField] Quaternion[] initialRotation;
+
+        public static event Action OnCoinsAnimationCompleted;
 
         void Start()
         {
@@ -34,7 +36,7 @@ namespace Dots.Utils.CoinsAnimation
             for (int i = 0; i < coinsAmount; i++)
             {
                 GameObject coinsChildren = Instantiate(coin, pileOfCoins.transform);
-                coinsChildren.transform.localPosition = new Vector2(Random.Range(-53.1f, 63f), Random.Range(-65.4f, 40.2f));
+                coinsChildren.transform.localPosition = new Vector2(UnityEngine.Random.Range(-53.1f, 63f), UnityEngine.Random.Range(-65.4f, 40.2f));
             }
 
             initialPos = new Vector2[coinsAmount];
@@ -49,7 +51,7 @@ namespace Dots.Utils.CoinsAnimation
             CountCoins();
         }
 
-        private void ResetInitValues()
+        void ResetInitValues()
         {
             for (int i = 0; i < pileOfCoins.transform.childCount; i++)
             {
@@ -58,7 +60,7 @@ namespace Dots.Utils.CoinsAnimation
             }
         }
 
-        private void CountCoins()
+        void CountCoins()
         {
             restartGameButton.interactable = true;
 
@@ -78,7 +80,7 @@ namespace Dots.Utils.CoinsAnimation
                     pileOfCoins.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay + 0.1f).SetEase(Ease.OutBack);
 
                     pileOfCoins.transform.GetChild(i).DOMove(target.position, 0.8f)
-                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack);
+                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(()=> AudioManager.Instance.PlaySFX("CoinsCollected"));
 
 
                     pileOfCoins.transform.GetChild(i).DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)
@@ -89,7 +91,11 @@ namespace Dots.Utils.CoinsAnimation
 
                     delay += 0.1f;
 
-                    coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
+                    coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f).OnComplete(() =>
+                    {
+                        OnCoinsAnimationCompleted?.Invoke();
+                    });
+                    
                 }
             }
         }

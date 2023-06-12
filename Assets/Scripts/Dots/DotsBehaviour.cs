@@ -1,6 +1,9 @@
 using UnityEngine;
+using DG.Tweening;
 using Dots.Utils.Spawnable;
 using Dots.Utils.Interaction;
+using System.Threading.Tasks;
+using Dots.Audio.Manager;
 
 namespace Dots.GamePlay.Dot
 {
@@ -13,6 +16,7 @@ namespace Dots.GamePlay.Dot
         float randX;
         float randY;
         Vector2 direction;
+        protected Vector3 startScale = new Vector3(0.71f, 0.71f, 0f);
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
         public float RandX { get => RandX; set => randX = value; }
@@ -24,16 +28,14 @@ namespace Dots.GamePlay.Dot
         {
             SetSpawnValues();
         }
-        private void SetSpawnValues()
+        async void SetSpawnValues()
         {
-            dotSpeed = Random.Range(85f, 90f);
+            dotSpeed = Random.Range(85f, 95f);
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
-        }
-
-        void FixedUpdate()
-        {
+            transform.localScale = Vector3.zero;
+            await Task.Delay(500);
             SetSpeedAndDirection();
         }
 
@@ -47,12 +49,20 @@ namespace Dots.GamePlay.Dot
 
         public void SetSpeedAndDirection()
         {
-            rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            transform.DOScale(0.7f, 0.5f).OnComplete(() =>
+            {
+                if (gameObject.activeSelf)
+                {
+                    AudioManager.Instance.PlaySFX("DotCreated");
+                }
+                rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+            });
         }
 
         // What happens if a dot hits the bounds collider
         public void BehaveWhenInteractWithBounds()
         {
+            transform.localScale -= startScale;
             DisablePowerupVisuals();
         }
 

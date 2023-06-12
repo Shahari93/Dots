@@ -1,4 +1,6 @@
 using UnityEngine;
+using CandyCoded.HapticFeedback;
+using System;
 
 namespace Dots.GamePlay.Player
 {
@@ -7,13 +9,20 @@ namespace Dots.GamePlay.Player
         [SerializeField] float rotationDegree;
         [SerializeField] float rotationSpeed;
 
+        bool isHapticOn;
+
+        void OnEnable()
+        {
+            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
+        }
+
         void Update()
         {
             RotateDotsAround(rotationDegree);
             CheckForTouchInput();
         }
 
-        private void CheckForTouchInput()
+        void CheckForTouchInput()
         {
             if (Input.touchCount != 1)
             {
@@ -24,6 +33,12 @@ namespace Dots.GamePlay.Player
             {
                 return;
             }
+
+            if (isHapticOn)
+            {
+                HapticFeedback.MediumFeedback();
+            }
+
             rotationDegree *= -1f;
         }
 

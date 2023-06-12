@@ -2,6 +2,8 @@
   <packages>
     <package>com.google.android.gms:play-services-ads-identifier:18.0.1</package>
     <package>com.google.android.gms:play-services-basement:18.1.0</package>
+    <package>com.google.android.play:core-common:2.0.0</package>
+    <package>com.google.android.play:review:2.0.0</package>
     <package>com.ironsource.adapters:unityadsadapter:4.3.29</package>
     <package>com.ironsource.sdk:mediationsdk:7.3.0.1</package>
     <package>com.unity3d.ads:unity-ads:4.7.1</package>
@@ -43,6 +45,9 @@
     <file>Assets/Plugins/Android/androidx.webkit.webkit-1.6.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-18.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-18.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-16.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.play.core-common-2.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.play.review-2.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.guava.listenablefuture-1.0.jar</file>
     <file>Assets/Plugins/Android/com.ironsource.adapters.unityadsadapter-4.3.29.aar</file>
     <file>Assets/Plugins/Android/com.ironsource.sdk.mediationsdk-7.3.0.1.aar</file>

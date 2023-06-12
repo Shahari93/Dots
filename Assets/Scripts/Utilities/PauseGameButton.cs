@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.Coins.Model;
+using Dots.Audio.Manager;
+using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
-using Dots.PauseGame.Model;
 
 namespace Dots.Utils.Pause
 {
@@ -16,9 +17,9 @@ namespace Dots.Utils.Pause
         [SerializeField] Button returnToGameButton;
         [SerializeField] Button returnToMainMenuButton;
 
-        private bool isGamePaused;
+        bool isGamePaused;
 
-        private void Awake()
+        void Awake()
         {
             pauseGameButton.onClick.AddListener(PauseGame);
 
@@ -29,8 +30,9 @@ namespace Dots.Utils.Pause
             returnToMainMenuButton.onClick.AddListener(ReturnToHome);
         }
 
-        private void PauseGame()
+        void PauseGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             if (!isGamePaused)
             {
                 ShowPausePanel(true);
@@ -40,8 +42,9 @@ namespace Dots.Utils.Pause
             }
         }
 
-        private void UnPauseGame()
+        void UnPauseGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             if (isGamePaused)
             {
                 ShowPausePanel(false);
@@ -50,23 +53,25 @@ namespace Dots.Utils.Pause
             }
         }
 
-        private void ReturnToHome()
+        void ReturnToHome()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             ReturnToFlow(1);
         }
 
-        private void RestartGame()
+        void RestartGame()
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             ReturnToFlow(0);
         }
 
-        private void ShowPausePanel(bool show)
+        void ShowPausePanel(bool show)
         {
             darkenPanel.gameObject.SetActive(show);
             pauseGamePanel.gameObject.SetActive(show);
         }
 
-        private void ReturnToFlow(int sceneIndex)
+        void ReturnToFlow(int sceneIndex)
         {
             Time.timeScale = 1;
             isGamePaused = false;

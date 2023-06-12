@@ -1,7 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Dots.Coins.Model;
+using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
+using Dots.GamePlay.Dot.Bad;
+using Dots.PauseGame.Presenter;
 
 namespace Dots.Ads.Init
 {
@@ -16,17 +20,20 @@ string appKey = "19f99b595";
         bool isPaused = false;
 
         const string COINS_PLACEMENT = "Extra_Coins";
+        const string DOUBLE_COINS_PLACEMENT = "Double_Coins";
         const string SHIELD_PLACEMENT = "Start_Shield";
 
-        public static event Action OnCoinsRvWatched;
+        public static event Action<int> OnCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
 
         public static event Func<bool> OnShieldRvWatched;
         public static bool IsShieldFromRV;
         [SerializeField] Button coinsRV;
         [SerializeField] Button shieldRV;
+        [SerializeField] Button reviveRV;
+        [SerializeField] Button doubleCoinsRV;
 
-        private void OnEnable()
+        void OnEnable()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
 
@@ -48,26 +55,35 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
-            if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
+            if (coinsRV != null)
             {
-                coinsRV.gameObject.SetActive(false);
+                coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
             }
+
+            if (doubleCoinsRV != null && CoinsModel.CoinsToAdd != 0)
+            {
+                doubleCoinsRV.gameObject.SetActive(true);
+            }
+
+            LoseGameUIPresenter.OnRestartClicked += ShowInterstitialAd;
+            LoseGameUIPresenter.OnReturnHomeClicked += ShowInterstitialAd;
         }
 
-        private void Start()
+        void Start()
         {
             InitAdUnits();
             IronSource.Agent.validateIntegration();
             IronSource.Agent.shouldTrackNetworkState(true);
         }
 
-        private void SdkInitializationCompletedEvent()
+        void SdkInitializationCompletedEvent()
         {
             IronSource.Agent.loadInterstitial();
+            IronSource.Agent.loadRewardedVideo();
         }
 
         #region Init Ads
-        private void InitAdUnits()
+        void InitAdUnits()
         {
             //For Rewarded Video
             IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO);
@@ -77,11 +93,12 @@ string appKey = "19f99b595";
         #endregion
 
         #region Interstitial Ads
-        private void ShowInterstitialAd()
+        void ShowInterstitialAd()
         {
             if (IronSource.Agent.isInterstitialReady())
             {
                 IronSource.Agent.showInterstitial();
+                IronSource.Agent.loadInterstitial();
             }
             else
             {
@@ -128,15 +145,16 @@ string appKey = "19f99b595";
         #region Rewarded Ads
         public void ShowRewardedAd(string placement)
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
+                coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
             }
             else
             {
                 return;
             }
-            
         }
         #endregion
 
@@ -157,14 +175,12 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
+            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            if (IsRewardedVideoPlacementCapped(COINS_PLACEMENT))
-            {
-                coinsRV.gameObject.SetActive(false);
-            }
+            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
@@ -187,8 +203,14 @@ string appKey = "19f99b595";
                 // TODO: FInd a way to check the placement according to the pressed RV button
                 if (getPlacementName == COINS_PLACEMENT || getRewardName == "Coins")
                 {
-                    OnCoinsRvWatched?.Invoke();
+                    OnCoinsRvWatched?.Invoke(5);
                     OnCheckIfUpgradeable?.Invoke();
+                }
+
+                if (getPlacementName == DOUBLE_COINS_PLACEMENT || getRewardName == "DoubleCoins")
+                {
+                    OnCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd * 2);
+                    doubleCoinsRV.gameObject.SetActive(false);
                 }
             }
             OnApplicationFocus(true);
@@ -238,6 +260,9 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
             IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
+
+            LoseGameUIPresenter.OnRestartClicked -= ShowInterstitialAd;
+            LoseGameUIPresenter.OnReturnHomeClicked -= ShowInterstitialAd;
         }
     }
 }

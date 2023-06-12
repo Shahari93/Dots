@@ -5,6 +5,7 @@ using System.Collections;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
+using Dots.Audio.Manager;
 
 namespace Dots.Utils.ObjectPool
 {
@@ -41,7 +42,7 @@ namespace Dots.Utils.ObjectPool
         }
 
         // Testing changing the spawn percentage
-        private void Update()
+        void Update()
         {
             if (spawnChances[1] != GoodDot.spawnChance)
             {
@@ -80,8 +81,8 @@ namespace Dots.Utils.ObjectPool
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
                 if (spawnable != null)
                 {
-                    spawnable.transform.position = this.transform.position;
-                    spawnable.transform.rotation = this.transform.rotation;
+                    spawnable.transform.position = transform.position;
+                    spawnable.transform.rotation = transform.rotation;
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);
@@ -121,6 +122,7 @@ namespace Dots.Utils.ObjectPool
                 if (duration <= 0)
                 {
                     GoodDot.spawnChance = 0.15f;
+                    AudioManager.Instance.PlaySFX("PowerupDisabled");
                     DestroingPowerup.OnPowerupDisabled?.Invoke();
                     break;
                 }

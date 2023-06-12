@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
-
 
 namespace Dots.Utils.SceneLoader
 {
@@ -17,6 +17,7 @@ namespace Dots.Utils.SceneLoader
 
 		void OnPlayButtonPressed()
 		{
+			AudioManager.Instance.PlaySFX("ButtonClick");
 			StartCoroutine(LoadAsyncScene());
 		}
 
