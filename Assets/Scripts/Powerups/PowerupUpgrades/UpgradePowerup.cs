@@ -86,20 +86,22 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
-                float alpha = 255f / 2;
-                Color color = upgradeButton.image.color;
-                color.a = alpha;
-                upgradeButton.image.color = color;
+                SetUpgradeButtonInteractable(2f);
                 return upgradeButton.interactable = false;
             }
             else
             {
-                float alpha = 255;
-                Color color = upgradeButton.image.color;
-                color.a = alpha;
-                upgradeButton.image.color = color;
+                SetUpgradeButtonInteractable(1f);
                 return upgradeButton.interactable = true;
             }
+        }
+
+        private void SetUpgradeButtonInteractable(float divide)
+        {
+            float alpha = 255f / divide;
+            Color color = upgradeButton.image.color;
+            color.a = alpha;
+            upgradeButton.image.color = color;
         }
 
         void Upgrade()
