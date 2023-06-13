@@ -56,7 +56,7 @@ namespace Dots.GamePlay.PowerupsPerent.Pool
             for (int i = 0; i < powerupsObjects.Length; i++)
             {
                 GameObject prefab = powerupsObjects[i];
-                if (prefab.tag == objectType)
+                if (prefab.name == objectType)
                 {
                     if (powerupsPooledObjects[i].Count > 0)
                     {

@@ -2,13 +2,19 @@ using UnityEngine;
 using Dots.Utils.Destroy;
 using System.Collections;
 using Dots.GamePlay.PowerupsPerent.Pool;
+using Dots.GamePlay.Powerups;
 
 namespace Dots.Utils.Powerups.Objectpool
 {
     public class PowerupsSpawner : MonoBehaviour
     {
+        // Interval between spawning 
         [Range(5f, 20f)][SerializeField] float powerupSpawnIntirval;
         float powerupSpawnIntirvalInitValue;
+
+        [SerializeField] float[] powerupsSpawnChances;
+        [SerializeField] PowerupEffectSO[] powerupObjects;
+        float totalSpawnChance;
 
         static bool canSpawn;
         public static bool CanSpawn
@@ -46,6 +52,11 @@ namespace Dots.Utils.Powerups.Objectpool
         {
             canSpawn = true;
             StartCoroutine(SpawnPowerups());
+            powerupsSpawnChances = new float[] { powerupObjects[0].spawnChance, powerupObjects[1].spawnChance };
+            foreach (var spawnChance in powerupsSpawnChances)
+            {
+                totalSpawnChance += spawnChance;
+            }
         }
 
         void Update()
@@ -58,21 +69,22 @@ namespace Dots.Utils.Powerups.Objectpool
             while (canSpawn)
             {
                 yield return new WaitForSeconds(3f);
-                float randomNumber = Random.Range(0f, 1f);
+                float randomNumber = Random.Range(0f, totalSpawnChance);
                 string spawnableTag = "";
 
 
                 if (canSpawn && Time.deltaTime >= powerupSpawnIntirval)
                 {
-                    if (randomNumber >= 0.0f && randomNumber <= 0.4f)
+                    for (int i = 0; i < powerupsSpawnChances.Length; i++)
                     {
-                        spawnableTag = "AllGreen";
-                        canSpawn = false;
-                    }
-                    else if (randomNumber > 0.4f && randomNumber <= 1)
-                    {
-                        spawnableTag = "Shield";
-                        canSpawn = false;
+                        if (randomNumber <= powerupsSpawnChances[i])
+                        {
+                            spawnableTag = powerupObjects[i].name;
+                        }
+                        else
+                        {
+                            randomNumber -= powerupsSpawnChances[i];
+                        }
                     }
                     powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
 

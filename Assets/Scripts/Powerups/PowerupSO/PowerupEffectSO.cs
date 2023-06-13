@@ -12,6 +12,7 @@ namespace Dots.GamePlay.Powerups
     {
         public float powerupDuration;
         public float powerupDurationLimit;
+        public float spawnChance;
 
         public static Action<float> InvokePowerupUI;
         public abstract void Apply(GameObject target);
