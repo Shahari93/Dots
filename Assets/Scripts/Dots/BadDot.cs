@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dots.GamePlay.Dot.Bad
 {
-    public class BadDot : DotsBehaviour
+    public class BadDot : DestroyingDots
     {
         public static float spawnChance = 0.85f;
         public static event Action OnLoseGame;

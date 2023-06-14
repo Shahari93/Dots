@@ -1,11 +1,11 @@
 using System;
+using UnityEngine;
 using Dots.Audio.Manager;
 using CandyCoded.HapticFeedback;
-using UnityEngine;
 
 namespace Dots.GamePlay.Dot.Good
 {
-    public class GoodDot : DotsBehaviour
+    public class GoodDot : DestroyingDots
     {
         public static float spawnChance = 0.15f;
         public static event Action<int> OnPlayerCollectedDot;

@@ -101,7 +101,6 @@ namespace Dots.Utils.CoinsAnimation
                         restartGameButton.interactable = true;
                         returnHomeButton.interactable = true;
                     });
-
                 }
             }
         }
