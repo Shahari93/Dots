@@ -16,13 +16,6 @@ namespace Dots.Utils.Destroy
         public static Action<float> OnCollectedPower;
         public static Action OnPowerupDisabled;
 
-        bool isHapticOn;
-
-        void Awake()
-        {
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
-        }
-
         void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Bounds"))
@@ -43,7 +36,7 @@ namespace Dots.Utils.Destroy
         /// </summary>
         public virtual void BehaveWhenInteractWithPlayer()
         {
-            if (isHapticOn)
+            if (ToggleAudioSprites.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }

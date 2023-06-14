@@ -10,17 +10,14 @@ namespace Dots.GamePlay.Dot.Good
         public static float spawnChance = 0.15f;
         public static event Action<int> OnPlayerCollectedDot;
 
-        bool isHapticOn;
-
         void Awake()
         {
             IsGoodDot = true;
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
         }
 
         public override void BehaveWhenInteractWithPlayer()
         {
-            if (isHapticOn)
+            if (ToggleAudioSprites.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }

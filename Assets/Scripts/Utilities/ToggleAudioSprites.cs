@@ -8,7 +8,15 @@ public class ToggleAudioSprites : MonoBehaviour
 {
     [SerializeField] Sprite[] buttonSprites;
     [SerializeField] Image musicTargetButton, sfxTargetButton, hapticTargetButton;
-    [SerializeField] bool isSoundOn = true, isSFXOn = true, isHapticOn = true;
+    bool isSoundOn = true, isSFXOn = true;
+    static bool isHapticOn = true;
+    public static bool IsHapticOn
+    {
+        get
+        {
+            return isHapticOn;
+        }
+    }
 
     private const string MUSIC_TOGGLE = "MusicToggle";
     private const string SOUNDS_TOGGLE = "SFXToggle";

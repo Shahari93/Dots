@@ -9,13 +9,6 @@ namespace Dots.GamePlay.Player
         [SerializeField] float rotationDegree;
         [SerializeField] float rotationSpeed;
 
-        bool isHapticOn;
-
-        void OnEnable()
-        {
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
-        }
-
         void Update()
         {
             RotateDotsAround(rotationDegree);
@@ -34,7 +27,7 @@ namespace Dots.GamePlay.Player
                 return;
             }
 
-            if (isHapticOn)
+            if (ToggleAudioSprites.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }
