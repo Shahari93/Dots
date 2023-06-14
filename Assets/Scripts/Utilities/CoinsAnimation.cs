@@ -80,7 +80,7 @@ namespace Dots.Utils.CoinsAnimation
                     pileOfCoins.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay + 0.1f).SetEase(Ease.OutBack);
 
                     pileOfCoins.transform.GetChild(i).DOMove(target.position, 0.8f)
-                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(()=> AudioManager.Instance.PlaySFX("CoinsCollected"));
+                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(() => AudioManager.Instance.PlaySFX("CoinsCollected"));
 
 
                     pileOfCoins.transform.GetChild(i).DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)
@@ -92,10 +92,8 @@ namespace Dots.Utils.CoinsAnimation
                     delay += 0.1f;
 
                     coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f).OnComplete(() =>
-                    {
-                        OnCoinsAnimationCompleted?.Invoke();
-                    });
-                    
+                    OnCoinsAnimationCompleted?.Invoke());
+
                 }
             }
         }
