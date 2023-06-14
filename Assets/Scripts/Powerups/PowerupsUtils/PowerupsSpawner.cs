@@ -1,8 +1,9 @@
 using UnityEngine;
 using Dots.Utils.Destroy;
 using System.Collections;
-using Dots.GamePlay.PowerupsPerent.Pool;
 using Dots.GamePlay.Powerups;
+using System.Collections.Generic;
+using Dots.GamePlay.PowerupsPerent.Pool;
 
 namespace Dots.Utils.Powerups.Objectpool
 {
@@ -12,7 +13,7 @@ namespace Dots.Utils.Powerups.Objectpool
         [Range(5f, 20f)][SerializeField] float powerupSpawnIntirval;
         float powerupSpawnIntirvalInitValue;
 
-        [SerializeField] float[] powerupsSpawnChances;
+        [SerializeField] List<float> powerupsSpawnChancesList = new List<float>();
         [SerializeField] PowerupEffectSO[] powerupObjects;
         float totalSpawnChance;
 
@@ -52,8 +53,12 @@ namespace Dots.Utils.Powerups.Objectpool
         {
             canSpawn = true;
             StartCoroutine(SpawnPowerups());
-            powerupsSpawnChances = new float[] { powerupObjects[0].spawnChance, powerupObjects[1].spawnChance };
-            foreach (var spawnChance in powerupsSpawnChances)
+            foreach (var powerupObject in powerupObjects)
+            {
+                powerupsSpawnChancesList.Add(powerupObject.spawnChance);
+            }
+
+            foreach (var spawnChance in powerupsSpawnChancesList)
             {
                 totalSpawnChance += spawnChance;
             }
@@ -75,15 +80,15 @@ namespace Dots.Utils.Powerups.Objectpool
 
                 if (canSpawn && Time.deltaTime >= powerupSpawnIntirval)
                 {
-                    for (int i = 0; i < powerupsSpawnChances.Length; i++)
+                    for (int i = 0; i < powerupsSpawnChancesList.Count; i++)
                     {
-                        if (randomNumber <= powerupsSpawnChances[i])
+                        if (randomNumber <= powerupsSpawnChancesList[i])
                         {
                             spawnableTag = powerupObjects[i].name;
                         }
                         else
                         {
-                            randomNumber -= powerupsSpawnChances[i];
+                            randomNumber -= powerupsSpawnChancesList[i];
                         }
                     }
                     powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
