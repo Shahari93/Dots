@@ -6,6 +6,8 @@ using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
 using Dots.Audio.Manager;
+using System.Collections.Generic;
+using Dots.GamePlay.Dot;
 
 namespace Dots.Utils.ObjectPool
 {
@@ -14,6 +16,7 @@ namespace Dots.Utils.ObjectPool
         [SerializeField] float spawnTime;
 
         [SerializeField] float[] spawnChances;
+        [SerializeField] List<float> spawnChanceList = new List<float>();
         [SerializeField] GameObject[] dotObjects;
         float total;
         bool ftueSpawn = true;
@@ -34,8 +37,12 @@ namespace Dots.Utils.ObjectPool
         void Start()
         {
             StartCoroutine(Spawn());
-            spawnChances = new float[2] { BadDot.spawnChance, GoodDot.spawnChance };
-            foreach (var spawnChance in spawnChances)
+            //spawnChances = new float[2] { BadDot.spawnChance, GoodDot.spawnChance };
+            foreach (var obj in dotObjects)
+            {
+                spawnChanceList.Add(obj.GetComponent<DestroyingDots>().SpawnChance);
+            }
+            foreach (var spawnChance in spawnChanceList)
             {
                 total += spawnChance;
             }
@@ -44,9 +51,9 @@ namespace Dots.Utils.ObjectPool
         // Testing changing the spawn percentage
         void Update()
         {
-            if (spawnChances[1] != GoodDot.spawnChance)
+            if (spawnChanceList[1] != GoodDot.spawnChance)
             {
-                spawnChances[1] = GoodDot.spawnChance;
+                spawnChanceList[1] = GoodDot.spawnChance;
                 return;
             }
         }
@@ -66,15 +73,15 @@ namespace Dots.Utils.ObjectPool
                     ftueSpawn = false;
                 }
 
-                for (int i = 0; i < spawnChances.Length; i++)
+                for (int i = 0; i < spawnChanceList.Count; i++)
                 {
-                    if (randomNumber <= spawnChances[i])
+                    if (randomNumber <= spawnChanceList[i])
                     {
                         spawnableTag = dotObjects[i].tag;
                     }
                     else
                     {
-                        randomNumber -= spawnChances[i];
+                        randomNumber -= spawnChanceList[i];
                     }
                 }
 

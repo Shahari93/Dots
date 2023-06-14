@@ -11,6 +11,8 @@ namespace Dots.GamePlay.Dot
 
         protected bool IsGoodDot { get; set; }
 
+        public abstract float SpawnChance { get; set; }
+
         void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Bounds"))
