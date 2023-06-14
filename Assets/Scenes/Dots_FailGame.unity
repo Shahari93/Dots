@@ -461,6 +461,7 @@ MonoBehaviour:
   target: {fileID: 1623416011}
   coinsAmountText: {fileID: 1257108457}
   restartGameButton: {fileID: 1257108455}
+  returnHomeButton: {fileID: 1257108454}
   initialPos: []
   initialRotation: []
 --- !u!114 &1175233709

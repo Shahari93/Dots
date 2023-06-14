@@ -17,6 +17,7 @@ namespace Dots.Utils.CoinsAnimation
         [SerializeField] Transform target;
         [SerializeField] TMP_Text coinsAmountText;
         [SerializeField] Button restartGameButton;
+        [SerializeField] Button returnHomeButton;
 
         [SerializeField] Vector2[] initialPos;
         [SerializeField] Quaternion[] initialRotation;
@@ -26,6 +27,7 @@ namespace Dots.Utils.CoinsAnimation
         void Start()
         {
             restartGameButton.interactable = false;
+            returnHomeButton.interactable = false;
             coinsAmount = CoinsModel.CoinsToAdd;
 
             if (coinsAmount >= 10)
@@ -62,10 +64,12 @@ namespace Dots.Utils.CoinsAnimation
 
         void CountCoins()
         {
-            restartGameButton.interactable = true;
-
             if (CoinsModel.CoinsToAdd <= 0)
+            {
+                restartGameButton.interactable = true;
+                returnHomeButton.interactable = true;
                 return;
+            }
 
             else
             {
@@ -92,7 +96,11 @@ namespace Dots.Utils.CoinsAnimation
                     delay += 0.1f;
 
                     coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f).OnComplete(() =>
-                    OnCoinsAnimationCompleted?.Invoke());
+                    {
+                        OnCoinsAnimationCompleted?.Invoke();
+                        restartGameButton.interactable = true;
+                        returnHomeButton.interactable = true;
+                    });
 
                 }
             }

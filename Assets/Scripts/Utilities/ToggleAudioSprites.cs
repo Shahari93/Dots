@@ -10,13 +10,17 @@ public class ToggleAudioSprites : MonoBehaviour
     [SerializeField] Image musicTargetButton, sfxTargetButton, hapticTargetButton;
     [SerializeField] bool isSoundOn = true, isSFXOn = true, isHapticOn = true;
 
+    private const string MUSIC_TOGGLE = "MusicToggle";
+    private const string SOUNDS_TOGGLE = "SFXToggle";
+    private const string HAPTIC_TOGGLE = "HapticToggle";
+
     void OnEnable()
     {
-        if (PlayerPrefs.HasKey("MusicToggle") && PlayerPrefs.HasKey("SFXToggle") && PlayerPrefs.HasKey("HapticToggle"))
+        if (PlayerPrefs.HasKey(MUSIC_TOGGLE) && PlayerPrefs.HasKey(SOUNDS_TOGGLE) && PlayerPrefs.HasKey(HAPTIC_TOGGLE))
         {
-            isSoundOn = Convert.ToBoolean(PlayerPrefs.GetInt("MusicToggle"));
-            isSFXOn = Convert.ToBoolean(PlayerPrefs.GetInt("SFXToggle"));
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
+            isSoundOn = Convert.ToBoolean(PlayerPrefs.GetInt(MUSIC_TOGGLE));
+            isSFXOn = Convert.ToBoolean(PlayerPrefs.GetInt(SOUNDS_TOGGLE));
+            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt(HAPTIC_TOGGLE));
         }
         else
         {
@@ -30,76 +34,56 @@ public class ToggleAudioSprites : MonoBehaviour
         hapticTargetButton.sprite = isHapticOn ? buttonSprites[0] : buttonSprites[1];
     }
 
-    public void ChangeMusicButtonSprite()
+    void ChangeButtonSprite(ref bool isButtonOn, ref Image buttonImage, string buttonName)
     {
         AudioManager.Instance.PlaySFX("ButtonClick");
-        if (isSoundOn)
+        if (isButtonOn)
         {
-            musicTargetButton.sprite = buttonSprites[1];
-            AudioManager.Instance.ToggleMusic();
-            isSoundOn = false;
-            PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
+            buttonImage.sprite = buttonSprites[1];
+            isButtonOn = false;
+            PlayerPrefs.SetInt(buttonName, Convert.ToInt32(isButtonOn));
             return;
         }
         else
         {
-            musicTargetButton.sprite = buttonSprites[0];
-            AudioManager.Instance.ToggleMusic();
-            isSoundOn = true;
-            PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
+            buttonImage.sprite = buttonSprites[0];
+            isButtonOn = true;
+            PlayerPrefs.SetInt(buttonName, Convert.ToInt32(isButtonOn));
         }
+    }
+
+    public void ChangeMusicButtonSprite()
+    {
+        ChangeButtonSprite(ref isSoundOn, ref musicTargetButton, MUSIC_TOGGLE);
+        AudioManager.Instance.ToggleMusic();
     }
 
     public void ChangeSFXButtonSprite()
     {
-        AudioManager.Instance.PlaySFX("ButtonClick");
-        if (isSFXOn)
-        {
-            sfxTargetButton.sprite = buttonSprites[1];
-            AudioManager.Instance.ToggleSFX();
-            isSFXOn = false;
-            PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
-            return;
-        }
-        else
-        {
-            sfxTargetButton.sprite = buttonSprites[0];
-            AudioManager.Instance.ToggleSFX();
-            isSFXOn = true;
-            PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
-        }
+        ChangeButtonSprite(ref isSFXOn, ref sfxTargetButton, SOUNDS_TOGGLE);
+        AudioManager.Instance.ToggleSFX();
     }
 
     public void ChangeHapticButtonSprite()
     {
-        AudioManager.Instance.PlaySFX("ButtonClick");
-        if (isHapticOn)
-        {
-            hapticTargetButton.sprite = buttonSprites[1];
-            isHapticOn = false;
-            PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
-            return;
-        }
-        else
-        {
-            hapticTargetButton.sprite = buttonSprites[0];
-            isHapticOn = true;
-            PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
-        }
+        ChangeButtonSprite(ref isHapticOn, ref hapticTargetButton, HAPTIC_TOGGLE);
+    }
+
+    void SaveDataOnExit()
+    {
+        PlayerPrefs.SetInt(HAPTIC_TOGGLE, Convert.ToInt32(isHapticOn));
+        PlayerPrefs.SetInt(SOUNDS_TOGGLE, Convert.ToInt32(isSFXOn));
+        PlayerPrefs.SetInt(MUSIC_TOGGLE, Convert.ToInt32(isSoundOn));
+        PlayerPrefs.Save();
     }
 
     void OnApplicationPause(bool pause)
     {
-        PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
-        PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
-        PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
-        PlayerPrefs.Save();
+        SaveDataOnExit();
     }
+
     void OnDestroy()
     {
-        PlayerPrefs.SetInt("HapticToggle", Convert.ToInt32(isHapticOn));
-        PlayerPrefs.SetInt("SFXToggle", Convert.ToInt32(isSFXOn));
-        PlayerPrefs.SetInt("MusicToggle", Convert.ToInt32(isSoundOn));
-        PlayerPrefs.Save();
+        SaveDataOnExit();
     }
 }

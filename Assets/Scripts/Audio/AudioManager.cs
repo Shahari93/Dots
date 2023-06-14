@@ -9,8 +9,10 @@ namespace Dots.Audio.Manager
         [SerializeField] AudioSource musicSource, sfxSource;
         public static AudioManager Instance;
 
+        private const string MUSIC_TOGGLE = "Music";
+        private const string SOUNDS_TOGGLE = "SFX";
+        
         #region Singleton
-
         void Awake()
         {
             if (Instance != null)
@@ -28,10 +30,10 @@ namespace Dots.Audio.Manager
 
         void OnEnable()
         {
-            if (PlayerPrefs.HasKey("Music") && PlayerPrefs.HasKey("SFX"))
+            if (PlayerPrefs.HasKey(MUSIC_TOGGLE) && PlayerPrefs.HasKey(SOUNDS_TOGGLE))
             {
-                musicSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("Music"));
-                sfxSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt("SFX"));
+                musicSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt(MUSIC_TOGGLE));
+                sfxSource.mute = Convert.ToBoolean(PlayerPrefs.GetInt(SOUNDS_TOGGLE));
             }
             else
             {
@@ -60,7 +62,7 @@ namespace Dots.Audio.Manager
         public void ToggleMusic()
         {
             musicSource.mute = !musicSource.mute;
-            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
+            PlayerPrefs.SetInt(MUSIC_TOGGLE, Convert.ToInt32(musicSource.mute));
         }
         #endregion
 
@@ -83,20 +85,25 @@ namespace Dots.Audio.Manager
         public void ToggleSFX()
         {
             sfxSource.mute = !sfxSource.mute;
-            PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
+            PlayerPrefs.SetInt(SOUNDS_TOGGLE, Convert.ToInt32(sfxSource.mute));
         }
         #endregion
-        void OnApplicationPause(bool pause)
+
+        private void SaveDataOnExit()
         {
-            PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
-            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
+            PlayerPrefs.SetInt(SOUNDS_TOGGLE, Convert.ToInt32(sfxSource.mute));
+            PlayerPrefs.SetInt(MUSIC_TOGGLE, Convert.ToInt32(musicSource.mute));
             PlayerPrefs.Save();
         }
+
+        void OnApplicationPause(bool pause)
+        {
+            SaveDataOnExit();
+        }
+
         void OnDestroy()
         {
-            PlayerPrefs.SetInt("SFX", Convert.ToInt32(sfxSource.mute));
-            PlayerPrefs.SetInt("Music", Convert.ToInt32(musicSource.mute));
-            PlayerPrefs.Save();
+            SaveDataOnExit();
         }
     }
 }
