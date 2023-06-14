@@ -18,14 +18,10 @@ namespace Dots.PauseGame.Presenter
         public static event Action OnRestartClicked;
         public static event Action OnReturnHomeClicked;
 
-        void OnEnable()
+        void Awake()
         {
             loseGameRestartButton.onClick.AddListener(RestartGame);
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
-        }
-
-        void Awake()
-        {
             EnableLoseGamePanel();
         }
 
@@ -56,6 +52,12 @@ namespace Dots.PauseGame.Presenter
             {
                 loseGameScoreText.text = string.Format("Your score is: {0:0}", finalScore.ToString());
             }
+        }
+
+        void OnDestroy()
+        {
+            loseGameRestartButton.onClick.RemoveListener(RestartGame);
+            returnToMenuButton.onClick.RemoveListener(ReturnToMenu);
         }
     }
 }

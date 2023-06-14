@@ -136,5 +136,10 @@ namespace Dots.GamePlay.Powerups.Upgrade
         {
             IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
         }
+
+        void OnDestroy()
+        {
+            upgradeButton.onClick.RemoveListener(Upgrade);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Dots.Utils.SceneLoader
 	{
 		[SerializeField] Button loadSceneButton;
 
-        void Start()
+        void Awake()
         {
 			loadSceneButton.onClick.AddListener(OnPlayButtonPressed);
         }
@@ -29,5 +29,10 @@ namespace Dots.Utils.SceneLoader
 				yield return null;
 			}
 		}
-	} 
+
+        private void OnDestroy()
+        {
+            loadSceneButton.onClick.RemoveListener(OnPlayButtonPressed);
+        }
+    } 
 }

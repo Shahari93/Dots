@@ -34,5 +34,11 @@ namespace Dots.Settings.UI
             darkPanel.gameObject.SetActive(false);
             panel.gameObject.SetActive(false);
         }
+
+        void OnDestroy()
+        {
+            settingsButton.onClick.RemoveListener(OpenSettings);
+            closeButton.onClick.RemoveListener(CloseSettings);
+        }
     }
 }

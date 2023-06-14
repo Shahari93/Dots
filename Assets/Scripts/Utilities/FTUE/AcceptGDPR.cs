@@ -36,5 +36,10 @@ namespace Dots.Utils.GDPR
             didAcceptGdpr = true;
             PlayerPrefs.SetInt("AcceptGDPR", Convert.ToInt32(didAcceptGdpr));
         }
+
+        void OnDestroy()
+        {
+            acceptButton.onClick.RemoveListener(MoveToStartingScene);
+        }
     }
 }
