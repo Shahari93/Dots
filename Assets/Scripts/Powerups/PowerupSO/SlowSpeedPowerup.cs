@@ -1,5 +1,3 @@
-using Dots.Audio.Manager;
-using System;
 using UnityEngine;
 
 namespace Dots.GamePlay.Powerups.SlowSpeed

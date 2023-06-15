@@ -1,7 +1,6 @@
-using Dots.Audio.Manager;
-using Dots.Utils.Destroy;
 using System;
 using UnityEngine;
+using Dots.Utils.Destroy;
 
 namespace Dots.GamePlay.Powerups.Shield
 {
@@ -13,8 +12,7 @@ namespace Dots.GamePlay.Powerups.Shield
 
         public override void Apply(GameObject target)
         {
-            InvokePowerupUI?.Invoke(powerupDuration);
-            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration); // TODO: Not final need to refactor
+            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
             OnCollectedShieldPowerup?.Invoke(true);
         }
     } 
