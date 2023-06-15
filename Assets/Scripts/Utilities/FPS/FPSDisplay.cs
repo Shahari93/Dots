@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Dots.Utils.FPS
+namespace Dots.Utilities.FPS
 {
     /// <summary>
     /// Keeping track of multiple frames and calculate the average between them to show FPS

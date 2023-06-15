@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-namespace Dots.Utils.GDPR
+namespace Dots.Utilities.GDPR
 {
     public class ClickOnLinks : MonoBehaviour, IPointerClickHandler
     {

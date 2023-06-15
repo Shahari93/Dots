@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Dots.Utils.FPS
+namespace Dots.Utilities.FPS
 {
 	public class SetFPS : MonoBehaviour
 	{

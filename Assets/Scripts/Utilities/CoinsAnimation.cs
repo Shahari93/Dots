@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
 
-namespace Dots.Utils.CoinsAnimation
+namespace Dots.Utilities.CoinsAnimation
 {
     public class CoinsAnimation : MonoBehaviour
     {

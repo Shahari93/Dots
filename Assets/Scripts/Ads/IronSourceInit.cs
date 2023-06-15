@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 namespace Dots.Ads.Init
 {
+    /// <summary>
+    /// This class is how we communicate with IronSource ads
+    /// We initialize the ads and call them when we want to display ads
+    /// </summary>
     public class IronSourceInit : MonoBehaviour
     {
 #if UNITY_ANDROID
@@ -32,6 +36,9 @@ string appKey = "19f99b595";
         [SerializeField] Button reviveRV;
         [SerializeField] Button doubleCoinsRV;
 
+        /// <summary>
+        /// Subscribing to all the IronSource ads events
+        /// </summary>
         void OnEnable()
         {
             IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
@@ -45,7 +52,6 @@ string appKey = "19f99b595";
             IronSourceInterstitialEvents.onAdShowFailedEvent += InterstitialOnAdShowFailedEvent;
             IronSourceInterstitialEvents.onAdClosedEvent += InterstitialOnAdClosedEvent;
 
-            //Add AdInfo Rewarded Video Events
             IronSourceRewardedVideoEvents.onAdOpenedEvent += RewardedVideoOnAdOpenedEvent;
             IronSourceRewardedVideoEvents.onAdClosedEvent += RewardedVideoOnAdClosedEvent;
             IronSourceRewardedVideoEvents.onAdAvailableEvent += RewardedVideoOnAdAvailable;
@@ -54,11 +60,13 @@ string appKey = "19f99b595";
             IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
             IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
+            //This is for the rv ad button on main menu scene
             if (coinsRV != null)
             {
                 coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
             }
 
+            // This is for the double coins rv ad button if the player collected any coins
             if (doubleCoinsRV != null && CoinsModel.CoinsToAdd != 0)
             {
                 doubleCoinsRV.gameObject.SetActive(true);

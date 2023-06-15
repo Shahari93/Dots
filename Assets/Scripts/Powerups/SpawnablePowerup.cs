@@ -1,8 +1,12 @@
 using UnityEngine;
-using Dots.Utils.Interface.Spawnable;
+using Dots.Utilities.Interface.Spawnable;
 
-namespace Dots.Utils.Spawnable
+namespace Dots.Utilities.Spawnable
 {
+    /// <summary>
+    /// This class is responsible of setting the values for each powerup when it spawn
+    /// Like the direction and the speed of the powerup
+    /// </summary>
     public class SpawnablePowerup : MonoBehaviour, ISpawnableObjects
     {
         float randX;
@@ -21,7 +25,9 @@ namespace Dots.Utils.Spawnable
         {
             SetSpawnValues();
         }
-
+        /// <summary>
+        /// Setting values for the dot before it spawns 
+        /// </summary>
         void SetSpawnValues()
         {
             spawnSpeed = 70;
@@ -29,10 +35,12 @@ namespace Dots.Utils.Spawnable
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
         }
-
+        /// <summary>
+        /// Setting the direction values for the dot after it spawns
+        /// </summary>
         public void SetSpeedAndDirection()
         {
-            rb2D.velocity = spawnSpeed * direction * Time.fixedDeltaTime;
+            rb2D.velocity = spawnSpeed * Time.fixedDeltaTime * direction;
         }
 
         void FixedUpdate()

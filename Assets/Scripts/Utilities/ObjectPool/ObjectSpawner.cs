@@ -1,7 +1,7 @@
 using UnityEngine;
-using Dots.Utils.FTUE;
+using Dots.Utilities.FTUE;
 using Dots.GamePlay.Dot;
-using Dots.Utils.Destroy;
+using Dots.Utilities.Destroy;
 using System.Collections;
 using Dots.Audio.Manager;
 using Dots.GamePlay.Dot.Bad;
@@ -9,14 +9,14 @@ using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
 using System.Collections.Generic;
 
-namespace Dots.Utils.ObjectPool
+namespace Dots.Utilities.ObjectPool
 {
     public class ObjectSpawner : MonoBehaviour
     {
         [SerializeField] float spawnTime;
 
         [SerializeField] float[] spawnChances;
-        [SerializeField] List<float> spawnChanceList = new List<float>();
+        [SerializeField] List<float> spawnChanceList = new();
         [SerializeField] GameObject[] dotObjects;
         float total;
         bool ftueSpawn = true;
@@ -88,8 +88,7 @@ namespace Dots.Utils.ObjectPool
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
                 if (spawnable != null)
                 {
-                    spawnable.transform.position = transform.position;
-                    spawnable.transform.rotation = transform.rotation;
+                    spawnable.transform.SetPositionAndRotation(transform.position, transform.rotation);
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);

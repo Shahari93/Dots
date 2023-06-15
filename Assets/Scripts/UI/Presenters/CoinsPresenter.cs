@@ -4,7 +4,7 @@ using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
-using Dots.Utils.CoinsAnimation;
+using Dots.Utilities.CoinsAnimation;
 using Dots.GamePlay.Powerups.Upgrade;
 
 namespace Dots.Coins.Presenter

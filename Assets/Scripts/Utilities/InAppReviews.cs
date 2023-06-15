@@ -2,7 +2,7 @@ using UnityEngine;
 using Google.Play.Review;
 using System.Collections;
 
-namespace Dots.Utils.Reviews
+namespace Dots.Utilities.Reviews
 {
     public class InAppReviews : MonoBehaviour
     {

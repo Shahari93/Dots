@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
-using Dots.Utils.Destroy;
+using Dots.Utilities.Destroy;
 
 namespace Dots.GamePlay.Powerups.Shield
 {
+    /// <summary>
+    /// This class is responsible for the shield powerup logic 
+    /// </summary>
     [CreateAssetMenu(fileName = "ShieldPowerup")]
-
     public class ShieldPowerup : PowerupEffectSO
     {
         public static Action<bool> OnCollectedShieldPowerup;

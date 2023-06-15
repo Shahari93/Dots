@@ -2,7 +2,7 @@ using TMPro;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Dots.Utils.FTUE;
+using Dots.Utilities.FTUE;
 using Dots.Audio.Manager;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;

@@ -6,7 +6,7 @@ using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
 
-namespace Dots.Utils.Pause
+namespace Dots.Utilities.Pause
 {
     public class PauseGameButton : MonoBehaviour
     {

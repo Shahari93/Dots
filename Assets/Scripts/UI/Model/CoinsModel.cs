@@ -1,5 +1,5 @@
 using UnityEngine;
-using Dots.Utils.SaveAndLoad;
+using Dots.Utilities.SaveAndLoad;
 using Dots.ScorePoints.Model;
 
 [System.Serializable]

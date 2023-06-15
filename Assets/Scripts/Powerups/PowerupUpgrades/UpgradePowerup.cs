@@ -5,7 +5,7 @@ using Dots.Ads.Init;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
-using Dots.Utils.SaveAndLoad;
+using Dots.Utilities.SaveAndLoad;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
@@ -14,6 +14,10 @@ namespace Dots.GamePlay.Powerups.Upgrade
     {
         public int savedCoinsCostInJson;
     }
+    /// <summary>
+    /// This class is responsible for upgrading powerups
+    /// Here we can buy duration upgrade for powerups that have duration (For now it's the spawn green dots powerup)
+    /// </summary>
     public class UpgradePowerup : MonoBehaviour, ISaveable
     {
         public static event Action OnUpgradeBought;
@@ -56,6 +60,9 @@ namespace Dots.GamePlay.Powerups.Upgrade
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
         }
 
+        /// <summary>
+        /// Setting the initial value for the text
+        /// </summary>
         void Awake()
         {
             powerupDurationValue = affectedPowerup.powerupDuration;
@@ -75,7 +82,10 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeButton.interactable = CheckIfUpgradeable();
         }
 
-        // TODO: Make this more generic - The only difference is if the button is inactive we divide the alpha by 2
+        /// <summary>
+        /// Checking if the button needs to be interactable or not based on the amount of coins the player have
+        /// </summary>
+        /// <returns> returns true or false based on the amount of coins the player have</returns>
         bool CheckIfUpgradeable()
         {
             if (affectedPowerup.powerupDuration >= affectedPowerup.powerupDurationLimit)
@@ -96,7 +106,10 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 return upgradeButton.interactable = true;
             }
         }
-
+        /// <summary>
+        /// Sets the button interactable state and color
+        /// </summary>
+        /// <param name="divide"></param>
         private void SetUpgradeButtonInteractable(float divide)
         {
             float alpha = 255f / divide;
@@ -105,6 +118,10 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeButton.image.color = color;
         }
 
+        /// <summary>
+        /// The logic of upgrade button
+        /// We invoke events when we buy the upgrades and we save it to a json file
+        /// </summary>
         void Upgrade()
         {
             int totalCoins = CoinsModel.CurrentCoinsAmount;

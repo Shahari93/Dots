@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Dots.Utils.DeletePlayerPrefs
+namespace Dots.Utilities.DeletePlayerPrefs
 {
 #if UNITY_EDITOR
     public class DeletePlayerPrefsScript : EditorWindow

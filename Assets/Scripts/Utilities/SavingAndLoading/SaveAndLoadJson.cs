@@ -4,7 +4,7 @@ using Dots.Coins.Model;
 using Dots.GamePlay.Powerups.Upgrade;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Dots.Utils.SaveAndLoad
+namespace Dots.Utilities.SaveAndLoad
 {
     public class SaveAndLoadJson
     {

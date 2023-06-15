@@ -1,9 +1,12 @@
 using UnityEngine;
-using Dots.Utils.Destroy;
+using Dots.Utilities.Destroy;
 using Dots.GamePlay.Dot.Good;
 
 namespace Dots.GamePlay.Powerups.SpawnGreens
 {
+    /// <summary>
+    /// This class is responsible for the spawn green dots powerup logic 
+    /// </summary>
     [CreateAssetMenu(fileName = "SpawnGreens")]
     public class SpawnGreenDotsPowerup : PowerupEffectSO
     {

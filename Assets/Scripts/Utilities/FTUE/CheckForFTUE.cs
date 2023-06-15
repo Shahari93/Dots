@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Dots.Utils.FTUE
+namespace Dots.Utilities.FTUE
 {
     public class CheckForFTUE : MonoBehaviour
     {

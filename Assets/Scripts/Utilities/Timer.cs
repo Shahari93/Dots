@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Dots.Utils.GeneralTimer
+namespace Dots.Utilities.GeneralTimer
 {
     public class Timer
     {

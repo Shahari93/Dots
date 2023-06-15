@@ -2,10 +2,14 @@ using UnityEngine;
 using DG.Tweening;
 using Dots.Audio.Manager;
 using System.Threading.Tasks;
-using Dots.Utils.Interface.Spawnable;
+using Dots.Utilities.Interface.Spawnable;
 
 namespace Dots.GamePlay.Dot
 {
+    /// <summary>
+    /// This class is responsible of setting the values for each dot when it spawn
+    /// Like the direction and the speed of the dot
+    /// </summary>
     public class SpawnableDots : MonoBehaviour, ISpawnableObjects
     {
         [SerializeField] protected Rigidbody2D rb2D;
@@ -14,7 +18,7 @@ namespace Dots.GamePlay.Dot
         float randX;
         float randY;
         Vector2 direction;
-        protected Vector3 startScale = new Vector3(0.71f, 0.71f, 0f);
+        protected Vector3 startScale = new(0.71f, 0.71f, 0f);
 
         public float Speed { get => dotSpeed; set => dotSpeed = value; }
         public float RandX { get => RandX; set => randX = value; }
@@ -26,6 +30,9 @@ namespace Dots.GamePlay.Dot
             SetSpawnValues();
         }
 
+        /// <summary>
+        /// Setting values for the dot before it spawns 
+        /// </summary>
         async void SetSpawnValues()
         {
             dotSpeed = Random.Range(85f, 95f);
@@ -37,6 +44,9 @@ namespace Dots.GamePlay.Dot
             SetSpeedAndDirection();
         }
 
+        /// <summary>
+        /// Setting the direction values for the dot after it spawns
+        /// </summary>
         public void SetSpeedAndDirection()
         {
             transform.DOScale(0.7f, 0.5f).OnComplete(() =>
@@ -45,7 +55,7 @@ namespace Dots.GamePlay.Dot
                 {
                     AudioManager.Instance.PlaySFX("DotCreated");
                 }
-                rb2D.velocity = dotSpeed * direction * Time.fixedDeltaTime;
+                rb2D.velocity = dotSpeed * Time.fixedDeltaTime * direction;
             });
         }
     } 

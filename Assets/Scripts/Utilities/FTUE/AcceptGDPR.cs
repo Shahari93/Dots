@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
 
-namespace Dots.Utils.GDPR
+namespace Dots.Utilities.GDPR
 {
     public class AcceptGDPR : MonoBehaviour
     {
