@@ -8,6 +8,7 @@ namespace Dots.GamePlay.Powerups
     {
         public float powerupDurationData;
     }
+
     public abstract class PowerupEffectSO : ScriptableObject
     {
         public float powerupDuration;

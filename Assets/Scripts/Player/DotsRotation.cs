@@ -1,6 +1,5 @@
 using UnityEngine;
 using CandyCoded.HapticFeedback;
-using System;
 
 namespace Dots.GamePlay.Player
 {
@@ -27,7 +26,7 @@ namespace Dots.GamePlay.Player
                 return;
             }
 
-            if (ToggleAudioSprites.IsHapticOn)
+            if (SettingMenuPresenter.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }

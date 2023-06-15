@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using Dots.Audio.Manager;
-using Dots.Utils.Interaction;
 using Dots.GamePlay.Powerups;
 using CandyCoded.HapticFeedback;
+using Dots.Utils.Interface.Destroy;
 using Dots.Utils.Powerups.Objectpool;
+using Dots.Utils.Interface.Interaction;
 
 namespace Dots.Utils.Destroy
 {
@@ -36,7 +37,7 @@ namespace Dots.Utils.Destroy
         /// </summary>
         public virtual void BehaveWhenInteractWithPlayer()
         {
-            if (ToggleAudioSprites.IsHapticOn)
+            if (SettingMenuPresenter.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }

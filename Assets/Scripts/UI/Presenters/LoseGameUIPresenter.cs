@@ -1,11 +1,11 @@
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.Utils.FTUE;
 using Dots.Audio.Manager;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
-using System;
 
 namespace Dots.PauseGame.Presenter
 {

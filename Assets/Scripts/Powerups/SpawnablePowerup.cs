@@ -1,4 +1,5 @@
 using UnityEngine;
+using Dots.Utils.Interface.Spawnable;
 
 namespace Dots.Utils.Spawnable
 {

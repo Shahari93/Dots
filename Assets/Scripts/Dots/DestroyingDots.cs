@@ -1,5 +1,6 @@
 using UnityEngine;
-using Dots.Utils.Interaction;
+using Dots.Utils.Interface.Destroy;
+using Dots.Utils.Interface.Interaction;
 
 namespace Dots.GamePlay.Dot
 {

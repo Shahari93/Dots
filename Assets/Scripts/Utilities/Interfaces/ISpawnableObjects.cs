@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Dots.Utils.Spawnable
+namespace Dots.Utils.Interface.Spawnable
 {
     public interface ISpawnableObjects
     {

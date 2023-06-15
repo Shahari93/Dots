@@ -10,7 +10,6 @@ public class CoinsData
 
 namespace Dots.Coins.Model
 {
-
     public class CoinsModel : MonoBehaviour, ISaveable
     {
         public static CoinsModel Instance;

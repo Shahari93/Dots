@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
-using UnityEngine.SceneManagement;
-using Dots.GamePlay.Dot.Bad;
 using Dots.PauseGame.Presenter;
+using UnityEngine.SceneManagement;
 
 namespace Dots.Ads.Init
 {

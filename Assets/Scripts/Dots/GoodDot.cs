@@ -29,7 +29,7 @@ namespace Dots.GamePlay.Dot.Good
 
         public override void BehaveWhenInteractWithPlayer()
         {
-            if (ToggleAudioSprites.IsHapticOn)
+            if (SettingMenuPresenter.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }

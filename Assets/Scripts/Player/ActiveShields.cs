@@ -1,8 +1,8 @@
 using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Utils.Destroy;
-using Dots.Utils.Interaction;
 using Dots.GamePlay.Powerups.Shield;
+using Dots.Utils.Interface.Interaction;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {

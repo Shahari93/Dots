@@ -12,7 +12,6 @@ namespace Dots.GamePlay.PowerupsPerent.Pool
         [SerializeField] int[] amountToBuffer;
         [SerializeField] int defaultAmount = 3;
 
-
         void Awake()
         {
             SharedInstance = this;

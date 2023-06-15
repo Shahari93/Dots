@@ -1,5 +1,5 @@
 using UnityEngine;
-using Dots.Utils.Interaction;
+using Dots.Utils.Interface.Interaction;
 
 namespace Dots.GamePlay.Player.Interaction
 {

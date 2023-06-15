@@ -1,13 +1,13 @@
 // Add IPointerClickHandler interface to let Unity know you want to
 // catch and handle clicks (or taps on Mobile)
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using System;
 using Dots.Audio.Manager;
 using System.Threading.Tasks;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Dots.Utils.GDPR
 {

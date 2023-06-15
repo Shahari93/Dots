@@ -1,8 +1,8 @@
 using UnityEngine;
 using DG.Tweening;
 using Dots.Audio.Manager;
-using Dots.Utils.Spawnable;
 using System.Threading.Tasks;
+using Dots.Utils.Interface.Spawnable;
 
 namespace Dots.GamePlay.Dot
 {
