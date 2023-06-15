@@ -17,6 +17,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
     public class UpgradePowerup : MonoBehaviour, ISaveable
     {
         public static event Action OnUpgradeBought;
+        public static event Action OnCoinsDecreaseAfterUpgrade;
 
         static float powerupDurationValue;
         public static float PowerupDurationValue
@@ -113,7 +114,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 AudioManager.Instance.PlaySFX("ButtonClick");
                 // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
-                CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost); // TODO: Make sure this is the right place to use this method (Probably should be in the CoinsPresenter)
+                OnCoinsDecreaseAfterUpgrade?.Invoke();
 
                 // Adding more coins for the coins cost to upgrade and updating the model and the view
                 coinsCost += 5;
