@@ -11,12 +11,12 @@ namespace Dots.Utils.SaveAndLoad
         public static void SavingToJson(string fileName, ISaveable saveable)
         {
             // Creating the file
-            BinaryFormatter formatter = new BinaryFormatter();
+            BinaryFormatter formatter = new();
             string path = Application.persistentDataPath + fileName;
-            FileStream stream = new FileStream(path, FileMode.Create);
+            FileStream stream = new(path, FileMode.Create);
 
             // Saving the data to the model
-            SaveableData data = new SaveableData();
+            SaveableData data = new();
             data.userCoinsAmount = CoinsModel.CurrentCoinsAmount;
             data.upgradeCoinsCostAmount = UpgradePowerup.CoinsCost;
             data.powerupDurationData = UpgradePowerup.PowerupDurationValue;
@@ -31,8 +31,8 @@ namespace Dots.Utils.SaveAndLoad
             string path = Application.persistentDataPath + fileName;
             if (File.Exists(path))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                FileStream stream = new FileStream(path, FileMode.Open);
+                BinaryFormatter formatter = new();
+                FileStream stream = new(path, FileMode.Open);
                 SaveableData data = formatter.Deserialize(stream) as SaveableData;
                 CoinsModel.CurrentCoinsAmount = data.userCoinsAmount;
                 UpgradePowerup.CoinsCost = data.upgradeCoinsCostAmount;

@@ -12,7 +12,7 @@ namespace Dots.GamePlay.Powerups.Shield
 
         public override void Apply(GameObject target)
         {
-            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
+            DestroyingPowerup.OnCollectedPower?.Invoke(powerupDuration);
             OnCollectedShieldPowerup?.Invoke(true);
         }
     } 

@@ -10,7 +10,7 @@ namespace Dots.GamePlay.Powerups.SpawnGreens
         public override void Apply(GameObject target)
         {
             GoodDot.spawnChance = 1f;
-            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
+            DestroyingPowerup.OnCollectedPower?.Invoke(powerupDuration);
             InvokePowerupUI?.Invoke(powerupDuration);
         }
     }

@@ -25,7 +25,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
-            DestroingPowerup.OnCollectedPower += StartDisablePowerupCoroutine;
+            DestroyingPowerup.OnCollectedPower += StartDisablePowerupCoroutine;
         }
 
         void Awake()
@@ -130,7 +130,7 @@ namespace Dots.Utils.ObjectPool
                 {
                     GoodDot.spawnChance = 0.15f;
                     AudioManager.Instance.PlaySFX("PowerupDisabled");
-                    DestroingPowerup.OnPowerupDisabled?.Invoke();
+                    DestroyingPowerup.OnPowerupDisabled?.Invoke();
                     break;
                 }
             }
@@ -145,7 +145,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
-            DestroingPowerup.OnCollectedPower -= StartDisablePowerupCoroutine;
+            DestroyingPowerup.OnCollectedPower -= StartDisablePowerupCoroutine;
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Dots.GamePlay.PowerupsPerent.Pool 
+namespace Dots.GamePlay.PowerupsParent.Pool 
 {
     public class PowerupObjectPool : MonoBehaviour
     {

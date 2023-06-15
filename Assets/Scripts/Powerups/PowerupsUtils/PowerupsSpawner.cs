@@ -3,7 +3,7 @@ using Dots.Utils.Destroy;
 using System.Collections;
 using Dots.GamePlay.Powerups;
 using System.Collections.Generic;
-using Dots.GamePlay.PowerupsPerent.Pool;
+using Dots.GamePlay.PowerupsParent.Pool;
 
 namespace Dots.Utils.Powerups.Objectpool
 {
@@ -33,8 +33,8 @@ namespace Dots.Utils.Powerups.Objectpool
         void OnEnable()
         {
             powerupSpawnIntirvalInitValue = powerupSpawnIntirval;
-            DestroingPowerup.OnCollectedPower += StopPowerupsSpawn;
-            DestroingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
+            DestroyingPowerup.OnCollectedPower += StopPowerupsSpawn;
+            DestroyingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
         }
 
         void EnablePowerupSpawn()
@@ -109,8 +109,8 @@ namespace Dots.Utils.Powerups.Objectpool
         }
         void OnDisable()
         {
-            DestroingPowerup.OnCollectedPower -= StopPowerupsSpawn;
-            DestroingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
+            DestroyingPowerup.OnCollectedPower -= StopPowerupsSpawn;
+            DestroyingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
         }
     }
 }

@@ -108,7 +108,7 @@ string appKey = "19f99b595";
 
         #region Interstitial Callbacks
         // Interstitial Callbacks
-        // Invoked when the interstitial ad was loaded succesfully.
+        // Invoked when the interstitial ad was loaded successfully.
         void InterstitialOnAdReadyEvent(IronSourceAdInfo adInfo)
         {
         }

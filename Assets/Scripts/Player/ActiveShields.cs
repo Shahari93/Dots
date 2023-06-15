@@ -60,7 +60,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
             if (!areShieldsActive)
             {
-                DestroingPowerup.OnPowerupDisabled?.Invoke();
+                DestroyingPowerup.OnPowerupDisabled?.Invoke();
             }
         }
 
@@ -68,7 +68,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         {
             if (IronSourceInit.IsShieldFromRV)
             {
-                DestroingPowerup.OnCollectedPower?.Invoke(0);
+                DestroyingPowerup.OnCollectedPower?.Invoke(0);
                 return true;
             }
             else

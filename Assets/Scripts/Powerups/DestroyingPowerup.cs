@@ -9,7 +9,7 @@ using Dots.Utils.Interface.Interaction;
 
 namespace Dots.Utils.Destroy
 {
-    public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
+    public class DestroyingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
     {
         [SerializeField] protected ParticleSystem particles;
         [SerializeField] PowerupEffectSO powerupEffect;
