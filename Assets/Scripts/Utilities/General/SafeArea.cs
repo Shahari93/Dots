@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Dots.Utils.SafeArea
+namespace Dots.Utilities.SafeArea
 {
 	public class SafeArea : MonoBehaviour
 	{

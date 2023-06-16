@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
 
-namespace Dots.Utils.GDPR
+namespace Dots.Utilities.GDPR
 {
     public class AcceptGDPR : MonoBehaviour
     {
@@ -35,6 +35,11 @@ namespace Dots.Utils.GDPR
             AudioManager.Instance.PlayMusic("ThemeMusic");
             didAcceptGdpr = true;
             PlayerPrefs.SetInt("AcceptGDPR", Convert.ToInt32(didAcceptGdpr));
+        }
+
+        void OnDestroy()
+        {
+            acceptButton.onClick.RemoveListener(MoveToStartingScene);
         }
     }
 }

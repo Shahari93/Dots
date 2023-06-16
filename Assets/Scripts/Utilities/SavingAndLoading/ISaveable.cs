@@ -1,4 +1,4 @@
-namespace Dots.Utils.SaveAndLoad
+namespace Dots.Utilities.SaveAndLoad
 {
 	public interface ISaveable
 	{

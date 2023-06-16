@@ -1,4 +1,4 @@
-namespace Dots.Utils.Interaction
+namespace Dots.Utilities.Interface.Interaction
 {
 	public interface IInteractableObjects
 	{

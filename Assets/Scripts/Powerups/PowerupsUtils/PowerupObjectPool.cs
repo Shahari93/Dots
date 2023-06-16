@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Dots.GamePlay.PowerupsPerent.Pool 
+namespace Dots.GamePlay.PowerupsParent.Pool 
 {
+    /// <summary>
+    /// Object pool class for powerups
+    /// </summary>
     public class PowerupObjectPool : MonoBehaviour
     {
         public static PowerupObjectPool SharedInstance;
@@ -11,7 +14,6 @@ namespace Dots.GamePlay.PowerupsPerent.Pool
         [SerializeField] List<GameObject>[] powerupsPooledObjects;
         [SerializeField] int[] amountToBuffer;
         [SerializeField] int defaultAmount = 3;
-
 
         void Awake()
         {
@@ -23,6 +25,10 @@ namespace Dots.GamePlay.PowerupsPerent.Pool
             InitObjectPoolList();
         }
 
+        /// <summary>
+        /// Initializing the object pool with objects 
+        /// with the amount of object to pool we set in the inspector at the start of the game
+        /// </summary>
         void InitObjectPoolList()
         {
             powerupsPooledObjects = new List<GameObject>[powerupsObjects.Length];
@@ -49,14 +55,19 @@ namespace Dots.GamePlay.PowerupsPerent.Pool
             }
         }
 
-        // Pull an object of a specific type from the pool.
+        /// <summary> 
+        /// Pull an object of a specific type based on it's name
+        /// from the object pool.
+        /// </summary>
+        /// <param name="objectType">the pooled object name we pass</param>
+        /// <returns></returns>
         public GameObject PullObject(string objectType)
         {
             bool onlyPooled = false;
             for (int i = 0; i < powerupsObjects.Length; i++)
             {
                 GameObject prefab = powerupsObjects[i];
-                if (prefab.tag == objectType)
+                if (prefab.name == objectType)
                 {
                     if (powerupsPooledObjects[i].Count > 0)
                     {
@@ -77,12 +88,15 @@ namespace Dots.GamePlay.PowerupsPerent.Pool
             return null;
         }
 
-        // Add object of a specific type to the pool.
+        /// <summary>
+        /// Add object of a specific type to the pool. 
+        /// </summary>
+        /// <param name="obj">The object to add</param>
         public void PoolObject(GameObject obj)
         {
             for (int i = 0; i < powerupsObjects.Length; i++)
             {
-                if (powerupsObjects[i].tag == obj.tag)
+                if (obj.CompareTag(powerupsObjects[i].tag))
                 {
                     obj.SetActive(false);
                     obj.transform.parent = this.transform;

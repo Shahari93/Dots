@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Dots.Utils.ObjectPool
+namespace Dots.Utilities.ObjectPool
 {
     [System.Serializable]
     public class ObjectPoolItem

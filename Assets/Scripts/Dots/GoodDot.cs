@@ -1,26 +1,42 @@
 using System;
 using Dots.Audio.Manager;
 using CandyCoded.HapticFeedback;
-using UnityEngine;
+using UnityEditor.Localization.Platform.Android;
 
 namespace Dots.GamePlay.Dot.Good
 {
-    public class GoodDot : DotsBehaviour
+    public class GoodDot : DestroyingDots
     {
+        /// <summary>
+        /// What is the chance of the red dot being spawned
+        /// </summary>
         public static float spawnChance = 0.15f;
+        public override float SpawnChance
+        {
+            get
+            {
+                return spawnChance;
+            }
+            set
+            {
+                spawnChance = value;
+            }
+        }
+        /// <summary> 
+        /// The event we invoke when the player collided with a green dot
+        /// </summary>
         public static event Action<int> OnPlayerCollectedDot;
-
-        bool isHapticOn;
 
         void Awake()
         {
             IsGoodDot = true;
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
         }
-
+        /// <summary>
+        /// The behavior when the player collided with the red dot 
+        /// </summary>
         public override void BehaveWhenInteractWithPlayer()
         {
-            if (isHapticOn)
+            if (SettingMenuPresenter.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }

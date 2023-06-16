@@ -4,13 +4,13 @@ using System.Collections;
 using Dots.Audio.Manager;
 using UnityEngine.SceneManagement;
 
-namespace Dots.Utils.SceneLoader
+namespace Dots.Utilities.SceneLoader
 {
 	public class AsyncSceneLoader : MonoBehaviour
 	{
 		[SerializeField] Button loadSceneButton;
 
-        void Start()
+        void Awake()
         {
 			loadSceneButton.onClick.AddListener(OnPlayButtonPressed);
         }
@@ -29,5 +29,10 @@ namespace Dots.Utils.SceneLoader
 				yield return null;
 			}
 		}
-	} 
+
+        private void OnDestroy()
+        {
+            loadSceneButton.onClick.RemoveListener(OnPlayButtonPressed);
+        }
+    } 
 }

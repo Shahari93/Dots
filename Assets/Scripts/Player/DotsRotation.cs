@@ -1,20 +1,17 @@
 using UnityEngine;
 using CandyCoded.HapticFeedback;
-using System;
 
 namespace Dots.GamePlay.Player
 {
+    /// <summary>
+    /// This class is responsible for the player dots rotation
+    /// Using the RotateAround we keep the dots rotating all the time
+    /// And if the player tap on the screen we change the rotation direction
+    /// </summary>
     public class DotsRotation : MonoBehaviour
     {
         [SerializeField] float rotationDegree;
         [SerializeField] float rotationSpeed;
-
-        bool isHapticOn;
-
-        void OnEnable()
-        {
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
-        }
 
         void Update()
         {
@@ -22,6 +19,11 @@ namespace Dots.GamePlay.Player
             CheckForTouchInput();
         }
 
+        /// <summary>
+        /// Checking for player input
+        /// If the player touched the screen using only 1 finger
+        /// We change the rotation direction
+        /// </summary>
         void CheckForTouchInput()
         {
             if (Input.touchCount != 1)
@@ -34,7 +36,7 @@ namespace Dots.GamePlay.Player
                 return;
             }
 
-            if (isHapticOn)
+            if (SettingMenuPresenter.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }
@@ -42,6 +44,10 @@ namespace Dots.GamePlay.Player
             rotationDegree *= -1f;
         }
 
+        /// <summary>
+        /// Keeps rotating all the time the game is on
+        /// </summary>
+        /// <param name="degree"> the rotation degree for the dots</param>
         void RotateDotsAround(float degree)
         {
             transform.RotateAround(transform.position, transform.forward, degree * Time.deltaTime * rotationSpeed);

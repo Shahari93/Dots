@@ -1,14 +1,24 @@
 using UnityEngine;
-using Dots.Utils.Destroy;
+using Dots.Utilities.Destroy;
 using System.Collections;
-using Dots.GamePlay.PowerupsPerent.Pool;
+using Dots.GamePlay.Powerups;
+using System.Collections.Generic;
+using Dots.GamePlay.PowerupsParent.Pool;
 
-namespace Dots.Utils.Powerups.Objectpool
+namespace Dots.Utilities.Powerups.ObjectPool
 {
+    /// <summary>
+    /// The object that spawn the powerups
+    /// </summary>
     public class PowerupsSpawner : MonoBehaviour
     {
-        [Range(5f, 20f)][SerializeField] float powerupSpawnIntirval;
-        float powerupSpawnIntirvalInitValue;
+        // Interval between spawning 
+        [Range(5f, 20f)][SerializeField] float powerupSpawnInterval;
+        float powerupSpawnIntervalInitValue;
+
+        [SerializeField] List<float> powerupsSpawnChancesList = new();
+        [SerializeField] PowerupEffectSO[] powerupObjects;
+        float totalSpawnChance;
 
         static bool canSpawn;
         public static bool CanSpawn
@@ -25,15 +35,17 @@ namespace Dots.Utils.Powerups.Objectpool
 
         void OnEnable()
         {
-            powerupSpawnIntirvalInitValue = powerupSpawnIntirval;
-            DestroingPowerup.OnCollectedPower += StopPowerupsSpawn;
-            DestroingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
+            powerupSpawnIntervalInitValue = powerupSpawnInterval;
+            DestroyingPowerup.OnCollectedPower += StopPowerupsSpawn;
+            DestroyingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
         }
-
+        /// <summary>
+        /// If the powerup can be spawn we start the coroutine
+        /// </summary>
         void EnablePowerupSpawn()
         {
             canSpawn = true;
-            powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
+            powerupSpawnInterval = powerupSpawnIntervalInitValue;
             StartCoroutine(SpawnPowerups());
         }
 
@@ -46,44 +58,60 @@ namespace Dots.Utils.Powerups.Objectpool
         {
             canSpawn = true;
             StartCoroutine(SpawnPowerups());
+            //Adding each powerup spawn chance to the spawn chance list
+            foreach (var powerupObject in powerupObjects)
+            {
+                powerupsSpawnChancesList.Add(powerupObject.spawnChance);
+            }
+            // Adding the total of spawn chances 
+            foreach (var spawnChance in powerupsSpawnChancesList)
+            {
+                totalSpawnChance += spawnChance;
+            }
         }
 
         void Update()
         {
-            powerupSpawnIntirval -= Time.deltaTime;
+            powerupSpawnInterval -= Time.deltaTime;
         }
 
+        /// <summary>
+        /// The coroutine that is responsible for spawning powerups 
+        /// Checking the random number that was set and compare it to the spawn chance
+        /// Pass the powerup name to the object pool function
+        /// </summary>
+        /// <returns>yielding for 3 seconds between each spawn</returns>
         IEnumerator SpawnPowerups()
         {
             while (canSpawn)
             {
                 yield return new WaitForSeconds(3f);
-                float randomNumber = Random.Range(0f, 1f);
-                string spawnableTag = "";
+                float randomNumber = Random.Range(0f, totalSpawnChance);
+                string spawnableName = "";
 
 
-                if (canSpawn && Time.deltaTime >= powerupSpawnIntirval)
+                if (canSpawn && Time.deltaTime >= powerupSpawnInterval)
                 {
-                    if (randomNumber >= 0.0f && randomNumber <= 0.4f)
+                    for (int i = 0; i < powerupsSpawnChancesList.Count; i++)
                     {
-                        spawnableTag = "AllGreen";
-                        canSpawn = false;
+                        if (randomNumber <= powerupsSpawnChancesList[i])
+                        {
+                            spawnableName = powerupObjects[i].name;
+                        }
+                        else
+                        {
+                            randomNumber -= powerupsSpawnChancesList[i];
+                        }
                     }
-                    else if (randomNumber > 0.4f && randomNumber <= 1)
-                    {
-                        spawnableTag = "Shield";
-                        canSpawn = false;
-                    }
-                    powerupSpawnIntirval = powerupSpawnIntirvalInitValue;
+                    powerupSpawnInterval = powerupSpawnIntervalInitValue;
 
                 }
 
 
-                GameObject spawnable = PowerupObjectPool.SharedInstance.PullObject(spawnableTag);
+                GameObject spawnable = PowerupObjectPool.SharedInstance.PullObject(spawnableName);
                 if (spawnable != null)
                 {
-                    spawnable.transform.position = this.transform.position;
-                    spawnable.transform.rotation = this.transform.rotation;
+                    spawnable.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);
@@ -92,8 +120,8 @@ namespace Dots.Utils.Powerups.Objectpool
         }
         void OnDisable()
         {
-            DestroingPowerup.OnCollectedPower -= StopPowerupsSpawn;
-            DestroingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
+            DestroyingPowerup.OnCollectedPower -= StopPowerupsSpawn;
+            DestroyingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
         }
     }
 }

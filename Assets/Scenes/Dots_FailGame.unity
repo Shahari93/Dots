@@ -461,6 +461,7 @@ MonoBehaviour:
   target: {fileID: 1623416011}
   coinsAmountText: {fileID: 1257108457}
   restartGameButton: {fileID: 1257108455}
+  returnHomeButton: {fileID: 1257108454}
   initialPos: []
   initialRotation: []
 --- !u!114 &1175233709
@@ -603,6 +604,10 @@ PrefabInstance:
     - target: {fileID: 8229269713873949680, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471758224383654641, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+      propertyPath: m_text
+      value: Watch ad to double your coins
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}

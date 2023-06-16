@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Dots.Utils.Contain
+namespace Dots.Utilities.Contain
 {
 	public class ContainObjects : MonoBehaviour
 	{

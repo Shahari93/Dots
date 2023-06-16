@@ -1,27 +1,25 @@
 using System;
 using UnityEngine;
 using Dots.Audio.Manager;
-using Dots.Utils.Interaction;
 using Dots.GamePlay.Powerups;
 using CandyCoded.HapticFeedback;
-using Dots.Utils.Powerups.Objectpool;
+using Dots.Utilities.Interface.Destroy;
+using Dots.Utilities.Powerups.ObjectPool;
+using Dots.Utilities.Interface.Interaction;
 
-namespace Dots.Utils.Destroy
+namespace Dots.Utilities.Destroy
 {
-    public class DestroingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
+    /// <summary>
+    /// This class is for handling the logic of destroying the powerups
+    /// It handles all the behaviors when colliding
+    /// </summary>
+    public class DestroyingPowerup : MonoBehaviour, IDestroyableObject, IInteractableObjects
     {
         [SerializeField] protected ParticleSystem particles;
         [SerializeField] PowerupEffectSO powerupEffect;
 
         public static Action<float> OnCollectedPower;
         public static Action OnPowerupDisabled;
-
-        bool isHapticOn;
-
-        void Awake()
-        {
-            isHapticOn = Convert.ToBoolean(PlayerPrefs.GetInt("HapticToggle"));
-        }
 
         void OnTriggerEnter2D(Collider2D collision)
         {
@@ -31,10 +29,12 @@ namespace Dots.Utils.Destroy
             }
         }
 
-        // What happens if a dot hits the bounds collider
+        /// <summary> 
+        /// What happens if a dot hits the bounds collider
+        /// </summary>
         public void BehaveWhenInteractWithBounds()
         {
-            DisablePowerupVisuals();
+            DisableVisuals();
             OnPowerupDisabled?.Invoke();
         }
 
@@ -43,23 +43,30 @@ namespace Dots.Utils.Destroy
         /// </summary>
         public virtual void BehaveWhenInteractWithPlayer()
         {
-            if (isHapticOn)
+            if (SettingMenuPresenter.IsHapticOn)
             {
                 HapticFeedback.MediumFeedback();
             }
 
             AudioManager.Instance.PlaySFX("CollectedPowerup");
-            DisablePowerupVisuals();
+            DisableVisuals();
             powerupEffect.Apply(this.gameObject);
         }
-
-        public void DisablePowerupVisuals()
+        /// <summary>
+        /// Disabling the powerup visuals
+        /// </summary>
+        public void DisableVisuals()
         {
             PowerupsSpawner.CanSpawn = true;
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
         }
-
+        /// <summary>
+        /// Showing particles when the dot is being collided with
+        /// </summary>
+        /// <param name="isGoodDot">If this bool is true we show the green dot particles, if not the red dot particles.
+        /// If null we show the powerup particles
+        /// </param>
         public void ShowDestroyParticles(bool? isGoodDot)
         {
             GameObject particleGO = Instantiate(particles.gameObject, this.transform.position, Quaternion.identity);

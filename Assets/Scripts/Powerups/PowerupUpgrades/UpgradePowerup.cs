@@ -5,7 +5,7 @@ using Dots.Ads.Init;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
-using Dots.Utils.SaveAndLoad;
+using Dots.Utilities.SaveAndLoad;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
@@ -14,9 +14,14 @@ namespace Dots.GamePlay.Powerups.Upgrade
     {
         public int savedCoinsCostInJson;
     }
+    /// <summary>
+    /// This class is responsible for upgrading powerups
+    /// Here we can buy duration upgrade for powerups that have duration (For now it's the spawn green dots powerup)
+    /// </summary>
     public class UpgradePowerup : MonoBehaviour, ISaveable
     {
         public static event Action OnUpgradeBought;
+        public static event Action OnCoinsDecreaseAfterUpgrade;
 
         static float powerupDurationValue;
         public static float PowerupDurationValue
@@ -55,6 +60,9 @@ namespace Dots.GamePlay.Powerups.Upgrade
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
         }
 
+        /// <summary>
+        /// Setting the initial value for the text
+        /// </summary>
         void Awake()
         {
             powerupDurationValue = affectedPowerup.powerupDuration;
@@ -74,7 +82,10 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeButton.interactable = CheckIfUpgradeable();
         }
 
-        // TODO: Make this more generic - The only difference is if the button is inactive we divide the alpha by 2
+        /// <summary>
+        /// Checking if the button needs to be interactable or not based on the amount of coins the player have
+        /// </summary>
+        /// <returns> returns true or false based on the amount of coins the player have</returns>
         bool CheckIfUpgradeable()
         {
             if (affectedPowerup.powerupDuration >= affectedPowerup.powerupDurationLimit)
@@ -86,22 +97,31 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
             if (CoinsModel.CurrentCoinsAmount < coinsCost)
             {
-                float alpha = 255f / 2;
-                Color color = upgradeButton.image.color;
-                color.a = alpha;
-                upgradeButton.image.color = color;
+                SetUpgradeButtonInteractable(2f);
                 return upgradeButton.interactable = false;
             }
             else
             {
-                float alpha = 255;
-                Color color = upgradeButton.image.color;
-                color.a = alpha;
-                upgradeButton.image.color = color;
+                SetUpgradeButtonInteractable(1f);
                 return upgradeButton.interactable = true;
             }
         }
+        /// <summary>
+        /// Sets the button interactable state and color
+        /// </summary>
+        /// <param name="divide"></param>
+        private void SetUpgradeButtonInteractable(float divide)
+        {
+            float alpha = 255f / divide;
+            Color color = upgradeButton.image.color;
+            color.a = alpha;
+            upgradeButton.image.color = color;
+        }
 
+        /// <summary>
+        /// The logic of upgrade button
+        /// We invoke events when we buy the upgrades and we save it to a json file
+        /// </summary>
         void Upgrade()
         {
             int totalCoins = CoinsModel.CurrentCoinsAmount;
@@ -111,7 +131,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 AudioManager.Instance.PlaySFX("ButtonClick");
                 // Reducing the coins cost from the player total coins value and updating the model and the view
                 totalCoins -= coinsCost;
-                CoinsModel.Instance.UpdateCoinsDataAfterUpgrade(coinsCost); // TODO: Make sure this is the right place to use this method (Probably should be in the CoinsPresenter)
+                OnCoinsDecreaseAfterUpgrade?.Invoke();
 
                 // Adding more coins for the coins cost to upgrade and updating the model and the view
                 coinsCost += 5;
@@ -133,6 +153,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
         void OnDisable()
         {
             IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
+        }
+
+        void OnDestroy()
+        {
+            upgradeButton.onClick.RemoveListener(Upgrade);
         }
     }
 }

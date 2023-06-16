@@ -6,9 +6,8 @@ using Dots.GamePlay.Dot.Good;
 namespace Dots.ScorePoints.Presenter
 {
     /// <summary>
-    /// This class responsible of controling the change of data of the points system
+    /// This class responsible of controlling the change of data of the points system
     /// Whenever there is a change of state (Point collected) we call a method on the model to update the data
-    /// 
     /// </summary>
     public class PointsPresenter : MonoBehaviour
     {

@@ -1,19 +1,22 @@
 using UnityEngine;
-using Dots.Utils.FTUE;
-using Dots.Utils.Destroy;
+using Dots.Utilities.FTUE;
+using Dots.GamePlay.Dot;
+using Dots.Utilities.Destroy;
 using System.Collections;
+using Dots.Audio.Manager;
 using Dots.GamePlay.Dot.Bad;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
-using Dots.Audio.Manager;
+using System.Collections.Generic;
 
-namespace Dots.Utils.ObjectPool
+namespace Dots.Utilities.ObjectPool
 {
     public class ObjectSpawner : MonoBehaviour
     {
         [SerializeField] float spawnTime;
 
         [SerializeField] float[] spawnChances;
+        [SerializeField] List<float> spawnChanceList = new();
         [SerializeField] GameObject[] dotObjects;
         float total;
         bool ftueSpawn = true;
@@ -22,7 +25,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame += StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased += ChangeSpawnSpeed;
-            DestroingPowerup.OnCollectedPower += StartDisablePowerupCoroutine;
+            DestroyingPowerup.OnCollectedPower += StartDisablePowerupCoroutine;
         }
 
         void Awake()
@@ -34,8 +37,12 @@ namespace Dots.Utils.ObjectPool
         void Start()
         {
             StartCoroutine(Spawn());
-            spawnChances = new float[2] { BadDot.spawnChance, GoodDot.spawnChance };
-            foreach (var spawnChance in spawnChances)
+            //spawnChances = new float[2] { BadDot.spawnChance, GoodDot.spawnChance };
+            foreach (var obj in dotObjects)
+            {
+                spawnChanceList.Add(obj.GetComponent<DestroyingDots>().SpawnChance);
+            }
+            foreach (var spawnChance in spawnChanceList)
             {
                 total += spawnChance;
             }
@@ -44,9 +51,9 @@ namespace Dots.Utils.ObjectPool
         // Testing changing the spawn percentage
         void Update()
         {
-            if (spawnChances[1] != GoodDot.spawnChance)
+            if (spawnChanceList[1] != GoodDot.spawnChance)
             {
-                spawnChances[1] = GoodDot.spawnChance;
+                spawnChanceList[1] = GoodDot.spawnChance;
                 return;
             }
         }
@@ -66,23 +73,22 @@ namespace Dots.Utils.ObjectPool
                     ftueSpawn = false;
                 }
 
-                for (int i = 0; i < spawnChances.Length; i++)
+                for (int i = 0; i < spawnChanceList.Count; i++)
                 {
-                    if (randomNumber <= spawnChances[i])
+                    if (randomNumber <= spawnChanceList[i])
                     {
                         spawnableTag = dotObjects[i].tag;
                     }
                     else
                     {
-                        randomNumber -= spawnChances[i];
+                        randomNumber -= spawnChanceList[i];
                     }
                 }
 
                 GameObject spawnable = ObjectPooler.SharedInstance.GetPooledObject(spawnableTag);
                 if (spawnable != null)
                 {
-                    spawnable.transform.position = transform.position;
-                    spawnable.transform.rotation = transform.rotation;
+                    spawnable.transform.SetPositionAndRotation(transform.position, transform.rotation);
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);
@@ -123,7 +129,7 @@ namespace Dots.Utils.ObjectPool
                 {
                     GoodDot.spawnChance = 0.15f;
                     AudioManager.Instance.PlaySFX("PowerupDisabled");
-                    DestroingPowerup.OnPowerupDisabled?.Invoke();
+                    DestroyingPowerup.OnPowerupDisabled?.Invoke();
                     break;
                 }
             }
@@ -138,7 +144,7 @@ namespace Dots.Utils.ObjectPool
         {
             BadDot.OnLoseGame -= StopSpawnInvokation;
             IncreaseSpeedOverTime.OnTickIncreased -= ChangeSpawnSpeed;
-            DestroingPowerup.OnCollectedPower -= StartDisablePowerupCoroutine;
+            DestroyingPowerup.OnCollectedPower -= StartDisablePowerupCoroutine;
         }
     }
 }

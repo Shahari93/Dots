@@ -1,20 +1,20 @@
-using Dots.Audio.Manager;
-using Dots.Utils.Destroy;
 using System;
 using UnityEngine;
+using Dots.Utilities.Destroy;
 
 namespace Dots.GamePlay.Powerups.Shield
 {
+    /// <summary>
+    /// This class is responsible for the shield powerup logic 
+    /// </summary>
     [CreateAssetMenu(fileName = "ShieldPowerup")]
-
     public class ShieldPowerup : PowerupEffectSO
     {
         public static Action<bool> OnCollectedShieldPowerup;
 
         public override void Apply(GameObject target)
         {
-            InvokePowerupUI?.Invoke(powerupDuration);
-            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration); // TODO: Not final need to refactor
+            DestroyingPowerup.OnCollectedPower?.Invoke(powerupDuration);
             OnCollectedShieldPowerup?.Invoke(true);
         }
     } 

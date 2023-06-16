@@ -6,7 +6,7 @@ using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
 
-namespace Dots.Utils.Pause
+namespace Dots.Utilities.Pause
 {
     public class PauseGameButton : MonoBehaviour
     {
@@ -22,11 +22,8 @@ namespace Dots.Utils.Pause
         void Awake()
         {
             pauseGameButton.onClick.AddListener(PauseGame);
-
             returnToGameButton.onClick.AddListener(UnPauseGame);
-
             restartGameButton.onClick.AddListener(RestartGame);
-
             returnToMainMenuButton.onClick.AddListener(ReturnToHome);
         }
 
@@ -38,7 +35,7 @@ namespace Dots.Utils.Pause
                 ShowPausePanel(true);
                 isGamePaused = true;
                 Time.timeScale = 0;
-                PauseGameUIModel.OnGamePaused?.Invoke();
+                OnGameLoseFocus.OnGamePausedOrLoseFocus?.Invoke();
             }
         }
 
@@ -78,6 +75,14 @@ namespace Dots.Utils.Pause
             PointsModel.Instance.ResetScoreFromPause();
             CoinsModel.Instance.ResetCoins();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - sceneIndex);
+        }
+
+        void OnDestroy()
+        {
+            pauseGameButton.onClick.RemoveListener(PauseGame);
+            returnToGameButton.onClick.RemoveListener(UnPauseGame);
+            restartGameButton.onClick.RemoveListener(RestartGame);
+            returnToMainMenuButton.onClick.RemoveListener(ReturnToHome);
         }
     }
 }

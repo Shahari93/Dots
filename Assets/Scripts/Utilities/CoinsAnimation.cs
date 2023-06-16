@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
 
-namespace Dots.Utils.CoinsAnimation
+namespace Dots.Utilities.CoinsAnimation
 {
     public class CoinsAnimation : MonoBehaviour
     {
@@ -17,6 +17,7 @@ namespace Dots.Utils.CoinsAnimation
         [SerializeField] Transform target;
         [SerializeField] TMP_Text coinsAmountText;
         [SerializeField] Button restartGameButton;
+        [SerializeField] Button returnHomeButton;
 
         [SerializeField] Vector2[] initialPos;
         [SerializeField] Quaternion[] initialRotation;
@@ -26,6 +27,7 @@ namespace Dots.Utils.CoinsAnimation
         void Start()
         {
             restartGameButton.interactable = false;
+            returnHomeButton.interactable = false;
             coinsAmount = CoinsModel.CoinsToAdd;
 
             if (coinsAmount >= 10)
@@ -62,10 +64,12 @@ namespace Dots.Utils.CoinsAnimation
 
         void CountCoins()
         {
-            restartGameButton.interactable = true;
-
             if (CoinsModel.CoinsToAdd <= 0)
+            {
+                restartGameButton.interactable = true;
+                returnHomeButton.interactable = true;
                 return;
+            }
 
             else
             {
@@ -80,7 +84,7 @@ namespace Dots.Utils.CoinsAnimation
                     pileOfCoins.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay + 0.1f).SetEase(Ease.OutBack);
 
                     pileOfCoins.transform.GetChild(i).DOMove(target.position, 0.8f)
-                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(()=> AudioManager.Instance.PlaySFX("CoinsCollected"));
+                        .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(() => AudioManager.Instance.PlaySFX("CoinsCollected"));
 
 
                     pileOfCoins.transform.GetChild(i).DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)
@@ -94,8 +98,9 @@ namespace Dots.Utils.CoinsAnimation
                     coinsAmountText.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f).OnComplete(() =>
                     {
                         OnCoinsAnimationCompleted?.Invoke();
+                        restartGameButton.interactable = true;
+                        returnHomeButton.interactable = true;
                     });
-                    
                 }
             }
         }

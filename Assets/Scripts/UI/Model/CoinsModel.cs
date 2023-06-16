@@ -1,5 +1,5 @@
 using UnityEngine;
-using Dots.Utils.SaveAndLoad;
+using Dots.Utilities.SaveAndLoad;
 using Dots.ScorePoints.Model;
 
 [System.Serializable]
@@ -10,7 +10,6 @@ public class CoinsData
 
 namespace Dots.Coins.Model
 {
-
     public class CoinsModel : MonoBehaviour, ISaveable
     {
         public static CoinsModel Instance;

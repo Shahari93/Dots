@@ -1,7 +1,10 @@
-public interface IDestroyableObject
+namespace Dots.Utilities.Interface.Destroy
 {
-    void BehaveWhenInteractWithBounds();
-    void ShowDestroyParticles(bool? isGoodDot = null);
-    void BehaveWhenInteractWithPlayer();
-    void DisablePowerupVisuals();
+    public interface IDestroyableObject
+    {
+        void BehaveWhenInteractWithBounds();
+        void ShowDestroyParticles(bool? isGoodDot = null);
+        void BehaveWhenInteractWithPlayer();
+        void DisableVisuals();
+    } 
 }

@@ -1,17 +1,19 @@
 using UnityEngine;
-using Dots.Utils.Destroy;
+using Dots.Utilities.Destroy;
 using Dots.GamePlay.Dot.Good;
-using Dots.Audio.Manager;
 
 namespace Dots.GamePlay.Powerups.SpawnGreens
 {
+    /// <summary>
+    /// This class is responsible for the spawn green dots powerup logic 
+    /// </summary>
     [CreateAssetMenu(fileName = "SpawnGreens")]
     public class SpawnGreenDotsPowerup : PowerupEffectSO
     {
         public override void Apply(GameObject target)
         {
             GoodDot.spawnChance = 1f;
-            DestroingPowerup.OnCollectedPower?.Invoke(powerupDuration);
+            DestroyingPowerup.OnCollectedPower?.Invoke(powerupDuration);
             InvokePowerupUI?.Invoke(powerupDuration);
         }
     }

@@ -1,11 +1,17 @@
 using UnityEngine;
 using Dots.Ads.Init;
-using Dots.Utils.Interaction;
-using Dots.Utils.Destroy;
+using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups.Shield;
+using Dots.Utilities.Interface.Interaction;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {
+    /// <summary>
+    /// This class is responsible for the player shield visuals.
+    /// Checking if the player watch shield RV before the start of the game
+    /// And if the player collected a shield powerup
+    /// If yes, we enable the shields and the player gets 1 "extra" life
+    /// </summary>
     public class ActiveShields : MonoBehaviour
     {
         [SerializeField] GameObject[] shields;
@@ -51,6 +57,10 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
         }
 
+        /// <summary>
+        /// Settings the shield visuals based on the boolean parameter we get
+        /// </summary>
+        /// <param name="isShieldOn">if true, the shields visuals are on. If false, the visuals are off</param>
         void EnableShieldsVisual(bool isShieldOn)
         {
             areShieldsActive = isShieldOn;
@@ -60,15 +70,19 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             }
             if (!areShieldsActive)
             {
-                DestroingPowerup.OnPowerupDisabled?.Invoke();
+                DestroyingPowerup.OnPowerupDisabled?.Invoke();
             }
         }
 
+        /// <summary>
+        /// Checking if the player watched the shield RV before he started the game
+        /// </summary>
+        /// <returns> return true or false based on if boolean from IronSourceInit class</returns>
         bool IsShieldFromRV()
         {
             if (IronSourceInit.IsShieldFromRV)
             {
-                DestroingPowerup.OnCollectedPower?.Invoke(0);
+                DestroyingPowerup.OnCollectedPower?.Invoke(0);
                 return true;
             }
             else
