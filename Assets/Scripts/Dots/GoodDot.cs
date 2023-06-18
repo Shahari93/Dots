@@ -1,7 +1,6 @@
 using System;
 using Dots.Audio.Manager;
 using CandyCoded.HapticFeedback;
-using UnityEditor.Localization.Platform.Android;
 
 namespace Dots.GamePlay.Dot.Good
 {
