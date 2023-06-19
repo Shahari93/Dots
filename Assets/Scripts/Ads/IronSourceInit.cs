@@ -41,8 +41,6 @@ string appKey = "19f99b595";
         /// </summary>
         void OnEnable()
         {
-            IronSource.Agent.setMetaData("is_deviceid_optout", "true");
-            IronSource.Agent.setMetaData("is_child_directed", "true");
             IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
 
             //Interstitial 

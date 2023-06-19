@@ -4,8 +4,7 @@
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
-
+<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 	
   <application>
         <activity android:name="com.unity3d.player.UnityPlayerActivity"
