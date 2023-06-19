@@ -63,7 +63,7 @@ string appKey = "19f99b595";
             //This is for the rv ad button on main menu scene
             if (coinsRV != null)
             {
-                coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+                coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
             }
 
             // This is for the double coins rv ad button if the player collected any coins
@@ -156,7 +156,7 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
-                coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+                coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
             }
             else
             {
@@ -182,12 +182,12 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
-            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+            coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            coinsRV.interactable = !IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+            coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
