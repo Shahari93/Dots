@@ -1089,6 +1089,10 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3705071558586478367, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d1dfc36e1506f434eaaf3891919b4981, type: 3}
     - target: {fileID: 4078274379001122693, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1216,6 +1220,10 @@ PrefabInstance:
     - target: {fileID: 5104193837089333632, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201138548781041221, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5345811893711324640, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -218,7 +218,7 @@ string appKey = "19f99b595";
 
                 if (getPlacementName == DOUBLE_COINS_PLACEMENT || getRewardName == "DoubleCoins")
                 {
-                    OnDoubleCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd * 2);
+                    OnDoubleCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd);
                     doubleCoinsRV.gameObject.SetActive(false);
                 }
             }

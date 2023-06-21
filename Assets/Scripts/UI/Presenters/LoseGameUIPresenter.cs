@@ -2,10 +2,11 @@ using TMPro;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Dots.Utilities.FTUE;
 using Dots.Audio.Manager;
+using Dots.Utilities.FTUE;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
+using Dots.Utilities.GooglePlayServices;
 
 namespace Dots.PauseGame.Presenter
 {
@@ -24,7 +25,7 @@ namespace Dots.PauseGame.Presenter
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
             EnableLoseGamePanel();
 
-            if(GoogleLeaderboard.Instance.connectedToGooglePlay)
+            if(GoogleServices.Instance.connectedToGooglePlay)
             {
                 Social.ReportScore(PointsModel.CurrentPointsScore, GPGSIds.leaderboard_score_leaderboard, LeaderboardUpdate);
             }

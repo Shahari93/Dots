@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.Utilities.SaveAndLoad;
+using Dots.ScorePoints.Model;
+using Dots.Utilities.GooglePlayServices;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
@@ -20,6 +22,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
     /// </summary>
     public class UpgradePowerup : MonoBehaviour, ISaveable
     {
+        private int timesBought;
         public static event Action OnUpgradeBought;
         public static event Action OnCoinsDecreaseAfterUpgrade;
 
@@ -65,6 +68,14 @@ namespace Dots.GamePlay.Powerups.Upgrade
         /// </summary>
         void Awake()
         {
+            if (PlayerPrefs.HasKey("TimesBought"))
+            {
+                timesBought = PlayerPrefs.GetInt("TimesBought");
+            }
+            else
+            {
+                timesBought = 0;
+            }
             powerupDurationValue = affectedPowerup.powerupDuration;
             upgradeButton.onClick.AddListener(Upgrade);
 
@@ -147,6 +158,24 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 CheckIfUpgradeable();
                 AudioManager.Instance.PlaySFX("Upgrade");
                 SaveAndLoadJson.SavingToJson("/SavedData.json", this);
+                timesBought++;
+                if(timesBought == 1)
+                {
+                    if (GoogleServices.Instance.connectedToGooglePlay)
+                    {
+                        Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, (bool success) => {
+                            if (success)
+                            {
+                                Debug.Log("Updated Leaderboard");
+                            }
+                            else
+                            {
+                                Debug.Log("Unable to Update Leaderboard");
+                            }
+                        });
+                    }
+                }
+                PlayerPrefs.SetInt("TimesBought", timesBought);
             }
         }
 

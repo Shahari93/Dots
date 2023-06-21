@@ -24,7 +24,21 @@
 
 public static class GPGSIds
 {
+        public const string achievement_first_shield_powerup_pickup = "CgkIm-Xn1MEZEAIQDg"; // <GPGSID>
+        public const string achievement_score_30_points = "CgkIm-Xn1MEZEAIQBQ"; // <GPGSID>
+        public const string achievement_score_20_points = "CgkIm-Xn1MEZEAIQBA"; // <GPGSID>
+        public const string achievement_score_90_points = "CgkIm-Xn1MEZEAIQCw"; // <GPGSID>
+        public const string achievement_score_40_points = "CgkIm-Xn1MEZEAIQBg"; // <GPGSID>
+        public const string achievement_score_5_points = "CgkIm-Xn1MEZEAIQAg"; // <GPGSID>
+        public const string achievement_score_100_points = "CgkIm-Xn1MEZEAIQDA"; // <GPGSID>
+        public const string achievement_first_upgrade = "CgkIm-Xn1MEZEAIQDQ"; // <GPGSID>
         public const string leaderboard_score_leaderboard = "CgkIm-Xn1MEZEAIQAQ"; // <GPGSID>
+        public const string achievement_score_50_points = "CgkIm-Xn1MEZEAIQBw"; // <GPGSID>
+        public const string achievement_score_80_points = "CgkIm-Xn1MEZEAIQCg"; // <GPGSID>
+        public const string achievement_first_spawn_greens_powerup = "CgkIm-Xn1MEZEAIQDw"; // <GPGSID>
+        public const string achievement_score_10_points = "CgkIm-Xn1MEZEAIQAw"; // <GPGSID>
+        public const string achievement_score_70_points = "CgkIm-Xn1MEZEAIQCQ"; // <GPGSID>
+        public const string achievement_score_60_points = "CgkIm-Xn1MEZEAIQCA"; // <GPGSID>
 
 }
 
