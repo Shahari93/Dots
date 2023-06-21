@@ -853,9 +853,6 @@ MonoBehaviour:
   musicTargetButton: {fileID: 8465019308244502196}
   sfxTargetButton: {fileID: 8465019308244502195}
   hapticTargetButton: {fileID: 8465019308244502192}
-  isSoundOn: 1
-  isSFXOn: 1
-  isHapticOn: 1
 --- !u!1001 &560000658979301579
 PrefabInstance:
   m_ObjectHideFlags: 0
