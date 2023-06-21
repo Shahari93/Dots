@@ -23,6 +23,23 @@ namespace Dots.PauseGame.Presenter
             loseGameRestartButton.onClick.AddListener(RestartGame);
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
             EnableLoseGamePanel();
+
+            if(GoogleLeaderboard.Instance.connectedToGooglePlay)
+            {
+                Social.ReportScore(PointsModel.CurrentPointsScore, GPGSIds.leaderboard_score_leaderboard, LeaderboardUpdate);
+            }
+        }
+
+        private void LeaderboardUpdate(bool success)
+        {
+            if (success)
+            {
+                Debug.Log("Updated Leaderboard");
+            }
+            else
+            {
+                Debug.Log("Unable to Update Leaderboard");
+            }
         }
 
         void ReturnToMenu()

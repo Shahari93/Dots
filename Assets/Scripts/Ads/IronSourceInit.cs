@@ -27,10 +27,12 @@ string appKey = "19f99b595";
         const string SHIELD_PLACEMENT = "Start_Shield";
 
         public static event Action<int> OnCoinsRvWatched;
+        public static event Action<int> OnDoubleCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
 
         public static event Func<bool> OnShieldRvWatched;
         public static bool IsShieldFromRV;
+
         [SerializeField] Button coinsRV;
         [SerializeField] Button shieldRV;
         [SerializeField] Button reviveRV;
@@ -216,7 +218,7 @@ string appKey = "19f99b595";
 
                 if (getPlacementName == DOUBLE_COINS_PLACEMENT || getRewardName == "DoubleCoins")
                 {
-                    OnCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd * 2);
+                    OnDoubleCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd * 2);
                     doubleCoinsRV.gameObject.SetActive(false);
                 }
             }
@@ -225,7 +227,7 @@ string appKey = "19f99b595";
 
         bool IsRewardedVideoPlacementCapped(string placementName)
         {
-            return !IronSource.Agent.isRewardedVideoPlacementCapped(placementName);
+            return IronSource.Agent.isRewardedVideoPlacementCapped(placementName);
         }
 
         // The rewarded video ad was failed to show.
