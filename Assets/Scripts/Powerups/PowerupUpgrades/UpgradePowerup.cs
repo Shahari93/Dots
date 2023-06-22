@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.Utilities.SaveAndLoad;
-using Dots.ScorePoints.Model;
 using Dots.Utilities.GooglePlayServices;
 
 namespace Dots.GamePlay.Powerups.Upgrade
@@ -163,16 +162,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                 {
                     if (GoogleServices.Instance.connectedToGooglePlay)
                     {
-                        Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, (bool success) => {
-                            if (success)
-                            {
-                                Debug.Log("Updated Leaderboard");
-                            }
-                            else
-                            {
-                                Debug.Log("Unable to Update Leaderboard");
-                            }
-                        });
+                        Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, null);
                     }
                 }
                 PlayerPrefs.SetInt("TimesBought", timesBought);
