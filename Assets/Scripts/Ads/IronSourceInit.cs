@@ -27,7 +27,6 @@ string appKey = "19f99b595";
         const string SHIELD_PLACEMENT = "Start_Shield";
 
         public static event Action<int> OnCoinsRvWatched;
-        public static event Action<int> OnDoubleCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
 
         public static event Func<bool> OnShieldRvWatched;
@@ -65,7 +64,7 @@ string appKey = "19f99b595";
             //This is for the rv ad button on main menu scene
             if (coinsRV != null)
             {
-                coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+                coinsRV.interactable = !IsRewardedVideoPlacementCapped();
             }
 
             // This is for the double coins rv ad button if the player collected any coins
@@ -158,7 +157,7 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
-                coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+                coinsRV.interactable = IsRewardedVideoPlacementCapped();
             }
             else
             {
@@ -184,12 +183,11 @@ string appKey = "19f99b595";
         // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
         {
-            coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
         // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
         void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
         {
-            coinsRV.interactable = IsRewardedVideoPlacementCapped(COINS_PLACEMENT);
+            coinsRV.interactable = !IsRewardedVideoPlacementCapped();
         }
         // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
@@ -212,22 +210,23 @@ string appKey = "19f99b595";
                 // TODO: FInd a way to check the placement according to the pressed RV button
                 if (getPlacementName == COINS_PLACEMENT || getRewardName == "Coins")
                 {
-                    OnCoinsRvWatched?.Invoke(5);
+                    OnCoinsRvWatched?.Invoke(CoinsModel.CurrentCoinsAmount + placement.getRewardAmount());
                     OnCheckIfUpgradeable?.Invoke();
+                    coinsRV.interactable = !IsRewardedVideoPlacementCapped();
                 }
 
                 if (getPlacementName == DOUBLE_COINS_PLACEMENT || getRewardName == "DoubleCoins")
                 {
-                    OnDoubleCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd);
+                    OnCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd);
                     doubleCoinsRV.gameObject.SetActive(false);
                 }
             }
             OnApplicationFocus(true);
         }
 
-        bool IsRewardedVideoPlacementCapped(string placementName)
+        bool IsRewardedVideoPlacementCapped()
         {
-            return IronSource.Agent.isRewardedVideoPlacementCapped(placementName);
+            return IronSource.Agent.isRewardedVideoPlacementCapped("Coins");
         }
 
         // The rewarded video ad was failed to show.

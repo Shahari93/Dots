@@ -21,7 +21,6 @@ namespace Dots.Coins.Presenter
             UpgradePowerup.OnCoinsDecreaseAfterUpgrade += DecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame += IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted += ShowAddedCoinsText;
-            IronSourceInit.OnDoubleCoinsRvWatched += IncrementCoinsValueFromRV;
         }
 
         void Awake()
@@ -93,7 +92,6 @@ namespace Dots.Coins.Presenter
             UpgradePowerup.OnCoinsDecreaseAfterUpgrade -= DecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame -= IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted -= ShowAddedCoinsText;
-            IronSourceInit.OnDoubleCoinsRvWatched -= IncrementCoinsValueFromRV;
         }
     }
 }
