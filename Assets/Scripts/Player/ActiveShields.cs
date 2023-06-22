@@ -80,15 +80,8 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         /// <returns> return true or false based on if boolean from IronSourceInit class</returns>
         bool IsShieldFromRV()
         {
-            if (IronSourceInit.IsShieldFromRV)
-            {
-                DestroyingPowerup.OnCollectedPower?.Invoke(0);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            DestroyingPowerup.OnCollectedPower?.Invoke(0);
+            return IronSourceInit.IsShieldFromRV;
         }
 
         void OnTriggerEnter2D(Collider2D collision)

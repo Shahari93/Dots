@@ -20,7 +20,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
         [SerializeField] PowerupEffectSO[] powerupObjects;
         float totalSpawnChance;
 
-        static bool canSpawn;
+        static bool canSpawn = true;
         public static bool CanSpawn
         {
             get
@@ -56,7 +56,6 @@ namespace Dots.Utilities.Powerups.ObjectPool
 
         void Start()
         {
-            canSpawn = true;
             StartCoroutine(SpawnPowerups());
             //Adding each powerup spawn chance to the spawn chance list
             foreach (var powerupObject in powerupObjects)
