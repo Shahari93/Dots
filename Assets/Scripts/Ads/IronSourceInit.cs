@@ -157,7 +157,7 @@ string appKey = "19f99b595";
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo(placement);
-                coinsRV.interactable = IsRewardedVideoPlacementCapped();
+                coinsRV.interactable = !IsRewardedVideoPlacementCapped();
             }
             else
             {
@@ -226,7 +226,7 @@ string appKey = "19f99b595";
 
         bool IsRewardedVideoPlacementCapped()
         {
-            return IronSource.Agent.isRewardedVideoPlacementCapped("Coins");
+            return IronSource.Agent.isRewardedVideoPlacementCapped(COINS_PLACEMENT);
         }
 
         // The rewarded video ad was failed to show.
