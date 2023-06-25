@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 42
       objectReference: {fileID: 0}
+    - target: {fileID: 3642696610385636379, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5407961184293156609, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

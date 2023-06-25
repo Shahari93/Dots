@@ -903,10 +903,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5407961184293156609}
     m_Modifications:
+    - target: {fileID: 4604912537943497151, guid: 175761ca180feb64dafabcac15b5ae2a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e3592c567601584ea5931327fa8a6fc, type: 2}
+    - target: {fileID: 4604912537943497151, guid: 175761ca180feb64dafabcac15b5ae2a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1807988161110156451, guid: 4e3592c567601584ea5931327fa8a6fc, type: 2}
     - target: {fileID: 5350764972232639762, guid: 175761ca180feb64dafabcac15b5ae2a, type: 3}
       propertyPath: m_Name
       value: CoinsPanel_Image
       objectReference: {fileID: 0}
+    - target: {fileID: 7027078061845268159, guid: 175761ca180feb64dafabcac15b5ae2a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e3592c567601584ea5931327fa8a6fc, type: 2}
     - target: {fileID: 8318125295704512385, guid: 175761ca180feb64dafabcac15b5ae2a, type: 3}
       propertyPath: m_RootOrder
       value: 6
