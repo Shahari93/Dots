@@ -73,7 +73,6 @@ namespace Dots.Utilities.Powerups.ObjectPool
         void Update()
         {
             powerupSpawnInterval -= Time.deltaTime;
-            Debug.Log("Can spawn" + canSpawn);
         }
 
         /// <summary>

@@ -1,13 +1,14 @@
 using UnityEngine;
-using Dots.Utilities.FTUE;
 using Dots.GamePlay.Dot;
-using Dots.Utilities.Destroy;
-using System.Collections;
 using Dots.Audio.Manager;
+using System.Collections;
+using Dots.Utilities.FTUE;
 using Dots.GamePlay.Dot.Bad;
+using Dots.Utilities.Destroy;
 using Dots.GamePlay.Dot.Good;
 using Dots.GamePlay.Dot.Timer;
 using System.Collections.Generic;
+using Dots.GamePlay.Powerups.SlowSpeed;
 
 namespace Dots.Utilities.ObjectPool
 {
@@ -66,7 +67,7 @@ namespace Dots.Utilities.ObjectPool
                 float randomNumber = Random.Range(0f, total);
                 string spawnableTag = "";
 
-                if(PlayerPrefs.HasKey("LaunchCount") && CheckForFTUE.LaunchCount < 1 && ftueSpawn)
+                if (PlayerPrefs.HasKey("LaunchCount") && CheckForFTUE.LaunchCount < 1 && ftueSpawn)
                 {
                     GoodDot.spawnChance = 1f;
                     StartCoroutine(DisablePowerupAbility(8f));
@@ -128,6 +129,7 @@ namespace Dots.Utilities.ObjectPool
                 if (duration <= 0)
                 {
                     GoodDot.spawnChance = 0.15f;
+                    SlowSpeedPowerup.IsSlowPowerup = false;
                     AudioManager.Instance.PlaySFX("PowerupDisabled");
                     DestroyingPowerup.OnPowerupDisabled?.Invoke();
                     break;
