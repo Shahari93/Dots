@@ -15,3 +15,4 @@ MonoBehaviour:
   powerupDuration: 5
   powerupDurationLimit: 10
   spawnChance: 0.1
+  upgradeCoinsCost: 10

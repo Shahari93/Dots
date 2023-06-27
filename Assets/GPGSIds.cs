@@ -31,6 +31,7 @@ public static class GPGSIds
         public const string achievement_score_40_points = "CgkIm-Xn1MEZEAIQBg"; // <GPGSID>
         public const string achievement_score_5_points = "CgkIm-Xn1MEZEAIQAg"; // <GPGSID>
         public const string achievement_score_100_points = "CgkIm-Xn1MEZEAIQDA"; // <GPGSID>
+        public const string achievement_first_slow_speed_powerup = "CgkIm-Xn1MEZEAIQEA"; // <GPGSID>
         public const string achievement_first_upgrade = "CgkIm-Xn1MEZEAIQDQ"; // <GPGSID>
         public const string leaderboard_score_leaderboard = "CgkIm-Xn1MEZEAIQAQ"; // <GPGSID>
         public const string achievement_score_50_points = "CgkIm-Xn1MEZEAIQBw"; // <GPGSID>
