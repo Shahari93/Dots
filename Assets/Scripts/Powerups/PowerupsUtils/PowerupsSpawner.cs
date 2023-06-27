@@ -108,7 +108,6 @@ namespace Dots.Utilities.Powerups.ObjectPool
 
                 }
 
-
                 GameObject spawnable = PowerupObjectPool.SharedInstance.PullObject(spawnableName);
                 if (spawnable != null)
                 {

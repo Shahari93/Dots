@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 5
   powerupDurationLimit: 10
-  spawnChance: 0.3
+  spawnChance: 0.1

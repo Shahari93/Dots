@@ -793,6 +793,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 308892455450869403, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3957857318344678852, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -844,6 +848,10 @@ PrefabInstance:
     - target: {fileID: 3957857318344678855, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_Name
       value: PlayerDots
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299413606797777890, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
