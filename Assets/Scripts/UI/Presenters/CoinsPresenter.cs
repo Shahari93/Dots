@@ -69,7 +69,10 @@ namespace Dots.Coins.Presenter
 
         void ShowUsedCoinsText()
         {
-            ShowCoinsText(coinsAnimationText, UpgradePowerup.CoinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+            for (int i = 0; i < UpgradePowerup.CoinsCost.Length; i++)
+            {
+                ShowCoinsText(coinsAnimationText, UpgradePowerup.CoinsCost[i], "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+            }
         }
 
         void ShowCoinsText(TMP_Text coinsText, int coins, string sign, Vector3 startPos, Vector3 endPos)

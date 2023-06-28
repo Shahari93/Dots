@@ -14,7 +14,7 @@ namespace Dots.Coins.Model
     {
         public static CoinsModel Instance;
 
-        static int currentCoinsAmount;
+        static int currentCoinsAmount = 5000;
         static int coinsToAdd;
         public static int CurrentCoinsAmount { get => currentCoinsAmount; set => currentCoinsAmount = value; }
         public static int CoinsToAdd { get => coinsToAdd; set => coinsToAdd = value; }

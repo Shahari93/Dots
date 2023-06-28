@@ -4,6 +4,6 @@ using System;
 public class SaveableData
 {
     public int userCoinsAmount;
-    public int upgradeCoinsCostAmount;
-    public float powerupDurationData;
+    public int[] upgradeCoinsCostAmount = new int[1];
+    public float[] powerupDurationData = new float[1];
 }
