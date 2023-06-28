@@ -4,6 +4,7 @@ using Dots.Coins.Model;
 using Dots.GamePlay.Powerups.Upgrade;
 using System.Runtime.Serialization.Formatters.Binary;
 using Dots.GamePlay.Powerups;
+using Dots.Powerup.Model;
 
 namespace Dots.Utilities.SaveAndLoad
 {
@@ -53,8 +54,8 @@ namespace Dots.Utilities.SaveAndLoad
             SaveableData data = new();
             for (int i = 0; i < data.upgradeCoinsCostAmount.Length; i++)
             {
-                data.upgradeCoinsCostAmount[i] = UpgradePowerup.CoinsCost[i];
-                data.powerupDurationData[i] = UpgradePowerup.PowerupDurationValue[i];
+                data.upgradeCoinsCostAmount[i] = PowerupUpgradesModel.CoinsCost[i];
+                data.powerupDurationData[i] = PowerupUpgradesModel.PowerupDurationValue[i];
             }
             // Closing the saved file
             formatter.Serialize(stream, data);
@@ -71,8 +72,8 @@ namespace Dots.Utilities.SaveAndLoad
                 SaveableData data = formatter.Deserialize(stream) as SaveableData;
                 for (int i = 0; i < data.upgradeCoinsCostAmount.Length; i++)
                 {
-                    UpgradePowerup.CoinsCost[i] = data.upgradeCoinsCostAmount[i];
-                    UpgradePowerup.PowerupDurationValue[i] = data.powerupDurationData[i];
+                    PowerupUpgradesModel.CoinsCost[i] = data.upgradeCoinsCostAmount[i];
+                    PowerupUpgradesModel.PowerupDurationValue[i] = data.powerupDurationData[i];
                 }
                 stream.Close();
                 return data;

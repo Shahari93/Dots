@@ -4,6 +4,7 @@ using UnityEngine;
 using Dots.Ads.Init;
 using UnityEngine.UI;
 using Dots.Coins.Model;
+using Dots.Powerup.Model;
 using Dots.Audio.Manager;
 using Dots.Utilities.SaveAndLoad;
 using Dots.Utilities.GooglePlayServices;
@@ -25,32 +26,6 @@ namespace Dots.GamePlay.Powerups.Upgrade
         public static event Action OnUpgradeBought;
         public static event Action OnCoinsDecreaseAfterUpgrade;
 
-        static float[] powerupDurationValue;
-        public static float[] PowerupDurationValue
-        {
-            get
-            {
-                return powerupDurationValue;
-            }
-            set
-            {
-                powerupDurationValue = value;
-            }
-        }
-
-        static int[] coinsCost;
-        public static int[] CoinsCost
-        {
-            get
-            {
-                return coinsCost;
-            }
-            set
-            {
-                coinsCost = value;
-            }
-        }
-
         [SerializeField] PowerupEffectSO[] affectedPowerup;
         [SerializeField] Button upgradeButton;
         [SerializeField] TMP_Text powerupNameText;
@@ -67,8 +42,8 @@ namespace Dots.GamePlay.Powerups.Upgrade
         /// </summary>
         void Awake()
         {
-            coinsCost = new int[affectedPowerup.Length];
-            powerupDurationValue = new float[affectedPowerup.Length];
+            PowerupUpgradesModel.CoinsCost = new int[affectedPowerup.Length];
+            PowerupUpgradesModel.PowerupDurationValue = new float[affectedPowerup.Length];
 
             if (PlayerPrefs.HasKey("TimesBought"))
             {
@@ -81,15 +56,15 @@ namespace Dots.GamePlay.Powerups.Upgrade
             upgradeButton.onClick.AddListener(Upgrade);
             SaveAndLoadJson.LoadFromJson("/SavedData.json");
 
+            SaveAndLoadJson.LoadPowerupValues("/PowerupValues.json", affectedPowerup[0]);
             for (int i = 0; i < affectedPowerup.Length; i++)
             {
-                SaveAndLoadJson.LoadPowerupValues("/PowerupValues.json", affectedPowerup[i]);
 
-                coinsCost[i] = affectedPowerup[i].upgradeCoinsCost;
-                powerupDurationValue[i] = affectedPowerup[i].powerupDuration;
+                PowerupUpgradesModel.CoinsCost[i] = affectedPowerup[i].upgradeCoinsCost;
+                PowerupUpgradesModel.PowerupDurationValue[i] = affectedPowerup[i].powerupDuration;
                 powerupNameText.text = affectedPowerup[i].name;
-                powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue[i].ToString("F1"));
-                upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost[i]);
+                powerupDurationText.text = string.Format("{0} Seconds", PowerupUpgradesModel.PowerupDurationValue[i].ToString("F1"));
+                upgradeCoinsCostText.text = string.Format("{0} Coins", PowerupUpgradesModel.CoinsCost[i]);
             }
         }
 
@@ -113,7 +88,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
                     return upgradeButton.interactable = false;
                 }
 
-                if (CoinsModel.CurrentCoinsAmount < coinsCost[i])
+                if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost[i])
                 {
                     SetUpgradeButtonInteractable(2f);
                     return upgradeButton.interactable = false;
@@ -174,50 +149,31 @@ namespace Dots.GamePlay.Powerups.Upgrade
                         }
                     }
                     PlayerPrefs.SetInt("TimesBought", timesBought);
-                    SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[i]);
+
+                    PowerupUpgradesModel.CoinsCost[i] = affectedPowerup[i].upgradeCoinsCost;
+                    PowerupUpgradesModel.PowerupDurationValue[i] = affectedPowerup[i].powerupDuration;
                 }
+                    SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[0]);
                 SaveAndLoadJson.SavingToJson("/SavedData.json", this);
-
-                //OnUpgradeBought?.Invoke();
-                //AudioManager.Instance.PlaySFX("ButtonClick");
-                //// Reducing the coins cost from the player total coins value and updating the model and the view
-                //totalCoins -= coinsCost;
-                //OnCoinsDecreaseAfterUpgrade?.Invoke();
-
-                //// Adding more coins for the coins cost to upgrade and updating the model and the view
-                //coinsCost += 5;
-                //CoinsModel.CurrentCoinsAmount = totalCoins;
-                //upgradeCoinsCostText.text = string.Format("{0} Coins", coinsCost);
-
-                //// Updating the powerup duration and the view
-                //powerupDurationValue += 0.1f;
-                //affectedPowerup.powerupDuration = powerupDurationValue;
-                //powerupDurationText.text = string.Format("{0} Seconds", powerupDurationValue.ToString("F1"));
-
-                //// Checking if the player can still upgrade the powerups (If not the button turns inactive) and Sending an event to update the view
-                //CheckIfUpgradeable();
-                //AudioManager.Instance.PlaySFX("Upgrade");
-                //SaveAndLoadJson.SavingToJson("/SavedData.json", this);
-                //timesBought++;
-                //if (timesBought == 1)
-                //{
-                //    if (GoogleServices.Instance.connectedToGooglePlay)
-                //    {
-                //        Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, null);
-                //    }
-                //}
-                //PlayerPrefs.SetInt("TimesBought", timesBought);
             }
         }
 
         void OnDisable()
         {
             IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
+            for (int i = 0; i < affectedPowerup.Length; i++)
+            {
+                SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[i]);
+            }
         }
 
         void OnDestroy()
         {
             upgradeButton.onClick.RemoveListener(Upgrade);
+            for (int i = 0; i < affectedPowerup.Length; i++)
+            {
+                SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[i]);
+            }
         }
     }
 }

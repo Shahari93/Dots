@@ -6,6 +6,7 @@ using Dots.Coins.Model;
 using Dots.GamePlay.Dot.Bad;
 using Dots.Utilities.CoinsAnimation;
 using Dots.GamePlay.Powerups.Upgrade;
+using Dots.Powerup.Model;
 
 namespace Dots.Coins.Presenter
 {
@@ -69,9 +70,9 @@ namespace Dots.Coins.Presenter
 
         void ShowUsedCoinsText()
         {
-            for (int i = 0; i < UpgradePowerup.CoinsCost.Length; i++)
+            for (int i = 0; i < PowerupUpgradesModel.CoinsCost.Length; i++)
             {
-                ShowCoinsText(coinsAnimationText, UpgradePowerup.CoinsCost[i], "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+                ShowCoinsText(coinsAnimationText, PowerupUpgradesModel.CoinsCost[i], "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
             }
         }
 
