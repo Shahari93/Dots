@@ -20,7 +20,7 @@ namespace Dots.GamePlay.Powerups
         public float powerupDurationLimit;
         public float spawnChance;
 
-        public int upgradeCoinsCost = 10;
+        public int upgradeCoinsCost;
 
         public static Action<float> InvokePowerupUI;
         public abstract void Apply(GameObject target);

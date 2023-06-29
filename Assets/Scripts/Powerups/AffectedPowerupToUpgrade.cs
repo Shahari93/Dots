@@ -1,13 +1,18 @@
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Dots.Powerup.Model;
 using Dots.GamePlay.Powerups;
 using Dots.Utilities.SaveAndLoad;
 using Dots.Audio.Manager;
+using Dots.Coins.Model;
 
 public class AffectedPowerupToUpgrade : MonoBehaviour, ISaveable
 {
+    public static event Action OnUpgradeBought;
+    public static event Action OnCoinsDecreaseAfterUpgrade;
+
     public static AffectedPowerupToUpgrade Instance;
 
     private void Awake()
@@ -39,12 +44,17 @@ public class AffectedPowerupToUpgrade : MonoBehaviour, ISaveable
 
     public void CallToUpgradePowerup(string powerupName)
     {
+        int totalCoins = CoinsModel.CurrentCoinsAmount;
         for (int i = 0; i < powerupEffectSOs.Length; i++)
         {
             if (powerupEffectSOs[i].name == powerupName)
             {
+                totalCoins -= powerupEffectSOs[i].upgradeCoinsCost;
+                OnUpgradeBought?.Invoke();
                 PowerupUpgradesModel.CoinsCost[i] = powerupEffectSOs[i].upgradeCoinsCost;
                 PowerupUpgradesModel.PowerupDurationValue[i] = powerupEffectSOs[i].powerupDuration;
+                CoinsModel.CurrentCoinsAmount = totalCoins;
+
 
                 powerupEffectSOs[i].powerupDuration += 0.1f;
                 powerupEffectSOs[i].upgradeCoinsCost += 5;
@@ -52,8 +62,7 @@ public class AffectedPowerupToUpgrade : MonoBehaviour, ISaveable
                 upgradeCoinsCostText[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
                 SaveAndLoadJson.SavePowerupValues("/" + powerupName + "PowerupValues.json", this, powerupEffectSOs[i]);
                 AudioManager.Instance.PlaySFX("Upgrade");
-
-                return;
+                OnCoinsDecreaseAfterUpgrade?.Invoke();
             }
         }
     }

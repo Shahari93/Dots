@@ -18,11 +18,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
     public class UpgradePowerup : MonoBehaviour, ISaveable
     {
         private int timesBought;
-        public static event Action OnUpgradeBought;
-        public static event Action OnCoinsDecreaseAfterUpgrade;
-
-        //[SerializeField] PowerupEffectSO[] affectedPowerup;
-
+        
         void OnEnable()
         {
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
@@ -105,13 +101,11 @@ namespace Dots.GamePlay.Powerups.Upgrade
         /// </summary>
         public void Upgrade(PowerupEffectSO powerup)
         {
-            int totalCoins = CoinsModel.CurrentCoinsAmount;
+            
             if (CheckIfUpgradeable())
             {
-                OnUpgradeBought?.Invoke();
                 AudioManager.Instance.PlaySFX("ButtonClick");
                 AffectedPowerupToUpgrade.Instance.CallToUpgradePowerup(powerup.name);
-                OnCoinsDecreaseAfterUpgrade?.Invoke();
                 CheckIfUpgradeable();
                 
                 timesBought++;
@@ -127,7 +121,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
 
                 //for (int i = 0; i < AffectedPowerupToUpgrade.Instance.powerupEffectSOs.Length; i++)
                 //{
-                //    totalCoins -= AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost;
+                //    
                 //    OnCoinsDecreaseAfterUpgrade?.Invoke();
 
                 //    AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost += 5;

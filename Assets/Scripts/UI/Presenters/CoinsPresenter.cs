@@ -18,8 +18,8 @@ namespace Dots.Coins.Presenter
         void OnEnable()
         {
             IronSourceInit.OnCoinsRvWatched += IncrementCoinsValueFromRV;
-            UpgradePowerup.OnUpgradeBought += ShowUsedCoinsText;
-            UpgradePowerup.OnCoinsDecreaseAfterUpgrade += DecreaseCoinsAfterUpgrade;
+            AffectedPowerupToUpgrade.OnUpgradeBought += ShowUsedCoinsText;
+            AffectedPowerupToUpgrade.OnCoinsDecreaseAfterUpgrade += DecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame += IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted += ShowAddedCoinsText;
         }
@@ -92,8 +92,8 @@ namespace Dots.Coins.Presenter
         void OnDisable()
         {
             IronSourceInit.OnCoinsRvWatched -= IncrementCoinsValueFromRV;
-            UpgradePowerup.OnUpgradeBought -= ShowUsedCoinsText;
-            UpgradePowerup.OnCoinsDecreaseAfterUpgrade -= DecreaseCoinsAfterUpgrade;
+            AffectedPowerupToUpgrade.OnUpgradeBought -= ShowUsedCoinsText;
+            AffectedPowerupToUpgrade.OnCoinsDecreaseAfterUpgrade -= DecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame -= IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted -= ShowAddedCoinsText;
         }
