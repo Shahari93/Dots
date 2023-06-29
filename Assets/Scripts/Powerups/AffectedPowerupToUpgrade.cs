@@ -23,6 +23,7 @@ namespace Dots.Powerup.Upgrade
         public TMP_Text[] powerupDurationText;
         public TMP_Text[] upgradeCoinsCostText;
 
+
         private void Awake()
         {
             if (Instance != null)
@@ -38,17 +39,9 @@ namespace Dots.Powerup.Upgrade
 
             PowerupUpgradesModel.CoinsCost = new int[powerupEffectSOs.Length];
             PowerupUpgradesModel.PowerupDurationValue = new float[powerupEffectSOs.Length];
-            SaveAndLoadJson.LoadPowerupValues("/" + "Spawn Greens Powerup" + "PowerupValues.json", powerupEffectSOs[0]);
-            SaveAndLoadJson.LoadPowerupValues("/" + "Slow Speed Powerup" + "PowerupValues.json", powerupEffectSOs[1]);
-        }
 
-        private void Start()
-        {
-            for (int i = 0; i < powerupEffectSOs.Length; i++)
-            {
-                PowerupUpgradesModel.CoinsCost[i] = powerupEffectSOs[i].upgradeCoinsCost;
-                PowerupUpgradesModel.PowerupDurationValue[i] = powerupEffectSOs[i].powerupDuration;
-            }
+            SaveAndLoadJson.LoadPowerupValues("/" + "Spawn Greens Powerup" + "PowerupValues.json", powerupEffectSOs);
+            SaveAndLoadJson.LoadPowerupValues("/" + "Slow Speed Powerup" + "PowerupValues.json", powerupEffectSOs);
         }
 
         public void CallToUpgradePowerup(string powerupName)
@@ -64,13 +57,13 @@ namespace Dots.Powerup.Upgrade
                     PowerupUpgradesModel.PowerupDurationValue[i] = powerupEffectSOs[i].powerupDuration;
                     CoinsModel.CurrentCoinsAmount = totalCoins;
 
-
                     powerupEffectSOs[i].powerupDuration += 0.1f;
                     powerupEffectSOs[i].upgradeCoinsCost += 5;
                     powerupDurationText[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
                     upgradeCoinsCostText[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
                     SaveAndLoadJson.SavingToJson("/SavedData.json", this);
-                    SaveAndLoadJson.SavePowerupValues("/" + powerupName + "PowerupValues.json", this, powerupEffectSOs[i]);
+                    SaveAndLoadJson.SavePowerupValues("/" + powerupName + "PowerupValues.json", this, powerupEffectSOs);
+
                     AudioManager.Instance.PlaySFX("Upgrade");
                     OnCoinsDecreaseAfterUpgrade?.Invoke();
                 }

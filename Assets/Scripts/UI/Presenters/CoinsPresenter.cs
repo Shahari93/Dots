@@ -3,7 +3,6 @@ using DG.Tweening;
 using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Coins.Model;
-using Dots.Powerup.Model;
 using Dots.Powerup.Upgrade;
 using Dots.GamePlay.Dot.Bad;
 using Dots.Utilities.CoinsAnimation;
