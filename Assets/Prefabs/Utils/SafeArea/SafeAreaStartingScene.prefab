@@ -1600,6 +1600,7 @@ GameObject:
   - component: {fileID: 4449600049804786541}
   - component: {fileID: 5164605487104289536}
   - component: {fileID: 8873200845071108850}
+  - component: {fileID: 836082305466347737}
   m_Layer: 5
   m_Name: PowerupsUpgradePanel
   m_TagString: Untagged
@@ -1667,6 +1668,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &836082305466347737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171889155378008262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3124e9385aed014a89035b4b6c2049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupEffectSOs:
+  - {fileID: 11400000, guid: a0d615dcc01c7a8439e44c8b9938d13a, type: 2}
+  - {fileID: 11400000, guid: 55c307052be4a764681692ea24d21e54, type: 2}
 --- !u!1 &7213894657979406758
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,60 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using Dots.Powerup.Model;
+using Dots.GamePlay.Powerups;
+using Dots.Utilities.SaveAndLoad;
+using Dots.Audio.Manager;
+
+public class AffectedPowerupToUpgrade : MonoBehaviour, ISaveable
+{
+    public static AffectedPowerupToUpgrade Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        PowerupUpgradesModel.CoinsCost = new int[powerupEffectSOs.Length];
+        PowerupUpgradesModel.PowerupDurationValue = new float[powerupEffectSOs.Length];
+        //for (int i = 0; i < powerupEffectSOs.Length; i++)
+        //{
+        //    SaveAndLoadJson.LoadPowerupValues("/" + powerupEffectSOs[i].name + "PowerupValues.json", powerupEffectSOs[i]);
+        //}
+    }
+
+    public PowerupEffectSO[] powerupEffectSOs;
+    public Button[] upgradeButton;
+    public TMP_Text[] powerupNameText;
+    public TMP_Text[] powerupDurationText;
+    public TMP_Text[] upgradeCoinsCostText;
+
+    public void CallToUpgradePowerup(string powerupName)
+    {
+        for (int i = 0; i < powerupEffectSOs.Length; i++)
+        {
+            if (powerupEffectSOs[i].name == powerupName)
+            {
+                PowerupUpgradesModel.CoinsCost[i] = powerupEffectSOs[i].upgradeCoinsCost;
+                PowerupUpgradesModel.PowerupDurationValue[i] = powerupEffectSOs[i].powerupDuration;
+
+                powerupEffectSOs[i].powerupDuration += 0.1f;
+                powerupEffectSOs[i].upgradeCoinsCost += 5;
+                powerupDurationText[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
+                upgradeCoinsCostText[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
+                SaveAndLoadJson.SavePowerupValues("/" + powerupName + "PowerupValues.json", this, powerupEffectSOs[i]);
+                AudioManager.Instance.PlaySFX("Upgrade");
+
+                return;
+            }
+        }
+    }
+}

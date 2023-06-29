@@ -11,11 +11,6 @@ using Dots.Utilities.GooglePlayServices;
 
 namespace Dots.GamePlay.Powerups.Upgrade
 {
-    [Serializable]
-    public class CoinsCostData
-    {
-        public int savedCoinsCostInJson;
-    }
     /// <summary>
     /// This class is responsible for upgrading powerups
     /// Here we can buy duration upgrade for powerups that have duration (For now it's the spawn green dots powerup)
@@ -26,11 +21,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
         public static event Action OnUpgradeBought;
         public static event Action OnCoinsDecreaseAfterUpgrade;
 
-        [SerializeField] PowerupEffectSO[] affectedPowerup;
-        [SerializeField] Button upgradeButton;
-        [SerializeField] TMP_Text powerupNameText;
-        [SerializeField] TMP_Text powerupDurationText;
-        [SerializeField] TMP_Text upgradeCoinsCostText;
+        //[SerializeField] PowerupEffectSO[] affectedPowerup;
 
         void OnEnable()
         {
@@ -42,9 +33,6 @@ namespace Dots.GamePlay.Powerups.Upgrade
         /// </summary>
         void Awake()
         {
-            PowerupUpgradesModel.CoinsCost = new int[affectedPowerup.Length];
-            PowerupUpgradesModel.PowerupDurationValue = new float[affectedPowerup.Length];
-
             if (PlayerPrefs.HasKey("TimesBought"))
             {
                 timesBought = PlayerPrefs.GetInt("TimesBought");
@@ -53,24 +41,19 @@ namespace Dots.GamePlay.Powerups.Upgrade
             {
                 timesBought = 0;
             }
-            upgradeButton.onClick.AddListener(Upgrade);
+
             SaveAndLoadJson.LoadFromJson("/SavedData.json");
-
-            SaveAndLoadJson.LoadPowerupValues("/PowerupValues.json", affectedPowerup[0]);
-            for (int i = 0; i < affectedPowerup.Length; i++)
-            {
-
-                PowerupUpgradesModel.CoinsCost[i] = affectedPowerup[i].upgradeCoinsCost;
-                PowerupUpgradesModel.PowerupDurationValue[i] = affectedPowerup[i].powerupDuration;
-                powerupNameText.text = affectedPowerup[i].name;
-                powerupDurationText.text = string.Format("{0} Seconds", PowerupUpgradesModel.PowerupDurationValue[i].ToString("F1"));
-                upgradeCoinsCostText.text = string.Format("{0} Coins", PowerupUpgradesModel.CoinsCost[i]);
-            }
         }
 
         void Start()
         {
-            upgradeButton.interactable = CheckIfUpgradeable();
+            for (int i = 0; i < AffectedPowerupToUpgrade.Instance.powerupEffectSOs.Length; i++)
+            {
+                AffectedPowerupToUpgrade.Instance.powerupNameText[i].text = AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].name;
+                AffectedPowerupToUpgrade.Instance.powerupDurationText[i].text = string.Format("{0} Seconds", AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDuration.ToString("F1"));
+                AffectedPowerupToUpgrade.Instance.upgradeCoinsCostText[i].text = string.Format("{0} Coins", AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost);
+                AffectedPowerupToUpgrade.Instance.upgradeButton[i].interactable = CheckIfUpgradeable();
+            }
         }
 
         /// <summary>
@@ -79,27 +62,27 @@ namespace Dots.GamePlay.Powerups.Upgrade
         /// <returns> returns true or false based on the amount of coins the player have</returns>
         bool CheckIfUpgradeable()
         {
-            for (int i = 0; i < affectedPowerup.Length; i++)
+            for (int i = 0; i < AffectedPowerupToUpgrade.Instance.powerupEffectSOs.Length; i++)
             {
-                if (affectedPowerup[i].powerupDuration >= affectedPowerup[i].powerupDurationLimit)
+                if (AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDuration >= AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDurationLimit)
                 {
-                    affectedPowerup[i].powerupDuration = affectedPowerup[i].powerupDurationLimit;
+                    AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDuration = AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDurationLimit;
 
-                    return upgradeButton.interactable = false;
+                    return AffectedPowerupToUpgrade.Instance.upgradeButton[i].interactable = false;
                 }
 
                 if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost[i])
                 {
                     SetUpgradeButtonInteractable(2f);
-                    return upgradeButton.interactable = false;
+                    return AffectedPowerupToUpgrade.Instance.upgradeButton[i].interactable = false;
                 }
                 else
                 {
                     SetUpgradeButtonInteractable(1f);
-                    return upgradeButton.interactable = true;
+                    return AffectedPowerupToUpgrade.Instance.upgradeButton[i].interactable = true;
                 }
             }
-            return upgradeButton.interactable = false;
+            return false;
         }
         /// <summary>
         /// Sets the button interactable state and color
@@ -107,73 +90,75 @@ namespace Dots.GamePlay.Powerups.Upgrade
         /// <param name="divide"></param>
         private void SetUpgradeButtonInteractable(float divide)
         {
-            float alpha = 255f / divide;
-            Color color = upgradeButton.image.color;
-            color.a = alpha;
-            upgradeButton.image.color = color;
+            for (int i = 0; i < AffectedPowerupToUpgrade.Instance.upgradeButton.Length; i++)
+            {
+                float alpha = 255f / divide;
+                Color color = AffectedPowerupToUpgrade.Instance.upgradeButton[i].image.color;
+                color.a = alpha;
+                AffectedPowerupToUpgrade.Instance.upgradeButton[i].image.color = color;
+            }
         }
 
         /// <summary>
         /// The logic of upgrade button
         /// We invoke events when we buy the upgrades and we save it to a json file
         /// </summary>
-        void Upgrade()
+        public void Upgrade(PowerupEffectSO powerup)
         {
             int totalCoins = CoinsModel.CurrentCoinsAmount;
             if (CheckIfUpgradeable())
             {
                 OnUpgradeBought?.Invoke();
                 AudioManager.Instance.PlaySFX("ButtonClick");
-
-                for (int i = 0; i < affectedPowerup.Length; i++)
+                AffectedPowerupToUpgrade.Instance.CallToUpgradePowerup(powerup.name);
+                OnCoinsDecreaseAfterUpgrade?.Invoke();
+                CheckIfUpgradeable();
+                
+                timesBought++;
+                if (timesBought == 1)
                 {
-                    totalCoins -= affectedPowerup[i].upgradeCoinsCost;
-                    OnCoinsDecreaseAfterUpgrade?.Invoke();
-
-                    affectedPowerup[i].upgradeCoinsCost += 5;
-                    CoinsModel.CurrentCoinsAmount = totalCoins;
-                    upgradeCoinsCostText.text = string.Format("{0} Coins", affectedPowerup[i].upgradeCoinsCost);
-
-                    affectedPowerup[i].powerupDuration += 0.1f;
-                    powerupDurationText.text = string.Format("{0} Seconds", affectedPowerup[i].powerupDuration.ToString("F1"));
-
-                    CheckIfUpgradeable();
-                    AudioManager.Instance.PlaySFX("Upgrade");
-
-                    timesBought++;
-                    if (timesBought == 1)
+                    if (GoogleServices.Instance.connectedToGooglePlay)
                     {
-                        if (GoogleServices.Instance.connectedToGooglePlay)
-                        {
-                            Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, null);
-                        }
+                        Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, null);
                     }
-                    PlayerPrefs.SetInt("TimesBought", timesBought);
-
-                    PowerupUpgradesModel.CoinsCost[i] = affectedPowerup[i].upgradeCoinsCost;
-                    PowerupUpgradesModel.PowerupDurationValue[i] = affectedPowerup[i].powerupDuration;
                 }
-                    SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[0]);
+                PlayerPrefs.SetInt("TimesBought", timesBought);
                 SaveAndLoadJson.SavingToJson("/SavedData.json", this);
+
+                //for (int i = 0; i < AffectedPowerupToUpgrade.Instance.powerupEffectSOs.Length; i++)
+                //{
+                //    totalCoins -= AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost;
+                //    OnCoinsDecreaseAfterUpgrade?.Invoke();
+
+                //    AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost += 5;
+                //    CoinsModel.CurrentCoinsAmount = totalCoins;
+                //    upgradeCoinsCostText.text = string.Format("{0} Coins", AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost);
+
+                //    AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDuration += 0.1f;
+                //    powerupDurationText.text = string.Format("{0} Seconds", AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDuration.ToString("F1"));
+
+                //    CheckIfUpgradeable();
+                //    AudioManager.Instance.PlaySFX("Upgrade");
+
+                //    timesBought++;
+                //    if (timesBought == 1)
+                //    {
+                //        if (GoogleServices.Instance.connectedToGooglePlay)
+                //        {
+                //            Social.ReportProgress("CgkIm-Xn1MEZEAIQDQ", 100.0f, null);
+                //        }
+                //    }
+                //    PlayerPrefs.SetInt("TimesBought", timesBought);
+
+                //    PowerupUpgradesModel.CoinsCost[i] = AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].upgradeCoinsCost;
+                //    PowerupUpgradesModel.PowerupDurationValue[i] = AffectedPowerupToUpgrade.Instance.powerupEffectSOs[i].powerupDuration;
+                //}
             }
         }
 
         void OnDisable()
         {
             IronSourceInit.OnCheckIfUpgradeable -= CheckIfUpgradeable;
-            for (int i = 0; i < affectedPowerup.Length; i++)
-            {
-                SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[i]);
-            }
-        }
-
-        void OnDestroy()
-        {
-            upgradeButton.onClick.RemoveListener(Upgrade);
-            for (int i = 0; i < affectedPowerup.Length; i++)
-            {
-                SaveAndLoadJson.SavePowerupValues("/PowerupValues.json", this, affectedPowerup[i]);
-            }
         }
     }
 }
