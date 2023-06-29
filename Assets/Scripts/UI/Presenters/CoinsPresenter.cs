@@ -3,10 +3,10 @@ using DG.Tweening;
 using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Coins.Model;
+using Dots.Powerup.Model;
+using Dots.Powerup.Upgrade;
 using Dots.GamePlay.Dot.Bad;
 using Dots.Utilities.CoinsAnimation;
-using Dots.GamePlay.Powerups.Upgrade;
-using Dots.Powerup.Model;
 
 namespace Dots.Coins.Presenter
 {
@@ -68,12 +68,9 @@ namespace Dots.Coins.Presenter
             }
         }
 
-        void ShowUsedCoinsText()
+        void ShowUsedCoinsText(int coinsCost)
         {
-            for (int i = 0; i < PowerupUpgradesModel.CoinsCost.Length; i++)
-            {
-                ShowCoinsText(coinsAnimationText, PowerupUpgradesModel.CoinsCost[i], "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
-            }
+            ShowCoinsText(coinsAnimationText, coinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
         }
 
         void ShowCoinsText(TMP_Text coinsText, int coins, string sign, Vector3 startPos, Vector3 endPos)

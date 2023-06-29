@@ -1,11 +1,9 @@
-using TMPro;
-using System;
 using UnityEngine;
 using Dots.Ads.Init;
-using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Powerup.Model;
 using Dots.Audio.Manager;
+using Dots.Powerup.Upgrade;
 using Dots.Utilities.SaveAndLoad;
 using Dots.Utilities.GooglePlayServices;
 
