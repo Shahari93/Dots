@@ -66,6 +66,12 @@ namespace Dots.Powerup.Upgrade
 
                     AudioManager.Instance.PlaySFX("Upgrade");
                     OnCoinsDecreaseAfterUpgrade?.Invoke();
+
+                    if (powerupEffectSOs[i].powerupDuration >= powerupEffectSOs[i].powerupDurationLimit)
+                    {
+                        powerupEffectSOs[i].powerupDuration = powerupEffectSOs[i].powerupDurationLimit;
+                        upgradeButton[i].interactable = false;
+                    }
                 }
             }
         }
