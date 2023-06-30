@@ -13,7 +13,7 @@ namespace Dots.Powerup.Upgrade
     public class AffectedPowerupToUpgrade : MonoBehaviour, ISaveable
     {
         public static event Action<int> OnUpgradeBought;
-        public static event Action OnCoinsDecreaseAfterUpgrade;
+        //public static event Action OnCoinsDecreaseAfterUpgrade;
 
         public static AffectedPowerupToUpgrade Instance;
 
@@ -37,11 +37,8 @@ namespace Dots.Powerup.Upgrade
                 DontDestroyOnLoad(gameObject);
             }
 
-            PowerupUpgradesModel.CoinsCost = new int[powerupEffectSOs.Length];
-            PowerupUpgradesModel.PowerupDurationValue = new float[powerupEffectSOs.Length];
-
-            SaveAndLoadJson.LoadPowerupValues("/" + "Spawn Greens Powerup" + "PowerupValues.json", powerupEffectSOs);
-            SaveAndLoadJson.LoadPowerupValues("/" + "Slow Speed Powerup" + "PowerupValues.json", powerupEffectSOs);
+            SaveAndLoadJson.LoadPowerupValues("/" + "Spawn Greens Powerup" + "PowerupValues.json", powerupEffectSOs[0]);
+            SaveAndLoadJson.LoadPowerupValues("/" + "Slow Speed Powerup" + "PowerupValues.json", powerupEffectSOs[1]);
         }
 
         public void CallToUpgradePowerup(string powerupName)
@@ -51,27 +48,27 @@ namespace Dots.Powerup.Upgrade
             {
                 if (powerupEffectSOs[i].name == powerupName)
                 {
-                    totalCoins -= powerupEffectSOs[i].upgradeCoinsCost;
-                    OnUpgradeBought?.Invoke(powerupEffectSOs[i].upgradeCoinsCost);
-                    PowerupUpgradesModel.CoinsCost[i] = powerupEffectSOs[i].upgradeCoinsCost;
-                    PowerupUpgradesModel.PowerupDurationValue[i] = powerupEffectSOs[i].powerupDuration;
-                    CoinsModel.CurrentCoinsAmount = totalCoins;
-
-                    powerupEffectSOs[i].powerupDuration += 0.1f;
-                    powerupEffectSOs[i].upgradeCoinsCost += 5;
-                    powerupDurationText[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
-                    upgradeCoinsCostText[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
-                    SaveAndLoadJson.SavingToJson("/SavedData.json", this);
-                    SaveAndLoadJson.SavePowerupValues("/" + powerupName + "PowerupValues.json", this, powerupEffectSOs);
-
-                    AudioManager.Instance.PlaySFX("Upgrade");
-                    OnCoinsDecreaseAfterUpgrade?.Invoke();
-
                     if (powerupEffectSOs[i].powerupDuration >= powerupEffectSOs[i].powerupDurationLimit)
                     {
                         powerupEffectSOs[i].powerupDuration = powerupEffectSOs[i].powerupDurationLimit;
                         upgradeButton[i].interactable = false;
+                        return;
                     }
+
+                    totalCoins -= powerupEffectSOs[i].upgradeCoinsCost;
+                    OnUpgradeBought?.Invoke(powerupEffectSOs[i].upgradeCoinsCost);
+                    CoinsModel.CurrentCoinsAmount = totalCoins;
+
+                    powerupEffectSOs[i].powerupDuration += 0.1f;
+                    powerupEffectSOs[i].upgradeCoinsCost += 5;
+                    PowerupUpgradesModel.CoinsCost = powerupEffectSOs[i].upgradeCoinsCost;
+                    PowerupUpgradesModel.PowerupDurationValue = powerupEffectSOs[i].powerupDuration;
+                    powerupDurationText[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
+                    upgradeCoinsCostText[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
+                    SaveAndLoadJson.SavingToJson("/SavedData.json", this);
+                    SaveAndLoadJson.SavePowerupValues("/" + powerupName + "PowerupValues.json", this, powerupEffectSOs[i]);
+
+                    AudioManager.Instance.PlaySFX("Upgrade");
                 }
             }
         }

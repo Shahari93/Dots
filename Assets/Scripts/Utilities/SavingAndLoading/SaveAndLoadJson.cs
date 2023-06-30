@@ -1,12 +1,9 @@
 using System.IO;
 using UnityEngine;
 using Dots.Coins.Model;
-using Dots.GamePlay.Powerups.Upgrade;
-using System.Runtime.Serialization.Formatters.Binary;
-using Dots.GamePlay.Powerups;
 using Dots.Powerup.Model;
-using Dots.Powerup.Upgrade;
-using System.ComponentModel;
+using Dots.GamePlay.Powerups;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Dots.Utilities.SaveAndLoad
 {
@@ -45,7 +42,7 @@ namespace Dots.Utilities.SaveAndLoad
             }
         }
 
-        public static void SavePowerupValues(string fileName, ISaveable saveable, PowerupEffectSO[] powerup)
+        public static void SavePowerupValues(string fileName, ISaveable saveable, PowerupEffectSO powerup)
         {
             // Creating the file
             BinaryFormatter formatter = new();
@@ -54,17 +51,15 @@ namespace Dots.Utilities.SaveAndLoad
 
             // Saving the data to the model
             SaveableData data = new();
-            data.spawnGreensPowerupDurationData = PowerupUpgradesModel.PowerupDurationValue[0];
-            data.spawnGreensUpgradeCoinsCostAmount = PowerupUpgradesModel.CoinsCost[0];
+            powerup.powerupDuration = PowerupUpgradesModel.PowerupDurationValue;
+            powerup.upgradeCoinsCost = PowerupUpgradesModel.CoinsCost;
 
-            data.slowTimePowerupDurationData = PowerupUpgradesModel.PowerupDurationValue[1];
-            data.slowTimeUpgradeCoinsCostAmount = PowerupUpgradesModel.CoinsCost[1];
             // Closing the saved file
             formatter.Serialize(stream, data);
             stream.Close();
         }
 
-        public static SaveableData LoadPowerupValues(string fileName, PowerupEffectSO[] powerup)
+        public static SaveableData LoadPowerupValues(string fileName, PowerupEffectSO powerup)
         {
             string path = Application.persistentDataPath + fileName;
             if (File.Exists(path))
@@ -72,11 +67,9 @@ namespace Dots.Utilities.SaveAndLoad
                 BinaryFormatter formatter = new();
                 FileStream stream = new(path, FileMode.Open);
                 SaveableData data = formatter.Deserialize(stream) as SaveableData;
-                PowerupUpgradesModel.PowerupDurationValue[0] = data.spawnGreensPowerupDurationData;
-                PowerupUpgradesModel.CoinsCost[0] = data.spawnGreensUpgradeCoinsCostAmount;
+                PowerupUpgradesModel.PowerupDurationValue = powerup.powerupDuration;
+                PowerupUpgradesModel.CoinsCost = powerup.upgradeCoinsCost;
 
-                PowerupUpgradesModel.PowerupDurationValue[1] = data.slowTimePowerupDurationData;
-                PowerupUpgradesModel.CoinsCost[1] = data.slowTimeUpgradeCoinsCostAmount;
                 stream.Close();
                 return data;
             }

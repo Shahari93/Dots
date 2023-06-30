@@ -20,8 +20,8 @@ namespace Dots.Powerup.Model
             }
         }
 
-        static float[] powerupDurationValue;
-        public static float[] PowerupDurationValue
+        static float powerupDurationValue;
+        public static float PowerupDurationValue
         {
             get
             {
@@ -33,8 +33,8 @@ namespace Dots.Powerup.Model
             }
         }
 
-        static int[] coinsCost;
-        public static int[] CoinsCost
+        static int coinsCost;
+        public static int CoinsCost
         {
             get
             {

@@ -58,7 +58,7 @@ namespace Dots.GamePlay.Powerups.Upgrade
         {
             for (int i = 0; i < AffectedPowerupToUpgrade.Instance.powerupEffectSOs.Length; i++)
             {
-                if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost[i])
+                if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost)
                 {
                     SetUpgradeButtonInteractable(2f);
                     return AffectedPowerupToUpgrade.Instance.upgradeButton[i].interactable = false;

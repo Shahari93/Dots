@@ -17,8 +17,7 @@ namespace Dots.Coins.Presenter
         void OnEnable()
         {
             IronSourceInit.OnCoinsRvWatched += IncrementCoinsValueFromRV;
-            AffectedPowerupToUpgrade.OnUpgradeBought += ShowUsedCoinsText;
-            AffectedPowerupToUpgrade.OnCoinsDecreaseAfterUpgrade += DecreaseCoinsAfterUpgrade;
+            AffectedPowerupToUpgrade.OnUpgradeBought += ShowAndDecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame += IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted += ShowAddedCoinsText;
         }
@@ -37,13 +36,6 @@ namespace Dots.Coins.Presenter
         void IncrementCoinsValueFromRV(int coinsToAdd)
         {
             CoinsModel.Instance.UpdateCoinsDataOnRv(coinsToAdd);
-            UpdateView();
-        }
-
-        // Remove coins after upgrade purchase (Or any other future purchase)
-        void DecreaseCoinsAfterUpgrade()
-        {
-            CoinsModel.Instance.UpdateCoinsData();
             UpdateView();
         }
 
@@ -67,8 +59,10 @@ namespace Dots.Coins.Presenter
             }
         }
 
-        void ShowUsedCoinsText(int coinsCost)
+        void ShowAndDecreaseCoinsAfterUpgrade(int coinsCost)
         {
+            CoinsModel.Instance.UpdateCoinsData();
+            UpdateView();
             ShowCoinsText(coinsAnimationText, coinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
         }
 
@@ -88,8 +82,7 @@ namespace Dots.Coins.Presenter
         void OnDisable()
         {
             IronSourceInit.OnCoinsRvWatched -= IncrementCoinsValueFromRV;
-            AffectedPowerupToUpgrade.OnUpgradeBought -= ShowUsedCoinsText;
-            AffectedPowerupToUpgrade.OnCoinsDecreaseAfterUpgrade -= DecreaseCoinsAfterUpgrade;
+            AffectedPowerupToUpgrade.OnUpgradeBought -= ShowAndDecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame -= IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted -= ShowAddedCoinsText;
         }
