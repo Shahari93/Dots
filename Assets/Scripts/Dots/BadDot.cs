@@ -28,6 +28,7 @@ namespace Dots.GamePlay.Dot.Bad
 
         // The event we invoke when the player collided with a red dot
         public static event Action OnLoseGame;
+        public static event Action<bool> OnBadDotHit;
 
         void Awake()
         {
@@ -45,7 +46,7 @@ namespace Dots.GamePlay.Dot.Bad
             {
                 AudioManager.Instance.PlaySFX("PowerupDisabled");
                 ShieldPowerup.OnCollectedShieldPowerup(false);
-                ActiveShields.AreShieldsActive = false;
+                OnBadDotHit?.Invoke(false);
             }
             else
             {

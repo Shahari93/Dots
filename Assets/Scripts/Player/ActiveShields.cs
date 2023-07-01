@@ -4,6 +4,7 @@ using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.Utilities.Interface.Interaction;
 using Dots.Utilities.Powerups.ObjectPool;
+using Dots.GamePlay.Dot.Bad;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {
@@ -34,6 +35,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         {
             ShieldPowerup.OnCollectedShieldPowerup += EnableShieldsVisual;
             IronSourceInit.OnShieldRvWatched += IsShieldFromRV;
+            BadDot.OnBadDotHit += EnableShieldsVisual;
         }
 
         void Awake()
@@ -49,7 +51,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             else
             {
                 areShieldsActive = true;
-                PowerupsSpawner.CanSpawn = false;
                 foreach (GameObject shield in shields)
                 {
                     EnableShieldsVisual(areShieldsActive);
@@ -96,6 +97,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         {
             ShieldPowerup.OnCollectedShieldPowerup -= EnableShieldsVisual;
             IronSourceInit.OnShieldRvWatched -= IsShieldFromRV;
+            BadDot.OnBadDotHit -= EnableShieldsVisual;
         }
     }
 }
