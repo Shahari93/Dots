@@ -3,6 +3,7 @@ using Dots.Ads.Init;
 using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.Utilities.Interface.Interaction;
+using Dots.Utilities.Powerups.ObjectPool;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {
@@ -48,6 +49,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             else
             {
                 areShieldsActive = true;
+                PowerupsSpawner.CanSpawn = false;
                 foreach (GameObject shield in shields)
                 {
                     //shield.SetActive(areShieldsActive);
@@ -63,7 +65,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         /// <param name="isShieldOn">if true, the shields visuals are on. If false, the visuals are off</param>
         void EnableShieldsVisual(bool isShieldOn)
         {
-            areShieldsActive = isShieldOn;
+            //areShieldsActive = isShieldOn;
             foreach (GameObject shield in shields)
             {
                 shield.SetActive(isShieldOn);
