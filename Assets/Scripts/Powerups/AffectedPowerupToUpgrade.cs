@@ -27,6 +27,7 @@ namespace Dots.Powerup.Upgrade
         void OnEnable()
         {
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
+            CheckIfUpgradeable();
         }
 
         private void Awake()
@@ -52,12 +53,12 @@ namespace Dots.Powerup.Upgrade
                 powerupDurationTexts[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
                 upgradeCoinsCostTexts[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
             }
-            CheckIfUpgradeable();
+            
         }
 
         bool CheckIfUpgradeable()
         {
-            for (int i = 0; i < upgradeButtons.Length;)
+            for (int i = 0; i < powerupEffectSOs.Length;)
             {
                 if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost || CoinsModel.CurrentCoinsAmount - powerupEffectSOs[i].upgradeCoinsCost < 0)
                 {
