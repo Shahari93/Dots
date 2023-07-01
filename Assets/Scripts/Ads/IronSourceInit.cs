@@ -205,7 +205,6 @@ string appKey = "19f99b595";
                 {
                     OnShieldRvWatched?.Invoke();
                     IsShieldFromRV = true;
-                    PowerupsSpawner.CanSpawn = false;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
 

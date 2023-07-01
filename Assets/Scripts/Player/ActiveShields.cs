@@ -55,6 +55,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                     EnableShieldsVisual(areShieldsActive);
                 }
                 IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
+                DestroyingPowerup.OnCollectedPower?.Invoke(0);
             }
         }
 
