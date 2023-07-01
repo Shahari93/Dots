@@ -68,7 +68,7 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             {
                 shield.SetActive(isShieldOn);
             }
-            if (!areShieldsActive)
+            if (!isShieldOn)
             {
                 DestroyingPowerup.OnPowerupDisabled?.Invoke();
             }
