@@ -61,9 +61,12 @@ namespace Dots.Coins.Presenter
 
         void ShowAndDecreaseCoinsAfterUpgrade(int coinsCost)
         {
-            CoinsModel.Instance.UpdateCoinsData();
-            UpdateView();
-            ShowCoinsText(coinsAnimationText, coinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+            if (CoinsModel.CurrentCoinsAmount > 0)
+            {
+                CoinsModel.Instance.UpdateCoinsData();
+                UpdateView();
+                ShowCoinsText(coinsAnimationText, coinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+            }
         }
 
         void ShowCoinsText(TMP_Text coinsText, int coins, string sign, Vector3 startPos, Vector3 endPos)

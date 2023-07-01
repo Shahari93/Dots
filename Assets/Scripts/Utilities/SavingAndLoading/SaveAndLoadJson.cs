@@ -51,8 +51,17 @@ namespace Dots.Utilities.SaveAndLoad
 
             // Saving the data to the model
             SaveableData data = new();
-            powerup.powerupDuration = PowerupUpgradesModel.PowerupDurationValue;
-            powerup.upgradeCoinsCost = PowerupUpgradesModel.CoinsCost;
+
+            if (fileName.Contains("Spawn Greens Powerup"))
+            {
+                data.spawnGreensDuration = powerup.powerupDuration;
+                data.spawnGreensUpgradeCost = powerup.upgradeCoinsCost;
+            }
+            if (fileName.Contains("Slow Speed Powerup"))
+            {
+                data.slowTimeDuration = powerup.powerupDuration;
+                data.slowTimeUpgradeCost = powerup.upgradeCoinsCost;
+            }
 
             // Closing the saved file
             formatter.Serialize(stream, data);
@@ -67,8 +76,17 @@ namespace Dots.Utilities.SaveAndLoad
                 BinaryFormatter formatter = new();
                 FileStream stream = new(path, FileMode.Open);
                 SaveableData data = formatter.Deserialize(stream) as SaveableData;
-                PowerupUpgradesModel.PowerupDurationValue = powerup.powerupDuration;
-                PowerupUpgradesModel.CoinsCost = powerup.upgradeCoinsCost;
+                if (fileName.Contains("Spawn Greens Powerup"))
+                {
+                    powerup.powerupDuration = data.spawnGreensDuration;
+                    powerup.upgradeCoinsCost = data.spawnGreensUpgradeCost;
+                    
+                }
+                if (fileName.Contains("Slow Speed Powerup"))
+                {
+                    powerup.powerupDuration = data.slowTimeDuration;
+                    powerup.upgradeCoinsCost = data.slowTimeUpgradeCost;
+                }
 
                 stream.Close();
                 return data;

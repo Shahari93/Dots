@@ -613,7 +613,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3398632438333292749}
-  - component: {fileID: 215413121681503131}
   m_Layer: 5
   m_Name: UpgradePowerupParent
   m_TagString: Untagged
@@ -644,20 +643,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 600, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &215413121681503131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8355165825201160960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b431061b00907742a0fe097d19472f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  affectedPowerup: {fileID: 11400000, guid: a0d615dcc01c7a8439e44c8b9938d13a, type: 2}
-  upgradeButton: {fileID: 342438958479780323}
-  powerupNameText: {fileID: 342438958050033658}
-  powerupDurationText: {fileID: 342438958130521523}
-  upgradeCoinsCostText: {fileID: 342438958246247228}

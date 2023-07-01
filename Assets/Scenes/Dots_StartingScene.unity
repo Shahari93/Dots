@@ -251,28 +251,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &434378379 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8508144754830913761, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &434378380 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7776604636465132862, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &459827224 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 560000659426525395, guid: f81b312f9445d054fa11ba89e87e8f51, type: 3}
@@ -326,72 +304,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8fa380ea938afb43b91e1a5700fe43a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &505928723 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8508144754915470958, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &505928724 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &505928725 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8508144754976942760, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &505928726 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7776604636482546609, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &505928727 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &505928728 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7776604636552933239, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-  m_PrefabInstance: {fileID: 8465019308244502190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &631541558 stripped
@@ -982,54 +894,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: upgradeButton.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: powerupNameText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: upgradeButton.Array.data[0]
-      value: 
-      objectReference: {fileID: 505928727}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: upgradeButton.Array.data[1]
-      value: 
-      objectReference: {fileID: 505928724}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: powerupNameText.Array.data[0]
-      value: 
-      objectReference: {fileID: 505928728}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: powerupNameText.Array.data[1]
-      value: 
-      objectReference: {fileID: 505928725}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: powerupDurationText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: upgradeCoinsCostText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: powerupDurationText.Array.data[0]
-      value: 
-      objectReference: {fileID: 434378380}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: powerupDurationText.Array.data[1]
-      value: 
-      objectReference: {fileID: 434378379}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: upgradeCoinsCostText.Array.data[0]
-      value: 
-      objectReference: {fileID: 505928726}
-    - target: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
-      propertyPath: upgradeCoinsCostText.Array.data[1]
-      value: 
-      objectReference: {fileID: 505928723}
     - target: {fileID: 853732439402073796, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
