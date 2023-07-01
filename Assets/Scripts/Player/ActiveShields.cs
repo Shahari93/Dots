@@ -52,7 +52,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                 PowerupsSpawner.CanSpawn = false;
                 foreach (GameObject shield in shields)
                 {
-                    //shield.SetActive(areShieldsActive);
                     EnableShieldsVisual(areShieldsActive);
                 }
                 IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
@@ -65,7 +64,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
         /// <param name="isShieldOn">if true, the shields visuals are on. If false, the visuals are off</param>
         void EnableShieldsVisual(bool isShieldOn)
         {
-            //areShieldsActive = isShieldOn;
             foreach (GameObject shield in shields)
             {
                 shield.SetActive(isShieldOn);
