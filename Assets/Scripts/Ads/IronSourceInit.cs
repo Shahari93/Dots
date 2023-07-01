@@ -5,6 +5,7 @@ using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.PauseGame.Presenter;
 using UnityEngine.SceneManagement;
+using Dots.Utilities.Powerups.ObjectPool;
 
 namespace Dots.Ads.Init
 {
@@ -204,6 +205,7 @@ string appKey = "19f99b595";
                 {
                     OnShieldRvWatched?.Invoke();
                     IsShieldFromRV = true;
+                    PowerupsSpawner.CanSpawn = false;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
 
