@@ -1,7 +1,7 @@
+using System;
 using UnityEngine;
 using Dots.Utilities.Destroy;
 using Dots.Utilities.GooglePlayServices;
-using System;
 
 namespace Dots.GamePlay.Powerups.SlowSpeed
 {

@@ -1,6 +1,7 @@
 using UnityEngine;
-using Dots.Utilities.Destroy;
+using Dots.Ads.Init;
 using System.Collections;
+using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups;
 using System.Collections.Generic;
 using Dots.GamePlay.PowerupsParent.Pool;
@@ -38,7 +39,16 @@ namespace Dots.Utilities.Powerups.ObjectPool
             powerupSpawnIntervalInitValue = powerupSpawnInterval;
             DestroyingPowerup.OnCollectedPower += StopPowerupsSpawn;
             DestroyingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
+
+            IronSourceInit.OnShieldRvWatched += IronSourceInit_OnShieldRvWatched;
         }
+
+        private bool IronSourceInit_OnShieldRvWatched()
+        {
+            DestroyingPowerup.OnCollectedPower?.Invoke(0);
+            return IronSourceInit.IsShieldFromRV;
+        }
+
         /// <summary>
         /// If the powerup can be spawn we start the coroutine
         /// </summary>
@@ -89,8 +99,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
                 float randomNumber = Random.Range(0f, totalSpawnChance);
                 string spawnableName = "";
 
-
-                if (canSpawn && Time.deltaTime >= powerupSpawnInterval)
+                if (canSpawn && Time.deltaTime >= powerupSpawnInterval && !IronSourceInit.IsShieldFromRV)
                 {
                     for (int i = 0; i < powerupsSpawnChancesList.Count; i++)
                     {
@@ -121,6 +130,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
         {
             DestroyingPowerup.OnCollectedPower -= StopPowerupsSpawn;
             DestroyingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
+            IronSourceInit.OnShieldRvWatched -= IronSourceInit_OnShieldRvWatched;
         }
     }
 }

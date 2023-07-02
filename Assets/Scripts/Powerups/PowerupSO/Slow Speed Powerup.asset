@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Slow Speed Powerup
   m_EditorClassIdentifier: 
   powerupDuration: 5
-  powerupDurationLimit: 10
+  powerupDurationLimit: 15
   spawnChance: 0.3
   upgradeCoinsCost: 10

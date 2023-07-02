@@ -3,7 +3,6 @@ using Dots.Ads.Init;
 using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.Utilities.Interface.Interaction;
-using Dots.Utilities.Powerups.ObjectPool;
 
 namespace Dots.GamePlay.Player.Interaction.Shields
 {
@@ -54,8 +53,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                     shield.SetActive(areShieldsActive);
                     EnableShieldsVisual(areShieldsActive);
                 }
-                IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
-                DestroyingPowerup.OnCollectedPower?.Invoke(0);
             }
         }
 
@@ -73,7 +70,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
             if (!areShieldsActive)
             {
                 DestroyingPowerup.OnPowerupDisabled?.Invoke();
-                PowerupsSpawner.CanSpawn = true;
             }
         }
 

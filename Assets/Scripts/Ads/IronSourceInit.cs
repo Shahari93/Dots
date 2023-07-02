@@ -5,7 +5,6 @@ using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.PauseGame.Presenter;
 using UnityEngine.SceneManagement;
-using Dots.Utilities.Powerups.ObjectPool;
 
 namespace Dots.Ads.Init
 {
@@ -220,6 +219,7 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd);
                     doubleCoinsRV.gameObject.SetActive(false);
+                    doubleCoinsRV.interactable = !IsRewardedVideoPlacementCapped();
                 }
             }
             OnApplicationFocus(true);

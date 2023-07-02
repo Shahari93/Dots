@@ -1,4 +1,5 @@
 using System;
+using Dots.Ads.Init;
 using Dots.Audio.Manager;
 using Dots.GamePlay.Powerups.Shield;
 using Dots.GamePlay.Player.Interaction.Shields;
@@ -46,6 +47,7 @@ namespace Dots.GamePlay.Dot.Bad
                 AudioManager.Instance.PlaySFX("PowerupDisabled");
                 ShieldPowerup.OnCollectedShieldPowerup(false);
                 ActiveShields.AreShieldsActive = false;
+                IronSourceInit.IsShieldFromRV = false;
             }
             else
             {
