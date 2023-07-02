@@ -27,7 +27,14 @@ namespace Dots.Powerup.Upgrade
         void OnEnable()
         {
             IronSourceInit.OnCheckIfUpgradeable += CheckIfUpgradeable;
-            CheckIfUpgradeable();
+
+            SaveAndLoadJson.LoadPowerupValues("/" + "Spawn Greens Powerup" + "PowerupValues.json", powerupEffectSOs[0]);
+            SaveAndLoadJson.LoadPowerupValues("/" + "Slow Speed Powerup" + "PowerupValues.json", powerupEffectSOs[1]);
+
+            for (int i = 0; i < upgradeButtons.Length; i++)
+            {
+                upgradeButtons[i].interactable = CheckIfUpgradeable();
+            }
         }
 
         private void Awake()
@@ -40,9 +47,6 @@ namespace Dots.Powerup.Upgrade
             {
                 timesBought = 0;
             }
-
-            SaveAndLoadJson.LoadPowerupValues("/" + "Spawn Greens Powerup" + "PowerupValues.json", powerupEffectSOs[0]);
-            SaveAndLoadJson.LoadPowerupValues("/" + "Slow Speed Powerup" + "PowerupValues.json", powerupEffectSOs[1]);
         }
 
         void Start()
@@ -53,25 +57,20 @@ namespace Dots.Powerup.Upgrade
                 powerupDurationTexts[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
                 upgradeCoinsCostTexts[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
             }
-            
         }
 
         bool CheckIfUpgradeable()
         {
-            for (int i = 0; i < powerupEffectSOs.Length;)
+            if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost || CoinsModel.CurrentCoinsAmount - PowerupUpgradesModel.CoinsCost < 0)
             {
-                if (CoinsModel.CurrentCoinsAmount < PowerupUpgradesModel.CoinsCost || CoinsModel.CurrentCoinsAmount - powerupEffectSOs[i].upgradeCoinsCost < 0)
-                {
-                    SetUpgradeButtonInteractable(2f);
-                    return upgradeButtons[i].interactable = false;
-                }
-                else
-                {
-                    SetUpgradeButtonInteractable(1f);
-                    return upgradeButtons[i].interactable = true;
-                }
+                SetUpgradeButtonInteractable(2f);
+                return false;
             }
-            return false;
+            else
+            {
+                SetUpgradeButtonInteractable(1f);
+                return true;
+            }
         }
 
         private void SetUpgradeButtonInteractable(float divide)
@@ -93,12 +92,6 @@ namespace Dots.Powerup.Upgrade
             {
                 if (powerupEffectSOs[i].name == powerupName)
                 {
-                    if (!CheckIfUpgradeable())
-                    {
-                        upgradeButtons[i].interactable = false;
-                        return;
-                    }
-
                     AudioManager.Instance.PlaySFX("ButtonClick");
 
                     if (powerupEffectSOs[i].powerupDuration >= powerupEffectSOs[i].powerupDurationLimit)
@@ -118,6 +111,8 @@ namespace Dots.Powerup.Upgrade
                     PowerupUpgradesModel.PowerupDurationValue = powerupEffectSOs[i].powerupDuration;
                     powerupDurationTexts[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
                     upgradeCoinsCostTexts[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
+
+                    upgradeButtons[i].interactable = CheckIfUpgradeable();
 
                     timesBought++;
                     if (timesBought == 1)
