@@ -219,6 +219,7 @@ string appKey = "19f99b595";
                 {
                     OnCoinsRvWatched?.Invoke(CoinsModel.CoinsToAdd);
                     doubleCoinsRV.gameObject.SetActive(false);
+                    doubleCoinsRV.interactable = !IsRewardedVideoPlacementCapped();
                 }
             }
             OnApplicationFocus(true);

@@ -1,8 +1,10 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 using Dots.Audio.Manager;
 using System.Threading.Tasks;
 using Dots.Utilities.Interface.Spawnable;
+using Dots.GamePlay.Powerups.SlowSpeed;
 
 namespace Dots.GamePlay.Dot
 {
@@ -28,6 +30,7 @@ namespace Dots.GamePlay.Dot
         void OnEnable()
         {
             SetSpawnValues();
+            SlowSpeedPowerup.OnCollectedSlowSpeedPowerup += PowerupCollected;
         }
 
         /// <summary>
@@ -35,7 +38,7 @@ namespace Dots.GamePlay.Dot
         /// </summary>
         async void SetSpawnValues()
         {
-            dotSpeed = Random.Range(85f, 95f);
+            dotSpeed = SlowSpeedPowerup.IsSlowPowerup ? 60f : Random.Range(85f, 95f);
             randX = Random.Range(-180, 181);
             randY = Random.Range(-180, 181);
             direction = new Vector2(randX, randY).normalized;
@@ -57,6 +60,29 @@ namespace Dots.GamePlay.Dot
                 }
                 rb2D.velocity = dotSpeed * Time.fixedDeltaTime * direction;
             });
+        }
+
+        void PowerupCollected(float duration)
+        {
+            StartCoroutine(ChangeSpeedFromPowerup(duration));
+        }
+
+        IEnumerator ChangeSpeedFromPowerup(float duration)
+        {
+            while (duration > 0)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            if (duration <= 0)
+            {
+                SlowSpeedPowerup.IsSlowPowerup = false;
+            }
+        }
+
+        private void OnDisable()
+        {
+            SlowSpeedPowerup.OnCollectedSlowSpeedPowerup -= PowerupCollected;
         }
     } 
 }

@@ -837,10 +837,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3957857318344678853, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
-      propertyPath: rotationSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3957857318344678855, guid: 64f0dd67cc584f24db08b157af3d4288, type: 3}
       propertyPath: m_Name
       value: PlayerDots

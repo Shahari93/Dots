@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01165f5e51047f4f8f561bb47271de5, type: 3}
-  m_Name: SlowSpeedPowerup
+  m_Script: {fileID: 11500000, guid: 2133389133a24544684d91783c1f6bd9, type: 3}
+  m_Name: Shield Powerup
   m_EditorClassIdentifier: 
-  powerupDuration: 5
-  powerupDurationLimit: 10
+  powerupDuration: 0
+  powerupDurationLimit: 0
+  spawnChance: 0.6

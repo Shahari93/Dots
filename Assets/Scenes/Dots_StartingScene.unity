@@ -578,6 +578,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678857803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 836082305466347737, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+  m_PrefabInstance: {fileID: 8465019308244502190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3124e9385aed014a89035b4b6c2049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1717334578 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7889599824184596578, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
@@ -1119,6 +1130,38 @@ PrefabInstance:
       propertyPath: coinsCost
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1678857803}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallToUpgradePowerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AffectedPowerupToUpgrade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Spawn Greens Powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776604636257335662, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7889599824184596577, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_Name
       value: SafeAreaStartingScene
@@ -1207,6 +1250,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7913343283898589974, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: affectedPowerup.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913343283898589974, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: affectedPowerup.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a0d615dcc01c7a8439e44c8b9938d13a, type: 2}
+    - target: {fileID: 7913343283898589974, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: affectedPowerup.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 55c307052be4a764681692ea24d21e54, type: 2}
+    - target: {fileID: 8083640202265618121, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: affectedPowerup.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083640202265618121, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: affectedPowerup.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 55c307052be4a764681692ea24d21e54, type: 2}
+    - target: {fileID: 8083640202265618121, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: affectedPowerup.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 55c307052be4a764681692ea24d21e54, type: 2}
     - target: {fileID: 8355628664566250468, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1214,6 +1281,38 @@ PrefabInstance:
     - target: {fileID: 8461793487953003081, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1678857803}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallToUpgradePowerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AffectedPowerupToUpgrade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Slow Speed Powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508144754618432689, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8771523222195928406, guid: 887f6103900277b499cd3ff0f13b5ac5, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Spawn Greens Powerup
   m_EditorClassIdentifier: 
   powerupDuration: 5
-  powerupDurationLimit: 10
-  spawnChance: 0.3
+  powerupDurationLimit: 15
+  spawnChance: 0.1
+  upgradeCoinsCost: 10
