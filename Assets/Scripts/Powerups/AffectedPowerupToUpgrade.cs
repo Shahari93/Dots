@@ -51,7 +51,8 @@ namespace Dots.Powerup.Upgrade
                 powerupNameTexts[i].text = powerupEffectSOs[i].name;
                 powerupDurationTexts[i].text = string.Format("{0} Seconds", powerupEffectSOs[i].powerupDuration.ToString("F1"));
                 upgradeCoinsCostTexts[i].text = string.Format("{0} Coins", powerupEffectSOs[i].upgradeCoinsCost);
-                upgradeButtons[i].interactable = CoinsModel.CurrentCoinsAmount >= powerupEffectSOs[i].upgradeCoinsCost || CoinsModel.CurrentCoinsAmount - powerupEffectSOs[i].upgradeCoinsCost > 0;
+                upgradeButtons[i].interactable = CoinsModel.CurrentCoinsAmount >= powerupEffectSOs[i].upgradeCoinsCost 
+                    || CoinsModel.CurrentCoinsAmount - powerupEffectSOs[i].upgradeCoinsCost > 0;
             }
         }
 
