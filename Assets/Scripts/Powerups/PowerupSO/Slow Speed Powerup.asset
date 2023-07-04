@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01165f5e51047f4f8f561bb47271de5, type: 3}
   m_Name: Slow Speed Powerup
   m_EditorClassIdentifier: 
-  powerupDuration: 5.6999993
+  powerupDuration: 5
   powerupDurationLimit: 15
   spawnChance: 0.3
-  upgradeCoinsCost: 45
+  upgradeCoinsCost: 10
