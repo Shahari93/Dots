@@ -4,7 +4,7 @@ using Dots.Utilities.Interface.Interaction;
 
 namespace Dots.Feature.KeyAndChest.Key
 {
-    public class CollectingKey : MonoBehaviour, IInteractableObjects, IDestroyableObject
+    public class DestroyingKeyLogic : MonoBehaviour, IInteractableObjects, IDestroyableObject
     {
         [SerializeField] ParticleSystem particles;
 
