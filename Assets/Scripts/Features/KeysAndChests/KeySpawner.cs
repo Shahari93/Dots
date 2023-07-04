@@ -1,6 +1,6 @@
-using Dots.Utilities.Spawn.CircleCircumference;
-using System.Threading.Tasks;
 using UnityEngine;
+using System.Threading.Tasks;
+using Dots.Utilities.Spawn.CircleCircumference;
 
 namespace Dots.Feature.KeyAndChest.Key.Spawn
 {
@@ -13,14 +13,7 @@ namespace Dots.Feature.KeyAndChest.Key.Spawn
         async void Start()
         {
             randomSpawnInterval = Random.Range(5f, 15f);
-
             await AsyncSpawnKey();
-
-            // Check how much passes since scene is loaded and if timesKeySpawned is 0 (Or somehow less then 0)
-            // If time has passed the random interval
-            // Spawn key and add 1 to timesKeySpawned
-
-            // Use async method to delay the spawning
         }
 
         async Task AsyncSpawnKey()
