@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067d9ecb947113d46a5da38bd8aa26fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Raycaster: {fileID: 1175233704}
+  m_Raycast: {fileID: 1175233704}
   m_EventSystem: {fileID: 209063377}
   canvasRect: {fileID: 1175233707}
 --- !u!1001 &2054008716

@@ -30,6 +30,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Tap
                     m_Raycast.Raycast(m_PointerEventData, results);
                     if (results.Count > 0)
                     {
+                        // Send event with the name/id of the chest
                         Debug.Log("Hit: " + results[0].gameObject.name);
                     }
                 }
