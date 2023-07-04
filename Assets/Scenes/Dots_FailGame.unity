@@ -569,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 681969673}
     - target: {fileID: 487922507577780602, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_Name
-      value: Double_Coins
+      value: DoubleCoinsRV_Button
       objectReference: {fileID: 0}
     - target: {fileID: 487922507577780602, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_IsActive
