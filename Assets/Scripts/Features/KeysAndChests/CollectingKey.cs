@@ -10,7 +10,6 @@ namespace Dots.Feature.KeyAndChest.Key
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Shahar");
             if (collision.CompareTag("Bounds"))
             {
                 BehaveWhenInteractWithBounds();
