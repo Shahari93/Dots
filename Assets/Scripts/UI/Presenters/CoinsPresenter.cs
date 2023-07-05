@@ -6,6 +6,9 @@ using Dots.Coins.Model;
 using Dots.Powerup.Upgrade;
 using Dots.GamePlay.Dot.Bad;
 using Dots.Utilities.CoinsAnimation;
+using Dots.Feature.KeyAndChest.Chest.Panel;
+using Dots.Feature.KeyAndChest.Key.Model;
+using System;
 
 namespace Dots.Coins.Presenter
 {
@@ -20,6 +23,7 @@ namespace Dots.Coins.Presenter
             AffectedPowerupToUpgrade.OnUpgradeBought += ShowAndDecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame += IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted += ShowAddedCoinsText;
+            ChestPanelPresenter.OnTapOnContinueButton += UpdateViewAfterTappingOnContinue;
         }
 
         void Awake()
@@ -29,9 +33,19 @@ namespace Dots.Coins.Presenter
 
         void IncrementCoinsValue()
         {
-            CoinsModel.Instance.UpdateCoinsData();
+            if (KeysModel.TotalKeys < 3)
+            {
+                CoinsModel.Instance.UpdateCoinsData();
+                UpdateView();
+            }
+        }
+
+        private void UpdateViewAfterTappingOnContinue()
+        {
+            CoinsModel.Instance.UpdateCoinsDataFromChest();
             UpdateView();
         }
+
 
         void IncrementCoinsValueFromRV(int coinsToAdd)
         {
@@ -88,6 +102,7 @@ namespace Dots.Coins.Presenter
             AffectedPowerupToUpgrade.OnUpgradeBought -= ShowAndDecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame -= IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted -= ShowAddedCoinsText;
+            ChestPanelPresenter.OnTapOnContinueButton -= UpdateViewAfterTappingOnContinue;
         }
     }
 }
