@@ -40,6 +40,11 @@ namespace Dots.Utilities.CoinsAnimation
             }
         }
 
+        void InitCoinsAfterContinueButtonPressed()
+        {
+            InitCoins();
+        }
+
         void InitCoins()
         {
             restartGameButton.interactable = false;
@@ -68,11 +73,6 @@ namespace Dots.Utilities.CoinsAnimation
             }
 
             CountCoins();
-        }
-
-        void InitCoinsAfterContinueButtonPressed()
-        {
-            InitCoins();
         }
 
         void ResetInitValues()
