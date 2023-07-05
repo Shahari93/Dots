@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Tap;
-using System;
 
 namespace Dots.Feature.KeyAndChest.Chest.Panel
 {

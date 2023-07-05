@@ -6,9 +6,9 @@ using Dots.Coins.Model;
 using Dots.Powerup.Upgrade;
 using Dots.GamePlay.Dot.Bad;
 using Dots.Utilities.CoinsAnimation;
-using Dots.Feature.KeyAndChest.Chest.Panel;
 using Dots.Feature.KeyAndChest.Key.Model;
-using System;
+using Dots.Feature.KeyAndChest.Chest.Panel;
+using System.Threading.Tasks;
 
 namespace Dots.Coins.Presenter
 {
@@ -40,7 +40,7 @@ namespace Dots.Coins.Presenter
             }
         }
 
-        private void UpdateViewAfterTappingOnContinue()
+        void UpdateViewAfterTappingOnContinue()
         {
             CoinsModel.Instance.UpdateCoinsDataFromChest();
             UpdateView();
