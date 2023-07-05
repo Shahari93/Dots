@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &44728511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1993255849367592685, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+  m_PrefabInstance: {fileID: 1257108452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &209063375
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestPanel: {fileID: 2081243881}
+  continueTextButton: {fileID: 44728511}
 --- !u!1001 &1257108452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,10 +625,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 704804064746300742, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_Name
-      value: TapToOpen_Text
-      objectReference: {fileID: 0}
     - target: {fileID: 825970976802307415, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -645,6 +653,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1993255849367592685, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1175233710}
     - target: {fileID: 2338976377387843618, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -668,10 +680,6 @@ PrefabInstance:
     - target: {fileID: 2338976377387843618, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2560923903125291160, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 3039606915794889531, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -767,6 +775,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187375097766687614, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313582904532656320, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4650746779873278520, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}

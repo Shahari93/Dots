@@ -14,7 +14,7 @@ namespace Dots.Feature.KeyAndChest.Key.Display
         void OnEnable()
         {
             DestroyingKeyLogic.OnKeyCollected += ChangeKeysPlaceholdersLooks;
-            TapOnChest.OnTapOnChest += TapOnChest_OnTapOnChest;
+            TapOnChest.OnTapOnChest += ChangeKeysPlaceholdersLooksOnTapOnChest;
         }
 
         void Awake()
@@ -39,7 +39,7 @@ namespace Dots.Feature.KeyAndChest.Key.Display
             }
         }
 
-        private void TapOnChest_OnTapOnChest(int keysTotal)
+        private void ChangeKeysPlaceholdersLooksOnTapOnChest(int keysTotal)
         {
             for (int i = keysPlaceholder.Length; i > 0; i--)
             {
@@ -55,7 +55,7 @@ namespace Dots.Feature.KeyAndChest.Key.Display
         void OnDisable()
         {
             DestroyingKeyLogic.OnKeyCollected -= ChangeKeysPlaceholdersLooks;
-            TapOnChest.OnTapOnChest -= TapOnChest_OnTapOnChest;
+            TapOnChest.OnTapOnChest -= ChangeKeysPlaceholdersLooksOnTapOnChest;
         }
     }
 }

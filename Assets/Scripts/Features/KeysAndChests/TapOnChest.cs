@@ -37,6 +37,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Tap
                         // Send event with the name/id of the chest
                         OnTapOnChest?.Invoke(KeysModel.TotalKeys);
                         KeysModel.Instance.DecreaseKeysValue();
+                        results[0].gameObject.GetComponent<Image>().raycastTarget = false;
                     }
                 }
             }
