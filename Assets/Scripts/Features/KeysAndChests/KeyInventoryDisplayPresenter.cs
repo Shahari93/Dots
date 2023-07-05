@@ -5,7 +5,7 @@ using Dots.Feature.KeyAndChest.Chest.Tap;
 
 namespace Dots.Feature.KeyAndChest.Key.Display
 {
-    public class KeyInventoryDisplay : MonoBehaviour
+    public class KeyInventoryDisplayPresenter : MonoBehaviour
     {
         [SerializeField] Image[] keysPlaceholder;
         [SerializeField] Sprite collectedKeySprite;
@@ -29,16 +29,14 @@ namespace Dots.Feature.KeyAndChest.Key.Display
                     }
                 }
             }
+            Debug.Log("Total Keys: " + KeysModel.TotalKeys);
         }
 
         void ChangeKeysPlaceholdersLooks(int keysTotal)
         {
             for (int i = 0; i < keysPlaceholder.Length; ++i)
             {
-                if (i < keysTotal)
-                    keysPlaceholder[i].sprite = collectedKeySprite;
-                else
-                    keysPlaceholder[i].sprite = notCollectedKeySprite;
+                keysPlaceholder[i].sprite = i < keysTotal ? collectedKeySprite : notCollectedKeySprite;
             }
         }
 
@@ -46,10 +44,12 @@ namespace Dots.Feature.KeyAndChest.Key.Display
         {
             for (int i = keysPlaceholder.Length; i > 0; i--)
             {
-                if (i <= keysTotal)
-                    keysPlaceholder[i - 1].sprite = notCollectedKeySprite;
-                else
-                    keysPlaceholder[i - 1].sprite = collectedKeySprite;
+                if (keysPlaceholder[i - 1].sprite == notCollectedKeySprite)
+                {
+                    continue;
+                }
+
+                keysPlaceholder[i - 1].sprite = i == keysTotal ? notCollectedKeySprite : collectedKeySprite;
             }
         }
 
