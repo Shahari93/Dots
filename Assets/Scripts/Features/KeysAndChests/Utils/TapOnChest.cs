@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using Dots.Feature.KeyAndChest.Key.Model;
 using System;
+using Dots.Feature.KeyAndChest.Prizes.Holder;
 
 namespace Dots.Feature.KeyAndChest.Chest.Tap
 {
@@ -38,6 +39,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Tap
                         OnTapOnChest?.Invoke(KeysModel.TotalKeys);
                         KeysModel.Instance.DecreaseKeysValue();
                         results[0].gameObject.GetComponent<Image>().raycastTarget = false;
+                        results[0].gameObject.GetComponent<Image>().sprite = results[0].gameObject.GetComponent<ChestPrizeHolder>().prizeSO.prizeImage;
                     }
                 }
             }

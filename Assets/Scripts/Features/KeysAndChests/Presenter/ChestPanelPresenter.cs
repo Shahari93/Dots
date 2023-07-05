@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Tap;
+using System;
 
 namespace Dots.Feature.KeyAndChest.Chest.Panel
 {
@@ -10,6 +11,8 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
     {
         [SerializeField] GameObject chestPanel;
         [SerializeField] Button continueTextButton;
+
+        public static event Action OnTapOnContinueButton;
 
         void OnEnable()
         {
@@ -39,6 +42,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
         public void DisableChestPanel()
         {
             chestPanel.SetActive(CheckIfShouldShowPanel());
+            OnTapOnContinueButton?.Invoke();
         }
 
         void OnDisable()

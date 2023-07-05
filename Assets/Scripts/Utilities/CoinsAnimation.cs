@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
+using Dots.Feature.KeyAndChest.Key.Model;
+using Dots.Feature.KeyAndChest.Chest.Panel;
 
 namespace Dots.Utilities.CoinsAnimation
 {
@@ -25,7 +27,20 @@ namespace Dots.Utilities.CoinsAnimation
 
         public static event Action OnCoinsAnimationCompleted;
 
+        void OnEnable()
+        {
+            ChestPanelPresenter.OnTapOnContinueButton += InitCoinsAfterContinueButtonPressed;
+        }
+
         void Start()
+        {
+            if (KeysModel.TotalKeys < 3)
+            {
+                InitCoins();
+            }
+        }
+
+        void InitCoins()
         {
             restartGameButton.interactable = false;
             returnHomeButton.interactable = false;
@@ -53,6 +68,11 @@ namespace Dots.Utilities.CoinsAnimation
             }
 
             CountCoins();
+        }
+
+        void InitCoinsAfterContinueButtonPressed()
+        {
+            InitCoins();
         }
 
         void ResetInitValues()
@@ -107,6 +127,11 @@ namespace Dots.Utilities.CoinsAnimation
                     });
                 }
             }
+        }
+
+        void OnDisable()
+        {
+            ChestPanelPresenter.OnTapOnContinueButton -= InitCoinsAfterContinueButtonPressed;
         }
     }
 }
