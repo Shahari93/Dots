@@ -29,7 +29,6 @@ namespace Dots.Feature.KeyAndChest.Key.Display
                     }
                 }
             }
-            Debug.Log("Total Keys: " + KeysModel.TotalKeys);
         }
 
         void ChangeKeysPlaceholdersLooks(int keysTotal)
