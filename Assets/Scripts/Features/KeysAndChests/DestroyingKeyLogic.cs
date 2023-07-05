@@ -1,25 +1,16 @@
 using System;
 using UnityEngine;
-using Dots.Utilities.SaveAndLoad;
 using Dots.Utilities.Interface.Destroy;
+using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Utilities.Interface.Interaction;
 
 namespace Dots.Feature.KeyAndChest.Key
 {
-    public class DestroyingKeyLogic : MonoBehaviour, IInteractableObjects, IDestroyableObject, ISaveable
+    public class DestroyingKeyLogic : MonoBehaviour, IInteractableObjects, IDestroyableObject
     {
         [SerializeField] ParticleSystem particles;
 
         public static event Action<int> OnKeyCollected;
-
-        static int totalKeys;
-
-        public static int TotalKeys { get => totalKeys; set => totalKeys = value; }
-
-        void OnEnable()
-        {
-            SaveAndLoadJson.LoadFromJson("/SavedData.json");
-        }
 
         public void BehaveWhenInteractWithBounds()
         {
@@ -28,8 +19,8 @@ namespace Dots.Feature.KeyAndChest.Key
 
         public void BehaveWhenInteractWithPlayer()
         {
-            totalKeys++;
-            OnKeyCollected?.Invoke(totalKeys);
+            KeysModel.Instance.IncrementKeysValue();
+            OnKeyCollected?.Invoke(KeysModel.TotalKeys);
             DisableVisuals();
         }
 
@@ -53,10 +44,6 @@ namespace Dots.Feature.KeyAndChest.Key
 
             particleSystem.Play();
             Destroy(particleSystem.gameObject, main.duration + 0.1f);
-        }
-        private void OnDisable()
-        {
-            SaveAndLoadJson.SavingToJson("/SavedData.json", this);
         }
     }
 }

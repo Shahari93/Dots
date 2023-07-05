@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using Dots.Utilities.Spawn.CircleCircumference;
 using Dots.Feature.KeyAndChest.Key.Display;
+using Dots.Feature.KeyAndChest.Key.Model;
 
 namespace Dots.Feature.KeyAndChest.Key.Spawn
 {
@@ -20,14 +21,14 @@ namespace Dots.Feature.KeyAndChest.Key.Spawn
         async Task AsyncSpawnKey()
         {
             await Task.Delay(Mathf.RoundToInt(randomSpawnInterval) * 1000);
-            if (Time.timeSinceLevelLoad >= randomSpawnInterval && timesKeySpawned == 0 && DestroyingKeyLogic.TotalKeys < 3)
+            if (Time.timeSinceLevelLoad >= randomSpawnInterval && timesKeySpawned == 0 && KeysModel.TotalKeys < 3)
             {
                 GameObject newKey = Instantiate(keyToSpawn.gameObject, SpawnOnCircleCircumference.SpawnObjectOnCircleCircumference(1.8f), Quaternion.identity);
                 timesKeySpawned++;
                 return;
             }
 
-            if (DestroyingKeyLogic.TotalKeys >= 3)
+            if (KeysModel.TotalKeys >= 3)
             {
                 return;
             }

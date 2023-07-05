@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Dots.Feature.KeyAndChest.Key.Model;
+using System;
 
 namespace Dots.Feature.KeyAndChest.Chest.Tap
 {
@@ -11,6 +13,8 @@ namespace Dots.Feature.KeyAndChest.Chest.Tap
         [SerializeField] EventSystem m_EventSystem;
         [SerializeField] RectTransform canvasRect;
         PointerEventData m_PointerEventData;
+
+        public static event Action<int> OnTapOnChest;
 
         private void Update()
         {
@@ -28,9 +32,11 @@ namespace Dots.Feature.KeyAndChest.Chest.Tap
                     m_PointerEventData.position = touch.position;
                     List<RaycastResult> results = new List<RaycastResult>();
                     m_Raycast.Raycast(m_PointerEventData, results);
-                    if (results.Count > 0)
+                    if (results.Count > 0 && results[0].gameObject.name.Contains("Chest_"))
                     {
                         // Send event with the name/id of the chest
+                        OnTapOnChest?.Invoke(KeysModel.TotalKeys);
+                        KeysModel.Instance.DecreaseKeysValue();
                         Debug.Log("Hit: " + results[0].gameObject.name);
                     }
                 }
