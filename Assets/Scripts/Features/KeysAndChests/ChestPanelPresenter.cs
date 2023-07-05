@@ -1,14 +1,12 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Threading.Tasks;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Tap;
-using UnityEngine.UI;
-using System;
 
 namespace Dots.Feature.KeyAndChest.Chest.Panel
 {
-    public class OpenChestPanel : MonoBehaviour
+    public class ChestPanelPresenter : MonoBehaviour
     {
         [SerializeField] GameObject chestPanel;
         [SerializeField] Button continueTextButton;
@@ -40,7 +38,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
 
         public void DisableChestPanel()
         {
-            chestPanel.SetActive(!CheckIfShouldShowPanel());
+            chestPanel.SetActive(CheckIfShouldShowPanel());
         }
 
         void OnDisable()

@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &44728511 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1993255849367592685, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
-  m_PrefabInstance: {fileID: 1257108452}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &209063375
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +191,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &521287520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1783518304692924991, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+  m_PrefabInstance: {fileID: 1257108452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &562116538
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +348,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6484888599101418247, guid: 0c3e6d76ffa84c541a0a07edd0bfdd6d, type: 3}
+      propertyPath: extraKeysRV
+      value: 
+      objectReference: {fileID: 521287520}
+    - target: {fileID: 6484888599101418247, guid: 0c3e6d76ffa84c541a0a07edd0bfdd6d, type: 3}
       propertyPath: doubleCoinsRV
       value: 
       objectReference: {fileID: 1044705740}
@@ -420,6 +424,17 @@ GameObject:
 --- !u!114 &1044705740 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 319805764233903454, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+  m_PrefabInstance: {fileID: 1257108452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1124597889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2081069778582359571, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
   m_PrefabInstance: {fileID: 1257108452}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -581,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestPanel: {fileID: 2081243881}
-  continueTextButton: {fileID: 44728511}
+  continueTextButton: {fileID: 1124597889}
 --- !u!1001 &1257108452
 PrefabInstance:
   m_ObjectHideFlags: 0
