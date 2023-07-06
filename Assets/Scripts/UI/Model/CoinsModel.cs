@@ -1,6 +1,8 @@
 using UnityEngine;
-using Dots.Utilities.SaveAndLoad;
 using Dots.ScorePoints.Model;
+using Dots.Utilities.SaveAndLoad;
+using Dots.Feature.KeyAndChest.Chest.Tap;
+using System.Threading.Tasks;
 
 [System.Serializable]
 public class CoinsData
@@ -14,7 +16,7 @@ namespace Dots.Coins.Model
     {
         public static CoinsModel Instance;
 
-        static int currentCoinsAmount = 2000;
+        static int currentCoinsAmount;
         static int coinsToAdd;
         public static int CurrentCoinsAmount { get => currentCoinsAmount; set => currentCoinsAmount = value; }
         public static int CoinsToAdd { get => coinsToAdd; set => coinsToAdd = value; }
@@ -26,7 +28,6 @@ namespace Dots.Coins.Model
 
         void Awake()
         {
-            Debug.Log(Application.persistentDataPath);
             if (Instance != null)
             {
                 Destroy(gameObject);
@@ -49,6 +50,16 @@ namespace Dots.Coins.Model
         public void UpdateCoinsData()
         {
             coinsToAdd = PointsModel.CurrentPointsScore;
+            if (coinsToAdd > 0)
+            {
+                currentCoinsAmount += coinsToAdd;
+                SaveAndLoadJson.SavingToJson("/SavedData.json", this);
+            }
+        }
+
+        public void UpdateCoinsDataFromChest()
+        {
+            coinsToAdd = TapOnChest.TotalCoinsFromChests + PointsModel.CurrentPointsScore;
             if (coinsToAdd > 0)
             {
                 currentCoinsAmount += coinsToAdd;

@@ -9,4 +9,6 @@ public class SaveableData
 
     public float slowTimeDuration;
     public int slowTimeUpgradeCost;
+
+    public int totalCollectedKeys;
 }

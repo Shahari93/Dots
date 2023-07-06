@@ -4,6 +4,8 @@ using Dots.Coins.Model;
 using Dots.Powerup.Model;
 using Dots.GamePlay.Powerups;
 using System.Runtime.Serialization.Formatters.Binary;
+using Dots.Feature.KeyAndChest.Key;
+using Dots.Feature.KeyAndChest.Key.Model;
 
 namespace Dots.Utilities.SaveAndLoad
 {
@@ -19,6 +21,7 @@ namespace Dots.Utilities.SaveAndLoad
             // Saving the data to the model
             SaveableData data = new();
             data.userCoinsAmount = CoinsModel.CurrentCoinsAmount;
+            data.totalCollectedKeys = KeysModel.TotalKeys;
             // Closing the saved file
             formatter.Serialize(stream, data);
             stream.Close();
@@ -33,6 +36,7 @@ namespace Dots.Utilities.SaveAndLoad
                 FileStream stream = new(path, FileMode.Open);
                 SaveableData data = formatter.Deserialize(stream) as SaveableData;
                 CoinsModel.CurrentCoinsAmount = data.userCoinsAmount;
+                KeysModel.TotalKeys = data.totalCollectedKeys;
                 stream.Close();
                 return data;
             }

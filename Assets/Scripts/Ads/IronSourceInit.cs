@@ -5,6 +5,8 @@ using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.PauseGame.Presenter;
 using UnityEngine.SceneManagement;
+using Dots.Feature.KeyAndChest.Key.Model;
+using Dots.Feature.KeyAndChest.Chest.Panel;
 
 namespace Dots.Ads.Init
 {
@@ -25,17 +27,24 @@ string appKey = "19f99b595";
         const string COINS_PLACEMENT = "Extra_Coins";
         const string DOUBLE_COINS_PLACEMENT = "Double_Coins";
         const string SHIELD_PLACEMENT = "Start_Shield";
+        const string EXTRA_KEYS = "Extra_Keys";
 
         public static event Action<int> OnCoinsRvWatched;
         public static event Func<bool> OnCheckIfUpgradeable;
 
         public static event Func<bool> OnShieldRvWatched;
+
+        public static event Action<int> OnWatchedExtraKeys;
+
         public static bool IsShieldFromRV;
 
         [SerializeField] Button coinsRV;
         [SerializeField] Button shieldRV;
         [SerializeField] Button reviveRV;
         [SerializeField] Button doubleCoinsRV;
+        [SerializeField] Button extraKeysRV;
+
+        int timesWatchedExtraKeys = 0;
 
         /// <summary>
         /// Subscribing to all the IronSource ads events
@@ -75,6 +84,15 @@ string appKey = "19f99b595";
 
             LoseGameUIPresenter.OnRestartClicked += ShowInterstitialAd;
             LoseGameUIPresenter.OnReturnHomeClicked += ShowInterstitialAd;
+            ChestPanelPresenter.OnContinueShowed += EnableExtraKeysButton;
+        }
+
+        private void EnableExtraKeysButton()
+        {
+            if (KeysModel.TotalKeys <= 0 && timesWatchedExtraKeys == 0)
+            {
+                extraKeysRV.gameObject.SetActive(true);
+            }
         }
 
         void Start()
@@ -221,6 +239,14 @@ string appKey = "19f99b595";
                     doubleCoinsRV.gameObject.SetActive(false);
                     doubleCoinsRV.interactable = !IsRewardedVideoPlacementCapped();
                 }
+
+                if ((getPlacementName == EXTRA_KEYS || getRewardName == "ExtraKeys"))
+                {
+                    extraKeysRV.gameObject.SetActive(false);
+                    KeysModel.TotalKeys = 3;
+                    OnWatchedExtraKeys?.Invoke(placement.getRewardAmount());
+                    timesWatchedExtraKeys++;
+                }
             }
             OnApplicationFocus(true);
         }
@@ -272,6 +298,8 @@ string appKey = "19f99b595";
 
             LoseGameUIPresenter.OnRestartClicked -= ShowInterstitialAd;
             LoseGameUIPresenter.OnReturnHomeClicked -= ShowInterstitialAd;
+            ChestPanelPresenter.OnContinueShowed -= EnableExtraKeysButton;
+
         }
     }
 }
