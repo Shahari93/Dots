@@ -28,7 +28,6 @@ namespace Dots.Coins.Model
 
         void Awake()
         {
-            Debug.Log(Application.persistentDataPath);
             if (Instance != null)
             {
                 Destroy(gameObject);
