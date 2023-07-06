@@ -9,6 +9,7 @@ using Dots.Utilities.CoinsAnimation;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Panel;
 using System.Threading.Tasks;
+using Dots.Feature.KeyAndChest.Chest.Tap;
 
 namespace Dots.Coins.Presenter
 {
@@ -44,6 +45,7 @@ namespace Dots.Coins.Presenter
         {
             CoinsModel.Instance.UpdateCoinsDataFromChest();
             UpdateView();
+            TapOnChest.TotalCoinsFromChests = 0;
         }
 
 

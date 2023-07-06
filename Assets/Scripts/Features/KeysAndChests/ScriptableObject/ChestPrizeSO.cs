@@ -10,7 +10,7 @@ namespace Dots.Feature.KeyAndChest.Prizes
 
 		public int RandomizePrizeAmount()
 		{
-			return prizeAmount = Random.Range(5, 21);
+			return prizeAmount = Random.Range(5, 16);
 		}
 	} 
 }
