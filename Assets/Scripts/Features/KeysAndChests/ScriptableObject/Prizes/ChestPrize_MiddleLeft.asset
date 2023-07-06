@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ChestPrize_MiddleLeft
   m_EditorClassIdentifier: 
   prizeImage: {fileID: 21300000, guid: 29bedb8bdb95d7347acb63b92e63b9dc, type: 3}
-  prizeText: {fileID: 0}
-  prizeAmount: 0
+  prizeAmount: 10
+  prizeName: Coins

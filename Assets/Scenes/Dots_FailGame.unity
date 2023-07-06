@@ -669,6 +669,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1783518304692924991, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 681969673}
+    - target: {fileID: 1906442353648805403, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1993255849367592685, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

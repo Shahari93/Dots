@@ -39,7 +39,7 @@ namespace Dots.Feature.KeyAndChest.Key.Display
             }
         }
 
-        private void ChangeKeysPlaceholdersLooksOnTapOnChest(int keysTotal)
+        void ChangeKeysPlaceholdersLooksOnTapOnChest(int keysTotal)
         {
             for (int i = keysPlaceholder.Length; i > 0; i--)
             {

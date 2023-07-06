@@ -3825,6 +3825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key_Image
       objectReference: {fileID: 0}
+    - target: {fileID: 1139004149760963357, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
+      propertyPath: m_text
+      value: Watch ad to get extra keys
+      objectReference: {fileID: 0}
     - target: {fileID: 7789689309871003405, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
       propertyPath: m_text
       value: X3
@@ -3899,7 +3903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7824061434879755556, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -470
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 7824061434879755556, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3923,7 +3927,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8978567879297622166, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092513252404606130, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092513252404606130, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Extra_Keys
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f88bb2aafe18dd49b4c13a96c143181, type: 3}
