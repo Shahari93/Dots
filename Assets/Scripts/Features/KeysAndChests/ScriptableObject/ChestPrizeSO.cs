@@ -7,6 +7,7 @@ namespace Dots.Feature.KeyAndChest.Prizes
 	{
 		public Sprite prizeImage;
 		public int prizeAmount;
+		public string prizeName;
 
 		public int RandomizePrizeAmount()
 		{

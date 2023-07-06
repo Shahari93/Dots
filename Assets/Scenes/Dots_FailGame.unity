@@ -597,6 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestPanel: {fileID: 2081243881}
   continueTextButton: {fileID: 1124597889}
+  tapToOpenText: {fileID: 1631300850}
 --- !u!1001 &1257108452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1144,6 +1145,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 17429088, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
   m_PrefabInstance: {fileID: 1257108452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631300850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2560923903125291160, guid: 8e10c85d21890604eb5df9b1f23ad00e, type: 3}
+  m_PrefabInstance: {fileID: 1257108452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2004146165
 GameObject:
   m_ObjectHideFlags: 0

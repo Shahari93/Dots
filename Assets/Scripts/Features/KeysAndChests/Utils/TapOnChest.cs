@@ -1,11 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using Dots.Feature.KeyAndChest.Key.Model;
-using System;
 using Dots.Feature.KeyAndChest.Prizes.Holder;
-using Dots.Coins.Model;
 
 namespace Dots.Feature.KeyAndChest.Chest.Tap
 {
@@ -44,10 +43,14 @@ namespace Dots.Feature.KeyAndChest.Chest.Tap
                         KeysModel.Instance.DecreaseKeysValue();
 
                         //TODO: Refactor this
-                        results[0].gameObject.GetComponent<Image>().raycastTarget = false;
-                        results[0].gameObject.GetComponent<Image>().sprite = results[0].gameObject.GetComponent<ChestPrizeHolder>().prizeSO.prizeImage;
-                        results[0].gameObject.GetComponent<ChestPrizeHolder>().prizeText.gameObject.SetActive(true);
-                        totalCoinsFromChests += results[0].gameObject.GetComponent<ChestPrizeHolder>().prizeSO.prizeAmount;
+                        Image resultImage = results[0].gameObject.GetComponent<Image>();
+                        ChestPrizeHolder chestPrizeHolder = results[0].gameObject.GetComponent<ChestPrizeHolder>();
+
+                        resultImage.raycastTarget = false;
+                        resultImage.sprite = chestPrizeHolder.prizeSO.prizeImage;
+
+                        chestPrizeHolder.prizeText.gameObject.SetActive(true);
+                        totalCoinsFromChests += chestPrizeHolder.prizeSO.prizeAmount;
                     }
                 }
             }

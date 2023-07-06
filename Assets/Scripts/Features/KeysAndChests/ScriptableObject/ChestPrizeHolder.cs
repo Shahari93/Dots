@@ -11,7 +11,7 @@ namespace Dots.Feature.KeyAndChest.Prizes.Holder
         private void Awake()
         {
             prizeSO.RandomizePrizeAmount();
-            prizeText.text = string.Format("{0} Coins", prizeSO.prizeAmount);
+            prizeText.text = string.Format("{0} {1}", prizeSO.prizeAmount, prizeSO.prizeName);
             prizeText.gameObject.SetActive(false);
         }
     }

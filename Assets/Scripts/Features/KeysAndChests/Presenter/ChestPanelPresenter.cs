@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Tap;
+using TMPro;
 
 namespace Dots.Feature.KeyAndChest.Chest.Panel
 {
@@ -11,6 +12,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
     {
         [SerializeField] GameObject chestPanel;
         [SerializeField] Button continueTextButton;
+        [SerializeField] TMP_Text tapToOpenText;
 
         public static event Action OnTapOnContinueButton;
 
@@ -34,6 +36,8 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
         {
             if (keys - 1 == 0)
             {
+                tapToOpenText.gameObject.SetActive(false);
+
                 await Task.Delay(1000);
                 continueTextButton.gameObject.SetActive(true);
             }

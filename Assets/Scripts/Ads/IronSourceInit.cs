@@ -5,6 +5,7 @@ using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.PauseGame.Presenter;
 using UnityEngine.SceneManagement;
+using Dots.Feature.KeyAndChest.Key.Model;
 
 namespace Dots.Ads.Init
 {
@@ -36,6 +37,9 @@ string appKey = "19f99b595";
         [SerializeField] Button shieldRV;
         [SerializeField] Button reviveRV;
         [SerializeField] Button doubleCoinsRV;
+        [SerializeField] Button extraKeysRV;
+
+        int timesWatchedExtraKeys = 0;
 
         /// <summary>
         /// Subscribing to all the IronSource ads events
@@ -71,6 +75,11 @@ string appKey = "19f99b595";
             if (doubleCoinsRV != null && CoinsModel.CoinsToAdd != 0)
             {
                 doubleCoinsRV.gameObject.SetActive(true);
+            }
+
+            if(KeysModel.TotalKeys <= 0)
+            {
+                extraKeysRV.gameObject.SetActive(true);
             }
 
             LoseGameUIPresenter.OnRestartClicked += ShowInterstitialAd;
