@@ -34,7 +34,7 @@ string appKey = "19f99b595";
 
         public static event Func<bool> OnShieldRvWatched;
 
-        public static event Action OnWatchedExtraKeys;
+        public static event Action<int> OnWatchedExtraKeys;
 
         public static bool IsShieldFromRV;
 
@@ -89,7 +89,7 @@ string appKey = "19f99b595";
 
         private void EnableExtraKeysButton()
         {
-            if (KeysModel.TotalKeys <= 0)
+            if (KeysModel.TotalKeys <= 0 && timesWatchedExtraKeys == 0)
             {
                 extraKeysRV.gameObject.SetActive(true);
             }
@@ -244,7 +244,7 @@ string appKey = "19f99b595";
                 {
                     extraKeysRV.gameObject.SetActive(false);
                     KeysModel.TotalKeys = 3;
-                    OnWatchedExtraKeys?.Invoke();
+                    OnWatchedExtraKeys?.Invoke(placement.getRewardAmount());
                     timesWatchedExtraKeys++;
                 }
             }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Tap;
+using Dots.Ads.Init;
 
 namespace Dots.Feature.KeyAndChest.Key.Display
 {
@@ -14,6 +15,7 @@ namespace Dots.Feature.KeyAndChest.Key.Display
         void OnEnable()
         {
             DestroyingKeyLogic.OnKeyCollected += ChangeKeysPlaceholdersLooks;
+            IronSourceInit.OnWatchedExtraKeys += ChangeKeysPlaceholdersLooks;
             TapOnChest.OnTapOnChest += ChangeKeysPlaceholdersLooksOnTapOnChest;
         }
 
@@ -55,6 +57,7 @@ namespace Dots.Feature.KeyAndChest.Key.Display
         void OnDisable()
         {
             DestroyingKeyLogic.OnKeyCollected -= ChangeKeysPlaceholdersLooks;
+            IronSourceInit.OnWatchedExtraKeys -= ChangeKeysPlaceholdersLooks;
             TapOnChest.OnTapOnChest -= ChangeKeysPlaceholdersLooksOnTapOnChest;
         }
     }

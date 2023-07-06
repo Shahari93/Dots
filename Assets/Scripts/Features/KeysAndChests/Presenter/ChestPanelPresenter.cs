@@ -47,7 +47,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
             }
         }
 
-        void UpdateChestPanelViewAfterRV()
+        void UpdateChestPanelViewAfterRV(int keys)
         {
             tapToOpenText.gameObject.SetActive(CheckIfShouldShowPanel());
             continueTextButton.gameObject.SetActive(false);
