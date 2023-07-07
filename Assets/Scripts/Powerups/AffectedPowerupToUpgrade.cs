@@ -7,6 +7,7 @@ using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.Powerup.Model;
 using Dots.GamePlay.Powerups;
+using System.Threading.Tasks;
 using Dots.Utilities.SaveAndLoad;
 using Dots.Utilities.GooglePlayServices;
 
@@ -126,7 +127,15 @@ namespace Dots.Powerup.Upgrade
 
                     AudioManager.Instance.PlaySFX("Upgrade");
                 }
+                CheckIfUpgradeableAfterPurchase(i);
             }
+        }
+
+        async void CheckIfUpgradeableAfterPurchase(int upgrade)
+        {
+            await Task.Delay(100);
+            upgradeButtons[upgrade].interactable = CoinsModel.CurrentCoinsAmount >= powerupEffectSOs[upgrade].upgradeCoinsCost
+                    || CoinsModel.CurrentCoinsAmount - powerupEffectSOs[upgrade].upgradeCoinsCost > 0;
         }
 
         void OnDisable()
