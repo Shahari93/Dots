@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6218168599242031657}
   - component: {fileID: -3239184385585970785}
-  - component: {fileID: -5987318383210128421}
   - component: {fileID: 6218168599242031656}
   - component: {fileID: -6789515280022651570}
   - component: {fileID: 8518175992090226454}
@@ -50,19 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 9141086480664059811, guid: a2d5732320934c24599e69823ff108bf, type: 3}
   powerupEffect: {fileID: 11400000, guid: a0d615dcc01c7a8439e44c8b9938d13a, type: 2}
---- !u!114 &-5987318383210128421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218168599242031659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81e4cfbc37ceb14db302440dbc74ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb2D: {fileID: 8518175992090226454}
+  spriteRenderer: {fileID: 6218168599242031656}
 --- !u!212 &6218168599242031656
 SpriteRenderer:
   m_ObjectHideFlags: 0

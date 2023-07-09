@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 using Dots.Audio.Manager;
 using Dots.GamePlay.Powerups;
 using CandyCoded.HapticFeedback;
@@ -17,9 +18,17 @@ namespace Dots.Utilities.Destroy
     {
         [SerializeField] protected ParticleSystem particles;
         [SerializeField] PowerupEffectSO powerupEffect;
+        [SerializeField] SpriteRenderer spriteRenderer;
+
+        bool isFlicker = true;
 
         public static Action<float> OnCollectedPower;
         public static Action OnPowerupDisabled;
+
+        void Start()
+        {
+            StartCoroutine(BlinkPowerupBeforeDisappear(5f));
+        }
 
         void OnTriggerEnter2D(Collider2D collision)
         {
@@ -61,6 +70,35 @@ namespace Dots.Utilities.Destroy
             ShowDestroyParticles(null);
             gameObject.SetActive(false);
         }
+
+        public IEnumerator BlinkPowerupBeforeDisappear(float duration)
+        {
+            if (duration <= 0)
+            {
+                yield break;
+            }
+
+            while (duration > 0)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+                if (duration <= duration / 2 && isFlicker)
+                {
+                    spriteRenderer.color = Color.clear;
+                    yield return new WaitForSecondsRealtime(0.5f);
+                    spriteRenderer.color = Color.white;
+                    yield return new WaitForSecondsRealtime(0.5f);
+                }
+                if (duration <= 0)
+                {
+                    PowerupsSpawner.CanSpawn = true;
+                    gameObject.SetActive(false);
+                    isFlicker = false;
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// Showing particles when the dot is being collided with
         /// </summary>
