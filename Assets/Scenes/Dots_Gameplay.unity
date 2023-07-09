@@ -935,6 +935,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyImage_Middle
       objectReference: {fileID: 0}
+    - target: {fileID: 1576168402612017700, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576168402612017700, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1618981919235152753, guid: 71aba0ccddacd09428f7ea102b3fcccc, type: 3}
       propertyPath: m_Name
       value: KeyImage_Right
