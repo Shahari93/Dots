@@ -1,11 +1,11 @@
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
 using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 namespace Dots.Utilities.Pause
 {

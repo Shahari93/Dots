@@ -1,11 +1,12 @@
+using TMPro;
 using System;
 using UnityEngine;
+using DG.Tweening;
+using Dots.Ads.Init;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using Dots.Feature.KeyAndChest.Key.Model;
 using Dots.Feature.KeyAndChest.Chest.Tap;
-using TMPro;
-using Dots.Ads.Init;
 
 namespace Dots.Feature.KeyAndChest.Chest.Panel
 {
@@ -29,7 +30,12 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
         void Awake()
         {
             chestBackground.gameObject.SetActive(CheckIfShouldShowPanel());
-            chestPanel.SetActive(CheckIfShouldShowPanel());
+            if (CheckIfShouldShowPanel())
+            {
+
+                chestPanel.SetActive(CheckIfShouldShowPanel());
+                chestPanel.GetComponent<RectTransform>().transform.DOScale(Vector3.one, 0.5f);
+            }
         }
 
         bool CheckIfShouldShowPanel()
@@ -58,7 +64,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
         public void DisableChestPanel()
         {
             chestBackground.gameObject.SetActive(CheckIfShouldShowPanel());
-            chestPanel.SetActive(CheckIfShouldShowPanel());
+            chestPanel.transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => chestPanel.SetActive(CheckIfShouldShowPanel()));
             OnTapOnContinueButton?.Invoke();
         }
 
