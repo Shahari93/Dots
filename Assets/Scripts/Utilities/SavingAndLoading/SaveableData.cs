@@ -4,6 +4,11 @@ using System;
 public class SaveableData
 {
     public int userCoinsAmount;
-    public int upgradeCoinsCostAmount;
-    public float powerupDurationData;
+    public float spawnGreensDuration;
+    public int spawnGreensUpgradeCost;
+
+    public float slowTimeDuration;
+    public int slowTimeUpgradeCost;
+
+    public int totalCollectedKeys;
 }

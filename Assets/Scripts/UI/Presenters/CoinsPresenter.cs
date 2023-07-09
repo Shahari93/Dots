@@ -3,9 +3,13 @@ using DG.Tweening;
 using UnityEngine;
 using Dots.Ads.Init;
 using Dots.Coins.Model;
+using Dots.Powerup.Upgrade;
 using Dots.GamePlay.Dot.Bad;
 using Dots.Utilities.CoinsAnimation;
-using Dots.GamePlay.Powerups.Upgrade;
+using Dots.Feature.KeyAndChest.Key.Model;
+using Dots.Feature.KeyAndChest.Chest.Panel;
+using System.Threading.Tasks;
+using Dots.Feature.KeyAndChest.Chest.Tap;
 
 namespace Dots.Coins.Presenter
 {
@@ -17,10 +21,10 @@ namespace Dots.Coins.Presenter
         void OnEnable()
         {
             IronSourceInit.OnCoinsRvWatched += IncrementCoinsValueFromRV;
-            UpgradePowerup.OnUpgradeBought += ShowUsedCoinsText;
-            UpgradePowerup.OnCoinsDecreaseAfterUpgrade += DecreaseCoinsAfterUpgrade;
+            AffectedPowerupToUpgrade.OnUpgradeBought += ShowAndDecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame += IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted += ShowAddedCoinsText;
+            ChestPanelPresenter.OnTapOnContinueButton += UpdateViewAfterTappingOnContinue;
         }
 
         void Awake()
@@ -30,20 +34,24 @@ namespace Dots.Coins.Presenter
 
         void IncrementCoinsValue()
         {
-            CoinsModel.Instance.UpdateCoinsData();
-            UpdateView();
+            if (KeysModel.TotalKeys < 3)
+            {
+                CoinsModel.Instance.UpdateCoinsData();
+                UpdateView();
+            }
         }
+
+        void UpdateViewAfterTappingOnContinue()
+        {
+            CoinsModel.Instance.UpdateCoinsDataFromChest();
+            UpdateView();
+            TapOnChest.TotalCoinsFromChests = 0;
+        }
+
 
         void IncrementCoinsValueFromRV(int coinsToAdd)
         {
             CoinsModel.Instance.UpdateCoinsDataOnRv(coinsToAdd);
-            UpdateView();
-        }
-
-        // Remove coins after upgrade purchase (Or any other future purchase)
-        void DecreaseCoinsAfterUpgrade()
-        {
-            CoinsModel.Instance.UpdateCoinsData();
             UpdateView();
         }
 
@@ -67,9 +75,14 @@ namespace Dots.Coins.Presenter
             }
         }
 
-        void ShowUsedCoinsText()
+        void ShowAndDecreaseCoinsAfterUpgrade(int coinsCost)
         {
-            ShowCoinsText(coinsAnimationText, UpgradePowerup.CoinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+            if (CoinsModel.CurrentCoinsAmount > 0)
+            {
+                CoinsModel.Instance.UpdateCoinsData();
+                UpdateView();
+                ShowCoinsText(coinsAnimationText, coinsCost, "-", new Vector3(-35, 0, 0), new Vector3(-35, -60, 0));
+            }
         }
 
         void ShowCoinsText(TMP_Text coinsText, int coins, string sign, Vector3 startPos, Vector3 endPos)
@@ -88,10 +101,10 @@ namespace Dots.Coins.Presenter
         void OnDisable()
         {
             IronSourceInit.OnCoinsRvWatched -= IncrementCoinsValueFromRV;
-            UpgradePowerup.OnUpgradeBought -= ShowUsedCoinsText;
-            UpgradePowerup.OnCoinsDecreaseAfterUpgrade -= DecreaseCoinsAfterUpgrade;
+            AffectedPowerupToUpgrade.OnUpgradeBought -= ShowAndDecreaseCoinsAfterUpgrade;
             BadDot.OnLoseGame -= IncrementCoinsValue;
             CoinsAnimation.OnCoinsAnimationCompleted -= ShowAddedCoinsText;
+            ChestPanelPresenter.OnTapOnContinueButton -= UpdateViewAfterTappingOnContinue;
         }
     }
 }

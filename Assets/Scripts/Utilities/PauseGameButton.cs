@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
 using Dots.Coins.Model;
 using Dots.Audio.Manager;
@@ -65,7 +66,15 @@ namespace Dots.Utilities.Pause
         void ShowPausePanel(bool show)
         {
             darkenPanel.gameObject.SetActive(show);
-            pauseGamePanel.gameObject.SetActive(show);
+            if (show)
+            {
+                pauseGamePanel.gameObject.SetActive(show);
+                pauseGamePanel.GetComponent<RectTransform>().transform.DOScale(Vector3.one, 0.5f);
+            }
+            else
+            {
+                pauseGamePanel.GetComponent<RectTransform>().transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => pauseGamePanel.gameObject.SetActive(show));
+            }
         }
 
         void ReturnToFlow(int sceneIndex)

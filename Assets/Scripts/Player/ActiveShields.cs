@@ -53,7 +53,6 @@ namespace Dots.GamePlay.Player.Interaction.Shields
                     shield.SetActive(areShieldsActive);
                     EnableShieldsVisual(areShieldsActive);
                 }
-                IronSourceInit.IsShieldFromRV = !IsShieldFromRV();
             }
         }
 

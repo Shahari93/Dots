@@ -27,19 +27,7 @@ namespace Dots.PauseGame.Presenter
 
             if(GoogleServices.Instance.connectedToGooglePlay)
             {
-                Social.ReportScore(PointsModel.CurrentPointsScore, GPGSIds.leaderboard_score_leaderboard, LeaderboardUpdate);
-            }
-        }
-
-        private void LeaderboardUpdate(bool success)
-        {
-            if (success)
-            {
-                Debug.Log("Updated Leaderboard");
-            }
-            else
-            {
-                Debug.Log("Unable to Update Leaderboard");
+                Social.ReportScore(PointsModel.CurrentPointsScore, GPGSIds.leaderboard_score_leaderboard, null);
             }
         }
 

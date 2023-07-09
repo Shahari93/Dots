@@ -1,9 +1,11 @@
 using UnityEngine;
-using Dots.Utilities.Destroy;
+using Dots.Ads.Init;
 using System.Collections;
+using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups;
 using System.Collections.Generic;
 using Dots.GamePlay.PowerupsParent.Pool;
+using Dots.Utilities.Spawn.CircleCircumference;
 
 namespace Dots.Utilities.Powerups.ObjectPool
 {
@@ -20,7 +22,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
         [SerializeField] PowerupEffectSO[] powerupObjects;
         float totalSpawnChance;
 
-        static bool canSpawn = true;
+        static bool canSpawn;
         public static bool CanSpawn
         {
             get
@@ -38,7 +40,16 @@ namespace Dots.Utilities.Powerups.ObjectPool
             powerupSpawnIntervalInitValue = powerupSpawnInterval;
             DestroyingPowerup.OnCollectedPower += StopPowerupsSpawn;
             DestroyingPowerup.OnPowerupDisabled += EnablePowerupSpawn;
+
+            IronSourceInit.OnShieldRvWatched += IronSourceInit_OnShieldRvWatched;
         }
+
+        private bool IronSourceInit_OnShieldRvWatched()
+        {
+            DestroyingPowerup.OnCollectedPower?.Invoke(0);
+            return IronSourceInit.IsShieldFromRV;
+        }
+
         /// <summary>
         /// If the powerup can be spawn we start the coroutine
         /// </summary>
@@ -56,6 +67,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
 
         void Start()
         {
+            canSpawn = true;
             StartCoroutine(SpawnPowerups());
             //Adding each powerup spawn chance to the spawn chance list
             foreach (var powerupObject in powerupObjects)
@@ -88,8 +100,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
                 float randomNumber = Random.Range(0f, totalSpawnChance);
                 string spawnableName = "";
 
-
-                if (canSpawn && Time.deltaTime >= powerupSpawnInterval)
+                if (canSpawn && Time.deltaTime >= powerupSpawnInterval && !IronSourceInit.IsShieldFromRV)
                 {
                     for (int i = 0; i < powerupsSpawnChancesList.Count; i++)
                     {
@@ -106,11 +117,10 @@ namespace Dots.Utilities.Powerups.ObjectPool
 
                 }
 
-
                 GameObject spawnable = PowerupObjectPool.SharedInstance.PullObject(spawnableName);
                 if (spawnable != null)
                 {
-                    spawnable.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);
+                    spawnable.transform.SetPositionAndRotation(SpawnOnCircleCircumference.SpawnObjectOnCircleCircumference(1.8f), this.transform.rotation);
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);
@@ -121,6 +131,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
         {
             DestroyingPowerup.OnCollectedPower -= StopPowerupsSpawn;
             DestroyingPowerup.OnPowerupDisabled -= EnablePowerupSpawn;
+            IronSourceInit.OnShieldRvWatched -= IronSourceInit_OnShieldRvWatched;
         }
     }
 }
