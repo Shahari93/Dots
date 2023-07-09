@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 9141086480664059811, guid: a2d5732320934c24599e69823ff108bf, type: 3}
   powerupEffect: {fileID: 11400000, guid: e982a036252138145baf9ea8ddc616fe, type: 2}
+  spriteRenderer: {fileID: 1367303601656713931}
 --- !u!212 &1367303601656713931
 SpriteRenderer:
   m_ObjectHideFlags: 0
