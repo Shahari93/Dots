@@ -11,6 +11,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
 {
     public class ChestPanelPresenter : MonoBehaviour
     {
+        [SerializeField] Image chestBackground;
         [SerializeField] GameObject chestPanel;
         [SerializeField] Button continueTextButton;
         [SerializeField] TMP_Text tapToOpenText;
@@ -27,6 +28,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
 
         void Awake()
         {
+            chestBackground.gameObject.SetActive(CheckIfShouldShowPanel());
             chestPanel.SetActive(CheckIfShouldShowPanel());
         }
 
@@ -55,6 +57,7 @@ namespace Dots.Feature.KeyAndChest.Chest.Panel
 
         public void DisableChestPanel()
         {
+            chestBackground.gameObject.SetActive(CheckIfShouldShowPanel());
             chestPanel.SetActive(CheckIfShouldShowPanel());
             OnTapOnContinueButton?.Invoke();
         }

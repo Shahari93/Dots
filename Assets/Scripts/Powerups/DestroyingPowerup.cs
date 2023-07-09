@@ -84,7 +84,7 @@ namespace Dots.Utilities.Destroy
                 yield return new WaitForEndOfFrame();
                 if (duration <= duration / 2 && isFlicker)
                 {
-                    spriteRenderer.color = new Color(255,255,255, 255 / 2);
+                    spriteRenderer.color = Color.clear;
                     yield return new WaitForSecondsRealtime(0.5f);
                     spriteRenderer.color = Color.white;
                     yield return new WaitForSecondsRealtime(0.5f);
