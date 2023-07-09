@@ -5,6 +5,7 @@ using Dots.Audio.Manager;
 using Dots.PauseGame.Model;
 using Dots.ScorePoints.Model;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace Dots.Utilities.Pause
 {
@@ -65,7 +66,15 @@ namespace Dots.Utilities.Pause
         void ShowPausePanel(bool show)
         {
             darkenPanel.gameObject.SetActive(show);
-            pauseGamePanel.gameObject.SetActive(show);
+            if (show)
+            {
+                pauseGamePanel.gameObject.SetActive(show);
+                pauseGamePanel.GetComponent<RectTransform>().transform.DOScale(Vector3.one, 0.5f);
+            }
+            else
+            {
+                pauseGamePanel.GetComponent<RectTransform>().transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => pauseGamePanel.gameObject.SetActive(show));
+            }
         }
 
         void ReturnToFlow(int sceneIndex)
