@@ -1,6 +1,7 @@
-using Dots.Audio.Manager;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
+using Dots.Audio.Manager;
 
 namespace Dots.Settings.UI
 {
@@ -26,13 +27,14 @@ namespace Dots.Settings.UI
             AudioManager.Instance.PlaySFX("ButtonClick");
             darkPanel.gameObject.SetActive(true);
             panel.gameObject.SetActive(true);
+            panel.GetComponent<RectTransform>().transform.DOScale(Vector3.one, 0.5f);
         }
 
         void CloseSettings()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             darkPanel.gameObject.SetActive(false);
-            panel.gameObject.SetActive(false);
+            panel.GetComponent<RectTransform>().transform.DOScale(Vector3.zero, 0.5f).OnComplete(()=> panel.gameObject.SetActive(false));
         }
 
         void OnDestroy()
