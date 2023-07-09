@@ -5,6 +5,7 @@ using Dots.Utilities.Destroy;
 using Dots.GamePlay.Powerups;
 using System.Collections.Generic;
 using Dots.GamePlay.PowerupsParent.Pool;
+using Dots.Utilities.Spawn.CircleCircumference;
 
 namespace Dots.Utilities.Powerups.ObjectPool
 {
@@ -119,7 +120,7 @@ namespace Dots.Utilities.Powerups.ObjectPool
                 GameObject spawnable = PowerupObjectPool.SharedInstance.PullObject(spawnableName);
                 if (spawnable != null)
                 {
-                    spawnable.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);
+                    spawnable.transform.SetPositionAndRotation(SpawnOnCircleCircumference.SpawnObjectOnCircleCircumference(1.8f), this.transform.rotation);
                     spawnable.GetComponent<Collider2D>().enabled = true;
                     spawnable.GetComponent<SpriteRenderer>().enabled = true;
                     spawnable.SetActive(true);
