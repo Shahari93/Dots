@@ -70,12 +70,12 @@ namespace Dots.Utilities.Powerups.ObjectPool
             canSpawn = true;
             StartCoroutine(SpawnPowerups());
             //Adding each powerup spawn chance to the spawn chance list
-            foreach (var powerupObject in powerupObjects)
+            foreach (PowerupEffectSO powerupObject in powerupObjects)
             {
                 powerupsSpawnChancesList.Add(powerupObject.spawnChance);
             }
             // Adding the total of spawn chances 
-            foreach (var spawnChance in powerupsSpawnChancesList)
+            foreach (float spawnChance in powerupsSpawnChancesList)
             {
                 totalSpawnChance += spawnChance;
             }
